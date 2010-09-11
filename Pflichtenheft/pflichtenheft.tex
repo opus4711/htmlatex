@@ -1,0 +1,181 @@
+\documentclass[	a4paper,		% DIN A4
+		titlepage, 		% Titelseite statt Titelkopf
+		fontsize=12pt		% Schriftgröße 12 Punkt
+		]{scrartcl} 		% 'article' aus dem 'Koma'-Script
+\usepackage{ngerman}			% deutsches Tastaturlayout
+\usepackage[ngerman]{babel}		% Neue deutsche Rechtschreibung
+\usepackage{pst-all,			% psTricks einbinden
+	    graphicx}  			% Grafikpaket
+\usepackage{color}			% Farben verwenden, z.B. \color{black}
+\usepackage[utf8x]{inputenc}		% Textdateityp / Kodierung
+\usepackage{pstricks}			% FH-Logo zeichnen lassen
+\usepackage{float}			% zum Positionieren von Grafiken
+\usepackage{fancyhdr}			% Kopfzeilen formatieren
+\usepackage{helvet}			% Schriftart Helvetica
+\usepackage{setspace}			% anderthalbzeiligen Zeilenabstand und so
+%\usepackage{tikz}			% Zeichnen mit pgf und TikZ
+\usepackage[titles]{tocloft} 		% ändert Verzeichnisse
+\usepackage[paper=a4paper,		% Ausgabegröße
+	    left=30mm, 			% linker Seitenrand
+	    right=25mm, 		% rechter Seitenrand
+	    top=25mm,  			% oberer Seitenrand
+	    includehead, 		% Kopfzeile bei der Berechnung der Body-Größe mit einbeziehen
+	    bottom=25mm, 		% oberer Seitenrand
+	    includefoot			% Fußzeile bei der Berechnung der Body-Größe mit einbeziehen
+	    ]{geometry} 		% Layout der Seiten anpassen
+
+%-------Hyperref und Hypercap als letztes Paket einbinden!-------
+\usepackage[%colorlinks=true,		% farbige Links aktivieren
+	    %linkcolor=black,		% Linkfarbe festlegen
+	    %breaklinks=true,		% Links dürfen umgebrochen werden (Wichtig im Inhaltsverzeichnis)
+ 	    linktocpage=true,		% Abbildungsverzeichnis mit Bildern verlinken und Links nur auf die Zahlen setzen
+	    pdfborder={0 0 0},		% Rahmen um Links auf 0 festlegen
+	    ]{hyperref}			% anklickbare Links im Inhaltsverzeichnis
+\usepackage[all]{hypcap}		% Erlaubt Links auf Abbildungen nicht nur unterhalb der caption zu setzen
+
+\renewcommand{\familydefault}{\sfdefault}% Schriftart benutzen
+% \columnsep 1cm			% 1 cm Abstand zwischen den Spalten
+\setlength{\headheight}{34pt}		% Größe der Kopfzeile festlegen
+\setlength{\topmargin}{1pt}
+
+%-------SEITENLAYOUT FÜR PAKET fancyhdr-----------
+\pagestyle{fancy}			% eigenen Seitenstil von fancyhdr aktivieren
+\fancyhf{}%Löschung der Vorbelegung
+%-------Kopfzeile-------
+\fancyhead[L]{\resizebox*{1cm}{!}{\input{./fh_flensburg}}} % Logo-skalieren und einfügen
+\fancyhead[C]{}
+\fancyhead[R]{Kaiser, Baß}
+%-------Fußzeile:-------
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+%--------------------------------------------------
+
+
+
+
+
+\begin{document}			% Beginn des Textes
+%---------TITELBLATT-----------------------------
+\begin{titlepage}
+\centering
+\resizebox*{.25\textheight}{!}{\input{./fh_flensburg}} \\
+\vspace{1cm}
+\Large Projektarbeit: \\ ``htm\LaTeX'' - Konvertierungsoftware\\ --Pflichtenheft--
+\vspace{2cm}
+\vfill
+\begin{flushleft}			% Flattersatz rechts
+\noindent
+\normalsize
+für:\\ \textbf{Kaiser, Björn} \\Mühlendamm 6\\24937 Flensburg\\bjoern-kaiser@versanet.de\\ Matrikel-Nr.: 371658\\ \vspace{.5cm}
+und\\ \vspace{.5cm}
+\textbf{Baß, Björn} \\Ritterstraße 28\\24939 Flensburg\\b-bass@versanet.de\\ Matrikel-Nr.: 341125\\ \vspace{1cm}
+\large Betreuer: Prof. Dr. Hans Werner Lang\\
+SoSe 2011-I\\
+Fachbereich Technik\\
+Fachhochschule Flensburg\\\vspace{.5em}
+Abgabetermin: 07.03.2011
+\end{flushleft}
+\end{titlepage}
+%-------------------------------------------------
+
+
+
+%----------Literaturverzeichnis-------------------
+\newpage				% erzwungener Seitenumbruch
+% \tableofcontents			% Inhaltsverzeichnis anzeigen
+% \thispagestyle{empty}			% keine Seitenzahl anzeigen
+% \newpage				% erzwungener Seitenumbruch
+\pagenumbering{arabic}			% Seitenzähler auf Null und arabische Zahlen im Folgenden
+%-------------------------------------------------
+% \onehalfspace				% anderthalhzeiligen Zeilenabstand aktivieren
+
+
+
+%-------------TEXTBEGINN--------------------------
+\section{Übersicht}
+Die Anwendung soll aus einer Javadoc-generierten HTML-Site wahlweise einen \LaTeX -- Quellcode oder direkt eine ansprechend formatierte, mit einem verlinkten Inhaltsverzeichnis versehene PDF-Datei generieren.
+
+
+\section{Funktionsumfang}
+Die Anwendung kann wahlweise als Konsolenanwendung oder mit grafischer Oberfläche gesteuert werden.
+
+\subsection{Konsolenanwendung}
+Es wird eine Quelldatei und optional ein Zieldateiname und Format (.tex/.pdf) angegeben. Das Starten der grafischen Oberfläche kann ebenfalls durch einen Parameter gesteuert werden.
+
+\subsection{Grafische Oberfläche}
+Quell- und Ausgabedatei können gewählt und auch direkt editiert werden (html/tex -- nicht pdf). Das Format kann gewählt werden.
+
+
+\section{Implementationsanforderungen}
+\begin{itemize}
+ \item Die Konverteranwendung soll in der Sprache C++ mithilfe der Klassenbibliothek Qt\footnote{\href{http:/qt.nokia.com/}{http:/qt.nokia.com/}  }implementiert werden.
+Es soll die Kodierung UTF-8 verwendet werden.
+\item Der Translationsvorgang soll mithilfe von (einer) XML-Datei(en) gesteuert werden können um den Konverter auch für andere Formate wiederverwendbar zu gestalten (andere Formate sind im Rahmen des Projektes nicht gefordert). Deshalb ist die Dokumenttypdefinition möglichst einfach, austauschbar und erweiterbar zu entwerfen.
+\item Zur Umwandlung in das pdf-Format soll die \LaTeX{}-Anwendung der TeX Live -- Distribution (TeX Live 2010) verwendet werden\footnote{\href{http://www.tug.org/texlive/}{http://www.tug.org/texlive/}}. Eine funktionierende Installation von TeX Live 2010 ist bei der Präsentation der Ergebnisse zwingend erforderlich und ist von den Studierenden sicher zu stellen.
+Der Programmcode ist umfassend zu dokumentieren.
+\end{itemize}
+\begin{figure} [H]
+\centering
+% \begin{footnotesize}
+% \caption{\label{architektur}Software-Architektur}
+\resizebox*{.70\textheight}{!}{\input{./img/konverter-baum}}
+% \end{footnotesize}
+\end{figure}
+
+
+\section{Leistungsanforderungen}
+Keine besonderen Leistungsanforderungen.
+
+\section{Abgabe}
+\begin{description}
+ \item[Termin:] Montag, 07.03.2011, Ort wird vom Betreuer bekannt gegeben.
+ \end{description}
+\begin{itemize}
+ \item Projektordner mit CD
+ \item kurze Präsentation des Ergebnisses
+\end{itemize}
+
+
+% \newpage
+% %\thispagestyle{empty}			%keine Seitenzahl anzeigen
+% \pagenumbering{Roman}			%Seitenzähler auf Null und römische Zahlen im Folgenden
+% \bibliographystyle{unifl}		%Literaturverzeichnisvorlage wählen
+% \bibliography{stress}		%Literaturverzeichnis anzeigen
+% \appendix
+% \pagenumbering{Roman}			%Seitenzähler auf Null und römische Zahlen im Folgenden
+
+% \newpage
+
+% \renewcommand\listfigurename{B. Abbildungsverzeichnis} % Name des Abbildungsverzeichisses ändern
+%
+% % \phantomsection
+% \addcontentsline{toc}{section}{\numberline{B}Abbildungsverzeichnis}
+%
+% \listoffigures
+% \newpage		%erzwungener Seitenumbruch
+
+%\thispagestyle{empty}			%keine Seitenzahl anzeigen
+% \singlespace	%normaler Zeilenabstand
+% \section*{Persönliche Erklärung}
+% Hiermit versichere ich, dass ich die vorliegende Arbeit selbstständig angefertigt und
+% keine anderen als die angegebenen Hilfsmittel verwendet habe. Wörtlich oder
+% dem Sinn nach aus gedruckten, elektronisch oder aus anderen Quellen entnommene
+% oder entlehnte Textstellen sind von mir eindeutig als solche gekennzeichnet worden. Mir
+% ist bekannt, dass Verstöße gegen diese Versicherung nicht nur zur Bewertung dieser
+% Bachelor-Arbeit als ,nicht ausreichend’, sondern in schwer wiegenden Fällen zu
+% weiteren Maßnahmen der Universität Flensburg bis hin zur Exmatrikulation führen
+% können.
+% \\
+% \vspace{0,5cm}\\
+% Mit einer Ausleihe meiner Arbeit bin ich einverstanden.
+% \\
+% \vspace{1cm}\\
+% Flensburg, der 18. Juni 2010
+% \\
+% \vspace{1cm}\\
+% \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\\	%Linie schreiben
+% --- Lena Kelm ---
+% \newpage
+% \cite{DissPersoenlichkeitsmerkmale,Gesundheitspsychologie}
+\end{document}				%Ende der Arbeit

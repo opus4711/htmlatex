@@ -1,0 +1,15 @@
+Makefile
+*.o
+htmlatex.pro.*
+moc_*
+htmlatex
+*~
+qt_temp*
+/Pflichtenheft/*.aux
+/Pflichtenheft/*.dvi
+/Pflichtenheft/*.lof
+/Pflichtenheft/*.log
+/Pflichtenheft/*.out
+/Pflichtenheft/*.ps
+/Pflichtenheft/*.backup
+/Pflichtenheft/*.toc
