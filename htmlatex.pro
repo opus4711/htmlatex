@@ -24,7 +24,8 @@ HEADERS += htmlatex.h \
     ui_mainwindow.h
 FORMS += htmlatex.ui \
     convertdialog.ui \
-    htmlatex.ui
+    htmlatex.ui \
+    mainwindow.ui
 OTHER_FILES += README \
     html_examples/startseite.html \
     html_examples/kapitel_2.html \

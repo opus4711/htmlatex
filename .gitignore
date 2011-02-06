@@ -13,3 +13,17 @@ qt_temp*
 /Pflichtenheft/*.ps
 /Pflichtenheft/*.backup
 /Pflichtenheft/*.toc
+/Ausarbeitung/*.aux
+/Ausarbeitung/*.dvi
+/Ausarbeitung/*.lof
+/Ausarbeitung/*.log
+/Ausarbeitung/*.out
+/Ausarbeitung/*.ps
+/Ausarbeitung/*.backup
+/Ausarbeitung/*.toc
+/Ausarbeitung/*.bbl
+/Ausarbeitung/*.blg
+/Ausarbeitung/*.lof
+/Ausarbeitung/*.lot
+/Ausarbeitung/*.toc
+/Ausarbeitung/*.lol

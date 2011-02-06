@@ -1,0 +1,77 @@
+\lstdefinelanguage{Qt}{
+	% classes:
+	morekeywords=[1]{class, public, private, protected, slots, signals, this},
+	% variables:
+	morekeywords=[2]{int, char, double, float, void, bool},
+	% Qt Classes
+	morekeywords=[3]{QAbstractButton, QFlag, QMutex, QStyleOptionTab, QAbstractEventDispatcher, QFlags, QMutexLocker, QStyleOptionTabBarBase, QAbstractExtensionFactory, QFocusEvent, QNetworkAccessManager, QStyleOptionTabV2, QAbstractExtensionManager, QFocusFrame, QNetworkAddressEntry,  QStyleOptionTabWidgetFrame, QAbstractFileEngine, QFont,
+	QNetworkCookie, QStyleOptionTitleBar, QAbstractFileEngineHandler, QFontComboBox, QNetworkCookieJar,
+	QStyleOptionToolBar, QAbstractFileEngineIterator, QFontDatabase, QNetworkInterface, QStyleOptionToolBox, QAbstractFontEngine, QFontDialog, QNetworkProxy, QStyleOptionToolBoxV2, QAbstractFormBuilder, QFontEngineInfo, QNetworkReply, QStyleOptionToolButton, QAbstractGraphicsShapeItem, QFontEnginePlugin, QNetworkRequest, QStyleOptionViewItem, QAbstractItemDelegate, QFontInfo, QStyleOptionViewItemV2, QAbstractItemModel, QFontMetrics, QObject, QStyleOptionViewItemV4, QAbstractItemView, QFontMetricsF, QObjectCleanupHandler, QStylePainter, QAbstractListModel, QFormBuilder, QStylePlugin, QAbstractMessageHandler, QFormLayout, QPageSetupDialog, QSvgGenerator, QAbstractPrintDialog, QFrame, QPaintDevice, QSvgRenderer, QAbstractProxyModel, QFSFileEngine, QPaintEngine, QSvgWidget, QAbstractScrollArea, QFtp, QPaintEngineState, QSyntaxHighlighter, QAbstractSlider, QFuture, QPainter, QSysInfo, QAbstractSocket, QFutureIterator, QPainterPath, QSystemLocale, QAbstractSpinBox, QFutureSynchronizer, QPainterPathStroker, QSystemSemaphore, QAbstractTableModel, QFutureWatcher, QPaintEvent, QSystemTrayIcon, QAbstractTextDocumentLayout, QGenericArgument, QPair, QTabBar, QAbstractUriResolver, QGenericReturnArgument, QPalette, QTabletEvent, QAbstractXmlNodeModel, QGLColormap, QTableView, QAbstractXmlReceiver, QGLContext, QPen, QTableWidget, QAccessible, QGLFormat, QPersistentModelIndex, QTableWidgetItem, QAccessibleBridge, QGLFramebufferObject, QPicture, QTableWidgetSelectionRange, QAccessibleBridgePlugin, QGLPixelBuffer, QPictureFormatPlugin, QTabWidget, QAccessibleEvent, QGLWidget, QPictureIO, QTcpServer, QAccessibleInterface, QGradient, QPixmap, QTcpSocket, QAccessibleObject, QGraphicsEllipseItem, QPixmapCache, QTemporaryFile, QGraphicsGridLayout, QPlainTextDocumentLayout, QTestEventList, QAccessibleWidget, QGraphicsItem, QPlainTextEdit, QTextBlock, QAction, QGraphicsItemAnimation,
+	QPlastiqueStyle, QTextBlockFormat, QActionEvent, QGraphicsItemGroup, QPluginLoader, QTextBlockGroup, QActionGroup, QGraphicsLayout, QPoint, QTextBlockUserData, QApplication, QGraphicsLayoutItem, QPointer, QTextBoundaryFinder, QAssistantClient, QGraphicsLinearLayout, QPointF, QTextBrowser, QAtomicInt, QGraphicsLineItem, QPolygon, QTextCharFormat, QAtomicPointer, QGraphicsPathItem, QPolygonF, QTextCodec, QGraphicsPixmapItem, QPrintDialog, QTextCodecPlugin, QAuthenticator, QGraphicsPolygonItem, QPrintEngine, QTextCursor, QAxAggregated, QGraphicsProxyWidget, QPrinter, QTextDecoder, QAxBase, QGraphicsRectItem, QPrinterInfo, QTextDocument, QAxBindable, QGraphicsScene, QPrintPreviewDialog, QTextDocumentFragment, QAxFactory, QGraphicsSceneContextMenuEvent, QPrintPreviewWidget, QTextEdit, QAxObject, QGraphicsSceneDragDropEvent, QProcess, QTextEncoder, QAxScript, QGraphicsSceneEvent, QProgressBar,  QTextFormat, QAxScriptEngine, QGraphicsSceneHelpEvent, QProgressDialog, QTextFragment, QAxScriptManager, QGraphicsSceneHoverEvent, QProxyModel, QTextFrame, QAxWidget, QGraphicsSceneMouseEvent, QProxyScreen, QTextFrameFormat, QBasicTimer, QGraphicsSceneMoveEvent, QPushButton, QTextImageFormat, QBitArray, QGraphicsSceneResizeEven, QQueue, QTextInlineObject, QBitmap, QGraphicsSceneWheelEvent, QRadialGradient, QTextItem, QBoxLayout, QGraphicsSimpleTextItem, QRadioButton, QTextLayout, QBrush, QGraphicsSvgItem, QRasterPaintEngine, QTextLength, QBuffer, QGraphicsTextItem, QReadLocker, QTextLine, QButtonGroup, QGraphicsView, QReadWriteLock,
+	QTextList, QByteArray, QGraphicsWidget, QHelpEvent, QAccessiblePlugin, QRect, QTextListFormat, QByteArrayMatcher, QGridLayout, QRectF, QTextObject, QCache, QGroupBox, QRegExp, QTextOption, QCalendarWidget, QHash, QRegExpValidator, QTextStream, QCDEStyle, QHashIterator, QRegion, QTextTable, QChar, QHBoxLayout, QResizeEvent, QTextTableCell, QCheckBox, QHeaderView, QResource,
+	QTextTableCellFormat, QChildEvent, QHelpContentItem, QRubberBand, QTextTableFormat, QCleanlooksStyle, QHelpContentModel, QRunnable, QThread, QClipboard, QHelpContentWidget, QScreen, QThreadPool, QCloseEvent, QHelpEngine, QScreenCursor, QThreadStorage, QColor, QHelpEngineCore, QScreenDriverFactory, QTime, QColorDialog, QScreenDriverPlugin, QTimeEdit, QColormap, QHelpIndexModel, QScriptable, QTimeLine, QColumnView, QHelpIndexWidget, QScriptClass, QTimer, QComboBox, QHelpSearchEngine, QScriptClassPropertyIterator, QTimerEvent, QCommandLinkButton, QHelpSearchQuery, QScriptContext, QToolBar, QCommonStyle, QHelpSearchQueryWidget, QScriptContextInfo, QToolBox, QCompleter, QHelpSearchResultWidget, QScriptEngine, QToolButton, QConicalGradient, QHideEvent, QScriptEngineAgent, QToolTip, QContextMenuEvent,
+	QScriptExtensionPlugin, QTransform, QCopChannel, QHostInfo, QScriptString, QTranslator, QCoreApplication, QHoverEvent, QScriptValue, QTreeView, QCryptographicHash, QHttp, QScriptValueIterator, QTreeWidget, QCursor, QHttpHeader, QScrollArea, QTreeWidgetItem, QCustomRasterPaintDevice, QHttpRequestHeader, QScrollBar, QTreeWidgetItemIterator, QDataStream, QHttpResponseHeader, QUdpSocket, QDataWidgetMapper, QIcon, QSemaphore, QUiLoader, QDate, QIconDragEvent, QSessionManager, QUndoCommand, QDateEdit, QIconEngine, QSet, QUndoGroup, QDateTime, QIconEnginePlugin, QSetIterator, QUndoStack, QDateTimeEdit, QIconEnginePluginV2, QSettings,
+	QUndoView, QDBusAbstractAdaptor, QIconEngineV2, QSharedData, QDBusAbstractInterface, QImage, QSharedDataPointer, QUrl, QDBusArgument, QImageIOHandler, QSharedMemory, QUrlInfo, QDBusConnection, QImageIOPlugin, QShortcut, QUuid, QDBusConnectionInterface, QImageReader, QShortcutEvent,
+	QValidator, QDBusContext, QImageWriter, QShowEvent, QVariant, QDBusError, QInputContext, QSignalMapper, QVarLengthArray, QDBusInterface, QInputContextFactory, QSignalSpy, QVBoxLayout, QDBusMessage, QInputContextPlugin, QSimpleXmlNodeModel, QVector, QDBusObjectPath, QInputDialog, QSize, QVectorIterator, QDBusReply, QInputEvent, QSizeF, QDBusServer, QInputMethodEvent, QSizeGrip, QDBusSignature, QIntValidator, QSizePolicy, QHostAddress, QDBusVariant, QIODevice, QSlider,  QWaitCondition, QDecoration, QItemDelegate, QSocketNotifier, QWebFrame, QDecorationDefault, QItemEditorCreator, QSortFilterProxyModel, QWebHistory, QDecorationFactory, QItemEditorCreatorBase, QSound, QWebHistoryInterface, QDecorationPlugin, QItemEditorFactory, QSourceLocation, QWebHistoryItem, QDesignerActionEditorInterface, QItemSelection, QSpacerItem, QWebHitTestResult, QDesignerContainerExtension, QItemSelectionModel, QSpinBox, QWebPage, QDesignerCustomWidgetCollectionInterface, QItemSelectionRange, QSplashScreen, QWebPluginFactory, QDesignerCustomWidgetInterface, QKbdDriverFactory, QSplitter, QWebSettings, QDesignerDynamicPropertySheetExtension, QKbdDriverPlugin, QSplitterHandle, QWebView, QDesignerFormEditorInterface, QKeyEvent, QSqlDatabase, QWhatsThis, QDesignerFormWindowCursorInterface, QKeySequence, QSqlDriver, QWhatsThisClickedEvent, QDesignerFormWindowInterface, QLabel, QSqlDriverCreator, QWheelEvent, QDesignerFormWindowManagerInterface, QLatin1Char, QSqlDriverCreatorBase, QWidget, QDesignerMemberSheetExtension, QLatin1String, QSqlDriverPlugin, QWidgetAction, QDesignerObjectInspectorInterface, QLayout, QSqlError, QWidgetItem, QDesignerPropertyEditorInterface, QLayoutItem, QSqlField, QWindowsMime, QDesignerPropertySheetExtension, QLCDNumber, QSqlIndex, QWindowsStyle, QDesignerTaskMenuExtension, QLibrary, QSqlQuery, QWindowStateChangeEvent, QDesignerWidgetBoxInterface, QLibraryInfo, QSqlQueryModel, QWindowsVistaStyle, QDesktopServices, QLine, QSqlRecord, QWindowsXPStyle, QDesktopWidget, QLinearGradient, QSqlRelation, QWizard, QDial, QLineEdit, QSqlRelationalDelegate, QWizardPage, QDialog, QLineF, QWorkspace, QDialogButtonBox, QLinkedList, QSqlResult, QWriteLocker, QDir, QLinkedListIterator, QSqlTableModel, QWSCalibratedMouseHandler, QDirectPainter, QList,
+	QSslCertificate, QWSClient, QDirIterator, QListIterator, QSslCipher, QWSEmbedWidget, QDirModel, QListView, QSslConfiguration, QWSEvent, QDockWidget, QListWidget, QSslError, QWSGLWindowSurface, QDomAttr, QListWidgetItem, QSslKey, QWSInputMethod, QDomCDATASection, QLocale, QSslSocket, QWSKeyboardHandler, QDomCharacterData, QLocalServer, QStack, QWSMouseHandler, QDomComment, QLocalSocket, QStackedLayout, QWSPointerCalibrationData, QDomDocument, QMacPasteboardMime, QStackedWidget, QWSScreenSaver, QDomDocumentFragment, QMacStyle, QStandardItem, QWSServer, QDomDocumentType, QMainWindow, QStandardItemEditorCreator, QWSWindow, QDomElement, QMap,
+	QStandardItemModel, QX11EmbedContainer, QDomEntity, QMapIterator, QStatusBar, QX11EmbedWidget, QDomEntityReference, QMatrix, QStatusTipEvent, QX11Info, QDomImplementation, QMdiArea, QString, QXmlAttributes, QDomNamedNodeMap, QMdiSubWindow, QStringList, QXmlContentHandler, QDomNode,
+	QStringListModel, QXmlDeclHandler, QDomNodeList, QStringMatcher, QXmlDefaultHandler, QDomNotation,  QStringRef, QSqlRelationalTableModel, QXmlDTDHandler, QDomProcessingInstruction, QStyle, QXmlEntityResolver, QDomText, QMenu, QStyledItemDelegate, QXmlErrorHandler, QDoubleSpinBox,
+	QMenuBar, QStyleFactory, QXmlFormatter, QDoubleValidator, QMessageBox, QStyleHintReturn, QXmlInputSource, QDrag, QMetaClassInfo, QStyleHintReturnMask, QXmlItem, QDragEnterEvent, QMetaEnum, QStyleHintReturnVariant, QXmlLexicalHandler, QDragLeaveEvent, QMetaMethod, QStyleOption, QXmlLocator, QDragMoveEvent, QStyleOptionButton, QXmlName, QDropEvent, QMetaProperty, QStyleOptionComboBox, QXmlNamePool, QDynamicPropertyChangeEvent, QMetaType, QStyleOptionComplex,
+	QXmlNamespaceSupport, QMimeData, QStyleOptionDockWidget, QXmlNodeModelIndex, QMimeSource, QStyleOptionFocusRect, QMetaObject, QXmlParseException, QModelIndex, QStyleOptionFrame, QXmlQuery, QErrorMessage, QMotifStyle, QStyleOptionFrameV2, QXmlReader, QEvent, QMouseDriverFactory, QStyleOptionGraphicsItem, QXmlResultItems, QEventLoop, QMouseDriverPlugin, QStyleOptionGroupBox, QXmlSerializer, QMouseEvent, QStyleOptionHeader, QXmlSimpleReader, QExplicitlySharedDataPointer, QMoveEvent, QStyleOptionMenuItem, QXmlStreamAttribute, QExtensionFactory, QMovie,
+	QStyleOptionProgressBar, QXmlStreamAttributes, QExtensionManager, QMultiHash, QStyleOptionProgressBarV2, QXmlStreamEntityDeclaration,QFile, QMultiMap,
+	QStyleOptionQ3DockWindow, QXmlStreamEntityResolver, QFileDialog, QMutableHashIterator, QStyleOptionQ3ListView, QXmlStreamNamespaceDeclaration, QFileIconProvider,
+	QMutableLinkedListIterator, QStyleOptionQ3ListViewItem, QXmlStreamNotationDeclaration, QFileInfo, QMutableListIterator, QStyleOptionRubberBand, QXmlStreamReader, QFileOpenEvent, QMutableMapIterator, QStyleOptionSizeGrip, QXmlStreamWriter, QFileSystemModel, QMutableSetIterator, QStyleOptionSlider, QFileSystemWatcher, QMutableVectorIterator, QStyleOptionSpinBox
+	}, % KDE Classes
+	morekeywords=[4]{KApplication, KXMLGuiWindow, KPushButton, KMenu, KTabBar, KTextEditor, KAboutData, ki18n, KGuiItem, KMessageBox, KCmdLineArgs, KActionCollection}, % Qt Macros
+	morekeywords=[5]{Q_OBJECT, Q_PROPERTY, READ, WRITE, SLOT, SIGNAL, connect, disconnect},
+	morekeywords=[6]{if, for, else, while, do, case, switch, foreach, forever, new},
+	% pre compiler directives
+	morecomment=[s]{/*}{*/},%
+	morecomment=[l]//,% nonstandard
+	morestring=[b]",%
+	morestring=[b]',
+	sensitive=true,
+	moredelim=*[directive]\#,
+	moredirectives={define,elif,else,endif,error,if,ifdef,ifndef,line,
+	include,pragma,undef,warning, emit},
+	basicstyle=\ttfamily\scriptsize,
+  }[keywords,comments,strings,directives]%
+
+\lstset{
+  language=Qt,			% choose the language of the code
+  showspaces=false,		% show spaces within strings adding particular underscores
+  showtabs=false,		% show tabs within strings adding particular underscores
+  frame=single,
+  showstringspaces=false,	% underline spaces within strings
+  keywordstyle=[1]{\color{DarkSkyBlue}},
+  keywordstyle=[2]{\color{DarkScarletRed}},
+  keywordstyle=[3]{\color{DarkGreen}},
+  keywordstyle=[4]{\color{blue}},
+  keywordstyle=[5]{\color{Chocolate}},
+  keywordstyle=[6]{\bfseries},
+  commentstyle={\color{Aluminium4}},
+  stringstyle={\color{Chocolate}},
+  tabsize=4,
+  breaklines=true,
+  breakatwhitespace=true,
+  prebreak=\mbox{{\color{blue}\tiny$\searrow$}},
+  postbreak=\mbox{{\color{blue}\tiny$\rightarrow$}},
+  basicstyle={			% the size of the fonts that are used for the code
+    %\ttfamily
+    \scriptsize
+    },
+  xleftmargin=5pt,
+  xrightmargin=5pt,
+  rulecolor=\color{black!30},
+  backgroundcolor=\color{white},% choose the background color. You must add \usepackage{color}
+  captionpos=b,
+  framesep=10pt,
+  framexleftmargin=18pt,
+  numbers=none,			% where to put the line-numbers
+  numberstyle={\tiny},		% the size of the fonts that are used for the line-numbers
+  stepnumber=1,			% the step between two line-numbers. If it's 1 each line will be numbered
+  numbersep=15pt,		% how far the line-numbers are from the code
+  escapeinside={\%*}{*)}%,      % if you want to add a comment within your code
+%morecomment=[is]{///}{</summary>}
+%morecomment=[l][keywordstyle]{//}
+}

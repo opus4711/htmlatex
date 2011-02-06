@@ -1,0 +1,56 @@
+\usepackage{ngerman}			% deutsches Tastaturlayout
+\usepackage[ngerman]{babel}		% Neue deutsche Rechtschreibung
+\usepackage{babelbib}			% Literaturverzeichnis mehrsprachig
+\usepackage{pst-all,			% psTricks einbinden
+	    graphicx}  			% Grafikpaket
+\usepackage{xcolor}			% Farben verwenden, z.B. \color{black}
+\usepackage[utf8]{inputenc}		% Textdateityp / Kodierung
+\usepackage{pstricks}			% FH-Logo zeichnen lassen
+% \usepackage{picins}			% Grafiken mit Textumfluss
+\usepackage{float}			% zum Positionieren von Grafiken
+\usepackage{fancyhdr}			% Kopfzeilen formatieren
+\usepackage{helvet}			% Schriftart Helvetica
+\usepackage{setspace}			% anderthalbzeiligen Zeilenabstand und so
+%\usepackage{tikz}			% Zeichnen mit pgf und TikZ
+\usepackage[titles]{tocloft} 		% ändert Verzeichnisse
+\usepackage{listings}			% Programmcode listings
+\usepackage[paper=a4paper,		% Ausgabegröße
+	    left=30mm, 			% linker Seitenrand
+	    right=25mm, 		% rechter Seitenrand
+	    top=25mm,  			% oberer Seitenrand
+	    includehead, 		% Kopfzeile bei der Berechnung der Body-Größe mit einbeziehen
+	    bottom=25mm, 		% oberer Seitenrand
+	    includefoot			% Fußzeile bei der Berechnung der Body-Größe mit einbeziehen
+	    ]{geometry} 		% Layout der Seiten anpassen
+
+%-------Hyperref und Hypercap als letztes Paket einbinden!-------
+\usepackage[%colorlinks=true,		% farbige Links aktivieren
+	    %linkcolor=black,		% Linkfarbe festlegen
+	    %breaklinks=true,		% Links dürfen umgebrochen werden (Wichtig im Inhaltsverzeichnis)
+ 	    linktocpage=true,		% Abbildungsverzeichnis mit Bildern verlinken und Links nur auf die Zahlen setzen
+	    pdfborder={0 0 0},		% Rahmen um Links auf 0 festlegen
+	    ]{hyperref}			% anklickbare Links im Inhaltsverzeichnis
+\usepackage[all]{hypcap}		% Erlaubt Links auf Abbildungen nicht nur unterhalb der caption zu setzen
+
+\renewcommand{\familydefault}{\sfdefault}% Schriftart benutzen
+% \columnsep 1cm			% 1 cm Abstand zwischen den Spalten
+\setlength{\headheight}{34pt}		% Größe der Kopfzeile festlegen
+\setlength{\topmargin}{1pt}
+
+\DeclareGraphicsExtensions{.png,.jpg,.jpeg}
+
+\input{./inc_color-definition.tex}
+\input{./inc_qt-lstdefinition.tex}
+
+%-------SEITENLAYOUT FÜR PAKET fancyhdr-----------
+\pagestyle{fancy}			% eigenen Seitenstil von fancyhdr aktivieren
+\fancyhf{}%Löschung der Vorbelegung
+%-------Kopfzeile-------
+\fancyhead[L]{\resizebox*{1cm}{!}{\input{./fh_flensburg}}} % Logo-skalieren und einfügen
+\fancyhead[C]{}
+\fancyhead[R]{Kaiser, Baß}
+%-------Fußzeile:-------
+\fancyfoot[L]{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{}
+%--------------------------------------------------

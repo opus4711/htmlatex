@@ -1,0 +1,111 @@
+\documentclass[	a4paper,		% DIN A4
+		titlepage, 		% Titelseite statt Titelkopf
+		fontsize=12pt		% Schriftgröße 12 Punkt
+		]{scrartcl} 		% 'article' aus dem 'Koma'-Script
+\input{inc_header.tex}
+
+\begin{document}			% Beginn des Textes
+%---------TITELBLATT-----------------------------
+\begin{titlepage}
+\centering
+\resizebox*{.25\textheight}{!}{\input{./fh_flensburg}} \\
+\vspace{1cm}
+\Large Projektarbeit: \\ ``htm\LaTeX'' - Konvertierungsoftware\\ --Ausarbeitung--
+\vspace{2cm}
+\vfill
+\begin{flushleft}			% Flattersatz rechts
+\noindent
+\normalsize
+von:\\ \textbf{Kaiser, Björn} \\Mühlendamm 6\\24937 Flensburg\\bjoern-kaiser@versanet.de\\ Matrikel-Nr.: 371658\\ \vspace{.5cm}
+und\\ \vspace{.5cm}
+\textbf{Baß, Björn} \\Ritterstraße 28\\24939 Flensburg\\b-bass@versanet.de\\ Matrikel-Nr.: 341125\\ \vspace{1cm}
+\large Betreuer: Prof. Dr. Hans Werner Lang\\
+SoSe 2011-I\\
+Fachbereich Technik\\
+Fachhochschule Flensburg\\\vspace{.5em}
+Abgabetermin: 23.03.2011
+\end{flushleft}
+\end{titlepage}
+%-------------------------------------------------
+
+%----------Literaturverzeichnis-------------------
+\newpage				% erzwungener Seitenumbruch
+\tableofcontents			% Inhaltsverzeichnis anzeigen
+\thispagestyle{empty}			% keine Seitenzahl anzeigen
+\newpage				% erzwungener Seitenumbruch
+\pagenumbering{arabic}			% Seitenzähler auf Null und arabische Zahlen im Folgenden
+%-------------------------------------------------
+% \onehalfspace				% anderthalhzeiligen Zeilenabstand aktivieren
+
+%-------------TEXTBEGINN--------------------------
+\section{Einleitung - Motivation}
+
+\section{Listings}
+\lstinputlisting[
+	language={Qt},
+	caption={Qt-Input-capiton},
+	label={Qt-Input-Label},
+	name={Qt-Inputname},
+	frame=single, flexiblecolumns=true,
+	inputencoding={utf8}
+	%firstline=603,
+	%lastline=642
+	]
+	{../cdocumentreader.cpp}
+
+\section{Funktionsumfang}
+
+\subsection{Konsolenanwendung}
+
+\subsection{Grafische Oberfläche}
+\begin{figure} [H]
+    \centering
+	\includegraphics[width=.5\textwidth, keepaspectratio]{./img/screenshot.eps}
+    \caption{BILDUNTERSCHRIFT}
+\end{figure}
+
+\section{Implementierung}
+\begin{figure} [H]
+\centering
+\resizebox*{.70\textheight}{!}{\input{./img/konverter-baum}}
+\end{figure}
+\section{Ausblick}
+
+
+
+
+\section{Leistungsanforderungen}
+Keine besonderen Leistungsanforderungen.
+
+\section{Abgabe}
+\begin{description}
+ \item[Termin:] Montag, 07.03.2011, Ort wird vom Betreuer bekannt gegeben.
+ \end{description}
+\begin{itemize}
+ \item Projektordner mit CD
+ \item kurze Präsentation des Ergebnisses
+\end{itemize}
+
+\newpage
+\nocite{Algorithmen_in_C++}
+\nocite{Algorithmen_in_Java}
+\bibliographystyle{babalpha}
+\bibliography{quellen}
+\newpage
+%\thispagestyle{empty}
+\section{Erklärung}
+Hiermit erklären wir, dass das Projekt htm\LaTeX von uns selbständig und ohne Hilfe Dritter erarbeitet und realisiert wurde.
+
+\vspace{3cm}
+%----------Unterschriften-------------------------
+\noindent
+\hrulefill \hfill \hrulefill \newline
+Björn Kaiser\hfill Björn Baß
+%-------------------------------------------------
+\newpage
+% \listoffigures	% Abbildungsverzeichnis
+% \listoftables		% Tabellenverzeichnis
+% \lstlistoflistings	% Verzeichnis der Programmlistings
+\newpage	% erzwungener Seitenumbruch
+
+\end{document}	% Ende der Arbeit
