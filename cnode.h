@@ -7,13 +7,13 @@
 class CNode
 {
 private:
-    static int instCount;
+    static qint64 instCount;
     CNode* _parent;
     QList<CNode*> children;
-    int _id;
+    qint64 _id;
     QString _name;
     QString _reference;
-    QString _fontData;
+    QString _additionalData;
 public:
     // methods handling node operations
     CNode* parent();
@@ -28,9 +28,13 @@ public:
     // methods returning attributes' values
     QString name() const;
     QString reference() const;
-    QString fontData() const;
+    QString additionalData() const;
+    // methods setting attributes' values
+    void setName(QString name);
+    void setReference(QString reference);
+    void setAdditionalData(QString additionaldata);
     // constructor and destructor
-    CNode(CNode* parent);
+    CNode(CNode* parent, QString name);
     ~CNode();
 };
 
