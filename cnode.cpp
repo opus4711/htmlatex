@@ -5,12 +5,12 @@
  * @param parent Initialiazes the object with the given CNode-object as its parent.
  * @author Björn Kaiser
  */
-CNode::CNode(CNode* parent, QString name) : _parent(parent), _name(name),
-                                            _reference(""), _additionalData("")
+CNode::CNode(CNode* parent, QString name) : _parent(parent), _name(name)
 {
     instCount++;
     this->_id = instCount;
     this->children = QList<CNode*>();
+    this->_data = QMap<QString, QString>();
 };
 /**
  * This destructor deletes all child nodes by means of Qt's generic algorithms.
@@ -34,20 +34,12 @@ QString CNode::name() const
     return this->_name;
 };
 /**
- * Returns the address of referenced target.
+ * Returns node's attributes (such as size, width, align etc.).
  * @author Björn Kaiser
  */
-QString CNode::reference() const
+QMap<QString, QString> CNode::data() const
 {
-    return this->_reference;
-};
-/**
- * Returns font description data (such as font family, size, weight etc.).
- * @author Björn Kaiser
- */
-QString CNode::additionalData() const
-{
-    return this->_additionalData;
+    return this->_data;
 };
 /**
  * Sets the node's name.
@@ -58,20 +50,12 @@ void CNode::setName(QString name)
     this->_name = name;
 };
 /**
- * Sets the node's reference.
+ * Adds an attribute by means of a key-value-pair.
  * @author Björn Kaiser
  */
-void CNode::setReference(QString reference)
+void CNode::addAttribute(QString key, QString value)
 {
-    this->_reference = reference;
-};
-/**
- * Sets the node's font data.
- * @author Björn Kaiser
- */
-void CNode::setAdditionalData(QString additionaldata)
-{
-    this->_additionalData = additionaldata;
+    this->_data[key] = value;
 };
 /**
  * Returns pointer to the child node with the specified index.

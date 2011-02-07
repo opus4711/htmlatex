@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QList>
+#include <QMap>
 
 class CNode
 {
@@ -12,8 +13,7 @@ private:
     QList<CNode*> children;
     qint64 _id;
     QString _name;
-    QString _reference;
-    QString _additionalData;
+    QMap<QString, QString> _data;
 public:
     // methods handling node operations
     CNode* parent();
@@ -27,12 +27,10 @@ public:
     int indexOf(CNode* node) const;
     // methods returning attributes' values
     QString name() const;
-    QString reference() const;
-    QString additionalData() const;
+    QMap<QString, QString> data() const;
     // methods setting attributes' values
     void setName(QString name);
-    void setReference(QString reference);
-    void setAdditionalData(QString additionaldata);
+    void addAttribute(QString key, QString value);
     // constructor and destructor
     CNode(CNode* parent, QString name);
     ~CNode();
