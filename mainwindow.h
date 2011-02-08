@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "opendialog.h"
 #include "convertdialog.h"
 #include "cdocumentreader.h"
 #include "cmodel.h"
@@ -17,12 +18,13 @@ private:
     Ui::MainWindow* ui;
     CModel* model;
 private slots:
+    void showOpenDialog();
     void showConvertDialog();
 protected:
-    void changeEvent(QEvent *e);
+    void changeEvent(QEvent* e);
 public:
     // constructor and destructor
-    MainWindow(QWidget *parent = 0);
+    MainWindow(QWidget* parent = 0);
     ~MainWindow();
 };
 

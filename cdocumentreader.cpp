@@ -1,10 +1,23 @@
 #include "cdocumentreader.h"
 
-CDocumentReader::CDocumentReader(QString path) : _sourceFileInfo(path)
+CDocumentReader::CDocumentReader()
 {
 };
-CNode* CDocumentReader::read()
+/** The hook method determines if the source file is well-formed XML and initiates
+  * a suitable prior treatment.
+  * @author Björn Kaiser
+  */
+void CDocumentReader::hook()
 {
+};
+/** This method
+  * @param filetype contains the file filter string selected previously.
+  * @author Björn Kaiser
+  */
+CNode* CDocumentReader::read(QString sourcefilepath, QString filefilter)
+{
+    _sourceFileInfo = QFileInfo(sourcefilepath);
+    hook();
     return read(_sourceFileInfo.filePath());
 };
 CNode* CDocumentReader::read(QString path)

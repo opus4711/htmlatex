@@ -13,16 +13,16 @@ class ConvertDialog : public QDialog
 {
     Q_OBJECT
 private:
-    Ui::ConvertDialog *ui;
+    Ui::ConvertDialog* ui;
+    QFileDialog* dialog;
 protected:
-    void changeEvent(QEvent *e);
+    void changeEvent(QEvent* e);
 private slots:
-    void browse_sourcefile();
     void browse_targetfile();
     void convert();
 public:
-    QString getSourceFilePath();
-    QString getTargetFilePath();
+    QString targetFilePath();
+    QString fileFilter();
     // constructor and destructor
     ConvertDialog(QWidget *parent = 0);
     ~ConvertDialog();

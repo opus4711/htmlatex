@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'convertdialog.ui'
 **
-** Created: Tue 8. Feb 01:34:58 2011
+** Created: Tue 8. Feb 22:51:36 2011
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -29,18 +29,15 @@ public:
     QLineEdit *lineEdit_targetfile;
     QPushButton *pushButton_targetfile;
     QPushButton *pushButton_convert;
-    QGroupBox *groupBox_sourcefile;
-    QLineEdit *lineEdit_sourcefile;
-    QPushButton *pushButton_sourcefile;
 
     void setupUi(QDialog *ConvertDialog)
     {
         if (ConvertDialog->objectName().isEmpty())
             ConvertDialog->setObjectName(QString::fromUtf8("ConvertDialog"));
-        ConvertDialog->resize(389, 177);
+        ConvertDialog->resize(392, 107);
         groupBox_targetfile = new QGroupBox(ConvertDialog);
         groupBox_targetfile->setObjectName(QString::fromUtf8("groupBox_targetfile"));
-        groupBox_targetfile->setGeometry(QRect(10, 80, 371, 61));
+        groupBox_targetfile->setGeometry(QRect(10, 10, 371, 61));
         lineEdit_targetfile = new QLineEdit(groupBox_targetfile);
         lineEdit_targetfile->setObjectName(QString::fromUtf8("lineEdit_targetfile"));
         lineEdit_targetfile->setEnabled(false);
@@ -50,17 +47,7 @@ public:
         pushButton_targetfile->setGeometry(QRect(280, 20, 75, 23));
         pushButton_convert = new QPushButton(ConvertDialog);
         pushButton_convert->setObjectName(QString::fromUtf8("pushButton_convert"));
-        pushButton_convert->setGeometry(QRect(310, 150, 75, 23));
-        groupBox_sourcefile = new QGroupBox(ConvertDialog);
-        groupBox_sourcefile->setObjectName(QString::fromUtf8("groupBox_sourcefile"));
-        groupBox_sourcefile->setGeometry(QRect(10, 10, 371, 61));
-        lineEdit_sourcefile = new QLineEdit(groupBox_sourcefile);
-        lineEdit_sourcefile->setObjectName(QString::fromUtf8("lineEdit_sourcefile"));
-        lineEdit_sourcefile->setEnabled(false);
-        lineEdit_sourcefile->setGeometry(QRect(10, 20, 261, 20));
-        pushButton_sourcefile = new QPushButton(groupBox_sourcefile);
-        pushButton_sourcefile->setObjectName(QString::fromUtf8("pushButton_sourcefile"));
-        pushButton_sourcefile->setGeometry(QRect(280, 20, 75, 23));
+        pushButton_convert->setGeometry(QRect(310, 80, 75, 23));
 
         retranslateUi(ConvertDialog);
 
@@ -71,10 +58,8 @@ public:
     {
         ConvertDialog->setWindowTitle(QApplication::translate("ConvertDialog", "Convert", 0, QApplication::UnicodeUTF8));
         groupBox_targetfile->setTitle(QApplication::translate("ConvertDialog", "target file", 0, QApplication::UnicodeUTF8));
-        pushButton_targetfile->setText(QApplication::translate("ConvertDialog", "Browse", 0, QApplication::UnicodeUTF8));
-        pushButton_convert->setText(QApplication::translate("ConvertDialog", "Convert", 0, QApplication::UnicodeUTF8));
-        groupBox_sourcefile->setTitle(QApplication::translate("ConvertDialog", "source file", 0, QApplication::UnicodeUTF8));
-        pushButton_sourcefile->setText(QApplication::translate("ConvertDialog", "Browse", 0, QApplication::UnicodeUTF8));
+        pushButton_targetfile->setText(QApplication::translate("ConvertDialog", "&Browse", 0, QApplication::UnicodeUTF8));
+        pushButton_convert->setText(QApplication::translate("ConvertDialog", "&Convert", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

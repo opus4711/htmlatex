@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ConvertDialog</class>
- <widget class="QDialog" name="ConvertDialog">
+ <class>OpenDialog</class>
+ <widget class="QDialog" name="OpenDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>392</width>
-    <height>107</height>
+    <width>389</width>
+    <height>106</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Convert</string>
+   <string>Open</string>
   </property>
-  <widget class="QGroupBox" name="groupBox_targetfile">
+  <widget class="QPushButton" name="pushButton_open">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>80</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_sourcefile">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -23,9 +36,9 @@
     </rect>
    </property>
    <property name="title">
-    <string>target file</string>
+    <string>source file</string>
    </property>
-   <widget class="QLineEdit" name="lineEdit_targetfile">
+   <widget class="QLineEdit" name="lineEdit_sourcefile">
     <property name="enabled">
      <bool>false</bool>
     </property>
@@ -38,7 +51,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_targetfile">
+   <widget class="QPushButton" name="pushButton_sourcefile">
     <property name="geometry">
      <rect>
       <x>280</x>
@@ -51,19 +64,6 @@
      <string>&amp;Browse</string>
     </property>
    </widget>
-  </widget>
-  <widget class="QPushButton" name="pushButton_convert">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>80</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>&amp;Convert</string>
-   </property>
   </widget>
  </widget>
  <resources/>

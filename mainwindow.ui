@@ -19,7 +19,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>256</width>
+      <width>511</width>
       <height>531</height>
      </rect>
     </property>
@@ -38,6 +38,7 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
+    <addaction name="action_Open"/>
     <addaction name="action_Convert"/>
     <addaction name="separator"/>
     <addaction name="action_Quit"/>
@@ -53,6 +54,11 @@
   <action name="action_Convert">
    <property name="text">
     <string>&amp;Convert</string>
+   </property>
+  </action>
+  <action name="action_Open">
+   <property name="text">
+    <string>&amp;Open</string>
    </property>
   </action>
  </widget>

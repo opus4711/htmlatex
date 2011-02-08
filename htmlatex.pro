@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     cnode.cpp \
     convertdialog.cpp \
     mainwindow.cpp \
-    cmodel.cpp
+    cmodel.cpp \
+    opendialog.cpp
 HEADERS += htmlatex.h \
     cdocumentreader.h \
     cnode.h \
@@ -23,11 +24,13 @@ HEADERS += htmlatex.h \
     ui_convertdialog.h \
     ui_htmlatex.h \
     ui_mainwindow.h \
-    cmodel.h
+    cmodel.h \
+    opendialog.h
 FORMS += htmlatex.ui \
     convertdialog.ui \
     htmlatex.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    opendialog.ui
 OTHER_FILES += README \
     html_examples/startseite.html \
     html_examples/kapitel_2.html \

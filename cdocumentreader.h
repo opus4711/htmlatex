@@ -13,13 +13,16 @@
 class CDocumentReader
 {
 private:
+    enum FileType { JavaDocHTML, HTML, Tex, Unknown };
     QFileInfo _sourceFileInfo;
+    FileType fileType;
     void readElement(QDomElement element, CNode* node);
     CNode* read(QString path);
+    void hook();
 public:
-    CNode* read();
+    CNode* read(QString sourcefilepath, QString filefilter);
     // constructor
-    CDocumentReader(QString path);
+    CDocumentReader();
 };
 
 #endif // CDOCUMENTREADER_H
