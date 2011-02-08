@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
             this, SLOT(close()));
     connect(ui->action_Convert, SIGNAL(triggered()),
             this, SLOT(showConvertDialog()));
+    model = new CModel(this);
+    ui->treeView->setModel(model);
 };
 MainWindow::~MainWindow()
 {
@@ -31,11 +33,12 @@ void MainWindow::changeEvent(QEvent *e)
 void MainWindow::showConvertDialog()
 {
     ConvertDialog dialog;
+    // retrieve source and target file path
     if (dialog.exec() == ConvertDialog::Accepted)
     {
-        // dialog.exec() -> source file, target file and target definition file are set
         CDocumentReader* reader = new CDocumentReader;
         CNode* root = reader->read(dialog.getSourceFilePath());
+        model->setRootNode(root);
         // now begin conversion...
     }
 };

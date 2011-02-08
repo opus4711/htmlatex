@@ -3,6 +3,7 @@
 
 #include "convertdialog.h"
 #include "cdocumentreader.h"
+#include "cmodel.h"
 #include <QMainWindow>
 
 namespace Ui
@@ -13,7 +14,8 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow* ui;
+    CModel* model;
 private slots:
     void showConvertDialog();
 protected:

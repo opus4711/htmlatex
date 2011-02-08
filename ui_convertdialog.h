@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'convertdialog.ui'
 **
-** Created: Mon 7. Feb 22:09:41 2011
+** Created: Tue 8. Feb 01:34:58 2011
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

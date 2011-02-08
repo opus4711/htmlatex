@@ -5,7 +5,7 @@
  * @param parent Initialiazes the object with the given CNode-object as its parent.
  * @author Björn Kaiser
  */
-CNode::CNode(CNode* parent, QString name) : _parent(parent), _name(name)
+CNode::CNode(CNode* parent, QString name) : _parent(parent), _name(name), _content("")
 {
     instCount++;
     this->_id = instCount;
@@ -34,6 +34,14 @@ QString CNode::name() const
     return this->_name;
 };
 /**
+ * Returns the node's content.
+ * @author Björn Kaiser
+ */
+QString CNode::content() const
+{
+    return this->_content;
+};
+/**
  * Returns node's attributes (such as size, width, align etc.).
  * @author Björn Kaiser
  */
@@ -48,6 +56,14 @@ QMap<QString, QString> CNode::data() const
 void CNode::setName(QString name)
 {
     this->_name = name;
+};
+/**
+ * Sets the node's content.
+ * @author Björn Kaiser
+ */
+void CNode::setContent(QString content)
+{
+    this->_content = content;
 };
 /**
  * Adds an attribute by means of a key-value-pair.
@@ -80,6 +96,14 @@ int CNode::count() const
 void CNode::setParent(CNode* parent)
 {
     this->_parent = parent;
+};
+/**
+ * Returns the parent node.
+ * @author Björn Kaiser
+ */
+CNode* CNode::parent()
+{
+    return this->_parent;
 };
 /**
  * Returns the index of the specified child node.

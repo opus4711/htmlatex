@@ -13,6 +13,7 @@ private:
     QList<CNode*> children;
     qint64 _id;
     QString _name;
+    QString _content;
     QMap<QString, QString> _data;
 public:
     // methods handling node operations
@@ -27,9 +28,11 @@ public:
     int indexOf(CNode* node) const;
     // methods returning attributes' values
     QString name() const;
+    QString content() const;
     QMap<QString, QString> data() const;
     // methods setting attributes' values
     void setName(QString name);
+    void setContent(QString content);
     void addAttribute(QString key, QString value);
     // constructor and destructor
     CNode(CNode* parent, QString name);

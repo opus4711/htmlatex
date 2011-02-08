@@ -18,7 +18,7 @@ CNode* CDocumentReader::read(QString path)
     int errorColumn = -1;
     if (!doc.setContent(&file, false, &errorStr, &errorLine, &errorColumn))
     {
-        QMessageBox msg(QMessageBox::Warning, QObject::tr("Error"), errorStr);
+        QMessageBox msg(QMessageBox::Warning, QObject::tr("Error"), errorStr + ": line: " + QString::number(errorLine) + ", column: " + QString::number(errorColumn));
         msg.exec();
         return 0;
     }
@@ -58,6 +58,8 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
         }
         else if (element.childNodes().at(i).nodeName().toLower() == "a")
             new_node->addAttribute("href", attributes.namedItem("href").nodeValue());
+        else if (element.childNodes().at(i).nodeName().toLower() == "#text")
+            new_node->setContent(element.childNodes().at(i).nodeValue());
         QDomElement new_element = element.childNodes().at(i).toElement();
         readElement(new_element, new_node);
     }
