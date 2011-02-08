@@ -14,7 +14,7 @@ private:
     qint64 _id;
     QString _name;
     QString _content;
-    QMap<QString, QString> _data;
+    QMap<QString, QString> _attributes;
 public:
     // methods handling node operations
     CNode* parent();
@@ -29,7 +29,7 @@ public:
     // methods returning attributes' values
     QString name() const;
     QString content() const;
-    QMap<QString, QString> data() const;
+    QMap<QString, QString> attributes() const;
     // methods setting attributes' values
     void setName(QString name);
     void setContent(QString content);

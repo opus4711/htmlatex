@@ -10,7 +10,7 @@ CNode::CNode(CNode* parent, QString name) : _parent(parent), _name(name), _conte
     instCount++;
     this->_id = instCount;
     this->children = QList<CNode*>();
-    this->_data = QMap<QString, QString>();
+    this->_attributes = QMap<QString, QString>();
 };
 /**
  * This destructor deletes all child nodes by means of Qt's generic algorithms.
@@ -45,9 +45,9 @@ QString CNode::content() const
  * Returns node's attributes (such as size, width, align etc.).
  * @author Björn Kaiser
  */
-QMap<QString, QString> CNode::data() const
+QMap<QString, QString> CNode::attributes() const
 {
-    return this->_data;
+    return this->_attributes;
 };
 /**
  * Sets the node's name.
@@ -71,7 +71,7 @@ void CNode::setContent(QString content)
  */
 void CNode::addAttribute(QString key, QString value)
 {
-    this->_data[key] = value;
+    this->_attributes[key] = value;
 };
 /**
  * Returns pointer to the child node with the specified index.
@@ -135,10 +135,13 @@ void CNode::addChildren(QList<CNode*> nodes)
  */
 void CNode::addChild(CNode* node)
 {
-    if (!containsChild(node))
+    if (node != 0)
     {
-        node->setParent(this);
-        children.append(node);
+        if (!containsChild(node))
+        {
+            node->setParent(this);
+            children.append(node);
+        }
     }
 };
 /**

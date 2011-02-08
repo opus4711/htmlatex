@@ -5,12 +5,14 @@ CDocumentReader::CDocumentReader()
 };
 CNode* CDocumentReader::read(QString path)
 {
+    sourceFileInfo = QFileInfo(path);
     QDomDocument doc;
     QFile file(path);
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
         QMessageBox msg(QMessageBox::Warning, QObject::tr("Error"), QObject::tr("An error occurred accessing the file") + "\n\n" + path);
         msg.exec();
+        file.close();
         return 0;
     }
     QString errorStr = "";
@@ -20,8 +22,10 @@ CNode* CDocumentReader::read(QString path)
     {
         QMessageBox msg(QMessageBox::Warning, QObject::tr("Error"), errorStr + ": line: " + QString::number(errorLine) + ", column: " + QString::number(errorColumn));
         msg.exec();
+        file.close();
         return 0;
     }
+    file.close();
     QDomElement docroot = doc.documentElement();
     if (docroot.tagName().toLower() != QString("html"))
     {
@@ -57,7 +61,10 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
             new_node->addAttribute("colspan", attributes.namedItem("colspan").nodeValue());
         }
         else if (element.childNodes().at(i).nodeName().toLower() == "a")
+        {
             new_node->addAttribute("href", attributes.namedItem("href").nodeValue());
+            new_node->addChild(read(sourceFileInfo.absolutePath() + "/" + new_node->attributes()["href"]));
+        }
         else if (element.childNodes().at(i).nodeName().toLower() == "#text")
             new_node->setContent(element.childNodes().at(i).nodeValue());
         QDomElement new_element = element.childNodes().at(i).toElement();
