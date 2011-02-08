@@ -1,11 +1,14 @@
 #include "cdocumentreader.h"
 
-CDocumentReader::CDocumentReader()
+CDocumentReader::CDocumentReader(QString path) : _sourceFileInfo(path)
 {
+};
+CNode* CDocumentReader::read()
+{
+    return read(_sourceFileInfo.filePath());
 };
 CNode* CDocumentReader::read(QString path)
 {
-    sourceFileInfo = QFileInfo(path);
     QDomDocument doc;
     QFile file(path);
     if (!file.open(QFile::ReadOnly | QFile::Text))
@@ -63,7 +66,7 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
         else if (element.childNodes().at(i).nodeName().toLower() == "a")
         {
             new_node->addAttribute("href", attributes.namedItem("href").nodeValue());
-            new_node->addChild(read(sourceFileInfo.absolutePath() + "/" + new_node->attributes()["href"]));
+            new_node->addChild(read(_sourceFileInfo.absolutePath() + "/" + new_node->attributes()["href"]));
         }
         else if (element.childNodes().at(i).nodeName().toLower() == "#text")
             new_node->setContent(element.childNodes().at(i).nodeValue());

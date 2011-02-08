@@ -13,12 +13,13 @@
 class CDocumentReader
 {
 private:
-    QFileInfo sourceFileInfo;
+    QFileInfo _sourceFileInfo;
     void readElement(QDomElement element, CNode* node);
-public:
     CNode* read(QString path);
+public:
+    CNode* read();
     // constructor
-    CDocumentReader();
+    CDocumentReader(QString path);
 };
 
 #endif // CDOCUMENTREADER_H

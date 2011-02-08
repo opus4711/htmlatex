@@ -1,4 +1,4 @@
-#include "CModel.h"
+#include "cmodel.h"
 
 CModel::CModel(QObject* parent) : QAbstractItemModel(parent), _root(0)
 {

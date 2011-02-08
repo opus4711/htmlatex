@@ -1,7 +1,7 @@
 #ifndef CCUSTOMMODEL_H
 #define CCUSTOMMODEL_H
 
-#include "CNode.h"
+#include "cnode.h"
 #include <QAbstractItemModel>
 
 class CModel : public QAbstractItemModel

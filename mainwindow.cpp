@@ -36,8 +36,8 @@ void MainWindow::showConvertDialog()
     // retrieve source and target file path
     if (dialog.exec() == ConvertDialog::Accepted)
     {
-        CDocumentReader* reader = new CDocumentReader;
-        CNode* root = reader->read(dialog.getSourceFilePath());
+        CDocumentReader* reader = new CDocumentReader(dialog.getSourceFilePath());
+        CNode* root = reader->read();
         model->setRootNode(root);
         // now begin conversion...
     }
