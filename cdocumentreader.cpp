@@ -2,13 +2,25 @@
 
 CDocumentReader::CDocumentReader()
 {
+    fileType = CDocumentReader::Unknown;
 };
 /** The hook method determines if the source file is well-formed XML and initiates
   * a suitable prior treatment.
   * @author Björn Kaiser
   */
-void CDocumentReader::hook()
+void CDocumentReader::hook(QString path)
 {
+    QFile file(path);
+    if (!file.open(QFile::ReadWrite | QFile::Text))
+        return;
+    QTextStream stream(&file);
+    QString content = stream.readAll();
+    content = content.replace("<br>", "<br/>", Qt::CaseInsensitive);
+    content = content.replace("<hr>", "<hr/>", Qt::CaseInsensitive);
+    //content = content.replace(QRegExp("", Qt::CaseInsensitive, QRegExp::RegExp));
+    file.resize(0);
+    stream << content.toUtf8();
+    file.close();
 };
 /** This method
   * @param filetype contains the file filter string selected previously.
@@ -17,31 +29,42 @@ void CDocumentReader::hook()
 CNode* CDocumentReader::read(QString sourcefilepath, QString filefilter)
 {
     _sourceFileInfo = QFileInfo(sourcefilepath);
-    hook();
+    if (filefilter == "JavaDoc (*.html *.htm)")
+        fileType = CDocumentReader::JavaDocHTML;
+    else if (filefilter == "any file (*.*)")
+        fileType = CDocumentReader::Unknown;
+    else
+        fileType = CDocumentReader::Unknown;
     return read(_sourceFileInfo.filePath());
 };
 CNode* CDocumentReader::read(QString path)
 {
+    // Notiz: Wenn eine Datei fehlt, bricht der Einlesevorgang momentan ab.
     QDomDocument doc;
-    QFile file(path);
-    if (!file.open(QFile::ReadOnly | QFile::Text))
+    QFile* file = new QFile(path);
+    if (!file->open(QFile::ReadWrite | QFile::Text))
     {
         QMessageBox msg(QMessageBox::Warning, QObject::tr("Error"), QObject::tr("An error occurred accessing the file") + "\n\n" + path);
         msg.exec();
-        file.close();
+        file->close();
         return 0;
     }
     QString errorStr = "";
     int errorLine = -1;
     int errorColumn = -1;
-    if (!doc.setContent(&file, false, &errorStr, &errorLine, &errorColumn))
+    if (!doc.setContent(file, false, &errorStr, &errorLine, &errorColumn))
     {
-        QMessageBox msg(QMessageBox::Warning, QObject::tr("Error"), errorStr + ": line: " + QString::number(errorLine) + ", column: " + QString::number(errorColumn));
-        msg.exec();
-        file.close();
-        return 0;
+        //QMessageBox msg(QMessageBox::Warning, QObject::tr("Error"), errorStr + ": line: " + QString::number(errorLine) + ", column: " + QString::number(errorColumn));
+        //msg.exec();
+        //file.close();
+        //return 0;
+        hook(path);
+        file->close();
+        delete file;
+        file = new QFile(path);
+        doc.setContent(file, false, &errorStr, &errorLine, &errorColumn);
     }
-    file.close();
+    file->close();
     QDomElement docroot = doc.documentElement();
     if (docroot.tagName().toLower() != QString("html"))
     {

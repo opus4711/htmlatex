@@ -9,6 +9,7 @@
 #include <QDomDocument>
 #include <QMessageBox>
 #include <QDomNamedNodeMap>
+#include <QTextStream>
 
 class CDocumentReader
 {
@@ -18,7 +19,7 @@ private:
     FileType fileType;
     void readElement(QDomElement element, CNode* node);
     CNode* read(QString path);
-    void hook();
+    void hook(QString path);
 public:
     CNode* read(QString sourcefilepath, QString filefilter);
     // constructor

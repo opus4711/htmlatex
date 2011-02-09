@@ -50,7 +50,6 @@ void MainWindow::showConvertDialog()
     // retrieve target file path and type
     if (dialog.exec() == ConvertDialog::Accepted)
     {
-        CDocumentReader* reader = new CDocumentReader;
         CNode* root = model->root();
         // now begin conversion...
     }
