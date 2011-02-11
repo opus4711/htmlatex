@@ -26,6 +26,14 @@ CNode::~CNode()
  */
 qint64 CNode::instCount = 0;
 /**
+ * Returns the node's unique ID.
+ * @author Björn Kaiser
+ */
+qint64 CNode::ID() const
+{
+    return this->_id;
+};
+/**
  * Returns the node's name.
  * @author Björn Kaiser
  */

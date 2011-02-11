@@ -27,6 +27,7 @@ public:
     void removeChild(CNode* node);
     int indexOf(CNode* node) const;
     // methods returning attributes' values
+    qint64 ID() const;
     QString name() const;
     QString content() const;
     QMap<QString, QString> attributes() const;

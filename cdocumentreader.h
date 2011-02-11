@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include <QDomNamedNodeMap>
 #include <QTextStream>
+#include <QMapIterator>
 
 class CDocumentReader
 {
@@ -19,9 +20,12 @@ private:
     FileType fileType;
     void readElement(QDomElement element, CNode* node);
     CNode* read(QString path);
-    void hook(QString path);
+    void preprocessingHook(QString path);
+    void preprocessJavaDocHTML(QString path);
+    QString nodeToString(CNode* node, int ebene);
 public:
     CNode* read(QString sourcefilepath, QString filefilter);
+    QString toString(CNode* root);
     // constructor
     CDocumentReader();
 };
