@@ -42,6 +42,7 @@ void MainWindow::showOpenDialog()
         CDocumentReader* reader = new CDocumentReader;
         CNode* root = reader->read(dialog.sourceFilePath(), dialog.fileFilter());
         model->setRootNode(root);
+        /*
         // displays toString()-output in a message box
         QMessageBox msg;
         msg.setTextFormat(Qt::PlainText);
@@ -52,6 +53,7 @@ void MainWindow::showOpenDialog()
         if (file.open(QFile::WriteOnly | QFile::Text))
             file.write(reader->toString(root).toUtf8());
         file.close();
+        */
     }
 };
 void MainWindow::showConvertDialog()

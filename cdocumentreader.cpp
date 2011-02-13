@@ -92,39 +92,29 @@ CNode* CDocumentReader::read(QString sourcefilepath, QString filefilter)
 };
 CNode* CDocumentReader::read(QString path)
 {
-    // Notiz: Wenn eine Datei fehlt, bricht der Einlesevorgang momentan ab.
-    QDomDocument doc;
-    QFile* file = new QFile(path);
-    if (!file->open(QFile::ReadWrite | QFile::Text))
-    {
-        QMessageBox msg(QMessageBox::Warning, QObject::tr("Error"), QObject::tr("An error occurred accessing the file") + "\n\n" + path);
-        msg.exec();
-        file->close();
-        return 0;
-    }
-    QString errorStr = "";
-    int errorLine = -1;
-    int errorColumn = -1;
-    if (!doc.setContent(file, false, &errorStr, &errorLine, &errorColumn))
-    {
-        preprocessingHook(path);
-        file->close();
-        delete file;
-        file = new QFile(path);
-        doc.setContent(file, false, &errorStr, &errorLine, &errorColumn);
-    }
-    file->close();
-    delete file;
-    QDomElement docroot = doc.documentElement();
-    if (docroot.tagName().toLower() != QString("html"))
-    {
-        QMessageBox msg(QMessageBox::Warning, QObject::tr("Error - No valid HTML file."), QObject::tr("The root element <html> is missing."));
-        msg.exec();
-        return 0;
-    }
-    // begin processing the document
     CNode* root = new CNode(0, "html");
-    readElement(docroot, root);
+    // add the index document to the stack of documents
+    documentStack.push(DocumentData(path, root));
+    // begin processing the documents stored on the document stack
+    while(!documentStack.isEmpty())
+    {
+        DocumentData documentdata = documentStack.pop();
+        QFile file(documentdata.path);
+        if (file.open(QFile::ReadWrite | QFile::Text))
+        {
+            preprocessingHook(documentdata.path);
+            QDomDocument doc;
+            QString errorStr = "";
+            int errorLine = -1;
+            int errorColumn = -1;
+            if (doc.setContent(&file, false, &errorStr, &errorLine, &errorColumn))
+            {
+                if (doc.documentElement().tagName().toLower() == "html")
+                    readElement(doc.documentElement(), documentdata.node);
+            }
+        }
+        file.close();
+    }
     return root;
 };
 void CDocumentReader::readElement(QDomElement element, CNode* node)
@@ -152,7 +142,8 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
         else if (element.childNodes().at(i).nodeName().toLower() == "a")
         {
             new_node->addAttribute("href", attributes.namedItem("href").nodeValue());
-            new_node->addChild(read(_sourceFileInfo.absolutePath() + "/" + new_node->attributes()["href"]));
+            // HINWEIS: KEINE UNTERSCHEIDUNG ABSOLUTER UND RELATIVER PFADE!!!
+            documentStack.push(DocumentData(QString(_sourceFileInfo.absolutePath() + "/" + new_node->attributes()["href"]), new_node));
         }
         else if (element.childNodes().at(i).nodeName().toLower() == "#text")
             new_node->setContent(element.childNodes().at(i).nodeValue());

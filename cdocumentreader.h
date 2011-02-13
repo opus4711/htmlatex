@@ -11,13 +11,29 @@
 #include <QDomNamedNodeMap>
 #include <QTextStream>
 #include <QMapIterator>
+#include <QStack>
 
 class CDocumentReader
 {
+    // Aggregate
+private:
+    class DocumentData
+    {
+    public:
+        QString path;
+        CNode* node;
+        DocumentData() {};
+        DocumentData(QString path, CNode* node)
+        {
+            this->path = path;
+            this->node = node;
+        };
+    };
 private:
     enum FileType { JavaDocHTML, HTML, Tex, Unknown };
     QFileInfo _sourceFileInfo;
     FileType fileType;
+    QStack<DocumentData> documentStack;
     void readElement(QDomElement element, CNode* node);
     CNode* read(QString path);
     void preprocessingHook(QString path);
