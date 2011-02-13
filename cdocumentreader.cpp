@@ -54,12 +54,13 @@ void CDocumentReader::preprocessJavaDocHTML(QString path)
         return;
     QTextStream stream(&file);
     QString content = stream.readAll();
+    stream.setCodec("UTF-8"); // use UTF-8
     // CParser parser;
     // QList<CNode*> nodes = parser.parseHTML(path);
 
     // resize(0) flushes / empties the file
     file.resize(0);
-    stream << content.toUtf8();
+    stream << content; // .toUtf8(); <- DIDN'T WORK PROPERLY
     file.close();
 };
 /** This method determines if the source file is well-formed XML and initiates

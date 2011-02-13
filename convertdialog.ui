@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Convert</string>
   </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
   <widget class="QGroupBox" name="groupBox_targetfile">
    <property name="geometry">
     <rect>

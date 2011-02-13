@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>HTMLatex</string>
   </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTreeView" name="treeView">
     <property name="geometry">
@@ -31,7 +34,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
