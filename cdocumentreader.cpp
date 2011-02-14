@@ -2,119 +2,41 @@
 
 CDocumentReader::CDocumentReader()
 {
-    fileType = CDocumentReader::Unknown;
-};
-QString CDocumentReader::toString(CNode* root)
-{
-    return nodeToString(root, 0);
-};
-/** Returns a string created from the specified node.
-  * @author Björn Kaiser
-  */
-QString CDocumentReader::nodeToString(CNode* node, int ebene)
-{
-    int whitespaces = 5;
-    QString result = "";
-    if (node != 0)
-    {
-        // adds whitespaces to structurize string output
-        for (int j = 0; j < ebene * whitespaces; j++)
-            result += " ";
-        result += "<" + node->name() + " id=\"" + QString::number(node->ID()) + "\"";
-        QMapIterator<QString, QString> iterator(node->attributes());
-        while (iterator.hasNext())
-        {
-            iterator.next();
-            result += " " + iterator.key() + "=\"" + iterator.value() + "\"";
-        }
-        result += ">\n";
-        if (node->name() == "#text")
-        {
-            // adds whitespaces to structurize string output
-            for (int j = 0; j < (ebene + 1) * whitespaces; j++)
-                result += " ";
-            result += node->content() + "\n";
-        }
-        for (int i = 0; i < node->count(); i++)
-            result += nodeToString(node->childAt(i), ebene + 1);
-        // adds whitespaces to structurize string output
-        for (int j = 0; j < ebene * whitespaces; j++)
-            result += " ";
-        result += "</" + node->name() + ">\n";
-    }
-    return result;
-};
-/** This method changes the specified HTML-file in order to gain well-formed XML.
-  * @author Björn Kaiser
-  */
-void CDocumentReader::preprocessJavaDocHTML(QString path)
-{
-    QFile file(path);
-    if (!file.open(QFile::ReadWrite | QFile::Text))
-        return;
-    QTextStream stream(&file);
-    QString content = stream.readAll();
-    stream.setCodec("UTF-8"); // use UTF-8
-    // CParser parser;
-    // QList<CNode*> nodes = parser.parseHTML(path);
-
-    // resize(0) flushes / empties the file
-    file.resize(0);
-    stream << content; // .toUtf8(); <- DIDN'T WORK PROPERLY
-    file.close();
-};
-/** This method determines if the source file is well-formed XML and initiates
-  * a suitable prior treatment.
-  * @author Björn Kaiser
-  */
-void CDocumentReader::preprocessingHook(QString path)
-{
-    switch (fileType)
-    {
-        case CDocumentReader::JavaDocHTML :
-            preprocessJavaDocHTML(path); break;
-        default : break;
-    }
+    _fileType = CDocumentData::Unknown;
 };
 /** This method
   * @param filetype contains the file filter string selected previously.
   * @author Björn Kaiser
   */
-CNode* CDocumentReader::read(QString sourcefilepath, QString filefilter)
+CNode* CDocumentReader::read(QString indexfilepath, QString filefilter)
 {
-    _sourceFileInfo = QFileInfo(sourcefilepath);
+    // store information about the index document
+    _indexFileInfo = QFileInfo(indexfilepath);
+    // determine and store the file type
     if (filefilter == "JavaDoc (*.html *.htm)")
-        fileType = CDocumentReader::JavaDocHTML;
+        _fileType = CDocumentData::JavaDocHTML;
     else if (filefilter == "any file (*.*)")
-        fileType = CDocumentReader::Unknown;
+        _fileType = CDocumentData::Unknown;
     else
-        fileType = CDocumentReader::Unknown;
-    return read(_sourceFileInfo.filePath());
-};
-CNode* CDocumentReader::read(QString path)
-{
+        _fileType = CDocumentData::Unknown;
+    // start reading the whole document tree
     CNode* root = new CNode(0, "html");
     // add the index document to the stack of documents
-    documentStack.push(DocumentData(path, root));
+    _documentStack.push(new CDocumentData(QUrl(_indexFileInfo.filePath()), root, _indexFileInfo, _fileType));
     // begin processing the documents stored on the document stack
-    while(!documentStack.isEmpty())
+    while(!_documentStack.isEmpty())
     {
-        DocumentData documentdata = documentStack.pop();
-        QFile file(documentdata.path);
-        if (file.open(QFile::ReadWrite | QFile::Text))
+        CDocumentData* documentdata = _documentStack.pop();
+        QDomDocument doc;
+        QString errorStr = "";
+        int errorLine = -1;
+        int errorColumn = -1;
+        if (doc.setContent(documentdata->text(), false, &errorStr, &errorLine, &errorColumn))
         {
-            preprocessingHook(documentdata.path);
-            QDomDocument doc;
-            QString errorStr = "";
-            int errorLine = -1;
-            int errorColumn = -1;
-            if (doc.setContent(&file, false, &errorStr, &errorLine, &errorColumn))
-            {
-                if (doc.documentElement().tagName().toLower() == "html")
-                    readElement(doc.documentElement(), documentdata.node);
-            }
+            if (doc.documentElement().tagName().toLower() == "html")
+                readElement(doc.documentElement(), documentdata->node());
         }
-        file.close();
+        delete documentdata;
     }
     return root;
 };
@@ -143,8 +65,7 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
         else if (element.childNodes().at(i).nodeName().toLower() == "a")
         {
             new_node->addAttribute("href", attributes.namedItem("href").nodeValue());
-            // HINWEIS: KEINE UNTERSCHEIDUNG ABSOLUTER UND RELATIVER PFADE!!!
-            documentStack.push(DocumentData(QString(_sourceFileInfo.absolutePath() + "/" + new_node->attributes()["href"]), new_node));
+            _documentStack.push(new CDocumentData(QUrl(new_node->attributes()["href"]), new_node, _indexFileInfo, _fileType));
         }
         else if (element.childNodes().at(i).nodeName().toLower() == "#text")
             new_node->setContent(element.childNodes().at(i).nodeValue());

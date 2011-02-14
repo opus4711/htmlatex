@@ -14,7 +14,8 @@ SOURCES += main.cpp \
     convertdialog.cpp \
     mainwindow.cpp \
     cmodel.cpp \
-    opendialog.cpp
+    opendialog.cpp \
+    cdocumentdata.cpp
 HEADERS += htmlatex.h \
     cdocumentreader.h \
     cnode.h \
@@ -25,7 +26,8 @@ HEADERS += htmlatex.h \
     ui_htmlatex.h \
     ui_mainwindow.h \
     cmodel.h \
-    opendialog.h
+    opendialog.h \
+    cdocumentdata.h
 FORMS += htmlatex.ui \
     convertdialog.ui \
     htmlatex.ui \
