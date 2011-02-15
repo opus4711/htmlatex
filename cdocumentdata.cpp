@@ -7,8 +7,6 @@ CDocumentData::CDocumentData(QUrl url, CNode* node, QFileInfo indexfileinfo, Fil
     this->_text = "";
     this->_indexFileInfo = indexfileinfo;
     this->_fileType = filetype;
-    // the preprocessed document is stored in the attribute "text"
-    preprocessingHook();
 };
 QUrl CDocumentData::url() const
 {
@@ -18,8 +16,10 @@ CNode* CDocumentData::node() const
 {
     return this->_node;
 };
-QString CDocumentData::text() const
+QString CDocumentData::text()
 {
+    // the preprocessed document is stored in the attribute "_text"
+    preprocessingHook();
     return _text;
 };
 void CDocumentData::preprocessingHook()
@@ -31,39 +31,39 @@ void CDocumentData::preprocessingHook()
   */
 void CDocumentData::preprocessHTML()
 {
-    if (_fileType == CDocumentData::JavaDocHTML)
+    if (_fileType != CDocumentData::JavaDocHTML)
+        return;
+    QString path = "";
+    if (_url.isRelative())
+        path = _indexFileInfo.absolutePath() + "/" + _url.path();
+    else
+        path = _url.path();
+    QFile file(path);
+    if (!file.open(QFile::ReadWrite | QFile::Text))
+        return;
+    QTextStream stream(&file);
+    stream.setCodec("UTF-8");
+    _text = stream.readAll();
+    file.close();
+    QMessageBox msg;
+    msg.setTextFormat(Qt::PlainText);
+    // processing document
+    // add missing finalizing slashes to empty elements
+    QStringList elements;
+    elements << "br" << "img" << "hr";
+    QRegExp rx;
+    foreach (QString element, elements)
     {
-        QString path = "";
-        if (_url.isRelative())
-            path = _indexFileInfo.absolutePath() + "/" + _url.path();
-        else
-            path = _url.path();
-        QFile file(path);
-        if (!file.open(QFile::ReadWrite | QFile::Text))
-            return;
-        QTextStream stream(&file);
-        stream.setCodec("UTF-8");
-        _text = stream.readAll();
-        file.close();
-        QMessageBox msg;
-        msg.setTextFormat(Qt::PlainText);
-        // processing document
-        // add missing finalizing slashes to empty elements
-        QRegExp rx;
-        // br
-        rx = QRegExp("<br(\\s*[a-zA-Z]*=.*)*\\s*(?!\\/)>");
-        // img
-        //rx = QRegExp("<img(\s*[a-zA-Z]*=.*)*(?!\/)>");
+        rx = QRegExp("<" + element + "(\\s*[a-zA-Z]+=.+)*\\s*(?<!\\/)>");
         if (_text.indexOf(rx, 0) >= 0)
         {
-                //rx.indexIn(content, 0);
-            msg.setText(QString::number(_text.indexOf(rx, 0)) + "\n" + rx.capturedTexts().at(0) + "\ncapcount: " + QString::number(rx.captureCount()));
-            //msg.exec();
+            //rx.indexIn(content, 0);
+            msg.setText(element + ": " + rx.capturedTexts().at(0));
+            msg.exec();
             //content.insert(content.indexOf(rx, 0) + rx.capturedTexts().at(0).count() - 1, "TEST");
         }
-        //content.replace(rx, rx.cap(1).remove())
-
-        msg.setText(_text);
-        //msg.exec();
     }
+
+    msg.setText(_text);
+    msg.exec();
 };

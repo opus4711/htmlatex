@@ -24,7 +24,7 @@ private:
 public:
     QUrl url() const;
     CNode* node() const;
-    QString text() const;
+    QString text();
     FileType fileType() const;
     QFileInfo indexFileInfo() const;
     // Constructor
