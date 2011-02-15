@@ -21,7 +21,6 @@ HEADERS += cdocumentreader.h \
     convertdialog.h \
     mainwindow.h \
     ui_convertdialog.h \
-    ui_htmlatex.h \
     ui_mainwindow.h \
     cmodel.h \
     opendialog.h \
