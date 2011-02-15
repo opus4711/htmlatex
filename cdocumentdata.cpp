@@ -29,7 +29,7 @@ void CDocumentData::preprocessingHook()
     preprocessHTML();
 };
 /** This method changes the specified HTML-file in order to gain well-formed XML (XHTML).
-  * @author Björn Kaiser
+  * @author BjÃ¶rn Kaiser
   */
 void CDocumentData::preprocessHTML()
 {
