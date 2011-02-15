@@ -7,6 +7,7 @@ CDocumentData::CDocumentData(QUrl url, CNode* node, QFileInfo indexfileinfo, Fil
     this->_text = "";
     this->_indexFileInfo = indexfileinfo;
     this->_fileType = filetype;
+    this->_preprocessed = false;
 };
 QUrl CDocumentData::url() const
 {
@@ -19,7 +20,8 @@ CNode* CDocumentData::node() const
 QString CDocumentData::text()
 {
     // the preprocessed document is stored in the attribute "_text"
-    preprocessingHook();
+    if (!_preprocessed)
+        preprocessingHook();
     return _text;
 };
 void CDocumentData::preprocessingHook()
@@ -51,19 +53,22 @@ void CDocumentData::preprocessHTML()
     // add missing finalizing slashes to empty elements
     QStringList elements;
     elements << "br" << "img" << "hr";
-    QRegExp rx;
+    QRegExp regex;
     foreach (QString element, elements)
     {
-        rx = QRegExp("<" + element + "(\\s*[a-zA-Z]+=.+)*\\s*(?<!\\/)>");
-        if (_text.indexOf(rx, 0) >= 0)
+        regex = QRegExp("<" + element + // opening tag and tag name
+                        "([^\\/>])*" // consume all characters except '/' and '>'
+                        "(?!\/)>"); // the character '/' is missing before '>'
+        if (_text.indexOf(regex, 0) >= 0)
         {
-            //rx.indexIn(content, 0);
-            msg.setText(element + ": " + rx.capturedTexts().at(0));
-            msg.exec();
-            //content.insert(content.indexOf(rx, 0) + rx.capturedTexts().at(0).count() - 1, "TEST");
+            for (int i = 0; i < regex.captureCount(); i++)
+            {
+                _text.insert(_text.indexOf(regex, 0) + regex.capturedTexts().at(i).count() - 1, "/");
+            }
         }
     }
 
     msg.setText(_text);
     msg.exec();
+    _preprocessed = true;
 };

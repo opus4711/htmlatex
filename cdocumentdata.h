@@ -19,8 +19,10 @@ private:
     QString _text;
     QFileInfo _indexFileInfo;
     FileType _fileType;
+    bool _preprocessed;
     void preprocessingHook();
     void preprocessHTML();
+    bool isPreprocessed() const;
 public:
     QUrl url() const;
     CNode* node() const;
