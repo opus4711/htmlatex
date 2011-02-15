@@ -58,7 +58,7 @@ void CDocumentData::preprocessHTML()
     {
         regex = QRegExp("<" + element + // opening tag and tag name
                         "([^\\/>])*" // consume all characters except '/' and '>'
-                        "(?!\/)>"); // the character '/' is missing before '>'
+                        "(?!\\/)>"); // the character '/' is missing before '>'
         if (_text.indexOf(regex, 0) >= 0)
         {
             for (int i = 0; i < regex.captureCount(); i++)

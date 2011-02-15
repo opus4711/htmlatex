@@ -8,7 +8,6 @@ QT += network \
 TARGET = htmlatex
 TEMPLATE = app
 SOURCES += main.cpp \
-    htmlatex.cpp \
     cdocumentreader.cpp \
     cnode.cpp \
     convertdialog.cpp \
@@ -17,11 +16,9 @@ SOURCES += main.cpp \
     opendialog.cpp \
     cdocumentdata.cpp \
     citemdelegate.cpp
-HEADERS += htmlatex.h \
-    cdocumentreader.h \
+HEADERS += cdocumentreader.h \
     cnode.h \
     convertdialog.h \
-    htmlatex.h \
     mainwindow.h \
     ui_convertdialog.h \
     ui_htmlatex.h \
@@ -30,9 +27,7 @@ HEADERS += htmlatex.h \
     opendialog.h \
     cdocumentdata.h \
     citemdelegate.h
-FORMS += htmlatex.ui \
-    convertdialog.ui \
-    htmlatex.ui \
+FORMS += convertdialog.ui \
     mainwindow.ui \
     opendialog.ui
 OTHER_FILES += README \
