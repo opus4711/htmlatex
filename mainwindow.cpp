@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent) :
             this, SLOT(showOpenDialog()));
     model = new CModel(this);
     ui->treeView->setModel(model);
+    itemDelegate = new CItemDelegate(model, this);
+    ui->treeView->setItemDelegate(itemDelegate);
 };
 MainWindow::~MainWindow()
 {

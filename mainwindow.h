@@ -5,6 +5,7 @@
 #include "convertdialog.h"
 #include "cdocumentreader.h"
 #include "cmodel.h"
+#include "citemdelegate.h"
 #include <QMainWindow>
 
 namespace Ui
@@ -17,6 +18,7 @@ class MainWindow : public QMainWindow
 private:
     Ui::MainWindow* ui;
     CModel* model;
+    CItemDelegate* itemDelegate;
 private slots:
     void showOpenDialog();
     void showConvertDialog();
