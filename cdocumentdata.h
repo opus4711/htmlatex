@@ -7,6 +7,7 @@
 #include <QFileInfo>
 #include <QTextStream>
 #include <QUrl>
+#include <QStringList>
 #include <QMessageBox>
 
 class CDocumentData

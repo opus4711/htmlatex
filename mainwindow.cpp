@@ -42,20 +42,8 @@ void MainWindow::showOpenDialog()
     if (dialog.exec() == OpenDialog::Accepted)
     {
         CDocumentReader* reader = new CDocumentReader;
-        CNode* root = reader->read(dialog.sourceFilePath(), dialog.fileFilter());
+        CNode* root = reader->read(dialog.sourceFilePath(), dialog.fileType());
         model->setRootNode(root);
-        /*
-        // displays toString()-output in a message box
-        QMessageBox msg;
-        msg.setTextFormat(Qt::PlainText);
-        msg.setText(reader->toString(root));
-        msg.exec();
-        // writes toString-output to a file
-        QFile file("test_output.file.txt");
-        if (file.open(QFile::WriteOnly | QFile::Text))
-            file.write(reader->toString(root).toUtf8());
-        file.close();
-        */
     }
 };
 void MainWindow::showConvertDialog()
@@ -64,7 +52,7 @@ void MainWindow::showConvertDialog()
     // retrieve target file path and type
     if (dialog.exec() == ConvertDialog::Accepted)
     {
-        CNode* root = model->root();
+        //CNode* root = model->root();
         // now begin conversion...
     }
 };

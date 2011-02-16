@@ -8,7 +8,6 @@
 #include <QDomNamedNodeMap>
 #include <QMapIterator>
 #include <QStack>
-#include <QMessageBox>
 
 class CDocumentReader
 {
@@ -18,7 +17,7 @@ private:
     QStack<CDocumentData*> _documentStack;
     void readElement(QDomElement element, CNode* node);
 public:
-    CNode* read(QString indexfilepath, QString filefilter);
+    CNode* read(QString indexfilepath, CDocumentData::FileType filetype);
     // constructor
     CDocumentReader();
 };

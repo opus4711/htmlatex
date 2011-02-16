@@ -91,7 +91,7 @@
     <value type="QString">LOGONSERVER=\\KNECHT</value>
     <value type="QString">NUMBER_OF_PROCESSORS=2</value>
     <value type="QString">OS=Windows_NT</value>
-    <value type="QString">PATH=C:\Qt\2010.02.1\mingw\bin;C:\Qt\2010.02.1\qt\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\GNU\GnuPG\pub</value>
+    <value type="QString">PATH=C:\Qt\2010.02.1\mingw\bin;C:\Qt\2010.02.1\qt\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\GNU\GnuPG\pub\;C:\Qt\4.6.2\mingw\bin\;C:\Qt\4.6.2\qt\bin;</value>
     <value type="QString">PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC</value>
     <value type="QString">PROCESSOR_ARCHITECTURE=x86</value>
     <value type="QString">PROCESSOR_ARCHITEW6432=AMD64</value>
@@ -146,7 +146,7 @@
     <value type="QString">LOGONSERVER=\\KNECHT</value>
     <value type="QString">NUMBER_OF_PROCESSORS=2</value>
     <value type="QString">OS=Windows_NT</value>
-    <value type="QString">PATH=C:\Qt\2010.02.1\mingw\bin;C:\Qt\2010.02.1\qt\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\GNU\GnuPG\pub</value>
+    <value type="QString">PATH=C:\Qt\2010.02.1\mingw\bin;C:\Qt\2010.02.1\qt\bin;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\GNU\GnuPG\pub\;C:\Qt\4.6.2\mingw\bin\;C:\Qt\4.6.2\qt\bin;</value>
     <value type="QString">PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC</value>
     <value type="QString">PROCESSOR_ARCHITECTURE=x86</value>
     <value type="QString">PROCESSOR_ARCHITEW6432=AMD64</value>

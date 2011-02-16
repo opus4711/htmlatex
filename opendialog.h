@@ -1,6 +1,7 @@
 #ifndef OPENDIALOG_H
 #define OPENDIALOG_H
 
+#include "cdocumentdata.h"
 #include <QDialog>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -21,7 +22,7 @@ private slots:
     void open();
 public:
     QString sourceFilePath();
-    QString fileFilter();
+    CDocumentData::FileType fileType();
     // constructor and destructor
     OpenDialog(QWidget* parent = 0);
     ~OpenDialog();

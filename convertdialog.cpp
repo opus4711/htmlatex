@@ -47,9 +47,17 @@ QString ConvertDialog::targetFilePath()
 {
     return ui->lineEdit_targetfile->text();
 };
-QString ConvertDialog::fileFilter()
+CDocumentData::FileType ConvertDialog::fileType()
 {
-    return dialog->selectedFilter();
+    // determine file type
+    CDocumentData::FileType filetype = CDocumentData::Unknown;
+    if (dialog->selectedFilter() == "JavaDoc (*.html *.htm)")
+        filetype = CDocumentData::JavaDocHTML;
+    if (dialog->selectedFilter() == "Tex (*.tex)")
+        filetype = CDocumentData::Tex;
+    else if (dialog->selectedFilter() == "any file (*.*)")
+        filetype = CDocumentData::Unknown;
+    return filetype;
 };
 void ConvertDialog::convert()
 {

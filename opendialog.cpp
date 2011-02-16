@@ -45,9 +45,15 @@ QString OpenDialog::sourceFilePath()
 {
     return ui->lineEdit_sourcefile->text();
 };
-QString OpenDialog::fileFilter()
+CDocumentData::FileType OpenDialog::fileType()
 {
-    return dialog->selectedFilter();
+    // determine file type
+    CDocumentData::FileType filetype = CDocumentData::Unknown;
+    if (dialog->selectedFilter() == "JavaDoc (*.html *.htm)")
+        filetype = CDocumentData::JavaDocHTML;
+    else if (dialog->selectedFilter() == "any file (*.*)")
+        filetype = CDocumentData::Unknown;
+    return filetype;
 };
 void OpenDialog::open()
 {

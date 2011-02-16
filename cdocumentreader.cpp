@@ -8,17 +8,11 @@ CDocumentReader::CDocumentReader()
   * @param filetype contains the file filter string selected previously.
   * @author Björn Kaiser
   */
-CNode* CDocumentReader::read(QString indexfilepath, QString filefilter)
+CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType filetype)
 {
+    _fileType = filetype;
     // store information about the index document
     _indexFileInfo = QFileInfo(indexfilepath);
-    // determine and store the file type
-    if (filefilter == "JavaDoc (*.html *.htm)")
-        _fileType = CDocumentData::JavaDocHTML;
-    else if (filefilter == "any file (*.*)")
-        _fileType = CDocumentData::Unknown;
-    else
-        _fileType = CDocumentData::Unknown;
     // start reading the whole document tree
     CNode* root = new CNode(0, "html");
     // add the index document to the stack of documents

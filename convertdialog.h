@@ -1,6 +1,7 @@
 #ifndef CONVERTDIALOG_H
 #define CONVERTDIALOG_H
 
+#include "cdocumentdata.h"
 #include <QDialog>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -22,7 +23,7 @@ private slots:
     void convert();
 public:
     QString targetFilePath();
-    QString fileFilter();
+    CDocumentData::FileType fileType();
     // constructor and destructor
     ConvertDialog(QWidget *parent = 0);
     ~ConvertDialog();

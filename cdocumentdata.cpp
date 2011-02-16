@@ -66,8 +66,6 @@ void CDocumentData::preprocessHTML()
     stream.setCodec("UTF-8");
     _text = stream.readAll();
     file.close();
-    QMessageBox msg;
-    msg.setTextFormat(Qt::PlainText);
     // processing document
     // add missing finalizing slashes to empty elements
     // the following two lines create an array of QString objects
