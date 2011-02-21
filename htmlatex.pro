@@ -15,8 +15,7 @@ SOURCES += main.cpp \
     cmodel.cpp \
     opendialog.cpp \
     cdocumentdata.cpp \
-    citemdelegate.cpp \
-    cconsole.cpp
+    citemdelegate.cpp
 HEADERS += cdocumentreader.h \
     cnode.h \
     convertdialog.h \
@@ -26,8 +25,7 @@ HEADERS += cdocumentreader.h \
     cmodel.h \
     opendialog.h \
     cdocumentdata.h \
-    citemdelegate.h \
-    cconsole.h
+    citemdelegate.h
 FORMS += convertdialog.ui \
     mainwindow.ui \
     opendialog.ui
