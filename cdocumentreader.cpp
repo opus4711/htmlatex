@@ -16,7 +16,7 @@ CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType file
     // start reading the whole document tree
     CNode* root = new CNode(0, "html");
     // add the index document to the stack of documents
-    _documentStack.push(new CDocumentData(QUrl(_indexFileInfo.filePath()), root, _indexFileInfo, _fileType));
+    _documentStack.push(new CDocumentData(QUrl(_indexFileInfo.absoluteFilePath()), root, _indexFileInfo, _fileType));
     // begin processing the documents stored on the document stack
     while(!_documentStack.isEmpty())
     {
