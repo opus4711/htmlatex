@@ -9,6 +9,8 @@
 #include <QMapIterator>
 #include <QStack>
 
+#include <iostream>
+
 class CDocumentReader
 {
 private:

@@ -32,6 +32,25 @@ CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType file
         {
             if (doc.documentElement().tagName().toLower() == "html")
                 readElement(doc.documentElement(), documentdata->node());
+            else
+            {
+                std::cerr << std::endl << std::endl
+                        << std::endl << "error in CDocumentReader::read()"
+                        << std::endl << " at \"if (doc.setContent())\" returned false;"
+                        << std::endl << " file name: " << documentdata->url().toString().toStdString()
+                        << std::endl << " error message: <html>-tag not found";
+            }
+        }
+        else
+        {
+            std::cerr << std::endl << std::endl
+                    << std::endl << "error in CDocumentReader::read()"
+                    << std::endl << " at doc.setContent() returned false;"
+                    << std::endl << " file name: " << documentdata->url().toString().toStdString()
+                    << std::endl << " error message: "
+                    << std::endl << errorStr.toStdString() << " line="
+                    << std::endl << QString::number(errorLine).toStdString()
+                    << std::endl << " column=" << QString::number(errorColumn).toStdString();
         }
         delete documentdata;
     }
@@ -63,6 +82,10 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
         {
             new_node->addAttribute("href", attributes.namedItem("href").nodeValue());
             _documentStack.push(new CDocumentData(QUrl(new_node->attributes()["href"]), new_node, _indexFileInfo, _fileType));
+            std::cerr << std::endl << std::endl
+                    << std::endl << "testing output: CDocumentReader::readElement()"
+                    << std::endl << " at \"if (element.childNodes().at(i).nodeName().toLower() == \"a\")\" returned true"
+                    << std::endl << " found subdocumunt href=" << new_node->attributes()["href"].toStdString();
         }
         else if (element.childNodes().at(i).nodeName().toLower() == "#text")
             new_node->setContent(element.childNodes().at(i).nodeValue());
