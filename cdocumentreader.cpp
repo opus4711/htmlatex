@@ -17,7 +17,7 @@ CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType file
     // store information about the index document
     _indexFileInfo = QFileInfo(indexfilepath);
     // start reading the whole document tree
-    CNode* root = new CNode(0, "html");
+    CNode* root = new CNode(0, "html", 0);
     // add the index document to the stack of documents
     _documentStack.push(new CDocumentData(QUrl(_indexFileInfo.absoluteFilePath()), root, _indexFileInfo, _fileType));
     // begin processing the documents stored on the document stack
@@ -60,7 +60,7 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
 {
     for (int i = 0; i < element.childNodes().count(); i++)
     {
-        CNode* new_node = new CNode(node, element.childNodes().at(i).nodeName().toLower());
+        CNode* new_node = new CNode(node, element.childNodes().at(i).nodeName().toLower(), node->layer() + 1);
         node->addChild(new_node);
         QDomNamedNodeMap attributes = element.childNodes().at(i).attributes();
         if (element.childNodes().at(i).nodeName().toLower() == "font")

@@ -12,6 +12,7 @@ private:
     CNode* _parent;
     QList<CNode*> children;
     qint64 _id;
+    qint64 _layer;
     QString _name;
     QString _content;
     QMap<QString, QString> _attributes;
@@ -28,6 +29,7 @@ public:
     int indexOf(CNode* node) const;
     // methods returning attributes' values
     qint64 ID() const;
+    qint64 layer() const;
     QString name() const;
     QString content() const;
     QMap<QString, QString> attributes() const;
@@ -36,7 +38,7 @@ public:
     void setContent(QString content);
     void addAttribute(QString key, QString value);
     // constructor and destructor
-    CNode(CNode* parent, QString name);
+    CNode(CNode* parent, QString name, qint64 layer);
     ~CNode();
 };
 

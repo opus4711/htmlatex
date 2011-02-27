@@ -48,7 +48,7 @@ void CItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem &option,
     QStyleOptionViewItem opt = option;
     opt.displayAlignment = Qt::AlignLeft | Qt::AlignVCenter;
     CNode* node = model->nodeFromIndex(index);
-    QString text = node->name();
+    QString text = node->name() + " (" + QString::number(node->layer()) + ")";
     painter->setPen(color);
     if (node->name() == "#text")
         text += ": " + node->content();

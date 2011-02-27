@@ -5,7 +5,8 @@
  * @param parent Initialiazes the object with the given CNode-object as its parent.
  * @author Björn Kaiser
  */
-CNode::CNode(CNode* parent, QString name) : _parent(parent), _name(name), _content("")
+CNode::CNode(CNode* parent, QString name, qint64 layer) : _parent(parent),
+    _layer(layer), _name(name), _content("")
 {
     instCount++;
     this->_id = instCount;
@@ -32,6 +33,15 @@ qint64 CNode::instCount = 0;
 qint64 CNode::ID() const
 {
     return this->_id;
+};
+/**
+  * Returns the layer number of the node. The layer number is the distance to the
+  * root node of the tree.
+  * @author Björn Kaiser
+  */
+qint64 CNode::layer() const
+{
+    return this->_layer;
 };
 /**
  * Returns the node's name.
