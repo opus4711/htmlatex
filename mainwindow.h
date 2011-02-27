@@ -19,6 +19,7 @@ private:
     Ui::MainWindow* ui;
     CModel* model;
     CItemDelegate* itemDelegate;
+    void performInitialOperations(int argc, char* argv[]);
 private slots:
     void showOpenDialog();
     void showConvertDialog();
@@ -26,7 +27,7 @@ protected:
     void changeEvent(QEvent* e);
 public:
     // constructor and destructor
-    MainWindow(QWidget* parent = 0);
+    MainWindow(int argc, char* argv[], QWidget* parent);
     ~MainWindow();
 };
 

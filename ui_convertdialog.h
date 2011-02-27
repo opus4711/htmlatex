@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'convertdialog.ui'
 **
-** Created: Sun 13. Feb 02:37:12 2011
+** Created: Sun 27. Feb 02:48:13 2011
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -10,6 +10,7 @@
 #ifndef UI_CONVERTDIALOG_H
 #define UI_CONVERTDIALOG_H
 
+#include <QtCore/QLocale>
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
@@ -35,6 +36,7 @@ public:
         if (ConvertDialog->objectName().isEmpty())
             ConvertDialog->setObjectName(QString::fromUtf8("ConvertDialog"));
         ConvertDialog->resize(392, 107);
+        ConvertDialog->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         groupBox_targetfile = new QGroupBox(ConvertDialog);
         groupBox_targetfile->setObjectName(QString::fromUtf8("groupBox_targetfile"));
         groupBox_targetfile->setGeometry(QRect(10, 10, 371, 61));

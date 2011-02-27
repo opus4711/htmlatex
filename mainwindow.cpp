@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(int argc, char* argv[], QWidget* parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->treeView->setModel(model);
     itemDelegate = new CItemDelegate(model, this);
     ui->treeView->setItemDelegate(itemDelegate);
+    performInitialOperations(argc, argv);
 };
 MainWindow::~MainWindow()
 {
@@ -35,6 +36,65 @@ void MainWindow::changeEvent(QEvent *e)
         break;
     }
 };
+/** Performs opening and converting operations depending on application's startup
+  * arguments.
+  @author Björn Kaiser
+  */
+void MainWindow::performInitialOperations(int argc, char* argv[])
+{
+    /* 0 = executable's name
+       1 = source file path
+       2 = source file type
+       3 = target file path
+       4 = target file type
+       5 = "-g" or "--gui"
+    */
+    if (argc == 1)
+        return;
+    // the last argument must be "-g" or "--gui" except there are no arguments given at all
+    else if ((argc == 4)
+        | (argc == 6))
+    {
+        QString sourcefilepath(argv[1]);
+        QString filetypestring(argv[2]);
+        QFile file(sourcefilepath);
+        if (file.exists())
+        {
+            CDocumentData::FileType filetype = CDocumentData::Unknown;
+            if (filetypestring.toLower() == "javadoc")
+                filetype = CDocumentData::JavaDocHTML;
+            CDocumentReader* reader = new CDocumentReader;
+            CNode* root = reader->read(sourcefilepath, filetype);
+            model->setRootNode(root);
+            delete reader;
+        }
+        if (argc == 6)
+        {
+            QString targetfilepath(argv[3]);
+            QString filetypestring(argv[4]);
+            QFile file(targetfilepath);
+            if (file.open(QFile::WriteOnly))
+            {
+                CDocumentData::FileType filetype = CDocumentData::Unknown;
+                if (filetypestring.toLower() == "tex")
+                    filetype = CDocumentData::Tex;
+                // converting...
+                QMessageBox msg(QMessageBox::Information, tr("Information"), tr("conversion successfully performed"), QMessageBox::Ok, this);
+                msg.exec();
+            }
+            else
+            {
+                QMessageBox msg(QMessageBox::Warning, tr("I/O Error"), tr("can't write to file\n\n") + targetfilepath, QMessageBox::Ok, this);
+                msg.exec();
+            }
+        }
+    }
+    else
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Error - argument list"), tr("unexpected number of arguments"), QMessageBox::Ok, this);
+        msg.exec();
+    }
+};
 void MainWindow::showOpenDialog()
 {
     OpenDialog dialog;
@@ -44,6 +104,7 @@ void MainWindow::showOpenDialog()
         CDocumentReader* reader = new CDocumentReader;
         CNode* root = reader->read(dialog.sourceFilePath(), dialog.fileType());
         model->setRootNode(root);
+        delete reader;
     }
 };
 void MainWindow::showConvertDialog()

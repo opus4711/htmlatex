@@ -1,5 +1,8 @@
 #include "cdocumentreader.h"
 
+/** This class creates a tree representation of a given document.
+  @author Björn Kaiser
+  */
 CDocumentReader::CDocumentReader()
 {
     _fileType = CDocumentData::Unknown;

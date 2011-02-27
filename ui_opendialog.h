@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'opendialog.ui'
 **
-** Created: Sun 13. Feb 02:37:13 2011
+** Created: Sun 27. Feb 02:48:14 2011
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -10,6 +10,7 @@
 #ifndef UI_OPENDIALOG_H
 #define UI_OPENDIALOG_H
 
+#include <QtCore/QLocale>
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
@@ -35,6 +36,7 @@ public:
         if (OpenDialog->objectName().isEmpty())
             OpenDialog->setObjectName(QString::fromUtf8("OpenDialog"));
         OpenDialog->resize(389, 106);
+        OpenDialog->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         pushButton_open = new QPushButton(OpenDialog);
         pushButton_open->setObjectName(QString::fromUtf8("pushButton_open"));
         pushButton_open->setGeometry(QRect(310, 80, 75, 23));
