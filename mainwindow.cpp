@@ -19,6 +19,13 @@ MainWindow::MainWindow(int argc, char* argv[], QWidget* parent) :
     ui->treeView->setModel(model);
     itemDelegate = new CItemDelegate(model, this);
     ui->treeView->setItemDelegate(itemDelegate);
+    splitter = new QSplitter;
+    splitter->setOrientation(Qt::Horizontal);
+    hBoxLayout = new QHBoxLayout;
+    ui->centralwidget->setLayout(hBoxLayout);
+    hBoxLayout->addWidget(splitter);
+    splitter->addWidget(ui->treeView);
+    //splitter->addWidget( zweiter rechter treeView );
     performInitialOperations(argc, argv);
 };
 MainWindow::~MainWindow()
