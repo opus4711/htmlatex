@@ -16,6 +16,8 @@ private:
     QColor colorFocusBackground;
     QColor colorMarked;
     QColor color;
+    QColor colorLayer0;
+    QColor colorLayer1;
 public:
     void setColorFocusLine(QColor color);
     QColor getColorFocusLine() const;
@@ -25,6 +27,10 @@ public:
     QColor getColorMarked() const;
     void setColor(QColor color);
     QColor getColor() const;
+    void setColorLayer0(QColor color);
+    QColor getColorLayer0() const;
+    void setColorLayer1(QColor color);
+    QColor getColorLayer1() const;
     void paint(QPainter* painter, const QStyleOptionViewItem &option,
                const QModelIndex &index) const;
     // Constructor

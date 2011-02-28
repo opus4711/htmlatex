@@ -52,7 +52,7 @@ QString CNode::name() const
     return this->_name;
 };
 /**
- * Returns the node's content.
+ * Returns the node's text content.
  * @author Björn Kaiser
  */
 QString CNode::content() const
