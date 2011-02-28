@@ -1,1 +1,39 @@
-Inhalt
+Table of Contents:
+------------------
+
+I. Start Arguments
+
+------------------
+
+I. The application accepts a few argument sequences which allow initiation of loading
+and converting documents at application startup. The last argument controls whether
+the GUI launches or not. The application can be used to convert documents in console
+mode which allows further use of the applaction's output in shell scripts.
+
+If no argument is given or the last argument is "-g" or "--gui" the application's GUI
+is launched.
+Examples:
+htmlatex
+htmlatex -g
+htmlatex --gui
+
+If this argument is given two startup operations can be initiated:
+
+a) The GUI can be launched with a source document loaded. This requires the source
+file path and source file type.
+Examples:
+htmlatex index.html javadoc -g
+htmlatex index.html javadoc --gui
+
+b) The GUI can be launched with a source document converted to a target document.
+This requires the source file path, source file type, target file path and target
+file type.
+Example:
+htmlatex index.html javadoc mytexoutput.tex tex -g
+htmlatex index.html javadoc mytexoutput.tex tex -gui
+
+If the "-g" or "--gui" argument isn't given the application expects four arguments
+in console mode: source file path, source file type, target file path and target
+file type.
+Example:
+htmlatex index.html javadoc mytexoutput.tex tex
