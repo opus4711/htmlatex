@@ -21,7 +21,6 @@ CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType file
     // add the index document to the stack of documents
     _documentStack.push(new CDocumentData(QUrl(_indexFileInfo.absoluteFilePath()), root, _indexFileInfo, _fileType));
     // begin processing the documents stored on the document stack
-    int temp = 0;
     while(!_documentStack.isEmpty())
     {
         CDocumentData* documentdata = _documentStack.pop();
@@ -29,16 +28,7 @@ CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType file
         QString errorStr = "";
         int errorLine = -1;
         int errorColumn = -1;
-        // ---Test-Ausgabe in eine UTF8-Datei
-        // ---erzeugt durchnummerierte dateien im ausführungs-verzeichnis namens "0_testausgabe_utf8.txt"
-        /*
-        QFile testfile(QString::number(temp++) + "_testausgabe_utf8.txt");
-        if (testfile.open(QFile::WriteOnly | QFile::Text))
-            testfile.write(documentdata->text().toUtf8());
-        testfile.close();
-        */
-        // ---Ende der Testausgabe
-        if (doc.setContent(documentdata->text().toUtf8(), false, &errorStr, &errorLine, &errorColumn))
+        if (doc.setContent(documentdata->text(), false, &errorStr, &errorLine, &errorColumn))
         {
             if (doc.documentElement().tagName().toLower() == "html")
                 readElement(doc.documentElement(), documentdata->node());
