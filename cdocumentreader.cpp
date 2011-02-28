@@ -28,7 +28,7 @@ CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType file
         QString errorStr = "";
         int errorLine = -1;
         int errorColumn = -1;
-        if (doc.setContent(documentdata->text(), false, &errorStr, &errorLine, &errorColumn))
+        if (doc.setContent(documentdata->text().toLatin1(), false, &errorStr, &errorLine, &errorColumn))
         {
             if (doc.documentElement().tagName().toLower() == "html")
                 readElement(doc.documentElement(), documentdata->node());

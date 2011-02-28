@@ -60,11 +60,9 @@ void CDocumentData::preprocessHTML()
     else
         path = _url.path();
     QFile file(path);
-    if (!file.open(QFile::ReadWrite | QFile::Text))
+    if (!file.open(QFile::ReadOnly | QFile::Text))
         return;
-    QTextStream stream(&file);
-    stream.setCodec("UTF-8");
-    _text = stream.readAll();
+    _text = QString(file.readAll()).toLatin1();
     file.close();
     // processing document
     // add missing finalizing slashes to empty elements
