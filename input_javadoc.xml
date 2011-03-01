@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE JavaDoc [
+<!ELEMENT JavaDoc (HTMLElement*)>
+<!ELEMENT HTMLElement (Attribut*)>
+<!ELEMENT Attribut EMPTY>
+
+<!ATTLIST HTMLElement name CDATA #REQUIRED>
+<!ATTLIST Attribut name CDATA #REQUIRED>
+]>
+<JavaDoc>
+	<HTMLElement name="font">
+		<Attribut name="size" />
+	</HTMLElement>
+	<HTMLElement name="td">
+		<Attribut name="align" />
+		<Attribut name="valign" />
+		<Attribut name="width" />
+	</HTMLElement>
+	<HTMLElement name="tr">
+		<Attribut name="bgcolor" />
+	</HTMLElement>
+	<HTMLElement name="th">
+		<Attribut name="align" />
+		<Attribut name="colspan" />
+	</HTMLElement>
+	<HTMLElement name="a">
+		<Attribut name="href" />
+	</HTMLElement>
+</JavaDoc>

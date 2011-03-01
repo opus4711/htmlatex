@@ -38,4 +38,6 @@ OTHER_FILES += README \
     html_examples/kapitel_1.html \
     html_examples/html4.html \
     html_examples/kapitel/kapitel_3.html \
-    html_examples/kapitel/kap01/kapitel_1.html
+    html_examples/kapitel/kap01/kapitel_1.html \
+    input_javadoc.xml \
+    input_javadoc.xml
