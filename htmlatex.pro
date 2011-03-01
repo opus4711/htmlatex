@@ -18,7 +18,8 @@ SOURCES += main.cpp \
     citemdelegate.cpp \
     cconsole.cpp \
     cdocumentreader.cpp \
-    ctranslationmapper.cpp
+    ctranslationmapper.cpp \
+    ctranslationdata.cpp
 HEADERS += cdocumentreader.h \
     cnode.h \
     convertdialog.h \
@@ -30,7 +31,8 @@ HEADERS += cdocumentreader.h \
     cdocumentdata.h \
     citemdelegate.h \
     cconsole.h \
-    ctranslationmapper.h
+    ctranslationmapper.h \
+    ctranslationdata.h
 FORMS += convertdialog.ui \
     mainwindow.ui \
     opendialog.ui
