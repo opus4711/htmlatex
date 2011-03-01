@@ -17,7 +17,8 @@ SOURCES += main.cpp \
     opendialog.cpp \
     cdocumentdata.cpp \
     citemdelegate.cpp \
-    cconsole.cpp
+    cconsole.cpp \
+    cdocumentreader.cpp
 HEADERS += cdocumentreader.h \
     cnode.h \
     convertdialog.h \
@@ -40,4 +41,5 @@ OTHER_FILES += README \
     html_examples/kapitel/kapitel_3.html \
     html_examples/kapitel/kap01/kapitel_1.html \
     input_javadoc.xml \
-    input_javadoc.xml
+    input_javadoc.xml \
+    output_tex.xml

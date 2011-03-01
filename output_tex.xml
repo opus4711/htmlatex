@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE tex [
+<!ELEMENT tex (node*)>
+<!ELEMENT node ((from, to, requires?)*)>
+<!ELEMENT to (#PCDATA)>
+<!ELEMENT from (#PCDATA)>
+<!ELEMENT requires ((location)*)>
+<!ELEMENT location (#PCDATA)>
+
+<!ATTLIST location position (start|content|end) "content">
+]>
+
+<tex>
+<node>
+  <from>
+    <table>INHALT</table>
+  </from>
+  <to>
+    begin{longtable}{|p{.2textwidth}|p{.8textwidth}|}
+    hline
+    INHALT
+    end{longtable}
+  </to>
+  <requires>
+    <location position="start">
+      usepackage{longtable}
+    </location>
+  </requires>
+</node>
+</tex>
