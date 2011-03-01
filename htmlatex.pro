@@ -9,7 +9,6 @@ TARGET = htmlatex
 TEMPLATE = app
 CONFIG += console
 SOURCES += main.cpp \
-    cdocumentreader.cpp \
     cnode.cpp \
     convertdialog.cpp \
     mainwindow.cpp \
@@ -18,7 +17,8 @@ SOURCES += main.cpp \
     cdocumentdata.cpp \
     citemdelegate.cpp \
     cconsole.cpp \
-    cdocumentreader.cpp
+    cdocumentreader.cpp \
+    ctranslationmapper.cpp
 HEADERS += cdocumentreader.h \
     cnode.h \
     convertdialog.h \
@@ -29,7 +29,8 @@ HEADERS += cdocumentreader.h \
     opendialog.h \
     cdocumentdata.h \
     citemdelegate.h \
-    cconsole.h
+    cconsole.h \
+    ctranslationmapper.h
 FORMS += convertdialog.ui \
     mainwindow.ui \
     opendialog.ui

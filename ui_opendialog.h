@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'opendialog.ui'
 **
-** Created
-**      by: Qt User Interface Compiler version 4.6.3
+** Created: Tue 1. Mar 23:48:45 2011
+**      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/

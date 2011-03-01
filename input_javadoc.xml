@@ -1,29 +1,38 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE JavaDoc [
-<!ELEMENT JavaDoc (HTMLElement*)>
-<!ELEMENT HTMLElement (Attribut*)>
-<!ELEMENT Attribut EMPTY>
-
-<!ATTLIST HTMLElement name CDATA #REQUIRED>
-<!ATTLIST Attribut name CDATA #REQUIRED>
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE javadoc [
+<!ELEMENT javadoc (element*)>
+<!ELEMENT element (name, content, attribute*)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT content (#PCDATA)>
+<!ELEMENT attribute (#PCDATA)>
 ]>
-<JavaDoc>
-	<HTMLElement name="font">
-		<Attribut name="size" />
-	</HTMLElement>
-	<HTMLElement name="td">
-		<Attribut name="align" />
-		<Attribut name="valign" />
-		<Attribut name="width" />
-	</HTMLElement>
-	<HTMLElement name="tr">
-		<Attribut name="bgcolor" />
-	</HTMLElement>
-	<HTMLElement name="th">
-		<Attribut name="align" />
-		<Attribut name="colspan" />
-	</HTMLElement>
-	<HTMLElement name="a">
-		<Attribut name="href" />
-	</HTMLElement>
-</JavaDoc>
+<javadoc>
+    <element>
+        <name>font</name>
+        <content></content>
+        <attribute>size</attribute>
+    </element>
+    <element>
+        <name>td</name>
+        <content></content>
+        <attribute>align</attribute>
+        <attribute>valign</attribute>
+        <attribute>width</attribute>
+    </element>
+    <element>
+        <name>tr</name>
+        <content></content>
+        <attribute>bgcolor</attribute>
+    </element>
+    <element>
+        <name>th</name>
+        <content></content>
+        <attribute>align</attribute>
+        <attribute>colspan</attribute>
+    </element>
+    <element>
+        <name>a</name>
+        <content></content>
+        <attribute>href</attribute>
+    </element>
+</javadoc>

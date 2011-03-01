@@ -1,10 +1,10 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE tex [
 <!ELEMENT tex (node*)>
 <!ELEMENT node ((from, to, requires?)*)>
 <!ELEMENT to (#PCDATA)>
 <!ELEMENT from (#PCDATA)>
-<!ELEMENT requires ((location)*)>
+<!ELEMENT requires (location*)>
 <!ELEMENT location (#PCDATA)>
 
 <!ATTLIST location position (start|content|end) "content">
@@ -13,7 +13,7 @@
 <tex>
 <node>
   <from>
-    <table>INHALT</table>
+    <![CDATA[<table>INHALT</table>]]>
   </from>
   <to>
     begin{longtable}{|p{.2textwidth}|p{.8textwidth}|}
@@ -26,5 +26,15 @@
       usepackage{longtable}
     </location>
   </requires>
+</node>
+<node>
+  <from>
+    <![CDATA[<h1>INHALT</h1>]]>
+  </from>
+  <to>
+    \section{
+    INHALT
+    }
+  </to>
 </node>
 </tex>
