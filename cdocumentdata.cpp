@@ -1,5 +1,7 @@
 #include "cdocumentdata.h"
 
+#include <iostream>
+
 /** This class holds information of one document (i.e. webpage). The information
   * consists of the file path (URL), a reference pointing to the corresponding node
   * in the document tree, which represents the whole document. This also stores a
@@ -7,21 +9,20 @@
   * document preprocessing is chosen by means of distinguished file types.
   * @author Björn Kaiser
   */
-CDocumentData::CDocumentData(QUrl url, CNode* node, QFileInfo indexfileinfo, FileType filetype)
+CDocumentData::CDocumentData(QFileInfo fileinfo, CNode* node, FileType filetype)
 {
-    this->_url = url;
+    this->_fileInfo = fileinfo;
     this->_node = node;
     this->_text = "";
-    this->_indexFileInfo = indexfileinfo;
     this->_fileType = filetype;
     this->_preprocessed = false;
 };
 /** Returns the URL to this document.
   * @author Björn Kaiser
   */
-QUrl CDocumentData::url() const
+QFileInfo CDocumentData::fileInfo() const
 {
-    return this->_url;
+    return this->_fileInfo;
 };
 /** Returns the pointer to the corresponding tree node of the whole document.
   * @author Björn Kaiser
@@ -54,11 +55,8 @@ void CDocumentData::preprocessHTML()
 {
     if (_fileType != CDocumentData::JavaDocHTML)
         return;
-    QString path = "";
-    if (_url.isRelative())
-        path = _indexFileInfo.absolutePath() + "/" + _url.path();
-    else
-        path = _url.path();
+    QString path = _fileInfo.filePath();
+    std::cerr << std::endl << "path: " << path.toStdString();
     QFile file(path);
     if (!file.open(QFile::ReadOnly | QFile::Text))
         return;

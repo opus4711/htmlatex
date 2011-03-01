@@ -14,12 +14,11 @@ CDocumentReader::CDocumentReader()
 CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType filetype)
 {
     _fileType = filetype;
-    // store information about the index document
     _indexFileInfo = QFileInfo(indexfilepath);
     // start reading the whole document tree
     CNode* root = new CNode(0, "html", 0);
     // add the index document to the stack of documents
-    _documentStack.push(new CDocumentData(QUrl(_indexFileInfo.absoluteFilePath()), root, _indexFileInfo, _fileType));
+    _documentStack.push(new CDocumentData(_indexFileInfo, root, _fileType));
     // begin processing the documents stored on the document stack
     while(!_documentStack.isEmpty())
     {
@@ -37,7 +36,7 @@ CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType file
                 std::cerr << std::endl << std::endl
                         << std::endl << "error in CDocumentReader::read()"
                         << std::endl << " at \"if (doc.setContent())\" returned false;"
-                        << std::endl << " file name: " << documentdata->url().toString().toStdString()
+                        << std::endl << " file name: " << documentdata->fileInfo().filePath().toStdString()
                         << std::endl << " error message: <html>-tag not found";
             }
         }
@@ -46,7 +45,7 @@ CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType file
             std::cerr << std::endl << std::endl
                     << std::endl << "error in CDocumentReader::read()"
                     << std::endl << " at doc.setContent() returned false;"
-                    << std::endl << " file name: " << documentdata->url().toString().toStdString()
+                    << std::endl << " file name: " << documentdata->fileInfo().filePath().toStdString()
                     << std::endl << " error message: "
                     << std::endl << errorStr.toStdString() << " line="
                     << std::endl << QString::number(errorLine).toStdString()
@@ -84,8 +83,18 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
             }
             else if (element.childNodes().at(i).nodeName().toLower() == "a")
             {
+                std::cerr << std::endl << "ReadElement - 'a': indexFileInfo.absPath: " << _indexFileInfo.absolutePath().toStdString()
+                        << std::endl << "href: " << new_node->attributes()["href"].toStdString();
                 new_node->addAttribute("href", attributes.namedItem("href").nodeValue());
-                _documentStack.push(new CDocumentData(QUrl(new_node->attributes()["href"]), new_node, _indexFileInfo, _fileType));
+                // compose absolute file path
+                QFileInfo myfileinfo;
+                if (QFileInfo(_indexFileInfo.absolutePath() + new_node->attributes()["href"]).exists())
+                    // unix
+                    myfileinfo = QFileInfo(_indexFileInfo.absolutePath() + new_node->attributes()["href"]);
+                else
+                    // windows
+                    myfileinfo = QFileInfo(_indexFileInfo.absolutePath() + QDir::separator() + new_node->attributes()["href"]);
+                _documentStack.push(new CDocumentData(myfileinfo, new_node, _fileType));
                 std::cerr << std::endl << std::endl
                         << std::endl << "testing output: CDocumentReader::readElement()"
                         << std::endl << " at \"if (element.childNodes().at(i).nodeName().toLower() == \"a\")\" returned true"

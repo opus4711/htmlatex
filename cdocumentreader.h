@@ -8,6 +8,7 @@
 #include <QDomNamedNodeMap>
 #include <QMapIterator>
 #include <QStack>
+#include <QDir>
 
 #include <iostream>
 

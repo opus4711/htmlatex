@@ -6,7 +6,6 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QTextStream>
-#include <QUrl>
 #include <QStringList>
 #include <QMessageBox>
 
@@ -15,23 +14,22 @@ class CDocumentData
 public:
     enum FileType { JavaDocHTML, HTML, Tex, Unknown };
 private:
-    QUrl _url;
+    QFileInfo _fileInfo;
     CNode* _node;
     QString _text;
-    QFileInfo _indexFileInfo;
     FileType _fileType;
     bool _preprocessed;
     void preprocessingHook();
     void preprocessHTML();
     bool isPreprocessed() const;
 public:
-    QUrl url() const;
+    QFileInfo fileInfo() const;
     CNode* node() const;
     QString text();
     FileType fileType() const;
     QFileInfo indexFileInfo() const;
     // Constructor
-    CDocumentData(QUrl url, CNode* node, QFileInfo indexfileinfo, FileType filetype);
+    CDocumentData(QFileInfo fileinfo, CNode* node, FileType filetype);
 };
 
 #endif // CDOCUMENTDATA_H
