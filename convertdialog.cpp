@@ -13,7 +13,7 @@ ConvertDialog::ConvertDialog(QWidget *parent) :
             this, SLOT(convert()));
     connect(ui->pushButton_targetfile, SIGNAL(clicked()),
             this, SLOT(browse_targetfile()));
-    dialog = new QFileDialog(this, tr("Set Target File"), "../html_examples", "Tex (*.tex);;JavaDoc (*.html *.htm);;any file (*.*)");
+    dialog = new QFileDialog(this, tr("Set Target File"), "", "Tex (*.tex);;JavaDoc (*.html *.htm);;any file (*.*)");
     dialog->setFileMode(QFileDialog::AnyFile);
     dialog->setAcceptMode(QFileDialog::AcceptSave);
 };

@@ -8,7 +8,7 @@ CItemDelegate::CItemDelegate(CModel* model, QObject* parent)
     this->colorFocusBackground = QColor(180, 180, 180, 255);
     this->colorMarked = QColor(200, 0, 0, 255);
     this->color = QColor(0, 0, 0, 255);
-    this->colorLayer0 = QColor(0, 255, 0, 255);
+    this->colorLayer0 = QColor(75,86, 32, 255);
     this->colorLayer1 = QColor(0, 0, 255, 255);
 };
 void CItemDelegate::setColorFocusLine(QColor color)

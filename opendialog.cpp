@@ -13,7 +13,7 @@ OpenDialog::OpenDialog(QWidget* parent) :
             this, SLOT(open()));
     connect(ui->pushButton_sourcefile, SIGNAL(clicked()),
             this, SLOT(browse_sourcefile()));
-    dialog = new QFileDialog(this, tr("Set Source File"), "../html_examples", "JavaDoc (*.html *.htm);;any file (*.*)");
+    dialog = new QFileDialog(this, tr("Set Source File"), "", "JavaDoc (*.html *.htm);;any file (*.*)");
 };
 OpenDialog::~OpenDialog()
 {

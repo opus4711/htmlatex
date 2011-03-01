@@ -37,7 +37,8 @@ CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType file
                         << std::endl << "error in CDocumentReader::read()"
                         << std::endl << " at \"if (doc.setContent())\" returned false;"
                         << std::endl << " file name: " << documentdata->fileInfo().filePath().toStdString()
-                        << std::endl << " error message: <html>-tag not found";
+                        << std::endl << " error message: <html>-tag not found"
+                        << std::endl;
             }
         }
         else
@@ -49,7 +50,8 @@ CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType file
                     << std::endl << " error message: "
                     << std::endl << errorStr.toStdString() << " line="
                     << std::endl << QString::number(errorLine).toStdString()
-                    << std::endl << " column=" << QString::number(errorColumn).toStdString();
+                    << std::endl << " column=" << QString::number(errorColumn).toStdString()
+                    << std::endl;
         }
         delete documentdata;
     }
@@ -84,7 +86,7 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
             else if (element.childNodes().at(i).nodeName().toLower() == "a")
             {
                 std::cerr << std::endl << "ReadElement - 'a': indexFileInfo.absPath: " << _indexFileInfo.absolutePath().toStdString()
-                        << std::endl << "href: " << new_node->attributes()["href"].toStdString();
+                        << std::endl << "href: " << new_node->attributes()["href"].toStdString() << std::endl;
                 new_node->addAttribute("href", attributes.namedItem("href").nodeValue());
                 // compose absolute file path
                 QFileInfo myfileinfo;
@@ -98,7 +100,7 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
                 std::cerr << std::endl << std::endl
                         << std::endl << "testing output: CDocumentReader::readElement()"
                         << std::endl << " at \"if (element.childNodes().at(i).nodeName().toLower() == \"a\")\" returned true"
-                        << std::endl << " found subdocumunt href=" << new_node->attributes()["href"].toStdString();
+                        << std::endl << " found subdocumunt href=" << new_node->attributes()["href"].toStdString() << std::endl;
             }
             QDomElement new_element = element.childNodes().at(i).toElement();
             readElement(new_element, new_node);

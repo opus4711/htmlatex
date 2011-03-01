@@ -56,7 +56,7 @@ void CDocumentData::preprocessHTML()
     if (_fileType != CDocumentData::JavaDocHTML)
         return;
     QString path = _fileInfo.filePath();
-    std::cerr << std::endl << "path: " << path.toStdString();
+    //std::cerr << std::endl << "path: " << path.toStdString();
     QFile file(path);
     if (!file.open(QFile::ReadOnly | QFile::Text))
         return;
