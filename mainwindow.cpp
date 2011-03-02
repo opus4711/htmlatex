@@ -20,7 +20,7 @@ MainWindow::MainWindow(int argc, char* argv[], QWidget* parent) :
     connect(ui->action_Convert, SIGNAL(triggered()),
             this, SLOT(showConvertDialog()));
     connect(ui->action_Open, SIGNAL(triggered()),
-            this, SLOT(showOpenDialog()));
+            this, SLOT(open()));
     model = new CModel(this);
     ui->treeView->setModel(model);
     itemDelegate = new CItemDelegate(model, this);
@@ -110,17 +110,24 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
         msg.exec();
     }
 };
-void MainWindow::showOpenDialog()
+void MainWindow::open()
 {
-    OpenDialog dialog;
+    QFileDialog* dialog = new QFileDialog(this, tr("Set Source File"), "", "JavaDoc (*.html *.htm);;any file (*.*)");
     // retrieve source file path and type
-    if (dialog.exec() == OpenDialog::Accepted)
+    if (dialog->exec() == QFileDialog::Accepted)
     {
+        // determine file type
+        CDocumentData::FileType filetype = CDocumentData::Unknown;
+        if (dialog->selectedFilter() == "JavaDoc (*.html *.htm)")
+            filetype = CDocumentData::JavaDocHTML;
+        else if (dialog->selectedFilter() == "any file (*.*)")
+            filetype = CDocumentData::Unknown;
         CDocumentReader* reader = new CDocumentReader;
-        CNode* root = reader->read(dialog.sourceFilePath(), dialog.fileType());
+        CNode* root = reader->read(dialog->selectedFiles().at(0), filetype);
         model->setRootNode(root);
         delete reader;
     }
+    delete dialog;
 };
 void MainWindow::showConvertDialog()
 {

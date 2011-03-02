@@ -13,7 +13,6 @@ SOURCES += main.cpp \
     convertdialog.cpp \
     mainwindow.cpp \
     cmodel.cpp \
-    opendialog.cpp \
     cdocumentdata.cpp \
     citemdelegate.cpp \
     cconsole.cpp \
@@ -28,7 +27,6 @@ HEADERS += cdocumentreader.h \
     ui_convertdialog.h \
     ui_mainwindow.h \
     cmodel.h \
-    opendialog.h \
     cdocumentdata.h \
     citemdelegate.h \
     cconsole.h \
@@ -36,8 +34,7 @@ HEADERS += cdocumentreader.h \
     ctranslationdata.h \
     ctranslationdatanode.h
 FORMS += convertdialog.ui \
-    mainwindow.ui \
-    opendialog.ui
+    mainwindow.ui
 OTHER_FILES += README \
     html_examples/startseite.html \
     html_examples/kapitel_2.html \

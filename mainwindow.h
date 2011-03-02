@@ -27,7 +27,7 @@ private:
     CTranslationMapper* translationMapper;
     void performInitialOperations(int argc, char* argv[]);
 private slots:
-    void showOpenDialog();
+    void open();
     void showConvertDialog();
     void setInputDefinition();
     void setOutputDefinition();
