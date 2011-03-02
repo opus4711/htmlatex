@@ -19,11 +19,11 @@ void CTranslationData::setTo(QString to)
 {
     this->_to = to;
 };
-QMap<QString,QString> CTranslationData::requires() const
+QList<CTranslationDataNode> CTranslationData::requires() const
 {
     return this->_requires;
 };
-void CTranslationData::setRequires(QMap<QString, QString> requires)
+void CTranslationData::setRequires(QList<CTranslationDataNode> requires)
 {
     this->_requires = requires;
 };
