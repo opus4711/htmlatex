@@ -18,7 +18,7 @@ MainWindow::MainWindow(int argc, char* argv[], QWidget* parent) :
     connect(ui->action_Quit, SIGNAL(triggered()),
             this, SLOT(close()));
     connect(ui->action_Convert, SIGNAL(triggered()),
-            this, SLOT(showConvertDialog()));
+            this, SLOT(convert()));
     connect(ui->action_Open, SIGNAL(triggered()),
             this, SLOT(open()));
     model = new CModel(this);
@@ -129,12 +129,28 @@ void MainWindow::open()
     }
     delete dialog;
 };
-void MainWindow::showConvertDialog()
+void MainWindow::convert()
 {
-    ConvertDialog dialog;
+    QFileDialog* dialog = new QFileDialog(this, tr("Set Target File"), "", "Tex (*.tex);;JavaDoc (*.html *.htm);;any file (*.*)");
+    dialog->setFileMode(QFileDialog::AnyFile);
+    dialog->setAcceptMode(QFileDialog::AcceptSave);
     // retrieve target file path and type
-    if (dialog.exec() == ConvertDialog::Accepted)
+    if (dialog->exec() == QFileDialog::Accepted)
     {
+        // set suffix if no file suffix/extension is specified
+        QString suffix = dialog->selectedFilter().split(".", QString::SkipEmptyParts, Qt::CaseInsensitive)[dialog->selectedFilter().split(".", QString::SkipEmptyParts, Qt::CaseInsensitive).count() - 1];
+        if (suffix.count() > 1)
+            suffix.remove(suffix.count() - 1, 1);
+        dialog->setDefaultSuffix(suffix);
+        std::cerr << std::endl << "MainWindow::convert(): path: " << QString(dialog->selectedFiles().at(0)).toStdString();
+        // determine file type
+        CDocumentData::FileType filetype = CDocumentData::Unknown;
+        if (dialog->selectedFilter() == "JavaDoc (*.html *.htm)")
+            filetype = CDocumentData::JavaDocHTML;
+        if (dialog->selectedFilter() == "Tex (*.tex)")
+            filetype = CDocumentData::Tex;
+        else if (dialog->selectedFilter() == "any file (*.*)")
+            filetype = CDocumentData::Unknown;
         //CNode* root = model->root();
         // now begin conversion...
     }

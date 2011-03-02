@@ -2,14 +2,13 @@
 #define MAINWINDOW_H
 
 #include "ctranslationmapper.h"
-#include "opendialog.h"
-#include "convertdialog.h"
 #include "cdocumentreader.h"
 #include "cmodel.h"
 #include "citemdelegate.h"
 #include <QMainWindow>
 #include <QSplitter>
 #include <QHBoxLayout>
+#include <QFileDialog>
 
 namespace Ui
 {
@@ -28,7 +27,7 @@ private:
     void performInitialOperations(int argc, char* argv[]);
 private slots:
     void open();
-    void showConvertDialog();
+    void convert();
     void setInputDefinition();
     void setOutputDefinition();
 protected:

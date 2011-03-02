@@ -10,7 +10,6 @@ TEMPLATE = app
 CONFIG += console
 SOURCES += main.cpp \
     cnode.cpp \
-    convertdialog.cpp \
     mainwindow.cpp \
     cmodel.cpp \
     cdocumentdata.cpp \
@@ -22,9 +21,7 @@ SOURCES += main.cpp \
     ctranslationdatanode.cpp
 HEADERS += cdocumentreader.h \
     cnode.h \
-    convertdialog.h \
     mainwindow.h \
-    ui_convertdialog.h \
     ui_mainwindow.h \
     cmodel.h \
     cdocumentdata.h \
