@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "ctranslationmapper.h"
 #include "opendialog.h"
 #include "convertdialog.h"
 #include "cdocumentreader.h"
@@ -23,10 +24,13 @@ private:
     QHBoxLayout* hBoxLayout;
     CModel* model;
     CItemDelegate* itemDelegate;
+    CTranslationMapper* translationMapper;
     void performInitialOperations(int argc, char* argv[]);
 private slots:
     void showOpenDialog();
     void showConvertDialog();
+    void setInputDefinition();
+    void setOutputDefinition();
 protected:
     void changeEvent(QEvent* e);
 public:

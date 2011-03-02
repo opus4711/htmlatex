@@ -12,10 +12,11 @@
 class CTranslationMapper
 {
 private:
-    QMap<QString,CTranslationData> outputMap;
+    QMap<QString,CTranslationData> _outputMap;
 public:
     void createInputElementMap(QString inputfilepath);
     void createOutputElementMap(QString outputfilepath);
+    QMap<QString,CTranslationData> outputMap() const;
     // Constructor
     CTranslationMapper();
 };

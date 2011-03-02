@@ -6,9 +6,15 @@ MainWindow::MainWindow(int argc, char* argv[], QWidget* parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->actionSet_Input_Definition->setText(tr("Set &Input Definition"));
+    ui->actionSet_O_utput_Definition->setText(tr("Set O&utput Definition"));
     ui->action_Open->setText(tr("&Open"));
     ui->action_Convert->setText(tr("&Convert"));
     ui->action_Quit->setText(tr("&Quit"));
+    connect(ui->actionSet_Input_Definition, SIGNAL(triggered()),
+            this, SLOT(setInputDefinition()));
+    connect(ui->actionSet_O_utput_Definition, SIGNAL(triggered()),
+            this, SLOT(setOutputDefinition()));
     connect(ui->action_Quit, SIGNAL(triggered()),
             this, SLOT(close()));
     connect(ui->action_Convert, SIGNAL(triggered()),
@@ -26,11 +32,13 @@ MainWindow::MainWindow(int argc, char* argv[], QWidget* parent) :
     hBoxLayout->addWidget(splitter);
     splitter->addWidget(ui->treeView);
     //splitter->addWidget( zweiter rechter treeView );
+    translationMapper = new CTranslationMapper;
     performInitialOperations(argc, argv);
 };
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete translationMapper;
 };
 void MainWindow::changeEvent(QEvent *e)
 {
@@ -123,4 +131,14 @@ void MainWindow::showConvertDialog()
         //CNode* root = model->root();
         // now begin conversion...
     }
+};
+void MainWindow::setInputDefinition()
+{
+    QString filepath = QFileDialog::getOpenFileName(0, tr("Select Input Definition File"), "", tr("XML files (*.xml);;any file (*.*)"));
+    translationMapper->createInputElementMap(filepath);
+};
+void MainWindow::setOutputDefinition()
+{
+    QString filepath = QFileDialog::getOpenFileName(0, tr("Select Output Definition File"), "", tr("XML files (*.xml);;any file (*.*)"));
+    translationMapper->createOutputElementMap(filepath);
 };

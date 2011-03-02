@@ -2,13 +2,14 @@
 
 CTranslationMapper::CTranslationMapper()
 {
+    this->_outputMap = QMap<QString,CTranslationData>();
 };
 void CTranslationMapper::createInputElementMap(QString inputfilepath)
 {
 };
 void CTranslationMapper::createOutputElementMap(QString outputfilepath)
 {
-    outputMap = QMap<QString,CTranslationData>();
+    _outputMap = QMap<QString,CTranslationData>();
     QFile file(outputfilepath);
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
@@ -53,7 +54,7 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
                     }
                 }
             }
-            outputMap[translationdata.from()] = translationdata;
+            _outputMap[translationdata.from()] = translationdata;
         }
     }
     else
