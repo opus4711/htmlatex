@@ -30,8 +30,7 @@ HEADERS += cdocumentreader.h \
     ctranslationmapper.h \
     ctranslationdata.h \
     ctranslationdatanode.h
-FORMS += convertdialog.ui \
-    mainwindow.ui
+FORMS += mainwindow.ui
 OTHER_FILES += README \
     html_examples/startseite.html \
     html_examples/kapitel_2.html \
