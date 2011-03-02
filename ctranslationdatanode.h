@@ -16,9 +16,9 @@ public:
     QString content() const;
     void setContent(QString content);
     QMap<QString,QString> attributes() const;
-    void setAttributes(QMap<QString,QString> attributes);
+    void addAttribute(QString name, QString value);
     // Constructor
-    CTranslationDataNode(QString name);
+    CTranslationDataNode();
 };
 
 #endif // CTRANSLATIONDATANODE_H

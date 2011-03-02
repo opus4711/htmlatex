@@ -1,6 +1,6 @@
 #include "ctranslationdatanode.h"
 
-CTranslationDataNode::CTranslationDataNode(QString name) : _name(name),
+CTranslationDataNode::CTranslationDataNode() : _name(""),
     _content("")
 {
     this->_attributes = QMap<QString,QString>();
@@ -25,7 +25,7 @@ QMap<QString,QString> CTranslationDataNode::attributes() const
 {
     return this->_attributes;
 };
-void CTranslationDataNode::setAttributes(QMap<QString,QString> attributes)
+void CTranslationDataNode::addAttribute(QString name, QString value)
 {
-    this->_attributes = attributes;
+    this->_attributes[name] = value;
 };

@@ -17,7 +17,7 @@ public:
     QString to() const;
     void setTo(QString to);
     QList<CTranslationDataNode> requires() const;
-    void setRequires(QList<CTranslationDataNode> requires);
+    void addRequiresNode(CTranslationDataNode requiresnode);
     // Constructor
     CTranslationData();
 };

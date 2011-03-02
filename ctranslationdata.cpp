@@ -1,7 +1,8 @@
 #include "ctranslationdata.h"
 
-CTranslationData::CTranslationData()
+CTranslationData::CTranslationData() : _from(""), _to("")
 {
+    this->_requires = QList<CTranslationDataNode>();
 };
 QString CTranslationData::from() const
 {
@@ -23,7 +24,7 @@ QList<CTranslationDataNode> CTranslationData::requires() const
 {
     return this->_requires;
 };
-void CTranslationData::setRequires(QList<CTranslationDataNode> requires)
+void CTranslationData::addRequiresNode(CTranslationDataNode requiresnode)
 {
-    this->_requires = requires;
+    this->_requires.append(requiresnode);
 };

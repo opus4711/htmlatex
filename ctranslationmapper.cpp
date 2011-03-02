@@ -40,8 +40,17 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
                     translationdata.setTo(subnodes.at(j).nodeValue());
                 else if (subnodes.at(j).nodeName().toLower() == "requires")
                 {
-                    //for (int )
-                    //translationdata.setFrom(subnodes.at(j).nodeValue());
+                    QDomNodeList requiresnodes = subnodes.at(j).childNodes();
+                    for (int k = 0; k < requiresnodes.count(); k++)
+                    {
+                        CTranslationDataNode datanode;
+                        datanode.setName(requiresnodes.at(k).nodeName());
+                        datanode.setContent(requiresnodes.at(k).nodeValue());
+                        QDomNamedNodeMap attributes = requiresnodes.at(k).attributes();
+                        for (int l = 0; l < attributes.count(); l++)
+                            datanode.addAttribute(attributes.item(l).nodeName(), attributes.item(l).nodeValue());
+                        translationdata.addRequiresNode(datanode);
+                    }
                 }
             }
             outputMap[translationdata.from()] = translationdata;
