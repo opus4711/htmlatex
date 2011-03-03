@@ -64,43 +64,66 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
        4 = target file type
        5 = "-g" or "--gui"
     */
-    if (argc == 1)
+    if ((argc == 1) | (argc == 2))
         return;
     // the last argument must be "-g" or "--gui" except there are no arguments given at all
     else if ((argc == 4)
         | (argc == 6))
     {
-        QString sourcefilepath(argv[1]);
-        QString filetypestring(argv[2]);
-        QFile file(sourcefilepath);
+        // find and store the source file path, source file type, target file
+        // path and target file type in the QStringList "arguments"
+        QStringList arguments;
+        for (int i = 1; i < argc; i++)
+        {
+            if (!QString(argv[i]).toLower().startsWith("-g")
+                & !QString(argv[i]).toLower().startsWith("--gui"))
+                arguments << QString(argv[i]);
+        }
+        // open source file
+        QFile file(arguments.at(0));
         if (file.exists())
         {
             CDocumentData::FileType filetype = CDocumentData::Unknown;
-            if (filetypestring.toLower() == "javadoc")
+            if (arguments.at(1).toLower() == "javadoc")
                 filetype = CDocumentData::JavaDocHTML;
             CDocumentReader* reader = new CDocumentReader;
-            CNode* root = reader->read(sourcefilepath, filetype);
+            CNode* root = reader->read(arguments.at(0), filetype);
             model->setRootNode(root);
             delete reader;
+            if (root->count() == 0)
+            {
+                QMessageBox msg(QMessageBox::Warning, tr("Error Reading Document"), tr("The reading resulted in an empty document.\nMaybe an error occurred because of a wrong source file type:\n\n") + arguments.at(1), QMessageBox::Ok, this);
+                msg.exec();
+                std::cerr << std::endl << "MainWindow::performInitialOperations: root.count() == 0: an empty document or an error occurred reading the document: file type: " << arguments.at(1).toStdString();
+                return;
+            }
+        }
+        else
+        {
+            QMessageBox msg(QMessageBox::Warning, tr("I/O Error"), tr("File doesn't exit:\n\n") + arguments.at(0), QMessageBox::Ok, this);
+            msg.exec();
+            std::cerr << std::endl << "MainWindow::performInitialOperations: file.exits returned false: path: " << arguments.at(0).toStdString();
+            return;
         }
         if (argc == 6)
         {
-            QString targetfilepath(argv[3]);
-            QString filetypestring(argv[4]);
-            QFile file(targetfilepath);
+            QFile file(arguments.at(2));
             if (file.open(QFile::WriteOnly))
             {
                 CDocumentData::FileType filetype = CDocumentData::Unknown;
-                if (filetypestring.toLower() == "tex")
+                if (arguments.at(3).toLower() == "tex")
                     filetype = CDocumentData::Tex;
                 // converting...
-                QMessageBox msg(QMessageBox::Information, tr("Information"), tr("conversion successfully performed"), QMessageBox::Ok, this);
+                std::cerr << std::endl << tr("conversion successfully performed").toStdString() << std::endl;
+                QMessageBox msg(QMessageBox::Information, tr("Information"), tr("Conversion successfully performed."), QMessageBox::Ok, this);
                 msg.exec();
             }
             else
             {
-                QMessageBox msg(QMessageBox::Warning, tr("I/O Error"), tr("can't write to file\n\n") + targetfilepath, QMessageBox::Ok, this);
+                QMessageBox msg(QMessageBox::Warning, tr("I/O Error"), tr("can't write to file\n\n") + arguments.at(2), QMessageBox::Ok, this);
                 msg.exec();
+                std::cerr << std::endl << "MainWindow::performInitialOperations: file.open returned false: path: " << arguments.at(2).toStdString();
+                return;
             }
         }
     }

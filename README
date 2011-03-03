@@ -6,18 +6,17 @@ I. Start Arguments
 ------------------
 
 I. The application accepts a few argument sequences which allow initiation of loading
-and converting documents at application startup. The last argument controls whether
-the GUI launches or not. The application can be used to convert documents in console
+and converting documents at application startup. The argument "-g" or "--gui" launches
+the GUI. The application can also be used to convert documents in console
 mode which allows further use of the applaction's output in shell scripts.
 
-If no argument is given or the last argument is "-g" or "--gui" the application's GUI
-is launched.
+The argument "-h" or "--help" is used to diplay the examples of this document section.
 Examples:
 htmlatex
-htmlatex -g
-htmlatex --gui
+htmlatex -h
+htmlatex --help
 
-If this argument is given two startup operations can be initiated:
+If the "g" or "--gui" argument is given two startup operations can be initiated:
 
 a) The GUI can be launched with a source document loaded. This requires the source
 file path and source file type.
