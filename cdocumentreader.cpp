@@ -85,8 +85,8 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
             }
             else if (element.childNodes().at(i).nodeName().toLower() == "a")
             {
-                std::cerr << std::endl << "ReadElement - 'a': indexFileInfo.absPath: " << _indexFileInfo.absolutePath().toStdString()
-                        << std::endl << "href: " << new_node->attributes()["href"].toStdString() << std::endl;
+                /*std::cerr << std::endl << "ReadElement - 'a': indexFileInfo.absPath: " << _indexFileInfo.absolutePath().toStdString()
+                        << std::endl << "href: " << new_node->attributes()["href"].toStdString() << std::endl;*/
                 new_node->addAttribute("href", attributes.namedItem("href").nodeValue());
                 // compose absolute file path
                 QFileInfo myfileinfo;
@@ -97,10 +97,11 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
                     // windows
                     myfileinfo = QFileInfo(_indexFileInfo.absolutePath() + QDir::separator() + new_node->attributes()["href"]);
                 _documentStack.push(new CDocumentData(myfileinfo, new_node, _fileType));
-                std::cerr << std::endl << std::endl
+               /* std::cerr << std::endl << std::endl
                         << std::endl << "testing output: CDocumentReader::readElement()"
                         << std::endl << " at \"if (element.childNodes().at(i).nodeName().toLower() == \"a\")\" returned true"
                         << std::endl << " found subdocumunt href=" << new_node->attributes()["href"].toStdString() << std::endl;
+                        */
             }
             QDomElement new_element = element.childNodes().at(i).toElement();
             readElement(new_element, new_node);
