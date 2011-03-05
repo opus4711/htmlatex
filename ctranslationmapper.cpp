@@ -13,7 +13,7 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
     QFile file(outputfilepath);
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
-        std::cerr << "\nCTranslationMapper.createOutputElementMap(): file.open() returned false: path: " << outputfilepath.toStdString();
+        std::cerr << "\nCTranslationMapper.createOutputElementMap(): file.open() returned false: path: " << outputfilepath.toStdString() << "\n";
         return;
     }
     // load content of the XML file into "filecontent"
