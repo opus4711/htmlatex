@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "constants.h"
 
 MainWindow::MainWindow(int argc, char* argv[], QWidget* parent) :
     QMainWindow(parent),
@@ -94,7 +95,10 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
             {
                 QMessageBox msg(QMessageBox::Warning, tr("Error Reading Document"), tr("The reading resulted in an empty document.\nMaybe an error occurred because of a wrong source file type:\n\n") + arguments.at(1), QMessageBox::Ok, this);
                 msg.exec();
-                std::cerr << std::endl << "MainWindow::performInitialOperations: root.count() == 0: an empty document or an error occurred reading the document: file type: " << arguments.at(1).toStdString();
+                if (DEBUG)
+                {
+                    std::cerr << std::endl << "MainWindow::performInitialOperations: root.count() == 0: an empty document or an error occurred reading the document: file type: " << arguments.at(1).toStdString() << "\n";
+                }
                 return;
             }
         }
@@ -102,7 +106,10 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
         {
             QMessageBox msg(QMessageBox::Warning, tr("I/O Error"), tr("File doesn't exit:\n\n") + arguments.at(0), QMessageBox::Ok, this);
             msg.exec();
-            std::cerr << std::endl << "MainWindow::performInitialOperations: file.exits returned false: path: " << arguments.at(0).toStdString();
+            if (DEBUG)
+            {
+                std::cerr << std::endl << "MainWindow::performInitialOperations: file.exits returned false: path: " << arguments.at(0).toStdString();
+            }
             return;
         }
         if (argc == 6)
@@ -114,7 +121,10 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
                 if (arguments.at(3).toLower() == "tex")
                     filetype = CDocumentData::Tex;
                 // converting...
-                std::cerr << std::endl << tr("conversion successfully performed").toStdString() << std::endl;
+                if (DEBUG)
+                {
+                    std::cerr << std::endl << tr("conversion successfully performed").toStdString() << std::endl;
+                }
                 QMessageBox msg(QMessageBox::Information, tr("Information"), tr("Conversion successfully performed."), QMessageBox::Ok, this);
                 msg.exec();
             }
@@ -122,7 +132,10 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
             {
                 QMessageBox msg(QMessageBox::Warning, tr("I/O Error"), tr("can't write to file\n\n") + arguments.at(2), QMessageBox::Ok, this);
                 msg.exec();
-                std::cerr << std::endl << "MainWindow::performInitialOperations: file.open returned false: path: " << arguments.at(2).toStdString();
+                if(DEBUG)
+                {
+                    std::cerr << std::endl << "MainWindow::performInitialOperations: file.open returned false: path: " << arguments.at(2).toStdString() << "\n";
+                }
                 return;
             }
         }
@@ -165,7 +178,10 @@ void MainWindow::convert()
         if (suffix.count() > 1)
             suffix.remove(suffix.count() - 1, 1);
         dialog->setDefaultSuffix(suffix);
-        std::cerr << std::endl << "MainWindow::convert(): path: " << QString(dialog->selectedFiles().at(0)).toStdString();
+        if (DEBUG)
+        {
+            std::cerr << std::endl << "MainWindow::convert(): path: " << QString(dialog->selectedFiles().at(0)).toStdString() << "\n";
+        }
         // determine file type
         CDocumentData::FileType filetype = CDocumentData::Unknown;
         if (dialog->selectedFilter() == "JavaDoc (*.html *.htm)")

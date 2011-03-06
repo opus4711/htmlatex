@@ -1,4 +1,5 @@
 #include "ctranslationmapper.h"
+#include "constants.h"
 
 CTranslationMapper::CTranslationMapper()
 {
@@ -13,7 +14,10 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
     QFile file(outputfilepath);
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
-        std::cerr << "\nCTranslationMapper.createOutputElementMap(): file.open() returned false: path: " << outputfilepath.toStdString() << "\n";
+        if(DEBUG)
+        {
+            std::cerr << "\nCTranslationMapper.createOutputElementMap(): file.open() returned false: path: " << outputfilepath.toStdString() << "\n";
+        }
         return;
     }
     // load content of the XML file into "filecontent"
@@ -57,6 +61,8 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
             _outputMap[translationdata.from()] = translationdata;
         }
     }
-    else
-        std::cerr << "\nCTranslationMapper.createOutputElementMap(): doc.setContent returned false: filecontent: " << filecontent.toStdString();
+    else if (DEBUG)
+    {
+        std::cerr << "\nCTranslationMapper.createOutputElementMap(): doc.setContent returned false: filecontent: " << filecontent.toStdString() << "\n";
+    }
 };

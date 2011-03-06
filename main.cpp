@@ -3,7 +3,9 @@
 
 #include "mainwindow.h"
 #include "cconsole.h"
+#include "constants.h"
 
+bool DEBUG = false;
 int main(int argc, char* argv[])
 {
     /* 0 = executable's name

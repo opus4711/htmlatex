@@ -29,7 +29,8 @@ HEADERS += cdocumentreader.h \
     cconsole.h \
     ctranslationmapper.h \
     ctranslationdata.h \
-    ctranslationdatanode.h
+    ctranslationdatanode.h \
+    constants.h
 FORMS += mainwindow.ui
 OTHER_FILES += README \
     html_examples/startseite.html \
