@@ -81,13 +81,13 @@
     <value type="QString">CPU=i686</value>
     <value type="QString">CSHEDIT=emacs</value>
     <value type="QString">CVS_RSH=ssh</value>
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-Xkhide651f,guid=bdee2b8f7a5495338640211000000055</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-EhZr254QOF,guid=4a57f2685cb8c9e9f5d784ee0000004a</value>
     <value type="QString">DESKTOP_SESSION=kde4</value>
     <value type="QString">DISPLAY=:0.0</value>
     <value type="QString">DM_CONTROL=/var/run/xdmctl</value>
     <value type="QString">ENV=/etc/bash.bashrc</value>
     <value type="QString">FROM_HEADER=</value>
-    <value type="QString">GPG_AGENT_INFO=/tmp/gpg-edNRd6/S.gpg-agent:2630:1</value>
+    <value type="QString">GPG_AGENT_INFO=/tmp/gpg-TMfQTQ/S.gpg-agent:2539:1</value>
     <value type="QString">GS_LIB=/home/bjoern/.fonts</value>
     <value type="QString">GTK2_RC_FILES=/etc/gtk-2.0/gtkrc:/home/bjoern/.gtkrc-2.0-kde4:/home/bjoern/.gtkrc-2.0-qtengine:/home/bjoern/.gtkrc-2.0:/home/bjoern/.kde4/share/config/gtkrc-2.0</value>
     <value type="QString">GTK_IM_MODULE=cedilla</value>
@@ -138,12 +138,12 @@
     <value type="QString">QT_PLUGIN_PATH=/home/bjoern/.kde4/lib/kde4/plugins/:/usr/lib/kde4/plugins/</value>
     <value type="QString">QT_SYSTEM_DIR=/usr/share/desktop-data</value>
     <value type="QString">SDK_HOME=/usr/lib/jvm/java</value>
-    <value type="QString">SESSION_MANAGER=local/lotos:@/tmp/.ICE-unix/2843,unix/lotos:/tmp/.ICE-unix/2843</value>
+    <value type="QString">SESSION_MANAGER=local/lotos:@/tmp/.ICE-unix/2868,unix/lotos:/tmp/.ICE-unix/2868</value>
     <value type="QString">SHELL=/bin/bash</value>
     <value type="QString">SHLVL=1</value>
-    <value type="QString">SSH_AGENT_PID=2691</value>
+    <value type="QString">SSH_AGENT_PID=2704</value>
     <value type="QString">SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/ssh-FDZfS2467/agent.2467</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/ssh-KASbZ2460/agent.2460</value>
     <value type="QString">TERM=xterm</value>
     <value type="QString">TMPDIR=/tmp</value>
     <value type="QString">USER=bjoern</value>
@@ -154,7 +154,7 @@
     <value type="QString">XCURSOR_THEME=Oxygen_White</value>
     <value type="QString">XDG_CONFIG_DIRS=/etc/xdg</value>
     <value type="QString">XDG_DATA_DIRS=/usr/share:/etc/opt/kde3/share:/opt/kde3/share</value>
-    <value type="QString">XDG_SESSION_COOKIE=d896c8c1c9ac56e72642577c00000427-1299177586.275176-1649259219</value>
+    <value type="QString">XDG_SESSION_COOKIE=d896c8c1c9ac56e72642577c00000427-1299404719.478709-1097198088</value>
     <value type="QString">XDM_MANAGED=method=classic,auto</value>
     <value type="QString">XKEYSYMDB=/usr/share/X11/XKeysymDB</value>
     <value type="QString">XMODIFIERS=@im=local</value>
@@ -184,13 +184,13 @@
     <value type="QString">CPU=i686</value>
     <value type="QString">CSHEDIT=emacs</value>
     <value type="QString">CVS_RSH=ssh</value>
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-Xkhide651f,guid=bdee2b8f7a5495338640211000000055</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-EhZr254QOF,guid=4a57f2685cb8c9e9f5d784ee0000004a</value>
     <value type="QString">DESKTOP_SESSION=kde4</value>
     <value type="QString">DISPLAY=:0.0</value>
     <value type="QString">DM_CONTROL=/var/run/xdmctl</value>
     <value type="QString">ENV=/etc/bash.bashrc</value>
     <value type="QString">FROM_HEADER=</value>
-    <value type="QString">GPG_AGENT_INFO=/tmp/gpg-edNRd6/S.gpg-agent:2630:1</value>
+    <value type="QString">GPG_AGENT_INFO=/tmp/gpg-TMfQTQ/S.gpg-agent:2539:1</value>
     <value type="QString">GS_LIB=/home/bjoern/.fonts</value>
     <value type="QString">GTK2_RC_FILES=/etc/gtk-2.0/gtkrc:/home/bjoern/.gtkrc-2.0-kde4:/home/bjoern/.gtkrc-2.0-qtengine:/home/bjoern/.gtkrc-2.0:/home/bjoern/.kde4/share/config/gtkrc-2.0</value>
     <value type="QString">GTK_IM_MODULE=cedilla</value>
@@ -241,12 +241,12 @@
     <value type="QString">QT_PLUGIN_PATH=/home/bjoern/.kde4/lib/kde4/plugins/:/usr/lib/kde4/plugins/</value>
     <value type="QString">QT_SYSTEM_DIR=/usr/share/desktop-data</value>
     <value type="QString">SDK_HOME=/usr/lib/jvm/java</value>
-    <value type="QString">SESSION_MANAGER=local/lotos:@/tmp/.ICE-unix/2843,unix/lotos:/tmp/.ICE-unix/2843</value>
+    <value type="QString">SESSION_MANAGER=local/lotos:@/tmp/.ICE-unix/2868,unix/lotos:/tmp/.ICE-unix/2868</value>
     <value type="QString">SHELL=/bin/bash</value>
     <value type="QString">SHLVL=1</value>
-    <value type="QString">SSH_AGENT_PID=2691</value>
+    <value type="QString">SSH_AGENT_PID=2704</value>
     <value type="QString">SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/ssh-FDZfS2467/agent.2467</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/ssh-KASbZ2460/agent.2460</value>
     <value type="QString">TERM=xterm</value>
     <value type="QString">TMPDIR=/tmp</value>
     <value type="QString">USER=bjoern</value>
@@ -257,7 +257,7 @@
     <value type="QString">XCURSOR_THEME=Oxygen_White</value>
     <value type="QString">XDG_CONFIG_DIRS=/etc/xdg</value>
     <value type="QString">XDG_DATA_DIRS=/usr/share:/etc/opt/kde3/share:/opt/kde3/share</value>
-    <value type="QString">XDG_SESSION_COOKIE=d896c8c1c9ac56e72642577c00000427-1299177586.275176-1649259219</value>
+    <value type="QString">XDG_SESSION_COOKIE=d896c8c1c9ac56e72642577c00000427-1299404719.478709-1097198088</value>
     <value type="QString">XDM_MANAGED=method=classic,auto</value>
     <value type="QString">XKEYSYMDB=/usr/share/X11/XKeysymDB</value>
     <value type="QString">XMODIFIERS=@im=local</value>

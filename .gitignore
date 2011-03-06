@@ -1,6 +1,7 @@
 Makefile
 *.o
 htmlatex.pro.*
+htmlatex.pro.user
 moc_*
 htmlatex
 *~
