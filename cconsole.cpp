@@ -1,7 +1,7 @@
 #include "cconsole.h"
 
 /** This class performs the format conversion via console input and output.
-  * @author Björn Kaiser
+  * @author Bjoern Kaiser
   */
 CConsole::CConsole(int argc, char* argv[])
 {
@@ -33,12 +33,12 @@ void CConsole::performInitialOperations(int argc, char* argv[])
             CDocumentReader* reader = new CDocumentReader;
             root = reader->read(sourcefilepath, filetype);
             delete reader;
-            std::cout << std::endl << tr("source file(s) successfully read").toStdString();
+            std::cout << tr("Read source file(s) --> success").toStdString() << std::endl;
         }
         else
         {
             file.close();
-            std::cout << std::endl << tr("I/O error - the source file doesn't exit: ").toStdString() << sourcefilepath.toStdString() << std::endl << std::endl;
+            std::cout << tr("I/O error - the source file doesn't exit: ").toStdString() << sourcefilepath.toStdString() << std::endl;
             return;
         }
         file.close();
@@ -51,11 +51,11 @@ void CConsole::performInitialOperations(int argc, char* argv[])
             if (filetypestring.toLower() == "tex")
                 filetype = CDocumentData::Tex;
             // root - converting...
-            std::cout << std::endl << tr("conversion successfully performed").toStdString() << std::endl << std::endl;
+            std::cout << tr("Perform conversion  --> success").toStdString() << std::endl;
         }
         else
-            std::cout << std::endl << tr("I/O error - can't write to file: ").toStdString() << targetfilepath.toStdString() << std::endl << std::endl;
+            std::cout << tr("I/O error - can't write to file: ").toStdString() << targetfilepath.toStdString() << std::endl;
     }
     else
-        std::cout << std::endl << tr("error - unexpected number of arguments").toStdString() << std::endl << std::endl;
+        std::cout << tr("Error - unexpected number of arguments.").toStdString() << std::endl;
 };

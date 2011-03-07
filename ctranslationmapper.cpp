@@ -16,7 +16,7 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
     {
         if(DEBUG)
         {
-            std::cerr << "\nCTranslationMapper.createOutputElementMap(): file.open() returned false: path: " << outputfilepath.toStdString() << "\n";
+            std::cerr << "CTranslationMapper.createOutputElementMap(): file.open() returned false\n\tPath: " << outputfilepath.toStdString() << std::endl;
         }
         return;
     }
@@ -63,6 +63,6 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
     }
     else if (DEBUG)
     {
-        std::cerr << "\nCTranslationMapper.createOutputElementMap(): doc.setContent returned false: filecontent: " << filecontent.toStdString() << "\n";
+        std::cerr << "CTranslationMapper.createOutputElementMap(): doc.setContent returned false\n\tFilecontent: " << filecontent.toStdString() << std::endl;
     }
 };

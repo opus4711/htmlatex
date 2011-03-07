@@ -7,7 +7,7 @@
   * in the document tree, which represents the whole document. This also stores a
   * QFileInfo-object for the whole documents' index document. The appropriate
   * document preprocessing is chosen by means of distinguished file types.
-  * @author Björn Kaiser
+  * @author Bjoern Kaiser
   */
 CDocumentData::CDocumentData(QFileInfo fileinfo, CNode* node, FileType filetype)
 {
@@ -18,21 +18,21 @@ CDocumentData::CDocumentData(QFileInfo fileinfo, CNode* node, FileType filetype)
     this->_preprocessed = false;
 };
 /** Returns the URL to this document.
-  * @author Björn Kaiser
+  * @author Bjoern Kaiser
   */
 QFileInfo CDocumentData::fileInfo() const
 {
     return this->_fileInfo;
 };
 /** Returns the pointer to the corresponding tree node of the whole document.
-  * @author Björn Kaiser
+  * @author Bjoern Kaiser
   */
 CNode* CDocumentData::node() const
 {
     return this->_node;
 };
 /** Returns the document as a preprocessed QString.
-  * @author Björn Kaiser
+  * @author Bjoern Kaiser
   */
 QString CDocumentData::text()
 {
@@ -42,14 +42,14 @@ QString CDocumentData::text()
     return _text;
 };
 /** This hook-method calls all preprocessing methods.
-  * @author Björn Kaiser
+  * @author Bjoern Kaiser
   */
 void CDocumentData::preprocessingHook()
 {
     preprocessHTML();
 };
 /** This method changes the specified HTML-file in order to gain well-formed XML (XHTML).
-  * @author Björn Kaiser
+  * @author Bjoern Kaiser
   */
 void CDocumentData::preprocessHTML()
 {
@@ -58,7 +58,7 @@ void CDocumentData::preprocessHTML()
     QString path = _fileInfo.filePath();
     if (DEBUG)
     {
-        std::cerr << std::endl << "path: " << path.toStdString() << std::endl;
+        std::cerr << "Path: " << path.toStdString() << std::endl;
     }
     QFile file(path);
     if (!file.open(QFile::ReadOnly | QFile::Text))

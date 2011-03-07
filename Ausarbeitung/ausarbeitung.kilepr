@@ -60,10 +60,10 @@ order=-1
 
 [item:ausarbeitung.tex]
 archive=true
-column=3
+column=19
 encoding=UTF-8
 highlight=LaTeX
-line=89
+line=186
 mode=LaTeX
 open=true
 order=0
@@ -90,23 +90,23 @@ order=-1
 
 [item:inc_header.tex]
 archive=true
-column=42
+column=16
 encoding=UTF-8
 highlight=LaTeX
-line=39
+line=42
 mode=LaTeX
 open=false
-order=-1
+order=1
 
 [item:inc_qt-lstdefinition.tex]
 archive=true
-column=2
+column=20
 encoding=UTF-8
 highlight=LaTeX
-line=57
+line=77
 mode=LaTeX
 open=false
-order=-1
+order=2
 
 [item:quellen.bib]
 archive=true
@@ -119,16 +119,16 @@ open=false
 order=-1
 
 [view-settings,view=0,item:ausarbeitung.tex]
-CursorColumn=3
-CursorLine=89
+CursorColumn=19
+CursorLine=186
 
 [view-settings,view=0,item:inc_header.tex]
-CursorColumn=42
-CursorLine=39
+CursorColumn=16
+CursorLine=42
 
 [view-settings,view=0,item:inc_qt-lstdefinition.tex]
-CursorColumn=2
-CursorLine=57
+CursorColumn=20
+CursorLine=77
 
 [view-settings,view=0,item:quellen.bib]
 CursorColumn=28

@@ -36,7 +36,7 @@ order=-1
 
 [item:pflichtenheft.tex]
 archive=true
-column=90
+column=0
 encoding=UTF-8
 highlight=LaTeX
 line=101
@@ -45,5 +45,5 @@ open=true
 order=0
 
 [view-settings,view=0,item:pflichtenheft.tex]
-CursorColumn=90
+CursorColumn=0
 CursorLine=101

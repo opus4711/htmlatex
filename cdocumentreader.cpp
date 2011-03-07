@@ -2,7 +2,7 @@
 #include "constants.h"
 
 /** This class creates a tree representation of a given document.
-  @author Björn Kaiser
+  @author Bjoern Kaiser
   */
 CDocumentReader::CDocumentReader()
 {
@@ -10,7 +10,7 @@ CDocumentReader::CDocumentReader()
 };
 /** This method
   * @param filetype contains the file filter string selected previously.
-  * @author Björn Kaiser
+  * @author Bjoern Kaiser
   */
 CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType filetype)
 {
@@ -34,24 +34,22 @@ CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType file
                 readElement(doc.documentElement(), documentdata->node());
             else
             {
-                std::cerr << std::endl << std::endl
-                        << std::endl << "error in CDocumentReader::read()"
-                        << std::endl << " at \"if (doc.setContent())\" returned false;"
-                        << std::endl << " file name: " << documentdata->fileInfo().filePath().toStdString()
-                        << std::endl << " error message: <html>-tag not found"
+                std::cerr << "Error in CDocumentReader::read()"
+                        << std::endl << "\tat \"if (doc.setContent())\" returned false;"
+                        << std::endl << "\tFile name: " << documentdata->fileInfo().filePath().toStdString()
+                        << std::endl << "\tError message: <html>-tag not found"
                         << std::endl;
             }
         }
         else
         {
-            std::cerr << std::endl << std::endl
-                    << std::endl << "error in CDocumentReader::read()"
-                    << std::endl << " at doc.setContent() returned false;"
-                    << std::endl << " file name: " << documentdata->fileInfo().filePath().toStdString()
-                    << std::endl << " error message: "
+            std::cerr << "Error in CDocumentReader::read()"
+                    << std::endl << "\tat doc.setContent() returned false;"
+                    << std::endl << "\tFile name: " << documentdata->fileInfo().filePath().toStdString()
+                    << std::endl << "\tError message: "
                     << std::endl << errorStr.toStdString() << " line="
                     << std::endl << QString::number(errorLine).toStdString()
-                    << std::endl << " column=" << QString::number(errorColumn).toStdString()
+                    << std::endl << "\tColumn=" << QString::number(errorColumn).toStdString()
                     << std::endl;
         }
         delete documentdata;
@@ -88,8 +86,8 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
             {
                 if (DEBUG)
                 {
-                    std::cerr << std::endl << "ReadElement - 'a': indexFileInfo.absPath: " << _indexFileInfo.absolutePath().toStdString()
-                        << std::endl << "href: " << new_node->attributes()["href"].toStdString() << std::endl;
+                    std::cerr << "#\tReadElement - 'a': \n#\t\tindexFileInfo.absPath: " << _indexFileInfo.absolutePath().toStdString()
+                            << std::endl << "#\t\thref: " << new_node->attributes()["href"].toStdString() << std::endl;
                 }
                 new_node->addAttribute("href", attributes.namedItem("href").nodeValue());
                 // compose absolute file path
@@ -103,10 +101,9 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
                 _documentStack.push(new CDocumentData(myfileinfo, new_node, _fileType));
                if(DEBUG)
                 {
-                   std::cerr << std::endl << std::endl
-                        << std::endl << "testing output: CDocumentReader::readElement()"
-                        << std::endl << " at \"if (element.childNodes().at(i).nodeName().toLower() == \"a\")\" returned true"
-                        << std::endl << " found subdocumunt href=" << new_node->attributes()["href"].toStdString() << std::endl;
+                   std::cerr << "# CDocumentReader::readElement()"
+                           << std::endl << "#\tat \"if (element.childNodes().at(i).nodeName().toLower() == \"a\")\" returned true"
+                           << std::endl << "#\tfound subdocument href=" << new_node->attributes()["href"].toStdString() << std::endl;
                 }
             }
             QDomElement new_element = element.childNodes().at(i).toElement();

@@ -5,7 +5,7 @@
 #include "cconsole.h"
 #include "constants.h"
 
-bool DEBUG = false;
+bool DEBUG = true;
 int main(int argc, char* argv[])
 {
     /* 0 = executable's name
@@ -34,9 +34,11 @@ int main(int argc, char* argv[])
         return a.exec();
     }
     else if (argc == 1)
-        std::cerr << "the argument \"-g\" or \"--gui\" launches the GUI\n"
-                << "\"-h\" or \"--help\" shows some examples\n"
-                << "for further information read the \"README\" file" << std::endl;
+        std::cerr << "usage: htmlatex INPUTFILE FORMAT OUTPUTFILE FORMAT [-g|--gui]\n"
+                << "  e.g. htmlatex index.html javadoc manual.tex tex -g\n"
+                << "\t-g, --gui \tLaunch the GUI\n"
+                << "\t-h, --help \tShow some examples\n\n"
+                << "\tSee the \"README\" file for further information." << std::endl;
     else if (argc == 2)
     {
         if ((QString(argv[1]).toLower() == "-h")

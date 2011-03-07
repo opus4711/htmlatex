@@ -54,7 +54,7 @@ void MainWindow::changeEvent(QEvent *e)
 };
 /** Performs opening and converting operations depending on application's startup
   * arguments.
-  @author Björn Kaiser
+  @author Bjoern Kaiser
   */
 void MainWindow::performInitialOperations(int argc, char* argv[])
 {
@@ -97,7 +97,7 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
                 msg.exec();
                 if (DEBUG)
                 {
-                    std::cerr << std::endl << "MainWindow::performInitialOperations: root.count() == 0: an empty document or an error occurred reading the document: file type: " << arguments.at(1).toStdString() << "\n";
+                    std::cerr << "MainWindow::performInitialOperations: root.count() == 0: an empty document or an error occurred reading the document: file type: " << arguments.at(1).toStdString() << std::endl;
                 }
                 return;
             }
@@ -108,7 +108,7 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
             msg.exec();
             if (DEBUG)
             {
-                std::cerr << std::endl << "MainWindow::performInitialOperations: file.exits returned false: path: " << arguments.at(0).toStdString();
+                std::cerr << "MainWindow::performInitialOperations: file.exits returned false: path: " << arguments.at(0).toStdString();
             }
             return;
         }
@@ -123,7 +123,7 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
                 // converting...
                 if (DEBUG)
                 {
-                    std::cerr << std::endl << tr("conversion successfully performed").toStdString() << std::endl;
+                    std::cerr << tr("conversion successfully performed").toStdString() << std::endl;
                 }
                 QMessageBox msg(QMessageBox::Information, tr("Information"), tr("Conversion successfully performed."), QMessageBox::Ok, this);
                 msg.exec();
@@ -134,7 +134,7 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
                 msg.exec();
                 if(DEBUG)
                 {
-                    std::cerr << std::endl << "MainWindow::performInitialOperations: file.open returned false: path: " << arguments.at(2).toStdString() << "\n";
+                    std::cerr << "MainWindow::performInitialOperations: file.open returned false\n\tPath: " << arguments.at(2).toStdString() << std::endl;
                 }
                 return;
             }
@@ -142,7 +142,7 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
     }
     else
     {
-        QMessageBox msg(QMessageBox::Warning, tr("Error - argument list"), tr("unexpected number of arguments"), QMessageBox::Ok, this);
+        QMessageBox msg(QMessageBox::Warning, tr("Error - argument list"), tr("Unexpected number of arguments"), QMessageBox::Ok, this);
         msg.exec();
     }
 };
@@ -180,7 +180,7 @@ void MainWindow::convert()
         dialog->setDefaultSuffix(suffix);
         if (DEBUG)
         {
-            std::cerr << std::endl << "MainWindow::convert(): path: " << QString(dialog->selectedFiles().at(0)).toStdString() << "\n";
+            std::cerr << "MainWindow::convert()\n\tPath: " << QString(dialog->selectedFiles().at(0)).toStdString() << std::endl;
         }
         // determine file type
         CDocumentData::FileType filetype = CDocumentData::Unknown;
@@ -190,8 +190,9 @@ void MainWindow::convert()
             filetype = CDocumentData::Tex;
         else if (dialog->selectedFilter() == "any file (*.*)")
             filetype = CDocumentData::Unknown;
-        //CNode* root = model->root();
+//        CNode* root = model->root();
         // now begin conversion...
+
     }
 };
 void MainWindow::setInputDefinition()

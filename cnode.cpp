@@ -3,7 +3,7 @@
 /**
  * Constructs a new object.
  * @param parent Initialiazes the object with the given CNode-object as its parent.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 CNode::CNode(CNode* parent, QString name, qint64 layer) : _parent(parent),
     _layer(layer), _name(name), _content("")
@@ -15,7 +15,7 @@ CNode::CNode(CNode* parent, QString name, qint64 layer) : _parent(parent),
 };
 /**
  * This destructor deletes all child nodes by means of Qt's generic algorithms.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 CNode::~CNode()
 {
@@ -23,12 +23,12 @@ CNode::~CNode()
 };
 /**
  * This class instance counter is used to assign unique ID-numbers to each class instance.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 qint64 CNode::instCount = 0;
 /**
  * Returns the node's unique ID.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 qint64 CNode::ID() const
 {
@@ -37,7 +37,7 @@ qint64 CNode::ID() const
 /**
   * Returns the layer number of the node. The layer number is the distance to the
   * root node of the tree.
-  * @author Björn Kaiser
+  * @author Bjoern Kaiser
   */
 qint64 CNode::layer() const
 {
@@ -45,7 +45,7 @@ qint64 CNode::layer() const
 };
 /**
  * Returns the node's name.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 QString CNode::name() const
 {
@@ -53,7 +53,7 @@ QString CNode::name() const
 };
 /**
  * Returns the node's text content.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 QString CNode::content() const
 {
@@ -61,7 +61,7 @@ QString CNode::content() const
 };
 /**
  * Returns node's attributes (such as size, width, align etc.).
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 QMap<QString, QString> CNode::attributes() const
 {
@@ -69,7 +69,7 @@ QMap<QString, QString> CNode::attributes() const
 };
 /**
  * Sets the node's name.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 void CNode::setName(QString name)
 {
@@ -77,7 +77,7 @@ void CNode::setName(QString name)
 };
 /**
  * Sets the node's content.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 void CNode::setContent(QString content)
 {
@@ -85,7 +85,7 @@ void CNode::setContent(QString content)
 };
 /**
  * Adds an attribute by means of a key-value-pair.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 void CNode::addAttribute(QString key, QString value)
 {
@@ -93,7 +93,7 @@ void CNode::addAttribute(QString key, QString value)
 };
 /**
  * Returns pointer to the child node with the specified index.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 CNode* CNode::childAt(int index) const
 {
@@ -101,7 +101,7 @@ CNode* CNode::childAt(int index) const
 };
 /**
  * Returns the number of direct child nodes.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 int CNode::count() const
 {
@@ -109,7 +109,7 @@ int CNode::count() const
 };
 /**
  * Sets the parent node.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 void CNode::setParent(CNode* parent)
 {
@@ -117,7 +117,7 @@ void CNode::setParent(CNode* parent)
 };
 /**
  * Returns the parent node.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 CNode* CNode::parent()
 {
@@ -125,7 +125,7 @@ CNode* CNode::parent()
 };
 /**
  * Returns the index of the specified child node.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 int CNode::indexOf(CNode* node) const
 {
@@ -134,7 +134,7 @@ int CNode::indexOf(CNode* node) const
 /**
  * Adds the given node collection to the node's child collection.
  * @param nodes is a collection of nodes.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 void CNode::addChildren(QList<CNode*> nodes)
 {
@@ -149,7 +149,7 @@ void CNode::addChildren(QList<CNode*> nodes)
 };
 /**
  * Adds the given node to the node's child collection.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 void CNode::addChild(CNode* node)
 {
@@ -164,7 +164,7 @@ void CNode::addChild(CNode* node)
 };
 /**
  * Checks if the node's child collection contains the specified node.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 bool CNode::containsChild(CNode* node) const
 {
@@ -181,7 +181,7 @@ bool CNode::containsChild(CNode* node) const
 };
 /**
  * Removes the given node from the node's child collection.
- * @author Björn Kaiser
+ * @author Bjoern Kaiser
  */
 void CNode::removeChild(CNode* node)
 {
