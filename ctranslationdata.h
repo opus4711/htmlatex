@@ -8,10 +8,14 @@
 class CTranslationData
 {
 private:
+//    TODO
+    QString _key;
     QString _from;
     QString _to;
     QList<CTranslationDataNode> _requires;
 public:
+    QString key() const;
+    void setKey(QString key);
     QString from() const;
     void setFrom(QString from);
     QString to() const;

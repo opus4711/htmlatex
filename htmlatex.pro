@@ -18,7 +18,8 @@ SOURCES += main.cpp \
     cdocumentreader.cpp \
     ctranslationmapper.cpp \
     ctranslationdata.cpp \
-    ctranslationdatanode.cpp
+    ctranslationdatanode.cpp \
+    cconverter.cpp
 HEADERS += cdocumentreader.h \
     cnode.h \
     mainwindow.h \
@@ -30,7 +31,8 @@ HEADERS += cdocumentreader.h \
     ctranslationmapper.h \
     ctranslationdata.h \
     ctranslationdatanode.h \
-    constants.h
+    constants.h \
+    cconverter.h
 FORMS += mainwindow.ui
 OTHER_FILES += README \
     html_examples/startseite.html \

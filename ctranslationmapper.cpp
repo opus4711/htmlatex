@@ -41,6 +41,8 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
             {
                 if (subnodes.at(j).nodeName().toLower() == "from")
                     translationdata.setFrom(subnodes.at(j).nodeValue());
+                else if (subnodes.at(j).nodeName().toLower() == "key")
+                    translationdata.setKey(subnodes.at(j).nodeValue());
                 else if (subnodes.at(j).nodeName().toLower() == "to")
                     translationdata.setTo(subnodes.at(j).nodeValue());
                 else if (subnodes.at(j).nodeName().toLower() == "requires")
@@ -58,7 +60,7 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
                     }
                 }
             }
-            _outputMap[translationdata.from()] = translationdata;
+            _outputMap[translationdata.key()] = translationdata;
         }
     }
     else if (DEBUG)

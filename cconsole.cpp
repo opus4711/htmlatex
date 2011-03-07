@@ -1,4 +1,5 @@
 #include "cconsole.h"
+#include "cconverter.h"
 
 /** This class performs the format conversion via console input and output.
   * @author Bjoern Kaiser
@@ -51,6 +52,8 @@ void CConsole::performInitialOperations(int argc, char* argv[])
             if (filetypestring.toLower() == "tex")
                 filetype = CDocumentData::Tex;
             // root - converting...
+            CConverter* converter = new CConverter(targetfilepath);
+            converter->convert(root);
             std::cout << tr("Perform conversion  --> success").toStdString() << std::endl;
         }
         else

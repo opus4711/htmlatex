@@ -1,6 +1,6 @@
 #include "ctranslationdata.h"
 
-CTranslationData::CTranslationData() : _from(""), _to("")
+CTranslationData::CTranslationData() : _key(""),  _from(""), _to("")
 {
     this->_requires = QList<CTranslationDataNode>();
 };
@@ -11,6 +11,14 @@ QString CTranslationData::from() const
 void CTranslationData::setFrom(QString from)
 {
     this->_from = from;
+};
+QString CTranslationData::key() const
+{
+    return this->_key;
+};
+void CTranslationData::setKey(QString key)
+{
+    this->_key = key;
 };
 QString CTranslationData::to() const
 {

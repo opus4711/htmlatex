@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE tex [
 <!ELEMENT tex (node*)>
-<!ELEMENT node ((from, to, requires?)*)>
+<!ELEMENT node ((key, from, to, requires?)*)>
 <!ELEMENT to (#PCDATA)>
+<!ELEMENT key (#PCDATA)>
 <!ELEMENT from (#PCDATA)>
 <!ELEMENT requires (location*)>
 <!ELEMENT location (#PCDATA)>
@@ -12,6 +13,9 @@
 
 <tex>
 <node>
+  <key>
+   table
+  </key>
   <from>
     <![CDATA[<table>INHALT</table>]]>
   </from>
@@ -28,6 +32,9 @@
   </requires>
 </node>
 <node>
+<key>
+  h1
+</key>
   <from>
     <![CDATA[<h1>INHALT</h1>]]>
   </from>

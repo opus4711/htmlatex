@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "constants.h"
+#include "cconverter.h"
 
 MainWindow::MainWindow(int argc, char* argv[], QWidget* parent) :
     QMainWindow(parent),
@@ -190,9 +191,10 @@ void MainWindow::convert()
             filetype = CDocumentData::Tex;
         else if (dialog->selectedFilter() == "any file (*.*)")
             filetype = CDocumentData::Unknown;
-//        CNode* root = model->root();
+        CNode* root = model->root();
         // now begin conversion...
-
+        CConverter* converter = new CConverter(dialog->selectedFiles().at(0));
+        converter->convert(root);
     }
 };
 void MainWindow::setInputDefinition()
