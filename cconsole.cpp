@@ -39,7 +39,8 @@ void CConsole::performInitialOperations(int argc, char* argv[])
         else
         {
             file.close();
-            std::cout << tr("I/O error - the source file doesn't exit: ").toStdString() << sourcefilepath.toStdString() << std::endl;
+            std::cout << tr("I/O error - the source file doesn't exit: ").toStdString()
+                    << sourcefilepath.toStdString() << std::endl;
             return;
         }
         file.close();
@@ -52,12 +53,13 @@ void CConsole::performInitialOperations(int argc, char* argv[])
             if (filetypestring.toLower() == "tex")
                 filetype = CDocumentData::Tex;
             // root - converting...
-            CConverter* converter = new CConverter(targetfilepath);
-            converter->convert(root);
+            CConverter* converter = new CConverter(targetfilepath, *root);
+//            converter->convert();
             std::cout << tr("Perform conversion  --> success").toStdString() << std::endl;
         }
         else
-            std::cout << tr("I/O error - can't write to file: ").toStdString() << targetfilepath.toStdString() << std::endl;
+            std::cout << tr("I/O error - can't write to file: ").toStdString()
+                    << targetfilepath.toStdString() << std::endl;
     }
     else
         std::cout << tr("Error - unexpected number of arguments.").toStdString() << std::endl;

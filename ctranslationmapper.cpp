@@ -16,7 +16,9 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
     {
         if(DEBUG)
         {
-            std::cerr << "CTranslationMapper.createOutputElementMap(): file.open() returned false\n\tPath: " << outputfilepath.toStdString() << std::endl;
+            std::cerr << "CTranslationMapper.createOutputElementMap(): "
+                    << "file.open() returned false\n\tPath: "
+                    << outputfilepath.toStdString() << std::endl;
         }
         return;
     }
@@ -55,7 +57,8 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
                         datanode.setContent(requiresnodes.at(k).nodeValue());
                         QDomNamedNodeMap attributes = requiresnodes.at(k).attributes();
                         for (int l = 0; l < attributes.count(); l++)
-                            datanode.addAttribute(attributes.item(l).nodeName(), attributes.item(l).nodeValue());
+                            datanode.addAttribute(attributes.item(l).nodeName(),
+                                                  attributes.item(l).nodeValue());
                         translationdata.addRequiresNode(datanode);
                     }
                 }
@@ -65,6 +68,7 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
     }
     else if (DEBUG)
     {
-        std::cerr << "CTranslationMapper.createOutputElementMap(): doc.setContent returned false\n\tFilecontent: " << filecontent.toStdString() << std::endl;
+        std::cerr << "CTranslationMapper.createOutputElementMap(): doc.setContent returned false"
+                << "\n\tFilecontent: " << filecontent.toStdString() << std::endl;
     }
 };

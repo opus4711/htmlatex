@@ -28,7 +28,11 @@ CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType file
         QString errorStr = "";
         int errorLine = -1;
         int errorColumn = -1;
-        if (doc.setContent(documentdata->text().toLatin1(), false, &errorStr, &errorLine, &errorColumn))
+        if (doc.setContent(documentdata->text().toLatin1(),
+                           false,
+                           &errorStr,
+                           &errorLine,
+                           &errorColumn))
         {
             if (doc.documentElement().tagName().toLower() == "html")
                 readElement(doc.documentElement(), documentdata->node());
@@ -36,7 +40,8 @@ CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType file
             {
                 std::cerr << "Error in CDocumentReader::read()"
                         << std::endl << "\tat \"if (doc.setContent())\" returned false;"
-                        << std::endl << "\tFile name: " << documentdata->fileInfo().filePath().toStdString()
+                        << std::endl << "\tFile name: "
+                        << documentdata->fileInfo().filePath().toStdString()
                         << std::endl << "\tError message: <html>-tag not found"
                         << std::endl;
             }
@@ -45,7 +50,8 @@ CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType file
         {
             std::cerr << "Error in CDocumentReader::read()"
                     << std::endl << "\tat doc.setContent() returned false;"
-                    << std::endl << "\tFile name: " << documentdata->fileInfo().filePath().toStdString()
+                    << std::endl << "\tFile name: "
+                    << documentdata->fileInfo().filePath().toStdString()
                     << std::endl << "\tError message: "
                     << std::endl << errorStr.toStdString() << " line="
                     << std::endl << QString::number(errorLine).toStdString()
@@ -64,7 +70,9 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
             node->setContent(element.childNodes().at(i).nodeValue());
         else
         {
-            CNode* new_node = new CNode(node, element.childNodes().at(i).nodeName().toLower(), node->layer() + 1);
+            CNode* new_node = new CNode(node,
+                                        element.childNodes().at(i).nodeName().toLower(),
+                                        node->layer() + 1);
             node->addChild(new_node);
             QDomNamedNodeMap attributes = element.childNodes().at(i).attributes();
             if (element.childNodes().at(i).nodeName().toLower() == "font")
@@ -86,24 +94,30 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
             {
                 if (DEBUG)
                 {
-                    std::cerr << "#\tReadElement - 'a': \n#\t\tindexFileInfo.absPath: " << _indexFileInfo.absolutePath().toStdString()
-                            << std::endl << "#\t\thref: " << new_node->attributes()["href"].toStdString() << std::endl;
+                    std::cerr << "#\tReadElement - 'a': \n#\t\tindexFileInfo.absPath: "
+                            << _indexFileInfo.absolutePath().toStdString()
+                            << std::endl << "#\t\thref: "
+                            << new_node->attributes()["href"].toStdString() << std::endl;
                 }
                 new_node->addAttribute("href", attributes.namedItem("href").nodeValue());
                 // compose absolute file path
                 QFileInfo myfileinfo;
                 if (QFileInfo(_indexFileInfo.absolutePath() + new_node->attributes()["href"]).exists())
                     // unix
-                    myfileinfo = QFileInfo(_indexFileInfo.absolutePath() + new_node->attributes()["href"]);
+                    myfileinfo = QFileInfo(_indexFileInfo.absolutePath()
+                                           + new_node->attributes()["href"]);
                 else
                     // windows
-                    myfileinfo = QFileInfo(_indexFileInfo.absolutePath() + QDir::separator() + new_node->attributes()["href"]);
+                    myfileinfo = QFileInfo(_indexFileInfo.absolutePath()
+                                           + QDir::separator() + new_node->attributes()["href"]);
                 _documentStack.push(new CDocumentData(myfileinfo, new_node, _fileType));
                if(DEBUG)
                 {
                    std::cerr << "# CDocumentReader::readElement()"
-                           << std::endl << "#\tat \"if (element.childNodes().at(i).nodeName().toLower() == \"a\")\" returned true"
-                           << std::endl << "#\tfound subdocument href=" << new_node->attributes()["href"].toStdString() << std::endl;
+                           << std::endl << "#\tat \"if (element.childNodes()"
+                           << ".at(i).nodeName().toLower() == \"a\")\" returned true"
+                           << std::endl << "#\tfound subdocument href="
+                           << new_node->attributes()["href"].toStdString() << std::endl;
                 }
             }
             QDomElement new_element = element.childNodes().at(i).toElement();

@@ -71,8 +71,7 @@ QVariant CModel::data(const QModelIndex &index, int role) const
         return QVariant();
     return node->name() + ": " + node->content();
 };
-QVariant CModel::headerData(int section, Qt::Orientation orientation,
-                                  int role) const
+QVariant CModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     return QVariant();
 };

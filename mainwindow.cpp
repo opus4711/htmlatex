@@ -94,22 +94,35 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
             delete reader;
             if (root->count() == 0)
             {
-                QMessageBox msg(QMessageBox::Warning, tr("Error Reading Document"), tr("The reading resulted in an empty document.\nMaybe an error occurred because of a wrong source file type:\n\n") + arguments.at(1), QMessageBox::Ok, this);
+                QMessageBox msg(QMessageBox::Warning,
+                                tr("Error Reading Document"),
+                                tr("The reading resulted in an empty document.\nMaybe an error occurred because of a wrong source file type:\n\n")
+                                   + arguments.at(1),
+                                QMessageBox::Ok,
+                                this);
                 msg.exec();
                 if (DEBUG)
                 {
-                    std::cerr << "MainWindow::performInitialOperations: root.count() == 0: an empty document or an error occurred reading the document: file type: " << arguments.at(1).toStdString() << std::endl;
+                    std::cerr << "MainWindow::performInitialOperations: root.count() == 0: "
+                            << "an empty document or an error occurred reading the document: file type: "
+                            << arguments.at(1).toStdString() << std::endl;
                 }
                 return;
             }
         }
         else
         {
-            QMessageBox msg(QMessageBox::Warning, tr("I/O Error"), tr("File doesn't exit:\n\n") + arguments.at(0), QMessageBox::Ok, this);
+            QMessageBox msg(QMessageBox::Warning,
+                            tr("I/O Error"),
+                            tr("File doesn't exit:\n\n")
+                            + arguments.at(0),
+                            QMessageBox::Ok,
+                            this);
             msg.exec();
             if (DEBUG)
             {
-                std::cerr << "MainWindow::performInitialOperations: file.exits returned false: path: " << arguments.at(0).toStdString();
+                std::cerr << "MainWindow::performInitialOperations: "
+                        << "file.exits returned false: path: " << arguments.at(0).toStdString();
             }
             return;
         }
@@ -122,20 +135,31 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
                 if (arguments.at(3).toLower() == "tex")
                     filetype = CDocumentData::Tex;
                 // converting...
+//                CConverter* converter = new CConverter(targetfilepath, *root);
                 if (DEBUG)
                 {
                     std::cerr << tr("conversion successfully performed").toStdString() << std::endl;
                 }
-                QMessageBox msg(QMessageBox::Information, tr("Information"), tr("Conversion successfully performed."), QMessageBox::Ok, this);
+                QMessageBox msg(QMessageBox::Information,
+                                tr("Information"),
+                                tr("Conversion successfully performed."),
+                                QMessageBox::Ok,
+                                this);
                 msg.exec();
             }
             else
             {
-                QMessageBox msg(QMessageBox::Warning, tr("I/O Error"), tr("can't write to file\n\n") + arguments.at(2), QMessageBox::Ok, this);
+                QMessageBox msg(QMessageBox::Warning, tr("I/O Error"),
+                                tr("can't write to file\n\n")
+                                + arguments.at(2),
+                                QMessageBox::Ok,
+                                this);
                 msg.exec();
                 if(DEBUG)
                 {
-                    std::cerr << "MainWindow::performInitialOperations: file.open returned false\n\tPath: " << arguments.at(2).toStdString() << std::endl;
+                    std::cerr << "MainWindow::performInitialOperations: "
+                            << "file.open returned false\n\tPath: "
+                            << arguments.at(2).toStdString() << std::endl;
                 }
                 return;
             }
@@ -143,13 +167,20 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
     }
     else
     {
-        QMessageBox msg(QMessageBox::Warning, tr("Error - argument list"), tr("Unexpected number of arguments"), QMessageBox::Ok, this);
+        QMessageBox msg(QMessageBox::Warning,
+                        tr("Error - argument list"),
+                        tr("Unexpected number of arguments"),
+                        QMessageBox::Ok,
+                        this);
         msg.exec();
     }
 };
 void MainWindow::open()
 {
-    QFileDialog* dialog = new QFileDialog(this, tr("Set Source File"), "", "JavaDoc (*.html *.htm);;any file (*.*)");
+    QFileDialog* dialog = new QFileDialog(this,
+                                          tr("Set Source File"),
+                                          "",
+                                          "JavaDoc (*.html *.htm);;any file (*.*)");
     // retrieve source file path and type
     if (dialog->exec() == QFileDialog::Accepted)
     {
@@ -168,20 +199,28 @@ void MainWindow::open()
 };
 void MainWindow::convert()
 {
-    QFileDialog* dialog = new QFileDialog(this, tr("Set Target File"), "", "Tex (*.tex);;JavaDoc (*.html *.htm);;any file (*.*)");
+    QFileDialog* dialog = new QFileDialog(this,
+                                          tr("Set Target File"),
+                                          "",
+                                          "Tex (*.tex);;JavaDoc (*.html *.htm);;any file (*.*)");
     dialog->setFileMode(QFileDialog::AnyFile);
     dialog->setAcceptMode(QFileDialog::AcceptSave);
     // retrieve target file path and type
     if (dialog->exec() == QFileDialog::Accepted)
     {
         // set suffix if no file suffix/extension is specified
-        QString suffix = dialog->selectedFilter().split(".", QString::SkipEmptyParts, Qt::CaseInsensitive)[dialog->selectedFilter().split(".", QString::SkipEmptyParts, Qt::CaseInsensitive).count() - 1];
+        QString suffix = dialog->selectedFilter().split(".",
+                                                        QString::SkipEmptyParts,
+                                                        Qt::CaseInsensitive)[dialog->selectedFilter().split(".",
+                                                                                                            QString::SkipEmptyParts,
+                                                                                                            Qt::CaseInsensitive).count() - 1];
         if (suffix.count() > 1)
             suffix.remove(suffix.count() - 1, 1);
         dialog->setDefaultSuffix(suffix);
         if (DEBUG)
         {
-            std::cerr << "MainWindow::convert()\n\tPath: " << QString(dialog->selectedFiles().at(0)).toStdString() << std::endl;
+            std::cerr << "MainWindow::convert()\n\tPath: "
+                    << QString(dialog->selectedFiles().at(0)).toStdString() << std::endl;
         }
         // determine file type
         CDocumentData::FileType filetype = CDocumentData::Unknown;
@@ -193,17 +232,23 @@ void MainWindow::convert()
             filetype = CDocumentData::Unknown;
         CNode* root = model->root();
         // now begin conversion...
-        CConverter* converter = new CConverter(dialog->selectedFiles().at(0));
-        converter->convert(root);
+//        CConverter* converter = new CConverter(dialog->selectedFiles().at(0));
+//        converter->convert(*root);
     }
 };
 void MainWindow::setInputDefinition()
 {
-    QString filepath = QFileDialog::getOpenFileName(0, tr("Select Input Definition File"), "", tr("XML files (*.xml);;any file (*.*)"));
+    QString filepath = QFileDialog::getOpenFileName(0,
+                                                    tr("Select Input Definition File"),
+                                                    "",
+                                                    tr("XML files (*.xml);;any file (*.*)"));
     translationMapper->createInputElementMap(filepath);
 };
 void MainWindow::setOutputDefinition()
 {
-    QString filepath = QFileDialog::getOpenFileName(0, tr("Select Output Definition File"), "", tr("XML files (*.xml);;any file (*.*)"));
+    QString filepath = QFileDialog::getOpenFileName(0,
+                                                    tr("Select Output Definition File"),
+                                                    "",
+                                                    tr("XML files (*.xml);;any file (*.*)"));
     translationMapper->createOutputElementMap(filepath);
 };
