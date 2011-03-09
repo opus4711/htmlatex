@@ -12,7 +12,8 @@ CDocumentReader::CDocumentReader()
   * @param filetype contains the file filter string selected previously.
   * @author Bjoern Kaiser
   */
-CNode* CDocumentReader::read(QString indexfilepath, CDocumentData::FileType filetype)
+CNode* CDocumentReader::read(QString indexfilepath,
+                             CDocumentData::FileType filetype)
 {
     _fileType = filetype;
     _indexFileInfo = QFileInfo(indexfilepath);
@@ -124,4 +125,8 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
             readElement(new_element, new_node);
         }
     }
+};
+void CDocumentReader::setTranslationMapper(CTranslationMapper* translationmapper)
+{
+    this->_translationMapper = translationmapper;
 };

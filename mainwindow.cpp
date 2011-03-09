@@ -62,18 +62,21 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
     /* 0 = executable's name
        1 = source file path
        2 = source file type
-       3 = target file path
-       4 = target file type
-       5 = "-g" or "--gui"
+       3 = input definition file path
+       4 = target file path
+       5 = target file type
+       6 = output definition file path
+       x = "-g" or "--gui"
     */
     if ((argc == 1) | (argc == 2))
         return;
-    // the last argument must be "-g" or "--gui" except there are no arguments given at all
-    else if ((argc == 4)
-        | (argc == 6))
+    // one argument must be "-g" or "--gui"
+    else if ((argc == 5)
+        | (argc == 8))
     {
-        // find and store the source file path, source file type, target file
-        // path and target file type in the QStringList "arguments"
+        // find and store the source file path, source file type, input difinition file,
+        // target file path, target file type and output definition file in the
+        // QStringList "arguments"
         QStringList arguments;
         for (int i = 1; i < argc; i++)
         {
@@ -88,7 +91,10 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
             CDocumentData::FileType filetype = CDocumentData::Unknown;
             if (arguments.at(1).toLower() == "javadoc")
                 filetype = CDocumentData::JavaDocHTML;
+            QString inputdefinitionfilepath = arguments.at(2);
+            translationMapper->createInputElementMap(inputdefinitionfilepath);
             CDocumentReader* reader = new CDocumentReader;
+            reader->setTranslationMapper(translationMapper);
             CNode* root = reader->read(arguments.at(0), filetype);
             model->setRootNode(root);
             delete reader;
@@ -126,16 +132,22 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
             }
             return;
         }
-        if (argc == 6)
+        if (argc == 8)
         {
-            QFile file(arguments.at(2));
+            QString targetfilepath = arguments.at(4);
+            QString targetfiletype = arguments.at(5);
+            QString outputdefinitionfilepath = arguments.at(6);
+            translationMapper->createOutputElementMap(outputdefinitionfilepath);
+            QFile file(targetfilepath);
             if (file.open(QFile::WriteOnly))
             {
                 CDocumentData::FileType filetype = CDocumentData::Unknown;
-                if (arguments.at(3).toLower() == "tex")
+                if (targetfiletype.toLower() == "tex")
                     filetype = CDocumentData::Tex;
                 // converting...
-//                CConverter* converter = new CConverter(targetfilepath, *root);
+                CConverter* converter = new CConverter(targetfilepath,
+                                                       model->root(),
+                                                       translationMapper);
                 if (DEBUG)
                 {
                     std::cerr << tr("conversion successfully performed").toStdString() << std::endl;
@@ -146,6 +158,7 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
                                 QMessageBox::Ok,
                                 this);
                 msg.exec();
+                delete converter;
             }
             else
             {
@@ -191,6 +204,7 @@ void MainWindow::open()
         else if (dialog->selectedFilter() == "any file (*.*)")
             filetype = CDocumentData::Unknown;
         CDocumentReader* reader = new CDocumentReader;
+        reader->setTranslationMapper(translationMapper);
         CNode* root = reader->read(dialog->selectedFiles().at(0), filetype);
         model->setRootNode(root);
         delete reader;
@@ -232,8 +246,9 @@ void MainWindow::convert()
             filetype = CDocumentData::Unknown;
         CNode* root = model->root();
         // now begin conversion...
-//        CConverter* converter = new CConverter(dialog->selectedFiles().at(0));
-//        converter->convert(*root);
+        CConverter* converter = new CConverter(dialog->selectedFiles().at(0),
+                                               root, translationMapper);
+        delete converter;
     }
 };
 void MainWindow::setInputDefinition()

@@ -1,9 +1,11 @@
 #include "cconverter.h"
 
-CConverter::CConverter(const QString filepath, CNode* root) : _file(filepath),
-    _errormessage(""), _noOfParts(0)
+CConverter::CConverter(const QString filepath, CNode* root,
+                       CTranslationMapper* translationmapper)
+    : _file(filepath), _errormessage(""), _noOfParts(0)
 {
     _root = root;
+    _translationMapper = translationmapper;
     _cursor = 0;
     if (!_file.open(QFile::WriteOnly))
     {

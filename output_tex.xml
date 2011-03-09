@@ -31,7 +31,6 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
     ]]>
   </to>
 </node>
-</tex>
 
 <!-- head  -->
 <node>
@@ -58,7 +57,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
     </location>
   </requires>
 </node>
-</tex>
+
 
 <!-- title -->
 <node>
@@ -80,7 +79,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
     </location>
   </requires>
 </node>
-</tex>
+
 
 
 <!-- body  -->
@@ -101,7 +100,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
     ]]>
   </to>
 </node>
-</tex>
+
 
 
 <!-- author -->
@@ -124,7 +123,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
     </location>
   </requires>
 </node>
-</tex>
+
 
 
 <!-- h1 -->
@@ -141,7 +140,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
     }]]>
   </to>
 </node>
-</tex>
+
 
 <!-- h2 -->
 <node>
@@ -157,7 +156,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
     }
   </to>
 </node>
-</tex>
+
 
 <!-- h3 -->
 <node>
@@ -173,7 +172,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
     }]]>
   </to>
 </node>
-</tex>
+
 
 <!-- br  -->
 <node>
@@ -188,7 +187,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
     ]]>
   </to>
 </node>
-</tex>
+
 
 <!-- p  -->
 <node>
@@ -208,7 +207,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
     ]]>
   </to>
 </node>
-</tex>
+
 
 <!-- table  -->
 <node>
@@ -247,7 +246,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
     ]]>
   </to>
 </node>
-</tex>
+
 
 <!-- tr 
 hier wirds kompliziert:
@@ -274,7 +273,7 @@ abgeschlossen und zwischen den Zellen steht ein "&"
     ]]>
   </to>
 </node>
-</tex>
+
 
 <!-- b  -->
 <node>
@@ -292,7 +291,7 @@ abgeschlossen und zwischen den Zellen steht ein "&"
     ]]>
   </to>
 </node>
-</tex>
+
 
 <!-- a 
 wenn alles in eine datei geschrieben werden soll, dann wird es nicht gebraucht,
@@ -313,7 +312,7 @@ sonst eine weitere .tex-Datei erstellen und einbinden
     ]]>
   </to>
 </node>
-</tex>
+
 
 <!-- dl  -->
 <node>
@@ -333,7 +332,7 @@ sonst eine weitere .tex-Datei erstellen und einbinden
     ]]>
   </to>
 </node>
-</tex>
+
 
 <!-- dt  -->
 <node>
@@ -351,7 +350,7 @@ sonst eine weitere .tex-Datei erstellen und einbinden
     ]]>
   </to>
 </node>
-</tex>
+
 
 <!-- dd
 fehlte in der ursprünglichen Liste der Tags... -->
@@ -370,7 +369,7 @@ fehlte in der ursprünglichen Liste der Tags... -->
     ]]>
   </to>
 </node>
-</tex>
+
 
 <!-- ul  -->
 <node>
@@ -390,7 +389,7 @@ fehlte in der ursprünglichen Liste der Tags... -->
     ]]>
   </to>
 </node>
-</tex>
+
 
 <!-- li -->
 <node>
@@ -407,7 +406,7 @@ fehlte in der ursprünglichen Liste der Tags... -->
     ]]>
   </to>
 </node>
-</tex>
+
 
 <!-- font -->
 <node>
@@ -425,7 +424,7 @@ fehlte in der ursprünglichen Liste der Tags... -->
     ]]>
   </to>
 </node>
-</tex>
+
 
 <!-- noscript -->
 <node>
@@ -442,7 +441,7 @@ fehlte in der ursprünglichen Liste der Tags... -->
     ]]>
   </to>
 </node>
-</tex>
+
 
 <!-- script -->
 <node>
@@ -459,7 +458,7 @@ fehlte in der ursprünglichen Liste der Tags... -->
     ]]>
   </to>
 </node>
-</tex>
+
 
 <!-- link -->
 <node>
@@ -476,4 +475,5 @@ fehlte in der ursprünglichen Liste der Tags... -->
     ]]>
   </to>
 </node>
+
 </tex>

@@ -2,6 +2,7 @@
 #define CCONSOLE_H
 
 #include "cdocumentreader.h"
+#include "ctranslationmapper.h"
 #include <QObject>
 #include <QString>
 
