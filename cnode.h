@@ -9,6 +9,7 @@ class CNode
 {
 private:
     static qint64 instCount;
+    static qint64 _treeLevel;
     CNode* _parent;
     QList<CNode*> children;
     qint64 _id;
@@ -16,6 +17,7 @@ private:
     QString _name;
     QString _content;
     QMap<QString, QString> _attributes;
+    int _cursor;
 public:
     // methods handling node operations
     CNode* parent();
@@ -23,6 +25,7 @@ public:
     int count() const;
     bool containsChild(CNode* node) const;
     CNode* childAt(int index) const;
+    CNode* nextChild();
     void addChildren(QList<CNode*> nodes);
     void addChild(CNode* node);
     void removeChild(CNode* node);
@@ -30,6 +33,7 @@ public:
     // methods returning attributes' values
     qint64 ID() const;
     qint64 layer() const;
+    qint64 treeLevel() const;
     QString name() const;
     QString content() const;
     QMap<QString, QString> attributes() const;

@@ -4,7 +4,11 @@
 #include <QFile>
 #include <QString>
 #include <QTextStream>
+#include <QStringList>
+#include <QDir>
 #include "cnode.h"
+
+#include <iostream>
 
 /** This class converts the QDomDocument-Tree to a textfile
   * by performing the conversions descibed in the 'Output-Definition'-XML file.
@@ -21,7 +25,7 @@ public:
       * TODO: @param <parts> the number of parts that are needed for the conversion
       * use enum{start=0, content=1, end=2} (change the XML aliases to numbers)
       */
-    CConverter(const QString &filepath, CNode &root);
+    CConverter(const QString filepath, CNode* root);
     /** converts to QString and writes the output file
       * @param <qint32> the number of parts in the outputDocument
       */
@@ -32,15 +36,19 @@ private:
     QFile _file;
     // outputfilestream
     QTextStream _stream;
+    // the root node
+    CNode * _root;
     // the active node
     CNode * _cursor;
     QString _errormessage;
     qint32 _noOfParts;
 
-    // TODO make enum{start=0, content=1, end=2}
+    // the compiler assigns values for start, content and end
+    enum DocumentPosition { start, content, end };
 
-    // TODO: Use array of QStrings to generate a flexible number of parts
-    QString *_parts[];
+    // QStringList-Beispiele: _parts << "meinString"; _parts.insert(0, "ersterString");
+    // _parts.append("meinString") entspricht dem "<<"-operator
+    QStringList _parts;
 
     /*****METHODS*****/
     // gets the next sibling

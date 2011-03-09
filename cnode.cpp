@@ -6,9 +6,11 @@
  * @author Bjoern Kaiser
  */
 CNode::CNode(CNode* parent, QString name, qint64 layer) : _parent(parent),
-    _layer(layer), _name(name), _content("")
+    _layer(layer), _name(name), _content(""), _cursor(0)
 {
     instCount++;
+    if (layer > _treeLevel)
+        _treeLevel = layer;
     this->_id = instCount;
     this->children = QList<CNode*>();
     this->_attributes = QMap<QString, QString>();
@@ -26,6 +28,14 @@ CNode::~CNode()
  * @author Bjoern Kaiser
  */
 qint64 CNode::instCount = 0;
+qint64 CNode::_treeLevel = 0;
+/**
+  Returns the greatest distance of a node to the root node.
+  */
+qint64 CNode::treeLevel() const
+{
+    return this->_treeLevel;
+};
 /**
  * Returns the node's unique ID.
  * @author Bjoern Kaiser
@@ -187,4 +197,12 @@ void CNode::removeChild(CNode* node)
 {
     if (children.removeOne(node))
         delete node;
+};
+CNode* CNode::nextChild()
+{
+    CNode* result = 0;
+    if (_cursor < children.count())
+        result = children.at(_cursor);
+    _cursor++;
+    return result;
 };
