@@ -84,12 +84,14 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
                 & !QString(argv[i]).toLower().startsWith("--gui"))
                 arguments << QString(argv[i]);
         }
+        QString sourcefilepath = arguments.at(0);
+        QString filetypestring = arguments.at(1);
         // open source file
-        QFile file(arguments.at(0));
+        QFile file(sourcefilepath);
         if (file.exists())
         {
             CDocumentData::FileType filetype = CDocumentData::Unknown;
-            if (arguments.at(1).toLower() == "javadoc")
+            if (filetypestring.toLower() == "javadoc")
                 filetype = CDocumentData::JavaDocHTML;
             QString inputdefinitionfilepath = arguments.at(2);
             translationMapper->createInputElementMap(inputdefinitionfilepath);
@@ -134,19 +136,20 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
         }
         if (argc == 8)
         {
-            QString targetfilepath = arguments.at(4);
-            QString targetfiletype = arguments.at(5);
-            QString outputdefinitionfilepath = arguments.at(6);
+            QString targetfilepath = arguments.at(3);
+            filetypestring = arguments.at(4);
+            QString outputdefinitionfilepath = arguments.at(5);
             translationMapper->createOutputElementMap(outputdefinitionfilepath);
             QFile file(targetfilepath);
             if (file.open(QFile::WriteOnly))
             {
                 CDocumentData::FileType filetype = CDocumentData::Unknown;
-                if (targetfiletype.toLower() == "tex")
+                if (filetypestring.toLower() == "tex")
                     filetype = CDocumentData::Tex;
                 // converting...
+                CNode* root = model->root();
                 CConverter* converter = new CConverter(targetfilepath,
-                                                       model->root(),
+                                                       root,
                                                        translationMapper);
                 if (DEBUG)
                 {
