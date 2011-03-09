@@ -72,3 +72,7 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
                 << "\n\tFilecontent: " << filecontent.toStdString() << std::endl;
     }
 };
+QMap<QString,CTranslationData> CTranslationMapper::outputMap() const
+{
+    return this->_outputMap;
+};

@@ -26,6 +26,8 @@ public:
     bool containsChild(CNode* node) const;
     CNode* childAt(int index) const;
     CNode* nextChild();
+    CNode* firstChild();
+    CNode* lastChild();
     void addChildren(QList<CNode*> nodes);
     void addChild(CNode* node);
     void removeChild(CNode* node);
