@@ -42,11 +42,11 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
             for (int j = 0; j < subnodes.count(); j++)
             {
                 if (subnodes.at(j).nodeName().toLower() == "from")
-                    translationdata.setFrom(subnodes.at(j).nodeValue());
+                    translationdata.setFrom(subnodes.at(j).firstChild().nodeValue());
                 else if (subnodes.at(j).nodeName().toLower() == "key")
-                    translationdata.setKey(subnodes.at(j).nodeValue());
+                    translationdata.setKey(subnodes.at(j).firstChild().nodeValue());
                 else if (subnodes.at(j).nodeName().toLower() == "to")
-                    translationdata.setTo(subnodes.at(j).nodeValue());
+                    translationdata.setTo(subnodes.at(j).firstChild().nodeValue());
                 else if (subnodes.at(j).nodeName().toLower() == "requires")
                 {
                     QDomNodeList requiresnodes = subnodes.at(j).childNodes();
@@ -54,11 +54,13 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
                     {
                         CTranslationDataNode datanode;
                         datanode.setName(requiresnodes.at(k).nodeName());
-                        datanode.setContent(requiresnodes.at(k).nodeValue());
+                        datanode.setContent(requiresnodes.at(k).firstChild().nodeValue());
                         QDomNamedNodeMap attributes = requiresnodes.at(k).attributes();
                         for (int l = 0; l < attributes.count(); l++)
+                        {
                             datanode.addAttribute(attributes.item(l).nodeName(),
                                                   attributes.item(l).nodeValue());
+                        }
                         translationdata.addRequiresNode(datanode);
                     }
                 }

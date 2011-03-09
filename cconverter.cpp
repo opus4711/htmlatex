@@ -26,14 +26,14 @@ CConverter::CConverter(const QString filepath, CNode* root,
     _file.close();
     // Demo-Code
     // create demo nodes
-    _cursor = new CNode(0, "table", 0);
-    CNode* requireschild = new CNode(_cursor, "requires", 1);
+    CNode* table = new CNode(0, "table", 0);
+    CNode* requireschild = new CNode(table, "requires", 1);
     CNode* locationchild = new CNode(requireschild, "location", 2);
     locationchild->addAttribute("position", "start");
     requireschild->addChild(locationchild);
-    _cursor->addChild(requireschild);
+    table->addChild(requireschild);
     // demo nodes created
-    CTranslationData translationdata = _translationMapper->outputMap()[_cursor->name()];
+    CTranslationData translationdata = _translationMapper->outputMap()[table->name()];
     QString from(translationdata.from());
     QString to(translationdata.to());
     std::cerr << std::endl << "from: " << from.toStdString() << std::endl

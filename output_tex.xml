@@ -34,26 +34,16 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 
 <!-- head  -->
 <node>
-  <key>
-   head
-  </key>
-  <from>
-    <![CDATA[<
-----CONTENT----
-    ]]>
+  <key>head</key>
+  <from><![CDATA[
+  <----CONTENT----]]>
   </from>
-  <to>
-    <![CDATA[
-    ]]>
-  </to>
+  <to><![CDATA[]]></to>
   <requires>
-    <location position="start">
-     <![CDATA[
-    \documentclass[
-    a4paper,% DIN A4
+    <location position="start"><![CDATA[
+    \documentclass[a4paper,% DIN A4
     fontsize=12pt		% Schriftgröße 12 Punkt
-    ]{scrartcl}                 % 'article' aus dem 'Koma'-Script
-]]>
+    ]{scrartcl}                 % 'article' aus dem 'Koma'-Script]]>
     </location>
   </requires>
 </node>
@@ -61,11 +51,8 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 
 <!-- title -->
 <node>
-  <key>
-   title
-  </key>
-  <from>
-    <![CDATA[<
+  <key>title</key>
+  <from><![CDATA[<
 ----CONTENT----
     ]]>
   </from>
@@ -105,9 +92,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 
 <!-- author -->
 <node>
-  <key>
-   author
-  </key>
+  <key>author</key>
   <from>
     <![CDATA[<
 ----TEXT----
@@ -128,9 +113,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 
 <!-- h1 -->
 <node>
-<key>
-  h1
-</key>
+<key>h1</key>
   <from>
     <![CDATA[<INHALT]]>
   </from>
@@ -144,9 +127,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 
 <!-- h2 -->
 <node>
-<key>
-  h2
-</key>
+<key>h2</key>
   <from>
     <![CDATA[<INHALT]]>
   </from>
@@ -160,9 +141,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 
 <!-- h3 -->
 <node>
-<key>
-  h1
-</key>
+<key>h1</key>
   <from>
     <![CDATA[<INHALT]]>
   </from>
@@ -176,9 +155,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 
 <!-- br  -->
 <node>
-  <key>
-   br
-  </key>
+  <key>br</key>
   <from>
   </from>
   <to>
@@ -191,9 +168,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 
 <!-- p  -->
 <node>
-  <key>
-   p
-  </key>
+  <key>p</key>
   <from>
     <![CDATA[<
 ----CONTENT----
@@ -211,9 +186,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 
 <!-- table  -->
 <node>
-  <key>
-   table
-  </key>
+  <key>table</key>
   <from>
     <![CDATA[INHALT]]>
   </from>
@@ -232,9 +205,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 
 <!-- th  -->
 <node>
-  <key>
-   th
-  </key>
+  <key>th</key>
   <from>
     <![CDATA[<
 ----CONTENT----
@@ -259,9 +230,7 @@ abgeschlossen und zwischen den Zellen steht ein "&"
 × & ×
 -->
 <node>
-  <key>
-   tr
-  </key>
+  <key>tr</key>
   <from>
     <![CDATA[<
 <td>----CONTENT----</td>&<td>----CONTENT----</td>
@@ -277,9 +246,7 @@ abgeschlossen und zwischen den Zellen steht ein "&"
 
 <!-- b  -->
 <node>
-  <key>
-   b
-  </key>
+  <key>b</key>
   <from>
     <![CDATA[<
 ----CONTENT----
@@ -298,9 +265,7 @@ wenn alles in eine datei geschrieben werden soll, dann wird es nicht gebraucht,
 sonst eine weitere .tex-Datei erstellen und einbinden
 -->
 <node>
-  <key>
-   a
-  </key>
+  <key>a</key>
   <from>
     <![CDATA[<
 ----HREF----
@@ -316,9 +281,7 @@ sonst eine weitere .tex-Datei erstellen und einbinden
 
 <!-- dl  -->
 <node>
-  <key>
-   dl
-  </key>
+  <key>dl</key>
   <from>
     <![CDATA[<
 ----CONTENT----
@@ -336,9 +299,7 @@ sonst eine weitere .tex-Datei erstellen und einbinden
 
 <!-- dt  -->
 <node>
-  <key>
-   dt
-  </key>
+  <key>dt</key>
   <from>
     <![CDATA[<
 ----CONTENT----
@@ -355,9 +316,7 @@ sonst eine weitere .tex-Datei erstellen und einbinden
 <!-- dd
 fehlte in der ursprünglichen Liste der Tags... -->
 <node>
-  <key>
-   dd
-  </key>
+  <key>dd</key>
   <from>
     <![CDATA[<
 ----CONTENT----
@@ -373,9 +332,7 @@ fehlte in der ursprünglichen Liste der Tags... -->
 
 <!-- ul  -->
 <node>
-  <key>
-   ul
-  </key>
+  <key>ul</key>
   <from>
     <![CDATA[<
 
@@ -393,9 +350,7 @@ fehlte in der ursprünglichen Liste der Tags... -->
 
 <!-- li -->
 <node>
-  <key>
-   li
-  </key>
+  <key>li</key>
   <from>
     <![CDATA[<
     ]]>
@@ -410,9 +365,7 @@ fehlte in der ursprünglichen Liste der Tags... -->
 
 <!-- font -->
 <node>
-  <key>
-   font
-  </key>
+  <key>font</key>
   <from>
     <![CDATA[<
 ----CONTENT----
@@ -428,9 +381,7 @@ fehlte in der ursprünglichen Liste der Tags... -->
 
 <!-- noscript -->
 <node>
-  <key>
-   noscript
-  </key>
+  <key>noscript</key>
   <from>
     <![CDATA[<
 ----CONTENT----
@@ -445,9 +396,7 @@ fehlte in der ursprünglichen Liste der Tags... -->
 
 <!-- script -->
 <node>
-  <key>
-   script
-  </key>
+  <key>script</key>
   <from>
     <![CDATA[<
 ----CONTENT----
@@ -462,9 +411,7 @@ fehlte in der ursprünglichen Liste der Tags... -->
 
 <!-- link -->
 <node>
-  <key>
-   link
-  </key>
+  <key>link</key>
   <from>
     <![CDATA[<
 ----CONTENT----
