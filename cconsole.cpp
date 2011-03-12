@@ -71,5 +71,12 @@ void CConsole::performInitialOperations(int argc, char* argv[])
         delete translationmapper;
     }
     else
+    {
         std::cout << tr("Error - unexpected number of arguments.").toStdString() << std::endl;
+        std::cerr << "usage: htmlatex INPUTFILE FORMAT INPUTDEFINITION OUTPUTFILE FORMAT OUTPUTDEFINITION [-g|--gui]\n"
+                << "  e.g. htmlatex index.html javadoc input_javadoc.xml manual.tex tex output_tex.xml -g\n"
+                << "\t-g, --gui \tLaunch the GUI\n"
+                << "\t-h, --help \tShow some examples\n\n"
+                << "\tSee the \"README\" file for further information." << std::endl;
+    }
 };

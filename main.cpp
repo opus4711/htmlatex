@@ -1,5 +1,7 @@
 #include <QtGui/QApplication>
 #include <QtCore/QCoreApplication>
+#include <QTranslator>
+#include <QTextCodec>
 
 #include "mainwindow.h"
 #include "cconsole.h"
@@ -29,13 +31,19 @@ int main(int argc, char* argv[])
     if (showgui)
     {
         QApplication a(argc, argv);
+        // Set translation environment for the application texts
+        QString locale = QLocale::system().name();
+        QTranslator translator;
+        translator.load(QString("htmlatex_") + locale);
+        a.installTranslator(&translator);
+        QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
         MainWindow w(argc, argv, 0);
         w.show();
         return a.exec();
     }
     else if (argc == 1)
-        std::cerr << "usage: htmlatex INPUTFILE FORMAT OUTPUTFILE FORMAT [-g|--gui]\n"
-                << "  e.g. htmlatex index.html javadoc manual.tex tex -g\n"
+        std::cerr << "usage: htmlatex INPUTFILE FORMAT INPUTDEFINITION OUTPUTFILE FORMAT OUTPUTDEFINITION [-g|--gui]\n"
+                << "  e.g. htmlatex index.html javadoc input_javadoc.xml manual.tex tex output_tex.xml -g\n"
                 << "\t-g, --gui \tLaunch the GUI\n"
                 << "\t-h, --help \tShow some examples\n\n"
                 << "\tSee the \"README\" file for further information." << std::endl;
@@ -53,6 +61,12 @@ int main(int argc, char* argv[])
     else
     {
         QCoreApplication a(argc, argv);
+        // Set translation environment for the application texts
+        QString locale = QLocale::system().name();
+        QTranslator translator;
+        translator.load(QString("htmlatex_") + locale);
+        a.installTranslator(&translator);
+        QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
         CConsole console(argc, argv);
         exit(0);
         return a.exec();
