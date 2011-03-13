@@ -4,30 +4,29 @@
 /** This class performs the format conversion via console input and output.
   * @author Bjoern Kaiser
   */
-CConsole::CConsole(int argc, char* argv[])
+CConsole::CConsole(QStringList arguments, QStringList options)
 {
-    performInitialOperations(argc, argv);
+    performInitialOperations(arguments, options);
 };
 CConsole::~CConsole()
 {
 };
-void CConsole::performInitialOperations(int argc, char* argv[])
+void CConsole::performInitialOperations(QStringList arguments, QStringList options)
 {
-    /* 0 = executable's name
-       1 = source file path
-       2 = source file type
-       3 = input definition file path
-       4 = target file path
-       5 = target file type
-       6 = output definition file path
-       x = -g, --g etc.
+    /* arguments:
+       0 = source file path
+       1 = source file type
+       2 = input definition file path
+       3 = target file path
+       4 = target file type
+       5 = output definition file path
     */
-    if (argc == 7)
+    if (arguments.count() == 6)
     {
         CTranslationMapper* translationmapper = new CTranslationMapper;
-        QString sourcefilepath(argv[1]);
-        QString filetypestring(argv[2]);
-        QString inputdefinitionfilepath(argv[3]);
+        QString sourcefilepath(arguments.at(0));
+        QString filetypestring(arguments.at(1));
+        QString inputdefinitionfilepath(arguments.at(2));
         translationmapper->createInputElementMap(inputdefinitionfilepath);
         QFile file(sourcefilepath);
         CNode* root = 0;
@@ -49,9 +48,9 @@ void CConsole::performInitialOperations(int argc, char* argv[])
             return;
         }
         file.close();
-        QString targetfilepath(argv[4]);
-        filetypestring = QString(argv[5]);
-        QString outputdefinitionfilepath(argv[6]);
+        QString targetfilepath(arguments.at(3));
+        filetypestring = QString(arguments.at(4));
+        QString outputdefinitionfilepath(arguments.at(5));
         translationmapper->createOutputElementMap(outputdefinitionfilepath);
         file.setFileName(targetfilepath);
         if (file.open(QFile::WriteOnly))
