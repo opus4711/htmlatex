@@ -68,6 +68,8 @@ int main(int argc, char* argv[])
         a.installTranslator(&translator);
         QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
         CConsole console(argc, argv);
+        // Invoke external program and write the output to a file
+//        system("ping -c 4 192.168.1.1>>ping_test.txt");
         exit(0);
         return a.exec();
     }
