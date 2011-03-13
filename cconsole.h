@@ -1,8 +1,9 @@
 #ifndef CCONSOLE_H
 #define CCONSOLE_H
 
-#include "cdocumentreader.h"
 #include "ctranslationmapper.h"
+#include "cdocumentreader.h"
+#include "cconverter.h"
 #include <QObject>
 #include <QString>
 
@@ -12,10 +13,10 @@ class CConsole : public QObject
 {
     Q_OBJECT
 private:
-    void performInitialOperations(int argc, char* argv[]);
+    void performInitialOperations(QStringList arguments, QStringList options);
 public:
     // Constructor
-    CConsole(int argc, char* argv[]);
+    CConsole(QStringList arguments, QStringList options);
     ~CConsole();
 };
 

@@ -5,6 +5,8 @@
 #include "cdocumentreader.h"
 #include "cmodel.h"
 #include "citemdelegate.h"
+#include "constants.h"
+#include "cconverter.h"
 #include <QMainWindow>
 #include <QSplitter>
 #include <QHBoxLayout>
@@ -24,7 +26,7 @@ private:
     CModel* model;
     CItemDelegate* itemDelegate;
     CTranslationMapper* translationMapper;
-    void performInitialOperations(int argc, char* argv[]);
+    void performInitialOperations(QStringList arguments, QStringList options);
 private slots:
     void open();
     void convert();
@@ -34,7 +36,7 @@ protected:
     void changeEvent(QEvent* e);
 public:
     // constructor and destructor
-    MainWindow(int argc, char* argv[], QWidget* parent);
+    MainWindow(QStringList arguments, QStringList options, QWidget* parent);
     ~MainWindow();
 };
 

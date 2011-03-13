@@ -1,9 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "constants.h"
-#include "cconverter.h"
 
-MainWindow::MainWindow(int argc, char* argv[], QWidget* parent) :
+MainWindow::MainWindow(QStringList arguments, QStringList options, QWidget* parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -35,7 +33,7 @@ MainWindow::MainWindow(int argc, char* argv[], QWidget* parent) :
     splitter->addWidget(ui->treeView);
     //splitter->addWidget( zweiter rechter treeView );
     translationMapper = new CTranslationMapper;
-    performInitialOperations(argc, argv);
+    performInitialOperations(arguments, options);
 };
 MainWindow::~MainWindow()
 {
@@ -57,35 +55,26 @@ void MainWindow::changeEvent(QEvent *e)
   * arguments.
   @author Bjoern Kaiser
   */
-void MainWindow::performInitialOperations(int argc, char* argv[])
+void MainWindow::performInitialOperations(QStringList arguments, QStringList options)
 {
-    /* 0 = executable's name
-       1 = source file path
-       2 = source file type
-       3 = input definition file path
-       4 = target file path
-       5 = target file type
-       6 = output definition file path
-       x = "-g" or "--gui"
+    /* arguments:
+       0 = source file path
+       1 = source file type
+       2 = input definition file path
+       3 = target file path
+       4 = target file type
+       5 = output definition file path
     */
-    if ((argc == 1) | (argc == 2))
+    if ((arguments.count() == 0) | (arguments.count() == 1))
         return;
     // one argument must be "-g" or "--gui"
-    else if ((argc == 5)
-        | (argc == 8))
+    else if ((arguments.count() == 4)
+        | (arguments.count() == 6))
     {
         // find and store the source file path, source file type, input difinition file,
-        // target file path, target file type and output definition file in the
-        // QStringList "arguments"
-        QStringList arguments;
-        for (int i = 1; i < argc; i++)
-        {
-            if (!QString(argv[i]).toLower().startsWith("-g")
-                & !QString(argv[i]).toLower().startsWith("--gui"))
-                arguments << QString(argv[i]);
-        }
-        QString sourcefilepath = arguments.at(0);
-        QString filetypestring = arguments.at(1);
+        // target file path, target file type and output definition file
+        QString sourcefilepath(arguments.at(0));
+        QString filetypestring(arguments.at(1));
         // open source file
         QFile file(sourcefilepath);
         if (file.exists())
@@ -93,7 +82,7 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
             CDocumentData::FileType filetype = CDocumentData::Unknown;
             if (filetypestring.toLower() == "javadoc")
                 filetype = CDocumentData::JavaDocHTML;
-            QString inputdefinitionfilepath = arguments.at(2);
+            QString inputdefinitionfilepath(arguments.at(2));
             translationMapper->createInputElementMap(inputdefinitionfilepath);
             CDocumentReader* reader = new CDocumentReader;
             reader->setTranslationMapper(translationMapper);
@@ -134,11 +123,11 @@ void MainWindow::performInitialOperations(int argc, char* argv[])
             }
             return;
         }
-        if (argc == 8)
+        if (arguments.count() == 6)
         {
-            QString targetfilepath = arguments.at(3);
+            QString targetfilepath(arguments.at(3));
             filetypestring = arguments.at(4);
-            QString outputdefinitionfilepath = arguments.at(5);
+            QString outputdefinitionfilepath(arguments.at(5));
             translationMapper->createOutputElementMap(outputdefinitionfilepath);
             QFile file(targetfilepath);
             if (file.open(QFile::WriteOnly))
@@ -234,7 +223,7 @@ void MainWindow::convert()
         if (suffix.count() > 1)
             suffix.remove(suffix.count() - 1, 1);
         dialog->setDefaultSuffix(suffix);
-        if (DEBUG)
+        if(DEBUG)
         {
             std::cerr << "MainWindow::convert()\n\tPath: "
                     << QString(dialog->selectedFiles().at(0)).toStdString() << std::endl;

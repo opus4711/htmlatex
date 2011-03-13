@@ -4,6 +4,7 @@
 #include "mainwindow.h"
 #include "cconsole.h"
 #include "constants.h"
+#include <QString>
 
 bool DEBUG = true;
 int main(int argc, char* argv[])
@@ -13,23 +14,25 @@ int main(int argc, char* argv[])
        2 = source file type
        3 = target file path
        4 = target file type
-       5 = "-g" or "--gui"
+       x = "-g" or "--gui"
     */
-    // open the GUI if argument "-g" or "--gui" is given
-    bool showgui = false;
-    for (int i = 0; i < argc; i++)
+    QStringList arguments;
+    QStringList options;
+    for (int i = 1; i < argc; i++)
     {
-        if ((QString(argv[i]).toLower() == "-g")
-            | (QString(argv[i]).toLower() == "--gui"))
-        {
-            showgui = true;
-            break;
-        }
+        QString argument(argv[i]);
+        argument = argument.toLower();
+        if (argument.startsWith('-'))
+            options << argument;
+        else
+            arguments << argument;
     }
-    if (showgui)
+    // open the GUI if argument "-g" or "--gui" is given
+    if ((bool)options.contains("-g")
+        | (bool)options.contains("--gui"))
     {
         QApplication a(argc, argv);
-        MainWindow w(argc, argv, 0);
+        MainWindow w(arguments, options, 0);
         w.show();
         return a.exec();
     }
@@ -41,8 +44,8 @@ int main(int argc, char* argv[])
                 << "\tSee the \"README\" file for further information." << std::endl;
     else if (argc == 2)
     {
-        if ((QString(argv[1]).toLower() == "-h")
-            | (QString(argv[1]).toLower() == "--help"))
+        if ((bool)options.contains("-h")
+            | (bool)options.contains("--help"))
         {
             QString helpstring("Examples with GUI:\n\nopen file initially:\n\nhtmlatex index.html javadoc -g\nhtmlatex index.html --gui javadoc");
             helpstring += "\n\nconvert file initially:\n\nhtmlatex -g index.html javadoc mytexoutput.tex tex\nhtmlatex index.html javadoc --gui mytexoutput.tex tex";
@@ -53,7 +56,7 @@ int main(int argc, char* argv[])
     else
     {
         QCoreApplication a(argc, argv);
-        CConsole console(argc, argv);
+        CConsole console(arguments, options);
         exit(0);
         return a.exec();
     }
