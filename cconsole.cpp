@@ -59,8 +59,8 @@ void CConsole::performInitialOperations(QStringList arguments, QStringList optio
             if (filetypestring.toLower() == "tex")
                 filetype = CDocumentData::Tex;
             // root - converting...
-            CConverter* converter = new CConverter(this, targetfilepath, root, translationmapper);
-            // converter->convert();
+            CConverter* converter = new CConverter(this, translationmapper);
+            converter->convert(targetfilepath, root);
             std::cout << tr("Perform conversion  --> success").toStdString() << std::endl;
             delete converter;
         }

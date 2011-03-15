@@ -13,6 +13,11 @@ CODECFORTR = UTF-8
 
 # CODECFORTR = ISO-8859-1
 CONFIG += console
+unix {
+UI_DIR = .ui
+MOC_DIR = .moc
+OBJECTS_DIR = .obj
+}
 SOURCES += main.cpp \
     cnode.cpp \
     mainwindow.cpp \

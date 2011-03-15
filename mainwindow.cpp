@@ -38,6 +38,9 @@ MainWindow::MainWindow(QStringList arguments, QStringList options, QWidget* pare
     //textEdit->setText(str);
     splitter->addWidget(textEdit);
     translationMapper = new CTranslationMapper;
+    converter = new CConverter(this, translationMapper);
+    connect(converter, SIGNAL(updateTextEdit(QString)),
+            textEdit, SLOT(setPlainText(QString)));
     performInitialOperations(arguments, options);
 };
 MainWindow::~MainWindow()
@@ -142,9 +145,7 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
                     filetype = CDocumentData::Tex;
                 // converting...
                 CNode* root = model->root();
-                CConverter* converter = new CConverter(this, targetfilepath,
-                                                       root,
-                                                       translationMapper);
+                converter->convert(targetfilepath, root);
                 if (DEBUG)
                 {
                     std::cerr << tr("conversion successfully performed").toStdString() << std::endl;
@@ -155,7 +156,6 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
                                 QMessageBox::Ok,
                                 this);
                 msg.exec();
-                delete converter;
             }
             else
             {
@@ -243,9 +243,7 @@ void MainWindow::convert()
             filetype = CDocumentData::Unknown;
         CNode* root = model->root();
         // now begin conversion...
-        CConverter* converter = new CConverter(this, dialog->selectedFiles().at(0),
-                                               root, translationMapper);
-        delete converter;
+        converter->convert(dialog->selectedFiles().at(0), root);
     }
 };
 void MainWindow::setInputDefinition()

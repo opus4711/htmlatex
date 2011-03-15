@@ -28,6 +28,7 @@ private:
     CModel* model;
     CItemDelegate* itemDelegate;
     CTranslationMapper* translationMapper;
+    CConverter* converter;
     void performInitialOperations(QStringList arguments, QStringList options);
 private slots:
     void open();
