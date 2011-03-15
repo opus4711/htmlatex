@@ -9,6 +9,7 @@
 #include <QTextStream>
 #include <QStringList>
 #include <QDir>
+#include <QObject>
 
 #include <iostream>
 
@@ -17,8 +18,11 @@
   * @author Bjoern Bass
   * @version 0.1
   */
-class CConverter
+class CConverter : public QObject
 {
+    Q_OBJECT
+signals:
+    void updateTextEdit(QString text);
 public:
     // TODO take parameter for the output-XML-file
     /**Constructor

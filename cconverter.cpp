@@ -51,7 +51,10 @@ CConverter::CConverter(const QString filepath, CNode* root,
 };
 void CConverter::convert(qint32 outputParts)
 {
-
+    QString convertedtext("");
+    for (int i = 0; i < _parts.count(); i++)
+        convertedtext += _parts.at(i);
+    emit updateTextEdit(convertedtext);
 };
 CNode * CConverter::_getNextSibling()
 {
