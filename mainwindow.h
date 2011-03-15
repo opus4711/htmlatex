@@ -11,6 +11,7 @@
 #include <QSplitter>
 #include <QHBoxLayout>
 #include <QFileDialog>
+#include <QTextEdit>
 
 namespace Ui
 {
@@ -23,6 +24,7 @@ private:
     Ui::MainWindow* ui;
     QSplitter* splitter;
     QHBoxLayout* hBoxLayout;
+    QTextEdit* textEdit;
     CModel* model;
     CItemDelegate* itemDelegate;
     CTranslationMapper* translationMapper;

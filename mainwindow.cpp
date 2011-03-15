@@ -33,7 +33,10 @@ MainWindow::MainWindow(QStringList arguments, QStringList options, QWidget* pare
     ui->centralwidget->setLayout(hBoxLayout);
     hBoxLayout->addWidget(splitter);
     splitter->addWidget(ui->treeView);
-    //splitter->addWidget( zweiter rechter treeView );
+    textEdit = new QTextEdit;
+    //QString str("quark mit soße und übermäßig reiz");
+    //textEdit->setText(str);
+    splitter->addWidget(textEdit);
     translationMapper = new CTranslationMapper;
     performInitialOperations(arguments, options);
 };
