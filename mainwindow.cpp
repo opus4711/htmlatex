@@ -142,7 +142,7 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
                     filetype = CDocumentData::Tex;
                 // converting...
                 CNode* root = model->root();
-                CConverter* converter = new CConverter(targetfilepath,
+                CConverter* converter = new CConverter(this, targetfilepath,
                                                        root,
                                                        translationMapper);
                 if (DEBUG)
@@ -243,7 +243,7 @@ void MainWindow::convert()
             filetype = CDocumentData::Unknown;
         CNode* root = model->root();
         // now begin conversion...
-        CConverter* converter = new CConverter(dialog->selectedFiles().at(0),
+        CConverter* converter = new CConverter(this, dialog->selectedFiles().at(0),
                                                root, translationMapper);
         delete converter;
     }

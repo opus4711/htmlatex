@@ -1,8 +1,8 @@
 #include "cconverter.h"
 
-CConverter::CConverter(const QString filepath, CNode* root,
+CConverter::CConverter(QObject *parent, const QString filepath, CNode* root,
                        CTranslationMapper* translationmapper)
-    : _file(filepath), _errormessage(""), _noOfParts(0)
+    : QObject(parent), _file(filepath), _errormessage(""), _noOfParts(0)
 {
     _root = root;
     _translationMapper = translationmapper;

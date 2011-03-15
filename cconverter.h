@@ -31,7 +31,7 @@ public:
       * TODO: @param <parts> the number of parts that are needed for the conversion
       * use enum{start=0, content=1, end=2} (change the XML aliases to numbers)
       */
-    CConverter(const QString filepath, CNode* root,
+    CConverter(QObject* parent, const QString filepath, CNode* root,
                CTranslationMapper* translationmapper);
     /** converts to QString and writes the output file
       * @param <qint32> the number of parts in the outputDocument
