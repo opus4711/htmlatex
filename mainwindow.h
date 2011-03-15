@@ -32,6 +32,7 @@ private slots:
     void convert();
     void setInputDefinition();
     void setOutputDefinition();
+    void about();
 protected:
     void changeEvent(QEvent* e);
 public:

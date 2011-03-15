@@ -10,7 +10,8 @@ TEMPLATE = app
 TRANSLATIONS = htmlatex_en.ts \
     htmlatex_de.ts
 CODECFORTR = UTF-8
-#CODECFORTR = ISO-8859-1
+
+# CODECFORTR = ISO-8859-1
 CONFIG += console
 SOURCES += main.cpp \
     cnode.cpp \
@@ -48,3 +49,4 @@ OTHER_FILES += README \
     input_javadoc.xml \
     input_javadoc.xml \
     output_tex.xml
+RESOURCES += resource.qrc

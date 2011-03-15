@@ -21,6 +21,8 @@ MainWindow::MainWindow(QStringList arguments, QStringList options, QWidget* pare
             this, SLOT(convert()));
     connect(ui->action_Open, SIGNAL(triggered()),
             this, SLOT(open()));
+    connect(ui->action_Info, SIGNAL(triggered()),
+            this, SLOT(about()));
     model = new CModel(this);
     ui->treeView->setModel(model);
     itemDelegate = new CItemDelegate(model, this);
@@ -259,3 +261,9 @@ void MainWindow::setOutputDefinition()
                                                     tr("XML files (*.xml);;any file (*.*)"));
     translationMapper->createOutputElementMap(filepath);
 };
+void MainWindow::about()
+{
+    QMessageBox::about(this, tr("About htmLaTeX"),
+                       tr("htmLaTeX 0.1\nA converter for JavaDoc-generated HTML to LaTeX"
+                          "(c) 2011 Björn (Kaiser|Baß)"));
+}

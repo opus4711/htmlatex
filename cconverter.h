@@ -78,7 +78,7 @@ private:
      */
     //QBool isGUI();
 
-    // delete node an set cursor to the next node
+    // delete node and set cursor to the next node
     void _consume();
     // writes <content> at the end of the desired <part>
     void _write(QString content, qint32 part);

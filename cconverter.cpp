@@ -72,6 +72,9 @@ CNode * CConverter::_getNextChild()
 };
 CNode * CConverter::_getNextNode()
 {
+   // if cursor has sibling return _getNextSibling
+   // elseif cursor has children return _getNextChild
+    //else
     return 0;
 };
 qint64 CConverter::_getTreeLevel()
@@ -82,6 +85,8 @@ qint64 CConverter::_getTreeLevel()
 };
 QString CConverter::_peekParent(qint32 distance)
 {
+    // if distance < current->layer()
+    //   return the parent node <distance> hops up the tree
     // Demo-Code
     return QString("");
 };

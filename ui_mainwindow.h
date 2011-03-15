@@ -20,6 +20,7 @@
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
 #include <QtGui/QStatusBar>
+#include <QtGui/QToolBar>
 #include <QtGui/QTreeView>
 #include <QtGui/QWidget>
 
@@ -34,11 +35,14 @@ public:
     QAction *actionSet_Replacement_Table;
     QAction *actionSet_Input_Definition;
     QAction *actionSet_O_utput_Definition;
+    QAction *action_Info;
     QWidget *centralwidget;
     QTreeView *treeView;
     QMenuBar *menubar;
     QMenu *menu_File;
+    QMenu *menu_Help;
     QStatusBar *statusbar;
+    QToolBar *toolBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -48,16 +52,36 @@ public:
         MainWindow->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         action_Quit = new QAction(MainWindow);
         action_Quit->setObjectName(QString::fromUtf8("action_Quit"));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/Images/icons/exit.png"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Quit->setIcon(icon);
         action_Convert = new QAction(MainWindow);
         action_Convert->setObjectName(QString::fromUtf8("action_Convert"));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/Images/icons/button_ok.png"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Convert->setIcon(icon1);
         action_Open = new QAction(MainWindow);
         action_Open->setObjectName(QString::fromUtf8("action_Open"));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/Images/icons/fileopen.png"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Open->setIcon(icon2);
         actionSet_Replacement_Table = new QAction(MainWindow);
         actionSet_Replacement_Table->setObjectName(QString::fromUtf8("actionSet_Replacement_Table"));
         actionSet_Input_Definition = new QAction(MainWindow);
         actionSet_Input_Definition->setObjectName(QString::fromUtf8("actionSet_Input_Definition"));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/Images/icons/compfile.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionSet_Input_Definition->setIcon(icon3);
         actionSet_O_utput_Definition = new QAction(MainWindow);
         actionSet_O_utput_Definition->setObjectName(QString::fromUtf8("actionSet_O_utput_Definition"));
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/Images/icons/compfile_up_arrow.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionSet_O_utput_Definition->setIcon(icon4);
+        action_Info = new QAction(MainWindow);
+        action_Info->setObjectName(QString::fromUtf8("action_Info"));
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/Images/icons/help.png"), QSize(), QIcon::Normal, QIcon::Off);
+        action_Info->setIcon(icon5);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         treeView = new QTreeView(centralwidget);
@@ -66,15 +90,21 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 21));
+        menubar->setGeometry(QRect(0, 0, 800, 20));
         menu_File = new QMenu(menubar);
         menu_File->setObjectName(QString::fromUtf8("menu_File"));
+        menu_Help = new QMenu(menubar);
+        menu_Help->setObjectName(QString::fromUtf8("menu_Help"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
+        toolBar = new QToolBar(MainWindow);
+        toolBar->setObjectName(QString::fromUtf8("toolBar"));
+        MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
 
         menubar->addAction(menu_File->menuAction());
+        menubar->addAction(menu_Help->menuAction());
         menu_File->addAction(actionSet_Input_Definition);
         menu_File->addAction(actionSet_O_utput_Definition);
         menu_File->addSeparator();
@@ -82,6 +112,11 @@ public:
         menu_File->addAction(action_Convert);
         menu_File->addSeparator();
         menu_File->addAction(action_Quit);
+        menu_Help->addAction(action_Info);
+        toolBar->addAction(actionSet_O_utput_Definition);
+        toolBar->addAction(actionSet_Input_Definition);
+        toolBar->addAction(action_Open);
+        toolBar->addAction(action_Convert);
 
         retranslateUi(MainWindow);
 
@@ -97,7 +132,10 @@ public:
         actionSet_Replacement_Table->setText(QApplication::translate("MainWindow", "Set &Replacement Table", 0, QApplication::UnicodeUTF8));
         actionSet_Input_Definition->setText(QApplication::translate("MainWindow", "Set &Input Definition", 0, QApplication::UnicodeUTF8));
         actionSet_O_utput_Definition->setText(QApplication::translate("MainWindow", "Set O&utput Definition", 0, QApplication::UnicodeUTF8));
+        action_Info->setText(QApplication::translate("MainWindow", "&Info", 0, QApplication::UnicodeUTF8));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", 0, QApplication::UnicodeUTF8));
+        menu_Help->setTitle(QApplication::translate("MainWindow", "&Help", 0, QApplication::UnicodeUTF8));
+        toolBar->setWindowTitle(QApplication::translate("MainWindow", "toolBar", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

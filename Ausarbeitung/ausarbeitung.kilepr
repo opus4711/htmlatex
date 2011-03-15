@@ -24,6 +24,22 @@ Indentation Mode=normal
 Mode=LaTeX
 ReadWrite=true
 
+[document-settings,item:fh_flensburg.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Indentation Mode=normal
+Mode=LaTeX
+ReadWrite=true
+
+[document-settings,item:inc_color-definition.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Indentation Mode=normal
+Mode=LaTeX
+ReadWrite=true
+
 [document-settings,item:inc_header.tex]
 Bookmarks=
 Encoding=UTF-8
@@ -60,10 +76,10 @@ order=-1
 
 [item:ausarbeitung.tex]
 archive=true
-column=0
+column=81
 encoding=UTF-8
 highlight=LaTeX
-line=4
+line=12
 mode=LaTeX
 open=true
 order=0
@@ -71,39 +87,39 @@ order=0
 [item:fh_flensburg.tex]
 archive=true
 column=0
-encoding=
-highlight=
-line=0
-mode=
+encoding=UTF-8
+highlight=LaTeX
+line=509
+mode=LaTeX
 open=false
-order=-1
+order=1
 
 [item:inc_color-definition.tex]
 archive=true
 column=0
-encoding=
-highlight=
-line=0
-mode=
+encoding=UTF-8
+highlight=LaTeX
+line=30
+mode=LaTeX
 open=false
 order=-1
 
 [item:inc_header.tex]
 archive=true
-column=16
+column=33
 encoding=UTF-8
 highlight=LaTeX
-line=42
+line=25
 mode=LaTeX
 open=false
 order=1
 
 [item:inc_qt-lstdefinition.tex]
 archive=true
-column=20
+column=0
 encoding=UTF-8
 highlight=LaTeX
-line=77
+line=78
 mode=LaTeX
 open=false
 order=2
@@ -119,16 +135,24 @@ open=false
 order=-1
 
 [view-settings,view=0,item:ausarbeitung.tex]
+CursorColumn=81
+CursorLine=12
+
+[view-settings,view=0,item:fh_flensburg.tex]
 CursorColumn=0
-CursorLine=4
+CursorLine=509
+
+[view-settings,view=0,item:inc_color-definition.tex]
+CursorColumn=0
+CursorLine=30
 
 [view-settings,view=0,item:inc_header.tex]
-CursorColumn=16
-CursorLine=42
+CursorColumn=33
+CursorLine=25
 
 [view-settings,view=0,item:inc_qt-lstdefinition.tex]
-CursorColumn=20
-CursorLine=77
+CursorColumn=0
+CursorLine=78
 
 [view-settings,view=0,item:quellen.bib]
 CursorColumn=28
