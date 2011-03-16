@@ -4,6 +4,7 @@
 #include "cnode.h"
 #include "ctranslationmapper.h"
 #include "cconverter.h"
+#include "constants.h"
 #include <QFile>
 #include <QString>
 #include <QTextStream>
@@ -46,9 +47,10 @@ private:
     CNode * _root;
     CTranslationMapper* _translationMapper;
     // the active node
-    CNode * _cursor;
+    static CNode * _cursor;
     QString _errormessage;
     qint32 _noOfParts;
+    QStringList replacementMarks;
 
     // the compiler assigns values for start, content and end
     enum DocumentPosition { start, content, end };
@@ -58,7 +60,21 @@ private:
     QStringList _parts;
 
     /*****METHODS*****/
-     CNode * getLeaf();
+    // retrieves the first leaf of the tree
+    CNode * getLeaf(CNode* node = _cursor);
+    // Is the node a leaf?
+    bool isLeaf(CNode * node = _cursor);
+    // returns the node's attributes
+    QMap<QString,QString> getAttributes(CNode * node = _cursor);
+    // returnt the node's content
+    QString getContent(CNode * node = _cursor);
+    // returns the node's name
+    QString getName(CNode * node = _cursor);
+    // Writes the information of the current (leaf) node into the parent, deletes
+    // the active node and sets the cursor to the next leaf.
+    bool consume(CNode * node = _cursor);
+    int match(QString content, QString pattern);
+
     // QBool isLeaf(CNode * node = _cursor)
     // consume
     // // QMap<QString, QString> getAttributes()

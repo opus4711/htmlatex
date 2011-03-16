@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed 16. Mar 13:30:46 2011
+** Created: Wed 16. Mar 15:42:59 2011
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -40,8 +40,9 @@ public:
     QWidget *centralwidget;
     QTreeView *treeView;
     QMenuBar *menubar;
-    QMenu *menu_File;
     QMenu *menu_Help;
+    QMenu *menu_File;
+    QMenu *menu_Help1;
     QMenu *menu_Tools;
     QStatusBar *statusbar;
     QToolBar *toolBar;
@@ -97,11 +98,13 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 21));
-        menu_File = new QMenu(menubar);
-        menu_File->setObjectName(QString::fromUtf8("menu_File"));
+        menubar->setGeometry(QRect(0, 0, 800, 20));
         menu_Help = new QMenu(menubar);
         menu_Help->setObjectName(QString::fromUtf8("menu_Help"));
+        menu_File = new QMenu(menubar);
+        menu_File->setObjectName(QString::fromUtf8("menu_File"));
+        menu_Help1 = new QMenu(menubar);
+        menu_Help1->setObjectName(QString::fromUtf8("menu_Help1"));
         menu_Tools = new QMenu(menubar);
         menu_Tools->setObjectName(QString::fromUtf8("menu_Tools"));
         MainWindow->setMenuBar(menubar);
@@ -115,6 +118,7 @@ public:
         menubar->addAction(menu_File->menuAction());
         menubar->addAction(menu_Tools->menuAction());
         menubar->addAction(menu_Help->menuAction());
+        menu_Help->addAction(action_Info);
         menu_File->addAction(actionSet_Input_Definition);
         menu_File->addAction(actionSet_O_utput_Definition);
         menu_File->addSeparator();
@@ -123,7 +127,7 @@ public:
         menu_File->addSeparator();
         menu_File->addSeparator();
         menu_File->addAction(action_Quit);
-        menu_Help->addAction(action_Info);
+        menu_Help1->addAction(action_Info);
         menu_Tools->addAction(action_Settings);
         toolBar->addAction(actionSet_O_utput_Definition);
         toolBar->addAction(actionSet_Input_Definition);
@@ -146,8 +150,9 @@ public:
         actionSet_O_utput_Definition->setText(QApplication::translate("MainWindow", "Set O&utput Definition", 0, QApplication::UnicodeUTF8));
         action_Info->setText(QApplication::translate("MainWindow", "&Info", 0, QApplication::UnicodeUTF8));
         action_Settings->setText(QApplication::translate("MainWindow", "&Settings", 0, QApplication::UnicodeUTF8));
-        menu_File->setTitle(QApplication::translate("MainWindow", "&File", 0, QApplication::UnicodeUTF8));
         menu_Help->setTitle(QApplication::translate("MainWindow", "&Help", 0, QApplication::UnicodeUTF8));
+        menu_File->setTitle(QApplication::translate("MainWindow", "&File", 0, QApplication::UnicodeUTF8));
+        menu_Help1->setTitle(QApplication::translate("MainWindow", "&Help", 0, QApplication::UnicodeUTF8));
         menu_Tools->setTitle(QApplication::translate("MainWindow", "&Tools", 0, QApplication::UnicodeUTF8));
         toolBar->setWindowTitle(QApplication::translate("MainWindow", "toolBar", 0, QApplication::UnicodeUTF8));
     } // retranslateUi

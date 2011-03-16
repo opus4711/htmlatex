@@ -5,9 +5,17 @@ CConverter::CConverter(QObject *parent, CTranslationMapper* translationmapper)
 {
     _root = 0;
     _translationMapper = translationmapper;
-    _cursor = 0;
+    replacementMarks << "----CONTENT----" << "----TEXT----";
+
+    /* test match()
+    QString cont = "0123Justus456789";
+    QString pattern = "Justus";
+    int i = match(cont, pattern);
+    std::cerr << "Converter: i: " << QString::number(i).toStdString() << "\n";
+    end test */
 };
-void CConverter::convert(const QString filepath, CNode* root)
+CNode* CConverter::_cursor = 0;
+void CConverter::convert(const QString filepath, CNode* tree)
 {
     /*
     _file.setFileName(filepath);
@@ -23,24 +31,69 @@ void CConverter::convert(const QString filepath, CNode* root)
     _stream.setCodec("UTF-8");
     // converting...
     */
-    CNode * CConverter::getLeaf()
-     {
-        CNode * result = _cursor;
-         while (result->firstChild()!=0)
-             result = result->firstChild();
-     }
-
-    // QBool isLeaf(CNode * node = _cursor)
     // consume
-    // // QMap<QString, QString> getAttributes()
-    // // QString getContent()
-    // // QString getName()
-    if()
-    QString convertedtext("");
+    if (!tree)
+    {
+        std::cerr << "error - CConverter.convert() : tree == 0" << std::endl;
+        return;
+    }
+    _cursor = getLeaf(tree);
+    int i = 0;
+    while (consume())
+    {
+        if (DEBUG)
+        {
+            i++;
+            std::cerr << "CConverter.convert() - while():\n\ti: " << QString::number(i).toStdString() << std::endl;
+        }
+    }
+
+    QString convertedtext(tree->content());
     for (int i = 0; i < _parts.count(); i++)
         convertedtext += _parts.at(i);
     convertedtext = "jede menge text ü ä ß";
     emit updateTextEdit(convertedtext);
+};
+CNode * CConverter::getLeaf(CNode* node)
+{
+    CNode * result = node;
+    while (result->firstChild() != 0)
+        result = result->firstChild();
+    return result;
+};
+bool CConverter::isLeaf(CNode * node)
+{
+    return (node->count() == 0);
+};
+QMap<QString,QString> CConverter::getAttributes(CNode * node)
+{
+    return node->attributes();
+};
+QString CConverter::getContent(CNode * node)
+{
+    return node->content();
+};
+QString getName(CNode * node)
+{
+    return node->name();
+};
+bool CConverter::consume(CNode * node)
+{
+    CNode *parent = node->parent();
+    if (!parent)
+        return false;
+    QString parentcontent = parent->content();
+    for (int i = 0; i < replacementMarks.count(); i++)
+    {
+        int index = match(parentcontent, replacementMarks.at(i));
+        if (replacementMarks.at(i) == "----CONTENT----")
+            parentcontent.insert(index, node->content());
+        else if (replacementMarks.at(i) == "----TEXT----")
+            parentcontent.insert(index, node->content());;
+    }
+    parent->removeChild(node);
+    _cursor = getLeaf(parent);
+    return true;
 };
 CNode * CConverter::_getNextSibling()
 {
@@ -61,8 +114,6 @@ CNode * CConverter::_getNextChild()
 };
 CNode * CConverter::_getNextNode()
 {
-    if(_cursor->parent() == 0)
-        _cursor
    // if cursor has sibling return _getNextSibling
    // elseif cursor has children return _getNextChild
     //else
@@ -94,9 +145,6 @@ QBool CConverter::_isEmptyContent()
 void CConverter::removeToken()
 {
 };
-void CConverter::_consume()
-{
-};
 void CConverter::_write(QString content, qint32 part)
 {
 };
@@ -107,4 +155,8 @@ qint64 CConverter::_tryMatch(QString pattern)
 };
 void CConverter::_replace(QString from, QString to)
 {
+};
+int CConverter::match(QString content, QString pattern)
+{
+    return content.indexOf(pattern, Qt::CaseSensitive);
 };
