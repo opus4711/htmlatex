@@ -13,10 +13,10 @@ CODECFORTR = UTF-8
 
 # CODECFORTR = ISO-8859-1
 CONFIG += console
-unix {
-UI_DIR = .ui
-MOC_DIR = .moc
-OBJECTS_DIR = .obj
+unix { 
+    UI_DIR = .ui
+    MOC_DIR = .moc
+    OBJECTS_DIR = .obj
 }
 SOURCES += main.cpp \
     cnode.cpp \
@@ -29,7 +29,8 @@ SOURCES += main.cpp \
     ctranslationmapper.cpp \
     ctranslationdata.cpp \
     ctranslationdatanode.cpp \
-    cconverter.cpp
+    cconverter.cpp \
+    settingsdialog.cpp
 HEADERS += cdocumentreader.h \
     cnode.h \
     mainwindow.h \
@@ -42,8 +43,10 @@ HEADERS += cdocumentreader.h \
     ctranslationdata.h \
     ctranslationdatanode.h \
     constants.h \
-    cconverter.h
-FORMS += mainwindow.ui
+    cconverter.h \
+    settingsdialog.h
+FORMS += mainwindow.ui \
+    settingsdialog.ui
 OTHER_FILES += README \
     html_examples/startseite.html \
     html_examples/kapitel_2.html \

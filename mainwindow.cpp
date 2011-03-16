@@ -10,6 +10,7 @@ MainWindow::MainWindow(QStringList arguments, QStringList options, QWidget* pare
     ui->actionSet_O_utput_Definition->setText(tr("Set O&utput Definition"));
     ui->action_Open->setText(tr("&Open"));
     ui->action_Convert->setText(tr("&Convert"));
+    ui->action_Settings->setText(tr("&Settings"));
     ui->action_Quit->setText(tr("&Quit"));
     connect(ui->actionSet_Input_Definition, SIGNAL(triggered()),
             this, SLOT(setInputDefinition()));
@@ -23,6 +24,8 @@ MainWindow::MainWindow(QStringList arguments, QStringList options, QWidget* pare
             this, SLOT(open()));
     connect(ui->action_Info, SIGNAL(triggered()),
             this, SLOT(about()));
+    connect(ui->action_Settings, SIGNAL(triggered()),
+            this, SLOT(showSettings()));
     model = new CModel(this);
     ui->treeView->setModel(model);
     itemDelegate = new CItemDelegate(model, this);
@@ -47,6 +50,7 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete translationMapper;
+    delete converter;
 };
 void MainWindow::changeEvent(QEvent *e)
 {
@@ -267,4 +271,11 @@ void MainWindow::about()
     QMessageBox::about(this, tr("About htmLaTeX"),
                        tr("htmLaTeX 0.1\nA converter for JavaDoc-generated HTML to LaTeX"
                           "(c) 2011 Björn (Kaiser|Baß)"));
-}
+};
+void MainWindow::showSettings()
+{
+    SettingsDialog dialog;
+    if (dialog.exec() == SettingsDialog::Accepted)
+    {
+    }
+};

@@ -57,7 +57,7 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <value key="QtVersionId" type="int">0</value>
-   <value key="ToolChain" type="int">0</value>
+   <value key="ToolChain" type="int">2</value>
    <value key="addQDumper" type=""></value>
    <value key="buildConfiguration" type="int">2</value>
   </valuemap>
@@ -67,7 +67,7 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Release</value>
    <value key="QtVersionId" type="int">0</value>
-   <value key="ToolChain" type="int">0</value>
+   <value key="ToolChain" type="int">2</value>
    <value key="addQDumper" type=""></value>
    <value key="buildConfiguration" type="int">0</value>
   </valuemap>
@@ -77,102 +77,54 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">COLORTERM=1</value>
-    <value type="QString">CPU=i686</value>
-    <value type="QString">CSHEDIT=emacs</value>
-    <value type="QString">CVS_RSH=ssh</value>
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-2pt24eBhi2,guid=959bffe4c019af73194beb1300000043</value>
-    <value type="QString">DESKTOP_SESSION=kde4</value>
-    <value type="QString">DISPLAY=:0.0</value>
-    <value type="QString">DM_CONTROL=/var/run/xdmctl</value>
-    <value type="QString">ENV=/etc/bash.bashrc</value>
-    <value type="QString">FROM_HEADER=</value>
-    <value type="QString">GPG_AGENT_INFO=/tmp/gpg-gyd6At/S.gpg-agent:2568:1</value>
-    <value type="QString">GS_LIB=/home/bjoern/.fonts</value>
-    <value type="QString">GTK2_RC_FILES=/etc/gtk-2.0/gtkrc:/home/bjoern/.gtkrc-2.0-kde4:/home/bjoern/.gtkrc-2.0-qtengine:/home/bjoern/.gtkrc-2.0:/home/bjoern/.kde4/share/config/gtkrc-2.0</value>
-    <value type="QString">GTK_IM_MODULE=cedilla</value>
-    <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/home/bjoern/.gtkrc::/home/bjoern/.kde4/share/config/gtkrc</value>
-    <value type="QString">G_BROKEN_FILENAMES=1</value>
-    <value type="QString">G_FILENAME_ENCODING=@locale,UTF-8,ISO-8859-15,CP1252</value>
-    <value type="QString">HISTSIZE=1000</value>
-    <value type="QString">HOME=/home/bjoern</value>
-    <value type="QString">HOST=lotos</value>
-    <value type="QString">HOSTNAME=lotos</value>
-    <value type="QString">HOSTTYPE=i386</value>
-    <value type="QString">INPUTRC=/home/bjoern/.inputrc</value>
-    <value type="QString">JAVA_BINDIR=/usr/lib/jvm/java/bin</value>
-    <value type="QString">JAVA_HOME=/usr/lib/jvm/java</value>
-    <value type="QString">JAVA_ROOT=/usr/lib/jvm/java</value>
-    <value type="QString">JDK_HOME=/usr/lib/jvm/java</value>
-    <value type="QString">JRE_HOME=/usr/lib/jvm/jre</value>
-    <value type="QString">KDE_FULL_SESSION=true</value>
-    <value type="QString">KDE_MULTIHEAD=false</value>
-    <value type="QString">KDE_NO_IPV6=1</value>
-    <value type="QString">KDE_SESSION_UID=1000</value>
-    <value type="QString">KDE_SESSION_VERSION=4</value>
-    <value type="QString">LANG=de_DE.UTF-8</value>
-    <value type="QString">LD_LIBRARY_PATH=/usr/lib/qtcreator:/usr/lib/mpi/gcc/openmpi/lib</value>
-    <value type="QString">LESS=-M -I -R</value>
-    <value type="QString">LESSCLOSE=lessclose.sh %s %s</value>
-    <value type="QString">LESSKEY=/etc/lesskey.bin</value>
-    <value type="QString">LESSOPEN=lessopen.sh %s</value>
-    <value type="QString">LESS_ADVANCED_PREPROCESSOR=no</value>
-    <value type="QString">LOGNAME=bjoern</value>
-    <value type="QString">LS_COLORS=rs=0:di=01;34:ln=01;36:hl=44;37:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.ogv=01\:35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:</value>
-    <value type="QString">LS_OPTIONS=--color=auto</value>
-    <value type="QString">MACHTYPE=i686-suse-linux</value>
-    <value type="QString">MAIL=/var/spool/mail/bjoern</value>
-    <value type="QString">MANPATH=/usr/lib/mpi/gcc/openmpi/share/man:/usr/local/man:/usr/share/man</value>
-    <value type="QString">MINICOM=-c on</value>
-    <value type="QString">MORE=-sl</value>
-    <value type="QString">NNTPSERVER=news</value>
-    <value type="QString">OSTYPE=linux</value>
-    <value type="QString">PAGER=less</value>
-    <value type="QString">PATH=/usr/bin:/usr/lib/mpi/gcc/openmpi/bin:/home/bjoern/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/opt/kde3/bin:/home/bjoern/projekt/htmlatex:/home/bjoern/bin:/usr/local/texlive/2010/bin/i386-linux</value>
-    <value type="QString">PROFILEREAD=true</value>
-    <value type="QString">PWD=/home/bjoern/Dokumente</value>
-    <value type="QString">PYTHONSTARTUP=/etc/pythonstart</value>
-    <value type="QString">QTDIR=/usr/share/qt4/</value>
-    <value type="QString">QT_IM_MODULE=xim</value>
-    <value type="QString">QT_IM_SWITCHER=imsw-multi</value>
-    <value type="QString">QT_PLUGIN_PATH=/home/bjoern/.kde4/lib/kde4/plugins/:/usr/lib/kde4/plugins/</value>
-    <value type="QString">QT_SYSTEM_DIR=/usr/share/desktop-data</value>
-    <value type="QString">SDK_HOME=/usr/lib/jvm/java</value>
-    <value type="QString">SESSION_MANAGER=local/lotos:@/tmp/.ICE-unix/3105,unix/lotos:/tmp/.ICE-unix/3105</value>
-    <value type="QString">SHELL=/bin/bash</value>
-    <value type="QString">SHLVL=1</value>
-    <value type="QString">SSH_AGENT_PID=2571</value>
-    <value type="QString">SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/ssh-XpOUf2490/agent.2490</value>
-    <value type="QString">TERM=xterm</value>
-    <value type="QString">TMPDIR=/tmp</value>
-    <value type="QString">USER=bjoern</value>
-    <value type="QString">USE_FAM=</value>
-    <value type="QString">WINDOWMANAGER=/usr/bin/startkde</value>
-    <value type="QString">WINDOWPATH=7</value>
-    <value type="QString">XAUTHLOCALHOSTNAME=lotos</value>
-    <value type="QString">XCURSOR_THEME=Oxygen_White</value>
-    <value type="QString">XDG_CONFIG_DIRS=/etc/xdg</value>
-    <value type="QString">XDG_DATA_DIRS=/usr/share:/etc/opt/kde3/share:/opt/kde3/share</value>
-    <value type="QString">XDG_SESSION_COOKIE=d896c8c1c9ac56e72642577c00000427-1300205325.723957-176898244</value>
-    <value type="QString">XDM_MANAGED=method=classic,auto</value>
-    <value type="QString">XKEYSYMDB=/usr/share/X11/XKeysymDB</value>
-    <value type="QString">XMODIFIERS=@im=local</value>
-    <value type="QString">XNLSPATH=/usr/share/X11/nls</value>
-    <value type="QString">XSESSION_IS_UP=yes</value>
-    <value type="QString">mc=() {  . /usr/share/mc/bin/mc-wrapper.sh
-}</value>
+    <value type="QString">ALLUSERSPROFILE=C:\ProgramData</value>
+    <value type="QString">APPDATA=C:\Users\Caesar\AppData\Roaming</value>
+    <value type="QString">COMMONPROGRAMFILES=C:\Program Files (x86)\Common Files</value>
+    <value type="QString">COMMONPROGRAMFILES(X86)=C:\Program Files (x86)\Common Files</value>
+    <value type="QString">COMMONPROGRAMW6432=C:\Program Files\Common Files</value>
+    <value type="QString">COMPUTERNAME=KNECHT</value>
+    <value type="QString">COMSPEC=C:\Windows\system32\cmd.exe</value>
+    <value type="QString">FP_NO_HOST_CHECK=NO</value>
+    <value type="QString">HOMEDRIVE=C:</value>
+    <value type="QString">HOMEPATH=\Users\Caesar</value>
+    <value type="QString">LOCALAPPDATA=C:\Users\Caesar\AppData\Local</value>
+    <value type="QString">LOGONSERVER=\\KNECHT</value>
+    <value type="QString">NUMBER_OF_PROCESSORS=2</value>
+    <value type="QString">OS=Windows_NT</value>
+    <value type="QString">PATH=C:\Qt\2010.02.1\mingw\bin;C:\Qt\2010.02.1\qt\bin;C:\Program Files (x86)\PC Connectivity Solution\;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\GNU\GnuPG\pub\;C:\Qt\4.6.2\mingw\bin\;C:\Qt\4.6.2\qt\bin;C:\Program Files\Java;</value>
+    <value type="QString">PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC</value>
+    <value type="QString">PROCESSOR_ARCHITECTURE=x86</value>
+    <value type="QString">PROCESSOR_ARCHITEW6432=AMD64</value>
+    <value type="QString">PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 23 Stepping 6, GenuineIntel</value>
+    <value type="QString">PROCESSOR_LEVEL=6</value>
+    <value type="QString">PROCESSOR_REVISION=1706</value>
+    <value type="QString">PROGRAMDATA=C:\ProgramData</value>
+    <value type="QString">PROGRAMFILES=C:\Program Files (x86)</value>
+    <value type="QString">PROGRAMFILES(X86)=C:\Program Files (x86)</value>
+    <value type="QString">PROGRAMW6432=C:\Program Files</value>
+    <value type="QString">PSMODULEPATH=C:\Windows\system32\WindowsPowerShell\v1.0\Modules\</value>
+    <value type="QString">PUBLIC=C:\Users\Public</value>
+    <value type="QString">QTDIR=C:/Qt/2010.02.1/qt</value>
+    <value type="QString">SESSIONNAME=Console</value>
+    <value type="QString">SYSTEMDRIVE=C:</value>
+    <value type="QString">SYSTEMROOT=C:\Windows</value>
+    <value type="QString">TEMP=C:\Users\Caesar\AppData\Local\Temp</value>
+    <value type="QString">TMP=C:\Users\Caesar\AppData\Local\Temp</value>
+    <value type="QString">USERDOMAIN=Knecht</value>
+    <value type="QString">USERNAME=Caesar</value>
+    <value type="QString">USERPROFILE=C:\Users\Caesar</value>
+    <value type="QString">VS100COMNTOOLS=C:\Programme (x86)\Microsoft Visual Studio 10.0\Common7\Tools\</value>
+    <value type="QString">WINDIR=C:\Windows</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList">
-    <value type="QString">/home/bjoern/projekt/htmlatex/htmlatex.pro</value>
+    <value type="QString">E:/Projekt/opus4711-htmlatex/htmlatex.pro</value>
     <value type="QString">-spec</value>
-    <value type="QString">linux-g++</value>
+    <value type="QString">win32-g++</value>
     <value type="QString">-r</value>
-    <value type="QString">CONFIG+=debug</value>
    </valuelist>
-   <value key="abstractProcess.command" type="QString">/usr/bin/qmake</value>
-   <value key="abstractProcess.enabled" type="bool">false</value>
-   <value key="abstractProcess.workingDirectory" type="QString">/home/bjoern/projekt/htmlatex</value>
+   <value key="abstractProcess.command" type="QString">c:/qt/2010.02.1/qt/bin/qmake.exe</value>
+   <value key="abstractProcess.enabled" type="bool">true</value>
+   <value key="abstractProcess.workingDirectory" type="QString">E:/Projekt/opus4711-htmlatex</value>
   </valuemap>
  </data>
  <data>
@@ -180,99 +132,52 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">COLORTERM=1</value>
-    <value type="QString">CPU=i686</value>
-    <value type="QString">CSHEDIT=emacs</value>
-    <value type="QString">CVS_RSH=ssh</value>
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-2pt24eBhi2,guid=959bffe4c019af73194beb1300000043</value>
-    <value type="QString">DESKTOP_SESSION=kde4</value>
-    <value type="QString">DISPLAY=:0.0</value>
-    <value type="QString">DM_CONTROL=/var/run/xdmctl</value>
-    <value type="QString">ENV=/etc/bash.bashrc</value>
-    <value type="QString">FROM_HEADER=</value>
-    <value type="QString">GPG_AGENT_INFO=/tmp/gpg-gyd6At/S.gpg-agent:2568:1</value>
-    <value type="QString">GS_LIB=/home/bjoern/.fonts</value>
-    <value type="QString">GTK2_RC_FILES=/etc/gtk-2.0/gtkrc:/home/bjoern/.gtkrc-2.0-kde4:/home/bjoern/.gtkrc-2.0-qtengine:/home/bjoern/.gtkrc-2.0:/home/bjoern/.kde4/share/config/gtkrc-2.0</value>
-    <value type="QString">GTK_IM_MODULE=cedilla</value>
-    <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/home/bjoern/.gtkrc::/home/bjoern/.kde4/share/config/gtkrc</value>
-    <value type="QString">G_BROKEN_FILENAMES=1</value>
-    <value type="QString">G_FILENAME_ENCODING=@locale,UTF-8,ISO-8859-15,CP1252</value>
-    <value type="QString">HISTSIZE=1000</value>
-    <value type="QString">HOME=/home/bjoern</value>
-    <value type="QString">HOST=lotos</value>
-    <value type="QString">HOSTNAME=lotos</value>
-    <value type="QString">HOSTTYPE=i386</value>
-    <value type="QString">INPUTRC=/home/bjoern/.inputrc</value>
-    <value type="QString">JAVA_BINDIR=/usr/lib/jvm/java/bin</value>
-    <value type="QString">JAVA_HOME=/usr/lib/jvm/java</value>
-    <value type="QString">JAVA_ROOT=/usr/lib/jvm/java</value>
-    <value type="QString">JDK_HOME=/usr/lib/jvm/java</value>
-    <value type="QString">JRE_HOME=/usr/lib/jvm/jre</value>
-    <value type="QString">KDE_FULL_SESSION=true</value>
-    <value type="QString">KDE_MULTIHEAD=false</value>
-    <value type="QString">KDE_NO_IPV6=1</value>
-    <value type="QString">KDE_SESSION_UID=1000</value>
-    <value type="QString">KDE_SESSION_VERSION=4</value>
-    <value type="QString">LANG=de_DE.UTF-8</value>
-    <value type="QString">LD_LIBRARY_PATH=/usr/lib/qtcreator:/usr/lib/mpi/gcc/openmpi/lib</value>
-    <value type="QString">LESS=-M -I -R</value>
-    <value type="QString">LESSCLOSE=lessclose.sh %s %s</value>
-    <value type="QString">LESSKEY=/etc/lesskey.bin</value>
-    <value type="QString">LESSOPEN=lessopen.sh %s</value>
-    <value type="QString">LESS_ADVANCED_PREPROCESSOR=no</value>
-    <value type="QString">LOGNAME=bjoern</value>
-    <value type="QString">LS_COLORS=rs=0:di=01;34:ln=01;36:hl=44;37:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.ogv=01\:35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:</value>
-    <value type="QString">LS_OPTIONS=--color=auto</value>
-    <value type="QString">MACHTYPE=i686-suse-linux</value>
-    <value type="QString">MAIL=/var/spool/mail/bjoern</value>
-    <value type="QString">MANPATH=/usr/lib/mpi/gcc/openmpi/share/man:/usr/local/man:/usr/share/man</value>
-    <value type="QString">MINICOM=-c on</value>
-    <value type="QString">MORE=-sl</value>
-    <value type="QString">NNTPSERVER=news</value>
-    <value type="QString">OSTYPE=linux</value>
-    <value type="QString">PAGER=less</value>
-    <value type="QString">PATH=/usr/bin:/usr/lib/mpi/gcc/openmpi/bin:/home/bjoern/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/opt/kde3/bin:/home/bjoern/projekt/htmlatex:/home/bjoern/bin:/usr/local/texlive/2010/bin/i386-linux</value>
-    <value type="QString">PROFILEREAD=true</value>
-    <value type="QString">PWD=/home/bjoern/Dokumente</value>
-    <value type="QString">PYTHONSTARTUP=/etc/pythonstart</value>
-    <value type="QString">QTDIR=/usr/share/qt4/</value>
-    <value type="QString">QT_IM_MODULE=xim</value>
-    <value type="QString">QT_IM_SWITCHER=imsw-multi</value>
-    <value type="QString">QT_PLUGIN_PATH=/home/bjoern/.kde4/lib/kde4/plugins/:/usr/lib/kde4/plugins/</value>
-    <value type="QString">QT_SYSTEM_DIR=/usr/share/desktop-data</value>
-    <value type="QString">SDK_HOME=/usr/lib/jvm/java</value>
-    <value type="QString">SESSION_MANAGER=local/lotos:@/tmp/.ICE-unix/3105,unix/lotos:/tmp/.ICE-unix/3105</value>
-    <value type="QString">SHELL=/bin/bash</value>
-    <value type="QString">SHLVL=1</value>
-    <value type="QString">SSH_AGENT_PID=2571</value>
-    <value type="QString">SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/ssh-XpOUf2490/agent.2490</value>
-    <value type="QString">TERM=xterm</value>
-    <value type="QString">TMPDIR=/tmp</value>
-    <value type="QString">USER=bjoern</value>
-    <value type="QString">USE_FAM=</value>
-    <value type="QString">WINDOWMANAGER=/usr/bin/startkde</value>
-    <value type="QString">WINDOWPATH=7</value>
-    <value type="QString">XAUTHLOCALHOSTNAME=lotos</value>
-    <value type="QString">XCURSOR_THEME=Oxygen_White</value>
-    <value type="QString">XDG_CONFIG_DIRS=/etc/xdg</value>
-    <value type="QString">XDG_DATA_DIRS=/usr/share:/etc/opt/kde3/share:/opt/kde3/share</value>
-    <value type="QString">XDG_SESSION_COOKIE=d896c8c1c9ac56e72642577c00000427-1300205325.723957-176898244</value>
-    <value type="QString">XDM_MANAGED=method=classic,auto</value>
-    <value type="QString">XKEYSYMDB=/usr/share/X11/XKeysymDB</value>
-    <value type="QString">XMODIFIERS=@im=local</value>
-    <value type="QString">XNLSPATH=/usr/share/X11/nls</value>
-    <value type="QString">XSESSION_IS_UP=yes</value>
-    <value type="QString">mc=() {  . /usr/share/mc/bin/mc-wrapper.sh
-}</value>
+    <value type="QString">ALLUSERSPROFILE=C:\ProgramData</value>
+    <value type="QString">APPDATA=C:\Users\Caesar\AppData\Roaming</value>
+    <value type="QString">COMMONPROGRAMFILES=C:\Program Files (x86)\Common Files</value>
+    <value type="QString">COMMONPROGRAMFILES(X86)=C:\Program Files (x86)\Common Files</value>
+    <value type="QString">COMMONPROGRAMW6432=C:\Program Files\Common Files</value>
+    <value type="QString">COMPUTERNAME=KNECHT</value>
+    <value type="QString">COMSPEC=C:\Windows\system32\cmd.exe</value>
+    <value type="QString">FP_NO_HOST_CHECK=NO</value>
+    <value type="QString">HOMEDRIVE=C:</value>
+    <value type="QString">HOMEPATH=\Users\Caesar</value>
+    <value type="QString">LOCALAPPDATA=C:\Users\Caesar\AppData\Local</value>
+    <value type="QString">LOGONSERVER=\\KNECHT</value>
+    <value type="QString">NUMBER_OF_PROCESSORS=2</value>
+    <value type="QString">OS=Windows_NT</value>
+    <value type="QString">PATH=C:\Qt\2010.02.1\mingw\bin;C:\Qt\2010.02.1\qt\bin;C:\Program Files (x86)\PC Connectivity Solution\;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\GNU\GnuPG\pub\;C:\Qt\4.6.2\mingw\bin\;C:\Qt\4.6.2\qt\bin;C:\Program Files\Java;</value>
+    <value type="QString">PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC</value>
+    <value type="QString">PROCESSOR_ARCHITECTURE=x86</value>
+    <value type="QString">PROCESSOR_ARCHITEW6432=AMD64</value>
+    <value type="QString">PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 23 Stepping 6, GenuineIntel</value>
+    <value type="QString">PROCESSOR_LEVEL=6</value>
+    <value type="QString">PROCESSOR_REVISION=1706</value>
+    <value type="QString">PROGRAMDATA=C:\ProgramData</value>
+    <value type="QString">PROGRAMFILES=C:\Program Files (x86)</value>
+    <value type="QString">PROGRAMFILES(X86)=C:\Program Files (x86)</value>
+    <value type="QString">PROGRAMW6432=C:\Program Files</value>
+    <value type="QString">PSMODULEPATH=C:\Windows\system32\WindowsPowerShell\v1.0\Modules\</value>
+    <value type="QString">PUBLIC=C:\Users\Public</value>
+    <value type="QString">QTDIR=C:/Qt/2010.02.1/qt</value>
+    <value type="QString">SESSIONNAME=Console</value>
+    <value type="QString">SYSTEMDRIVE=C:</value>
+    <value type="QString">SYSTEMROOT=C:\Windows</value>
+    <value type="QString">TEMP=C:\Users\Caesar\AppData\Local\Temp</value>
+    <value type="QString">TMP=C:\Users\Caesar\AppData\Local\Temp</value>
+    <value type="QString">USERDOMAIN=Knecht</value>
+    <value type="QString">USERNAME=Caesar</value>
+    <value type="QString">USERPROFILE=C:\Users\Caesar</value>
+    <value type="QString">VS100COMNTOOLS=C:\Programme (x86)\Microsoft Visual Studio 10.0\Common7\Tools\</value>
+    <value type="QString">WINDIR=C:\Windows</value>
    </valuelist>
    <value key="abstractProcess.IgnoreReturnValue" type="bool">false</value>
    <valuelist key="abstractProcess.arguments" type="QVariantList">
     <value type="QString">-w</value>
    </valuelist>
-   <value key="abstractProcess.command" type="QString">/usr/bin/make</value>
+   <value key="abstractProcess.command" type="QString">C:/Qt/2010.02.1/mingw/bin/mingw32-make.exe</value>
    <value key="abstractProcess.enabled" type="bool">true</value>
-   <value key="abstractProcess.workingDirectory" type="QString">/home/bjoern/projekt/htmlatex</value>
+   <value key="abstractProcess.workingDirectory" type="QString">E:/Projekt/opus4711-htmlatex</value>
   </valuemap>
  </data>
  <data>
@@ -280,101 +185,53 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">COLORTERM=1</value>
-    <value type="QString">CPU=i686</value>
-    <value type="QString">CSHEDIT=emacs</value>
-    <value type="QString">CVS_RSH=ssh</value>
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-pQyEVJMfRt,guid=08fbe2264f072733b226cd070000003e</value>
-    <value type="QString">DESKTOP_SESSION=kde4</value>
-    <value type="QString">DISPLAY=:0.0</value>
-    <value type="QString">DM_CONTROL=/var/run/xdmctl</value>
-    <value type="QString">ENV=/etc/bash.bashrc</value>
-    <value type="QString">FROM_HEADER=</value>
-    <value type="QString">GPG_AGENT_INFO=/tmp/gpg-Nn88t9/S.gpg-agent:2565:1</value>
-    <value type="QString">GS_LIB=/home/bjoern/.fonts</value>
-    <value type="QString">GTK2_RC_FILES=/etc/gtk-2.0/gtkrc:/home/bjoern/.gtkrc-2.0-kde4:/home/bjoern/.gtkrc-2.0-qtengine:/home/bjoern/.gtkrc-2.0:/home/bjoern/.kde4/share/config/gtkrc-2.0</value>
-    <value type="QString">GTK_IM_MODULE=cedilla</value>
-    <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/home/bjoern/.gtkrc::/home/bjoern/.kde4/share/config/gtkrc</value>
-    <value type="QString">G_BROKEN_FILENAMES=1</value>
-    <value type="QString">G_FILENAME_ENCODING=@locale,UTF-8,ISO-8859-15,CP1252</value>
-    <value type="QString">HISTSIZE=1000</value>
-    <value type="QString">HOME=/home/bjoern</value>
-    <value type="QString">HOST=lotos</value>
-    <value type="QString">HOSTNAME=lotos</value>
-    <value type="QString">HOSTTYPE=i386</value>
-    <value type="QString">INPUTRC=/home/bjoern/.inputrc</value>
-    <value type="QString">JAVA_BINDIR=/usr/lib/jvm/java/bin</value>
-    <value type="QString">JAVA_HOME=/usr/lib/jvm/java</value>
-    <value type="QString">JAVA_ROOT=/usr/lib/jvm/java</value>
-    <value type="QString">JDK_HOME=/usr/lib/jvm/java</value>
-    <value type="QString">JRE_HOME=/usr/lib/jvm/jre</value>
-    <value type="QString">KDE_FULL_SESSION=true</value>
-    <value type="QString">KDE_MULTIHEAD=false</value>
-    <value type="QString">KDE_NO_IPV6=1</value>
-    <value type="QString">KDE_SESSION_UID=1000</value>
-    <value type="QString">KDE_SESSION_VERSION=4</value>
-    <value type="QString">LANG=de_DE.UTF-8</value>
-    <value type="QString">LANGUAGE=</value>
-    <value type="QString">LD_LIBRARY_PATH=/usr/lib/qtcreator:/usr/lib/mpi/gcc/openmpi/lib</value>
-    <value type="QString">LESS=-M -I -R</value>
-    <value type="QString">LESSCLOSE=lessclose.sh %s %s</value>
-    <value type="QString">LESSKEY=/etc/lesskey.bin</value>
-    <value type="QString">LESSOPEN=lessopen.sh %s</value>
-    <value type="QString">LESS_ADVANCED_PREPROCESSOR=no</value>
-    <value type="QString">LOGNAME=bjoern</value>
-    <value type="QString">LS_COLORS=rs=0:di=01;34:ln=01;36:hl=44;37:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.ogv=01\:35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:</value>
-    <value type="QString">LS_OPTIONS=--color=auto</value>
-    <value type="QString">MACHTYPE=i686-suse-linux</value>
-    <value type="QString">MAIL=/var/spool/mail/bjoern</value>
-    <value type="QString">MANPATH=/usr/lib/mpi/gcc/openmpi/share/man:/usr/local/man:/usr/share/man</value>
-    <value type="QString">MINICOM=-c on</value>
-    <value type="QString">MORE=-sl</value>
-    <value type="QString">NNTPSERVER=news</value>
-    <value type="QString">OSTYPE=linux</value>
-    <value type="QString">PAGER=less</value>
-    <value type="QString">PATH=/usr/bin:/usr/lib/mpi/gcc/openmpi/bin:/home/bjoern/bin:/usr/local/bin:/usr/bin:/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/opt/kde3/bin:/home/bjoern/projekt/htmlatex:/home/bjoern/bin:/usr/local/texlive/2010/bin/i386-linux</value>
-    <value type="QString">PROFILEREAD=true</value>
-    <value type="QString">PWD=/home/bjoern/Dokumente</value>
-    <value type="QString">PYTHONSTARTUP=/etc/pythonstart</value>
-    <value type="QString">QTDIR=/usr/share/qt4/</value>
-    <value type="QString">QT_IM_MODULE=xim</value>
-    <value type="QString">QT_IM_SWITCHER=imsw-multi</value>
-    <value type="QString">QT_PLUGIN_PATH=/home/bjoern/.kde4/lib/kde4/plugins/:/usr/lib/kde4/plugins/</value>
-    <value type="QString">QT_SYSTEM_DIR=/usr/share/desktop-data</value>
-    <value type="QString">SDK_HOME=/usr/lib/jvm/java</value>
-    <value type="QString">SESSION_MANAGER=local/lotos:@/tmp/.ICE-unix/2882,unix/lotos:/tmp/.ICE-unix/2882</value>
-    <value type="QString">SHELL=/bin/bash</value>
-    <value type="QString">SHLVL=1</value>
-    <value type="QString">SSH_AGENT_PID=2566</value>
-    <value type="QString">SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/ssh-zMZuX2486/agent.2486</value>
-    <value type="QString">TERM=xterm</value>
-    <value type="QString">TMPDIR=/tmp</value>
-    <value type="QString">USER=bjoern</value>
-    <value type="QString">USE_FAM=</value>
-    <value type="QString">WINDOWMANAGER=/usr/bin/startkde</value>
-    <value type="QString">WINDOWPATH=7</value>
-    <value type="QString">XAUTHLOCALHOSTNAME=lotos</value>
-    <value type="QString">XCURSOR_THEME=Oxygen_White</value>
-    <value type="QString">XDG_CONFIG_DIRS=/etc/xdg</value>
-    <value type="QString">XDG_DATA_DIRS=/usr/share:/etc/opt/kde3/share:/opt/kde3/share</value>
-    <value type="QString">XDG_SESSION_COOKIE=d896c8c1c9ac56e72642577c00000427-1300190933.835266-2051005598</value>
-    <value type="QString">XDM_MANAGED=method=classic,auto</value>
-    <value type="QString">XKEYSYMDB=/usr/share/X11/XKeysymDB</value>
-    <value type="QString">XMODIFIERS=@im=local</value>
-    <value type="QString">XNLSPATH=/usr/share/X11/nls</value>
-    <value type="QString">XSESSION_IS_UP=yes</value>
-    <value type="QString">mc=() {  . /usr/share/mc/bin/mc-wrapper.sh
-}</value>
+    <value type="QString">ALLUSERSPROFILE=C:\ProgramData</value>
+    <value type="QString">APPDATA=C:\Users\Caesar\AppData\Roaming</value>
+    <value type="QString">COMMONPROGRAMFILES=C:\Program Files (x86)\Common Files</value>
+    <value type="QString">COMMONPROGRAMFILES(X86)=C:\Program Files (x86)\Common Files</value>
+    <value type="QString">COMMONPROGRAMW6432=C:\Program Files\Common Files</value>
+    <value type="QString">COMPUTERNAME=KNECHT</value>
+    <value type="QString">COMSPEC=C:\Windows\system32\cmd.exe</value>
+    <value type="QString">FP_NO_HOST_CHECK=NO</value>
+    <value type="QString">HOMEDRIVE=C:</value>
+    <value type="QString">HOMEPATH=\Users\Caesar</value>
+    <value type="QString">LOCALAPPDATA=C:\Users\Caesar\AppData\Local</value>
+    <value type="QString">LOGONSERVER=\\KNECHT</value>
+    <value type="QString">NUMBER_OF_PROCESSORS=2</value>
+    <value type="QString">OS=Windows_NT</value>
+    <value type="QString">PATH=C:\Qt\2010.02.1\mingw\bin;C:\Qt\2010.02.1\qt\bin;C:\Program Files (x86)\PC Connectivity Solution\;C:\Program Files\Common Files\Microsoft Shared\Windows Live;C:\Program Files (x86)\Common Files\Microsoft Shared\Windows Live;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\GNU\GnuPG\pub\;C:\Qt\4.6.2\mingw\bin\;C:\Qt\4.6.2\qt\bin;C:\Program Files\Java;</value>
+    <value type="QString">PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC</value>
+    <value type="QString">PROCESSOR_ARCHITECTURE=x86</value>
+    <value type="QString">PROCESSOR_ARCHITEW6432=AMD64</value>
+    <value type="QString">PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 23 Stepping 6, GenuineIntel</value>
+    <value type="QString">PROCESSOR_LEVEL=6</value>
+    <value type="QString">PROCESSOR_REVISION=1706</value>
+    <value type="QString">PROGRAMDATA=C:\ProgramData</value>
+    <value type="QString">PROGRAMFILES=C:\Program Files (x86)</value>
+    <value type="QString">PROGRAMFILES(X86)=C:\Program Files (x86)</value>
+    <value type="QString">PROGRAMW6432=C:\Program Files</value>
+    <value type="QString">PSMODULEPATH=C:\Windows\system32\WindowsPowerShell\v1.0\Modules\</value>
+    <value type="QString">PUBLIC=C:\Users\Public</value>
+    <value type="QString">QTDIR=C:/Qt/2010.02.1/qt</value>
+    <value type="QString">SESSIONNAME=Console</value>
+    <value type="QString">SYSTEMDRIVE=C:</value>
+    <value type="QString">SYSTEMROOT=C:\Windows</value>
+    <value type="QString">TEMP=C:\Users\Caesar\AppData\Local\Temp</value>
+    <value type="QString">TMP=C:\Users\Caesar\AppData\Local\Temp</value>
+    <value type="QString">USERDOMAIN=Knecht</value>
+    <value type="QString">USERNAME=Caesar</value>
+    <value type="QString">USERPROFILE=C:\Users\Caesar</value>
+    <value type="QString">VS100COMNTOOLS=C:\Programme (x86)\Microsoft Visual Studio 10.0\Common7\Tools\</value>
+    <value type="QString">WINDIR=C:\Windows</value>
    </valuelist>
    <value key="abstractProcess.IgnoreReturnValue" type="bool">true</value>
    <valuelist key="abstractProcess.arguments" type="QVariantList">
     <value type="QString">clean</value>
     <value type="QString">-w</value>
    </valuelist>
-   <value key="abstractProcess.command" type="QString">/usr/bin/make</value>
+   <value key="abstractProcess.command" type="QString">C:/Qt/2010.02.1/mingw/bin/mingw32-make.exe</value>
    <value key="abstractProcess.enabled" type="bool">true</value>
-   <value key="abstractProcess.workingDirectory" type="QString">/home/bjoern/projekt/htmlatex</value>
+   <value key="abstractProcess.workingDirectory" type="QString">E:/Projekt/opus4711-htmlatex</value>
    <value key="cleanConfig" type="bool">true</value>
    <valuelist key="makeargs" type="QVariantList">
     <value type="QString">clean</value>

@@ -7,6 +7,7 @@
 #include "citemdelegate.h"
 #include "constants.h"
 #include "cconverter.h"
+#include "settingsdialog.h"
 #include <QMainWindow>
 #include <QSplitter>
 #include <QHBoxLayout>
@@ -36,6 +37,7 @@ private slots:
     void setInputDefinition();
     void setOutputDefinition();
     void about();
+    void showSettings();
 protected:
     void changeEvent(QEvent* e);
 public:
