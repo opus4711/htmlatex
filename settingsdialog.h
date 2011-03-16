@@ -1,6 +1,7 @@
 #ifndef SETTINGSDIALOG_H
 #define SETTINGSDIALOG_H
 
+#include "settings.h"
 #include <QDialog>
 #include <QDir>
 #include <QMessageBox>
@@ -12,8 +13,6 @@ namespace Ui {
 class SettingsDialog : public QDialog
 {
     Q_OBJECT
-public:
-    enum Language { English, German };
 private:
     Ui::SettingsDialog *ui;
 private slots:

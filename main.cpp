@@ -4,6 +4,7 @@
 #include "mainwindow.h"
 #include "cconsole.h"
 #include "constants.h"
+#include "settings.h"
 #include <QString>
 #include <QTranslator>
 #include <QTextCodec>
@@ -36,12 +37,14 @@ int main(int argc, char* argv[])
         QApplication a(argc, argv);
         // Set translation environment for the application texts
         QTranslator translator;
-        if (QLocale::system().country() == QLocale::Germany)
+        Settings settings;
+        if (settings.country())
             translator.load(QString(":/Translations/htmlatex_de.qm"));
         else
             translator.load(QString(":/Translations/htmlatex_en.qm"));
         a.installTranslator(&translator);
         QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
+        std::cerr << QString::number((int)QLocale::Germany).toStdString() << "\n";
         MainWindow w(arguments, options, 0);
         w.show();
         return a.exec();

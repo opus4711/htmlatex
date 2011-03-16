@@ -10,8 +10,8 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->groupBox_latexpath->setTitle(tr("path to latex.exe"));
     ui->pushButton_apply->setText(tr("&Apply"));
     ui->pushButton_latexpath->setText(tr("&Browse"));
-    ui->comboBox_language->addItem(tr("English"), QVariant(SettingsDialog::English));
-    ui->comboBox_language->addItem(tr("German"), QVariant(SettingsDialog::German));
+    ui->comboBox_language->addItem(tr("English"), QVariant(QLocale::C));
+    ui->comboBox_language->addItem(tr("German"), QVariant(QLocale::Germany));
     connect(ui->pushButton_apply, SIGNAL(clicked()),
             this, SLOT(apply()));
 };
@@ -47,5 +47,11 @@ void SettingsDialog::apply()
             apply = false;
     }
     if (apply)
+    {
+        Settings settings;
+        int icountry = ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()).toInt();
+        settings.setCountry((QLocale::Country)icountry);
+        settings.setLatexpath(ui->lineEdit_latexpath->text());
         accept();
+    }
 };

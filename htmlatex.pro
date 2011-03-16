@@ -30,7 +30,8 @@ SOURCES += main.cpp \
     ctranslationdata.cpp \
     ctranslationdatanode.cpp \
     cconverter.cpp \
-    settingsdialog.cpp
+    settingsdialog.cpp \
+    settings.cpp
 HEADERS += cdocumentreader.h \
     cnode.h \
     mainwindow.h \
@@ -44,7 +45,8 @@ HEADERS += cdocumentreader.h \
     ctranslationdatanode.h \
     constants.h \
     cconverter.h \
-    settingsdialog.h
+    settingsdialog.h \
+    settings.h
 FORMS += mainwindow.ui \
     settingsdialog.ui
 OTHER_FILES += README \
