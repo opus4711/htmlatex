@@ -34,9 +34,15 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="action_Info"/>
+   </widget>
    <widget class="QMenu" name="menu_File">
     <property name="title">
      <string>&amp;File</string>
@@ -50,12 +56,6 @@
     <addaction name="action_Settings"/>
     <addaction name="separator"/>
     <addaction name="action_Quit"/>
-   </widget>
-   <widget class="QMenu" name="menu_Help">
-    <property name="title">
-     <string>&amp;Help</string>
-    </property>
-    <addaction name="action_Info"/>
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Help"/>
@@ -138,7 +138,7 @@
   <action name="action_Settings">
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/Images/icons/misc.png</normaloff>:/Images/icons/misc.png</iconset>
+     <normaloff>:/Images/icons/configure.png</normaloff>:/Images/icons/configure.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Settings</string>

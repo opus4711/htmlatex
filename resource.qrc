@@ -193,9 +193,34 @@
         <file>icons/window_new.png</file>
         <file>icons/window_nofullscreen.png</file>
         <file>icons/wizard.png</file>
-        <file>cdocumentdata.cpp</file>
         <file>icons/compfile.png</file>
+        <file>icons/ascii.png</file>
+        <file>icons/binary.png</file>
         <file>icons/compfile_up_arrow.png</file>
+        <file>icons/document.png</file>
+        <file>icons/flag_cz.png</file>
+        <file>icons/flag_de.png</file>
+        <file>icons/flag_en.png</file>
+        <file>icons/flag_es.png</file>
+        <file>icons/flag_fr.png</file>
+        <file>icons/flag_hu.png</file>
+        <file>icons/flag_it.png</file>
+        <file>icons/folder_green.png</file>
+        <file>icons/folder_green_open.png</file>
+        <file>icons/folder_grey.png</file>
+        <file>icons/folder_grey_open.png</file>
+        <file>icons/folder_red.png</file>
+        <file>icons/folder_red_open.png</file>
+        <file>icons/folder_tar.png</file>
+        <file>icons/folder_txt.png</file>
+        <file>icons/folder_violet.png</file>
+        <file>icons/folder_yellow.png</file>
+        <file>icons/package_settings_components.png</file>
+        <file>icons/readme.png</file>
+        <file>icons/source.png</file>
+        <file>icons/template_source.png</file>
+        <file>icons/tex.png</file>
+        <file>icons/wordprocessing.png</file>
     </qresource>
     <qresource prefix="/Translations">
         <file>htmlatex_de.qm</file>
