@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
         // Set translation environment for the application texts
         QTranslator translator;
         Settings settings;
-        if (settings.country())
+        if (settings.country() == QLocale::Germany)
             translator.load(QString(":/Translations/htmlatex_de.qm"));
         else
             translator.load(QString(":/Translations/htmlatex_en.qm"));

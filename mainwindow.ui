@@ -47,7 +47,6 @@
     <addaction name="action_Open"/>
     <addaction name="action_Convert"/>
     <addaction name="separator"/>
-    <addaction name="action_Settings"/>
     <addaction name="separator"/>
     <addaction name="action_Quit"/>
    </widget>
@@ -57,7 +56,14 @@
     </property>
     <addaction name="action_Info"/>
    </widget>
+   <widget class="QMenu" name="menu_Tools">
+    <property name="title">
+     <string>&amp;Tools</string>
+    </property>
+    <addaction name="action_Settings"/>
+   </widget>
    <addaction name="menu_File"/>
+   <addaction name="menu_Tools"/>
    <addaction name="menu_Help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -138,7 +144,7 @@
   <action name="action_Settings">
    <property name="icon">
     <iconset resource="resource.qrc">
-     <normaloff>:/Images/icons/misc.png</normaloff>:/Images/icons/misc.png</iconset>
+     <normaloff>:/Images/icons/configure.png</normaloff>:/Images/icons/configure.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Settings</string>

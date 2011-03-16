@@ -6,12 +6,14 @@ MainWindow::MainWindow(QStringList arguments, QStringList options, QWidget* pare
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    /*
     ui->actionSet_Input_Definition->setText(tr("Set &Input Definition"));
     ui->actionSet_O_utput_Definition->setText(tr("Set O&utput Definition"));
     ui->action_Open->setText(tr("&Open"));
     ui->action_Convert->setText(tr("&Convert"));
     ui->action_Settings->setText(tr("&Settings"));
     ui->action_Quit->setText(tr("&Quit"));
+    */
     connect(ui->actionSet_Input_Definition, SIGNAL(triggered()),
             this, SLOT(setInputDefinition()));
     connect(ui->actionSet_O_utput_Definition, SIGNAL(triggered()),
