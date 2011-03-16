@@ -23,6 +23,13 @@ void CConverter::convert(const QString filepath, CNode* root)
     _stream.setCodec("UTF-8");
     // converting...
     */
+    // CNode * getLeaf()
+    // QBool isLeaf(CNode * node = _cursor)
+    // consume
+    // // QMap<QString, QString> getAttributes()
+    // // QString getContent()
+    // // QString getName()
+    if()
     QString convertedtext("");
     for (int i = 0; i < _parts.count(); i++)
         convertedtext += _parts.at(i);
@@ -48,6 +55,8 @@ CNode * CConverter::_getNextChild()
 };
 CNode * CConverter::_getNextNode()
 {
+    if(_cursor->parent() == 0)
+        _cursor
    // if cursor has sibling return _getNextSibling
    // elseif cursor has children return _getNextChild
     //else

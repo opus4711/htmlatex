@@ -58,5 +58,6 @@ OTHER_FILES += README \
     html_examples/kapitel/kap01/kapitel_1.html \
     input_javadoc.xml \
     input_javadoc.xml \
-    output_tex.xml
+    output_tex.xml \
+    htmlatex_settings.xml
 RESOURCES += resource.qrc
