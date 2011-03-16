@@ -4,20 +4,21 @@
 #include <QDomDocument>
 #include <QLocale>
 #include <QFile>
+#include <QTextStream>
+#include <iostream>
 
 class Settings
 {
 private:
     const QString SETTINGSFILEPATH;
-    QString _latexpath;
-    QLocale::Country _country;
-public:
+    QDomDocument document;
     bool load();
+public:
     bool save();
-    QString latexpath() const;
-    QLocale::Country country() const;
     void setLatexpath(QString path);
     void setCountry(QLocale::Country country);
+    QString latexpath() const;
+    QLocale::Country country() const;
     // Constructor
     Settings();
 };

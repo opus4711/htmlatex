@@ -2,9 +2,8 @@
 
 Settings::Settings() : SETTINGSFILEPATH("htmlatex_settings.xml")
 {
-    _country = QLocale::system().country();
-    _latexpath = "";
-    load();
+    if (!load())
+        std::cerr << "Settings.load(): error loading settings file into domdocument" << std::endl;
 };
 bool Settings::load()
 {
@@ -14,68 +13,55 @@ bool Settings::load()
         return false;
     QString filecontent = QString(file.readAll()).toLatin1();
     file.close();
-    QDomDocument doc;
     QString errorStr = "";
     int errorLine = -1;
     int errorColumn = -1;
-    if (doc.setContent(filecontent.toLatin1(),
-                       false,
-                       &errorStr,
-                       &errorLine,
-                       &errorColumn))
-    {
-        QDomElement root = doc.documentElement();
-        // read language value
-        int icountry = root.elementsByTagName("language").at(0).firstChild().nodeValue().toInt();
-        // -1: retrieve system lanuage setting
-        if (icountry == -1)
-            _country = QLocale::system().country();
-        else
-            _country = (QLocale::Country)icountry;
-        // read latexpath
-        _latexpath = root.elementsByTagName("latexpath").at(0).firstChild().nodeValue();
-    }
-    return true;
+    return document.setContent(filecontent.toLatin1(),
+                          false,
+                          &errorStr,
+                          &errorLine,
+                          &errorColumn);
 };
 bool Settings::save()
 {
     // save settings to file
     QFile file(SETTINGSFILEPATH);
-    if (!file.open(QFile::ReadWrite | QFile::Text))
+    std::cerr << "Settings.save(): before file.open()" << std::endl;
+    if (!file.open(QFile::WriteOnly | QFile::Text))
         return false;
-    //QString filecontent = QString(file.readAll()).toLatin1();
-    QDomDocument doc;
-    QString errorStr = "";
-    int errorLine = -1;
-    int errorColumn = -1;
-    if (doc.setContent(&file,
-                       false,
-                       &errorStr,
-                       &errorLine,
-                       &errorColumn))
-    {
-        QDomElement root = doc.documentElement();
-        // write language value
-        root.elementsByTagName("language").at(0).firstChild().setNodeValue(QString::number((int)_country));
-        // write latexpath
-        root.elementsByTagName("latexpath").at(0).firstChild().setNodeValue(_latexpath);
-    }
+    std::cerr << "Settings.save(): after file.open()" << std::endl;
+    QTextStream stream(&file);
+    stream.setCodec("UTF-8");
+    document.save(stream, 0);
     file.close();
+    std::cerr << "Settings.save(): after document.save()" << std::endl;
     return true;
 };
 QString Settings::latexpath() const
 {
-    return this->_latexpath;
+    QDomElement root = document.documentElement();
+    return root.elementsByTagName("latexpath").at(0).firstChild().nodeValue();
 };
 QLocale::Country Settings::country() const
 {
-    return (QLocale::Country)this->_country;
+    QDomElement root = document.documentElement();
+    // read language value
+    int icountry = root.elementsByTagName("language").at(0).firstChild().nodeValue().toInt();
+    // -1: retrieve system lanuage setting
+    if (icountry == -1)
+        return QLocale::system().country();
+    else
+        return (QLocale::Country)icountry;
 };
 void Settings::setLatexpath(QString path)
 {
-    this->_latexpath = path;
+    QDomElement root = document.documentElement();
+    root.elementsByTagName("latexpath").at(0).setNodeValue(path);
+    std::cerr << "Settings.setLatexPath(): path: " << path.toStdString() << std::endl;
 };
 void Settings::setCountry(QLocale::Country country)
 {
-    this->_country = country;
+    QDomElement root = document.documentElement();
+    root.elementsByTagName("language").at(0).setNodeValue(QString::number((int)country));
+    std::cerr << "Settings.setCountry(): country: " << QString::number((int)country).toStdString() << std::endl;
 };

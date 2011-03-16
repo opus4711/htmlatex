@@ -52,6 +52,7 @@ void SettingsDialog::apply()
         int icountry = ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()).toInt();
         settings.setCountry((QLocale::Country)icountry);
         settings.setLatexpath(ui->lineEdit_latexpath->text());
+        settings.save();
         accept();
     }
 };
