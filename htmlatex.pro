@@ -10,7 +10,6 @@ TEMPLATE = app
 TRANSLATIONS = htmlatex_en.ts \
     htmlatex_de.ts
 CODECFORTR = UTF-8
-
 # CODECFORTR = ISO-8859-1
 CONFIG += console
 unix { 

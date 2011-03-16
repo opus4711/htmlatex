@@ -56,8 +56,6 @@
     <addaction name="separator"/>
     <addaction name="action_Quit"/>
    </widget>
-<<<<<<< HEAD
-=======
    <widget class="QMenu" name="menu_Help">
     <property name="title">
      <string>&amp;Help</string>
@@ -70,7 +68,6 @@
     </property>
     <addaction name="action_Settings"/>
    </widget>
->>>>>>> fa371254fa634649dc669ace6eb5422becda4072
    <addaction name="menu_File"/>
    <addaction name="menu_Tools"/>
    <addaction name="menu_Help"/>

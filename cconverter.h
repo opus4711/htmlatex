@@ -58,6 +58,13 @@ private:
     QStringList _parts;
 
     /*****METHODS*****/
+     CNode * getLeaf();
+    // QBool isLeaf(CNode * node = _cursor)
+    // consume
+    // // QMap<QString, QString> getAttributes()
+    // // QString getContent()
+    // // QString getName()
+
     // gets the next sibling
     CNode * _getNextSibling();
     // gets the next child

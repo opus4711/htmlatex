@@ -23,7 +23,13 @@ void CConverter::convert(const QString filepath, CNode* root)
     _stream.setCodec("UTF-8");
     // converting...
     */
-    // CNode * getLeaf()
+    CNode * CConverter::getLeaf()
+     {
+        CNode * result = _cursor;
+         while (result->firstChild()!=0)
+             result = result->firstChild();
+     }
+
     // QBool isLeaf(CNode * node = _cursor)
     // consume
     // // QMap<QString, QString> getAttributes()
