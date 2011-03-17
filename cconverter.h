@@ -110,8 +110,8 @@ private:
     void _write(QString content, qint32 part);
     // returns offset if <pattern> is found otherwise returns "-1"
     qint64 _tryMatch(QString pattern);
-    // replaces <from> with <to> in the content of the current node
-    void _replace (QString from, QString to);
+    // replaces place holder with the content of the current node
+    QString _replace(CNode* node = _cursor);
 };
 
 #endif // CCONVERTER_H

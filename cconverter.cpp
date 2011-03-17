@@ -43,18 +43,19 @@ void CConverter::convert(const QString filepath, CNode* tree)
     {
         if (DEBUG)
         {
-            std::cerr << "CConverter.convert() - while():\n\ti: " << i << std::endl;
+            //std::cerr << "CConverter.convert() - while():\n\ti: " << i << std::endl;
             i++;
         }
     }
+    std::cerr << "Converter.convert(): cursor.content: " << _cursor->content().toStdString() << std::endl;
+    std::cerr << "Converter.convert(): cursor.count: " << _cursor->count() << std::endl;
 
     /*
     QString convertedtext(tree->content());
     for (int i = 0; i < _parts.count(); i++)
         convertedtext += _parts.at(i);
         */
-    QString convertedtext = "jede menge text ü ä ß";
-    emit updateTextEdit(convertedtext);
+    emit updateTextEdit(_cursor->content());
 };
 CNode * CConverter::getLeaf(CNode* node)
 {
@@ -87,18 +88,25 @@ bool CConverter::consume(CNode * node)
         std::cerr << "ENDE -- Converter.consume(): node.name: " << node->name().toStdString() << std::endl;
         return false;
     }
-    std::cerr << "Converter.consume(): node.name: " << node->name().toStdString() << std::endl;
-    QString parentcontent = parent->content();
+    QString parentcontent = _replace(parent);
+    QString childcontent = _replace();
     for (int i = 0; i < replacementMarks.count(); i++)
     {
-
         int index = match(parentcontent, replacementMarks.at(i));
-        if (replacementMarks.at(i) == "----CONTENT----")
-            parentcontent.insert(index, node->content());
-        else if (replacementMarks.at(i) == "----TEXT----")
-            parentcontent.insert(index, node->content());;
-
+        std::cerr << "index: " << index << std::endl;
+        if (index > 0)
+        {
+            if (replacementMarks.at(i) == "----CONTENT----")
+                parentcontent.insert(index, childcontent);
+            else if (replacementMarks.at(i) == "----TEXT----")
+                parentcontent.insert(index, childcontent);
+            // else: eventuell fuer weitere marker
+        }
+        else
+            parentcontent.append(childcontent);
     }
+    parent->setContent(parentcontent);
+    //std::cerr << "node: " << node->name().toStdString() << " parentcontent: " << parentcontent.toStdString() << std::endl;
     parent->removeChild(node);
     _cursor = getLeaf(parent);
     return true;
@@ -161,10 +169,28 @@ qint64 CConverter::_tryMatch(QString pattern)
     // Demo-Code
     return 0;
 };
-void CConverter::_replace(QString from, QString to)
+QString CConverter::_replace(CNode* node)
 {
+    QString result("");
+    CTranslationData data = _translationMapper->outputMap()[node->name()];
+    QString to = data.to().trimmed();
+    //std::cerr << "to: " << "?"<< to.toStdString() << "?" << std::endl;
+    //std::cerr << "content: " << node->content().toStdString() << std::endl;
+    QList<CTranslationDataNode> datanodes = data.requires();
+    CTranslationDataNode datanode;
+    for (int j = 0; j < datanodes.count(); j++)
+    {
+        datanode = datanodes.at(j);
+        //datanode.name()
+    }
+    for (int i = 0; i < replacementMarks.count(); i++)
+        result = to.replace(replacementMarks.at(i), node->content());
+    std::cerr << "_replace: result: " << result.toStdString() << std::endl;
+    return result;
 };
 int CConverter::match(QString content, QString pattern)
 {
-    return content.indexOf(pattern, Qt::CaseSensitive);
+    if (!content.isEmpty())
+        return content.indexOf(pattern, 0, Qt::CaseSensitive);
+    return -1;
 };

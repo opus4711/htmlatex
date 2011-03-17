@@ -18,9 +18,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 
 <!-- html -->
 <node>
-  <key>
-   html
-  </key>
+  <key>html</key>
   <from>
     <![CDATA[<
 ----CONTENT----
@@ -71,9 +69,7 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 
 <!-- body  -->
 <node>
-  <key>
-   body
-  </key>
+  <key>body</key>
   <from>
     <![CDATA[<
 ----CONTENT----
@@ -115,11 +111,11 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 <node>
 <key>h1</key>
   <from>
-    <![CDATA[<INHALT]]>
+    <![CDATA[<----CONTENT----]]>
   </from>
   <to>
     <![CDATA[\section{
-    INHALT
+    ----CONTENT----
     }]]>
   </to>
 </node>
@@ -129,11 +125,11 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 <node>
 <key>h2</key>
   <from>
-    <![CDATA[<INHALT]]>
+    <![CDATA[<----CONTENT----]]>
   </from>
   <to>
     <![CDATA[\subsection{
-    INHALT]]>
+    ----CONTENT----]]>
     }
   </to>
 </node>
@@ -143,11 +139,11 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 <node>
 <key>h1</key>
   <from>
-    <![CDATA[<INHALT]]>
+    <![CDATA[<----CONTENT----]]>
   </from>
   <to>
     <![CDATA[\subsubsection{
-    INHALT
+    ----CONTENT----
     }]]>
   </to>
 </node>
@@ -188,12 +184,12 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 <node>
   <key>table</key>
   <from>
-    <![CDATA[INHALT]]>
+    <![CDATA[----CONTENT----]]>
   </from>
   <to>
     <![CDATA[begin{longtable}{|p{.2textwidth}|p{.8textwidth}|}
     hline
-    INHALT
+    ----CONTENT----
     end{longtable}]]>
   </to>
   <requires>
