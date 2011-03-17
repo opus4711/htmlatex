@@ -1,9 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QStringList arguments, QStringList options, QWidget* parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+MainWindow::MainWindow(QString executablefilename,
+                       QStringList arguments,
+                       QStringList options,
+                       QWidget* parent)
+                           : QMainWindow(parent),
+                           ui(new Ui::MainWindow),
+                           executableFileName(executablefilename)
 {
     ui->setupUi(this);
     /*
@@ -281,9 +285,10 @@ void MainWindow::showSettings()
     {
         if (dialog.restartRequired())
         {
-            //QProcess process(this);
-            //process.terminate();
-            //QProcess::start()
+            QProcess newprocess;
+            newprocess.start(executableFileName, QIODevice::ReadWrite);
+            QProcess currentprocess(this);
+            currentprocess.kill();
         }
     }
 };

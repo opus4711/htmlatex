@@ -15,7 +15,7 @@ bool Settings::load()
     QFile file(SETTINGSFILEPATH);
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
-        std::cerr << "Settings.save() - file can't be opened for reading" << std::endl;
+        std::cerr << "Settings.load() - file can't be opened for reading" << std::endl;
         return false;
     }
     QDataStream stream(&file);
@@ -29,7 +29,6 @@ bool Settings::load()
 bool Settings::save()
 {
     QFile file(SETTINGSFILEPATH);
-    std::cerr << "Settings.save(): before file.open()" << std::endl;
     if (!file.open(QFile::WriteOnly | QFile::Text))
     {
         std::cerr << "Settings.save() - file can't be opened for writing" << std::endl;

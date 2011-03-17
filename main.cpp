@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
         a.installTranslator(&translator);
         QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
         std::cerr << QString::number((int)QLocale::Germany).toStdString() << "\n";
-        MainWindow w(arguments, options, 0);
+        MainWindow w(QString(argv[0]), arguments, options, 0);
         w.show();
         return a.exec();
     }

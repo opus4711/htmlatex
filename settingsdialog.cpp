@@ -62,7 +62,7 @@ void SettingsDialog::apply()
         if (_initiallySelectedLanguage != ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()))
         {
             QMessageBox msg(QMessageBox::Question, tr("Restart Application"),
-                            tr("You selected another language. Loading the appropriate translations requires the application to restart.\n\nDo you want htmlatex to restart right now?"),
+                            tr("You selected another language. Loading the appropriate translations requires the application to restart.\n\nDo you want htmlatex to restart immediately?"),
                             QMessageBox::Yes|QMessageBox::No);
             if (msg.exec() == QMessageBox::Yes)
                 _restartRequired = true;
