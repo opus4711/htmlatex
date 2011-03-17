@@ -131,7 +131,9 @@ void CNode::setParent(CNode* parent)
  */
 CNode* CNode::parent()
 {
-    return this->_parent;
+    if (_parent != 0)
+        return this->_parent;
+    return 0;
 };
 /**
  * Returns the index of the specified child node.
@@ -200,18 +202,26 @@ void CNode::removeChild(CNode* node)
 };
 CNode* CNode::nextChild()
 {
-    _cursor++;
     if (_cursor < children.count())
-        return children.at(_cursor);
+    {
+        _cursor++;
+        return children.at(_cursor - 1);
+    }
     return 0;
 };
 CNode* CNode::firstChild()
 {
     _cursor = 0;
-    return children.at(_cursor);
+    if (children.count() > 0)
+        return children.at(_cursor);
+    return 0;
 };
 CNode* CNode::lastChild()
 {
-    _cursor = children.count() - 1;
-    return children.at(_cursor);
+    if (children.count())
+    {
+        _cursor = children.count() - 1;
+        return children.at(_cursor);
+    }
+    return 0;
 };

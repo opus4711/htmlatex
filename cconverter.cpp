@@ -43,15 +43,17 @@ void CConverter::convert(const QString filepath, CNode* tree)
     {
         if (DEBUG)
         {
+            std::cerr << "CConverter.convert() - while():\n\ti: " << i << std::endl;
             i++;
-            std::cerr << "CConverter.convert() - while():\n\ti: " << QString::number(i).toStdString() << std::endl;
         }
     }
 
+    /*
     QString convertedtext(tree->content());
     for (int i = 0; i < _parts.count(); i++)
         convertedtext += _parts.at(i);
-    convertedtext = "jede menge text ü ä ß";
+        */
+    QString convertedtext = "jede menge text ü ä ß";
     emit updateTextEdit(convertedtext);
 };
 CNode * CConverter::getLeaf(CNode* node)
@@ -81,15 +83,21 @@ bool CConverter::consume(CNode * node)
 {
     CNode *parent = node->parent();
     if (!parent)
+    {
+        std::cerr << "ENDE -- Converter.consume(): node.name: " << node->name().toStdString() << std::endl;
         return false;
+    }
+    std::cerr << "Converter.consume(): node.name: " << node->name().toStdString() << std::endl;
     QString parentcontent = parent->content();
     for (int i = 0; i < replacementMarks.count(); i++)
     {
+
         int index = match(parentcontent, replacementMarks.at(i));
         if (replacementMarks.at(i) == "----CONTENT----")
             parentcontent.insert(index, node->content());
         else if (replacementMarks.at(i) == "----TEXT----")
             parentcontent.insert(index, node->content());;
+
     }
     parent->removeChild(node);
     _cursor = getLeaf(parent);

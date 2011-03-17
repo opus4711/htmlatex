@@ -252,6 +252,8 @@ void MainWindow::convert()
         else if (dialog->selectedFilter() == "any file (*.*)")
             filetype = CDocumentData::Unknown;
         CNode* root = model->root();
+        // to prevent errors
+        model->setRootNode(0);
         // now begin conversion...
         converter->convert(dialog->selectedFiles().at(0), root);
     }
