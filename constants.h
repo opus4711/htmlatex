@@ -3,5 +3,6 @@
 
 // Enable Debug-Mode
 extern bool DEBUG;
+#define RESTART_CODE 1000
 
 #endif // CONSTANTS_H

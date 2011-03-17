@@ -1,13 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QString executablefilename,
-                       QStringList arguments,
+MainWindow::MainWindow(QWidget* parent)
+                           : QMainWindow(parent),
+                           ui(new Ui::MainWindow)
+{
+};
+MainWindow::MainWindow(QStringList arguments,
                        QStringList options,
                        QWidget* parent)
                            : QMainWindow(parent),
-                           ui(new Ui::MainWindow),
-                           executableFileName(executablefilename)
+                           ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     /*
@@ -281,14 +284,5 @@ void MainWindow::about()
 void MainWindow::showSettings()
 {
     SettingsDialog dialog;
-    if (dialog.exec() == SettingsDialog::Accepted)
-    {
-        if (dialog.restartRequired())
-        {
-            QProcess newprocess;
-            newprocess.start(executableFileName, QIODevice::ReadWrite);
-            QProcess currentprocess(this);
-            currentprocess.kill();
-        }
-    }
+    dialog.exec();
 };

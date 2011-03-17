@@ -30,7 +30,6 @@ private:
     CItemDelegate* itemDelegate;
     CTranslationMapper* translationMapper;
     CConverter* converter;
-    QString executableFileName;
     void performInitialOperations(QStringList arguments, QStringList options);
 private slots:
     void open();
@@ -43,7 +42,8 @@ protected:
     void changeEvent(QEvent* e);
 public:
     // constructor and destructor
-    MainWindow(QString executablefilename, QStringList arguments, QStringList options, QWidget* parent);
+    MainWindow(QWidget* parent);
+    MainWindow(QStringList arguments, QStringList options, QWidget* parent);
     ~MainWindow();
 };
 

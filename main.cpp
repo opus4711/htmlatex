@@ -8,6 +8,7 @@
 #include <QString>
 #include <QTranslator>
 #include <QTextCodec>
+#include <QPointer>
 
 bool DEBUG = true;
 int main(int argc, char* argv[])
@@ -34,7 +35,23 @@ int main(int argc, char* argv[])
     if ((bool)options.contains("-g")
         | (bool)options.contains("--gui"))
     {
-        QApplication a(argc, argv);
+        //QApplication a(argc, argv);
+        int return_from_event_loop_code;
+        QPointer<QApplication> app;
+        QPointer<MainWindow> main_window;
+        do
+        {
+            if(app) delete app;
+            if(main_window) delete main_window;
+            app = new QApplication(argc, argv);
+            main_window = new MainWindow(arguments, options, main_window);
+            main_window.data()->show();
+            return_from_event_loop_code = app->exec();
+        }
+        while(return_from_event_loop_code==RESTART_CODE);
+        return return_from_event_loop_code;
+
+        /*
         // Set translation environment for the application texts
         QTranslator translator;
         Settings settings;
@@ -45,9 +62,10 @@ int main(int argc, char* argv[])
         a.installTranslator(&translator);
         QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
         std::cerr << QString::number((int)QLocale::Germany).toStdString() << "\n";
-        MainWindow w(QString(argv[0]), arguments, options, 0);
+        MainWindow w(arguments, options, 0);
         w.show();
         return a.exec();
+        */
     }
     else if (argc == 1)
         std::cerr << "usage: htmlatex INPUTFILE FORMAT INPUTDEFINITION OUTPUTFILE FORMAT OUTPUTDEFINITION [-g|--gui]\n"

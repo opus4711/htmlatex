@@ -65,7 +65,7 @@ void SettingsDialog::apply()
                             tr("You selected another language. Loading the appropriate translations requires the application to restart.\n\nDo you want htmlatex to restart immediately?"),
                             QMessageBox::Yes|QMessageBox::No);
             if (msg.exec() == QMessageBox::Yes)
-                _restartRequired = true;
+                exit(RESTART_CODE);
         }
         accept();
     }
