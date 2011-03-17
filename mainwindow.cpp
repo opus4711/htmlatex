@@ -9,15 +9,8 @@ MainWindow::MainWindow(QString executablefilename,
                            ui(new Ui::MainWindow),
                            executableFileName(executablefilename)
 {
+    tree = 0;
     ui->setupUi(this);
-    /*
-    ui->actionSet_Input_Definition->setText(tr("Set &Input Definition"));
-    ui->actionSet_O_utput_Definition->setText(tr("Set O&utput Definition"));
-    ui->action_Open->setText(tr("&Open"));
-    ui->action_Convert->setText(tr("&Convert"));
-    ui->action_Settings->setText(tr("&Settings"));
-    ui->action_Quit->setText(tr("&Quit"));
-    */
     connect(ui->actionSet_Input_Definition, SIGNAL(triggered()),
             this, SLOT(setInputDefinition()));
     connect(ui->actionSet_O_utput_Definition, SIGNAL(triggered()),
@@ -212,8 +205,10 @@ void MainWindow::open()
             filetype = CDocumentData::Unknown;
         CDocumentReader* reader = new CDocumentReader;
         reader->setTranslationMapper(translationMapper);
-        CNode* root = reader->read(dialog->selectedFiles().at(0), filetype);
-        model->setRootNode(root);
+        tree = reader->read(dialog->selectedFiles().at(0), filetype);
+        // CNode *root = new CNode(tree);
+        // TODO
+//        model->setRootNode(root);
         delete reader;
     }
     delete dialog;
@@ -251,11 +246,8 @@ void MainWindow::convert()
             filetype = CDocumentData::Tex;
         else if (dialog->selectedFilter() == "any file (*.*)")
             filetype = CDocumentData::Unknown;
-        CNode* root = model->root();
-        // to prevent errors
-        model->setRootNode(0);
         // now begin conversion...
-        converter->convert(dialog->selectedFiles().at(0), root);
+        converter->convert(dialog->selectedFiles().at(0), tree);
     }
 };
 void MainWindow::setInputDefinition()

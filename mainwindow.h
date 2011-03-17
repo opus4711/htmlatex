@@ -32,6 +32,7 @@ private:
     CConverter* converter;
     QString executableFileName;
     void performInitialOperations(QStringList arguments, QStringList options);
+    CNode * tree;
 private slots:
     void open();
     void convert();
