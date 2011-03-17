@@ -222,10 +222,4 @@
         <file>icons/tex.png</file>
         <file>icons/wordprocessing.png</file>
     </qresource>
-    <qresource prefix="/Translations">
-        <file>htmlatex_de.qm</file>
-        <file>htmlatex_de.ts</file>
-        <file>htmlatex_en.qm</file>
-        <file>htmlatex_en.ts</file>
-    </qresource>
 </RCC>

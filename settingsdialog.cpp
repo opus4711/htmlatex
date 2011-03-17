@@ -14,6 +14,13 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->comboBox_language->addItem(tr("German"), QVariant(QLocale::Germany));
     connect(ui->pushButton_apply, SIGNAL(clicked()),
             this, SLOT(apply()));
+    Settings settings;
+    ui->lineEdit_latexpath->setText(settings.getValue("latexpath"));
+    // select language specified by settings file
+    QVariant language((QLocale::Country)settings.getValue("language").toInt());
+    // retrieve corresponding comboBox item index
+    int itemindex = ui->comboBox_language->findData(language);
+    ui->comboBox_language->setCurrentIndex(itemindex);
 };
 SettingsDialog::~SettingsDialog()
 {
@@ -49,9 +56,8 @@ void SettingsDialog::apply()
     if (apply)
     {
         Settings settings;
-        int icountry = ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()).toInt();
-        settings.setCountry((QLocale::Country)icountry);
-        settings.setLatexpath(ui->lineEdit_latexpath->text());
+        settings.setValue("language", ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()).toString());
+        settings.setValue("latexpath", ui->lineEdit_latexpath->text());
         settings.save();
         accept();
     }

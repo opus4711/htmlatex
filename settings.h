@@ -1,24 +1,21 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#include <QDomDocument>
-#include <QLocale>
+#include <QDataStream>
 #include <QFile>
-#include <QTextStream>
+#include <QMap>
 #include <iostream>
 
 class Settings
 {
 private:
     const QString SETTINGSFILEPATH;
-    QDomDocument document;
+    QMap<QString,QString> settingsMap;
     bool load();
 public:
     bool save();
-    void setLatexpath(QString path);
-    void setCountry(QLocale::Country country);
-    QString latexpath() const;
-    QLocale::Country country() const;
+    void setValue(QString key, QString value);
+    QString getValue(QString key) const;
     // Constructor
     Settings();
 };

@@ -38,10 +38,10 @@ int main(int argc, char* argv[])
         // Set translation environment for the application texts
         QTranslator translator;
         Settings settings;
-        if (settings.country() == QLocale::Germany)
-            translator.load(QString(":/Translations/htmlatex_de.qm"));
+        if ((QLocale::Country)settings.getValue("language").toInt() == QLocale::Germany)
+            translator.load(QString("htmlatex_de.qm"));
         else
-            translator.load(QString(":/Translations/htmlatex_en.qm"));
+            translator.load(QString("htmlatex_en.qm"));
         a.installTranslator(&translator);
         QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
         std::cerr << QString::number((int)QLocale::Germany).toStdString() << "\n";

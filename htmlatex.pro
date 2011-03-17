@@ -10,6 +10,7 @@ TEMPLATE = app
 TRANSLATIONS = htmlatex_en.ts \
     htmlatex_de.ts
 CODECFORTR = UTF-8
+
 # CODECFORTR = ISO-8859-1
 CONFIG += console
 unix { 
@@ -57,6 +58,5 @@ OTHER_FILES += README \
     html_examples/kapitel/kap01/kapitel_1.html \
     input_javadoc.xml \
     input_javadoc.xml \
-    output_tex.xml \
-    htmlatex_settings.xml
+    output_tex.xml
 RESOURCES += resource.qrc
