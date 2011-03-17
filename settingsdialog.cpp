@@ -3,7 +3,7 @@
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::SettingsDialog)
+    ui(new Ui::SettingsDialog), _restartRequired(false)
 {
     ui->setupUi(this);
     ui->groupBox_language->setTitle(tr("Language"));
@@ -17,9 +17,9 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     Settings settings;
     ui->lineEdit_latexpath->setText(settings.getValue("latexpath"));
     // select language specified by settings file
-    QVariant language((QLocale::Country)settings.getValue("language").toInt());
+    _initiallySelectedLanguage = QVariant((QLocale::Country)settings.getValue("language").toInt());
     // retrieve corresponding comboBox item index
-    int itemindex = ui->comboBox_language->findData(language);
+    int itemindex = ui->comboBox_language->findData(_initiallySelectedLanguage);
     ui->comboBox_language->setCurrentIndex(itemindex);
 };
 SettingsDialog::~SettingsDialog()
@@ -37,9 +37,9 @@ void SettingsDialog::changeEvent(QEvent *e)
         break;
     }
 };
-QString SettingsDialog::latexPath() const
+bool SettingsDialog::restartRequired() const
 {
-    return ui->lineEdit_latexpath->text();
+    return this->_restartRequired;
 };
 void SettingsDialog::apply()
 {
@@ -59,6 +59,14 @@ void SettingsDialog::apply()
         settings.setValue("language", ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()).toString());
         settings.setValue("latexpath", ui->lineEdit_latexpath->text());
         settings.save();
+        if (_initiallySelectedLanguage != ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()))
+        {
+            QMessageBox msg(QMessageBox::Question, tr("Restart Application"),
+                            tr("You selected another language. Loading the appropriate translations requires the application to restart.\n\nDo you want htmlatex to restart right now?"),
+                            QMessageBox::Yes|QMessageBox::No);
+            if (msg.exec() == QMessageBox::Yes)
+                _restartRequired = true;
+        }
         accept();
     }
 };

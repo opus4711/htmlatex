@@ -279,5 +279,11 @@ void MainWindow::showSettings()
     SettingsDialog dialog;
     if (dialog.exec() == SettingsDialog::Accepted)
     {
+        if (dialog.restartRequired())
+        {
+            //QProcess process(this);
+            //process.terminate();
+            //QProcess::start()
+        }
     }
 };

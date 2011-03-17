@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'settingsdialog.ui'
 **
-** Created: Tue 15. Mar 22:53:01 2011
+** Created: Thu 17. Mar 02:20:17 2011
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -10,6 +10,7 @@
 #ifndef UI_SETTINGSDIALOG_H
 #define UI_SETTINGSDIALOG_H
 
+#include <QtCore/QLocale>
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
@@ -38,6 +39,7 @@ public:
         if (SettingsDialog->objectName().isEmpty())
             SettingsDialog->setObjectName(QString::fromUtf8("SettingsDialog"));
         SettingsDialog->resize(400, 188);
+        SettingsDialog->setLocale(QLocale(QLocale::English, QLocale::UnitedStates));
         groupBox_latexpath = new QGroupBox(SettingsDialog);
         groupBox_latexpath->setObjectName(QString::fromUtf8("groupBox_latexpath"));
         groupBox_latexpath->setGeometry(QRect(10, 10, 381, 81));
