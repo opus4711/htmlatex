@@ -20,7 +20,7 @@ private:
     int _cursor;
 public:
     // methods handling node operations
-    CNode* parent();
+    CNode* parent() const;
     void setParent(CNode* parent);
     int count() const;
     bool containsChild(CNode* node) const;
@@ -44,6 +44,7 @@ public:
     void setContent(QString content);
     void addAttribute(QString key, QString value);
     // constructor and destructor
+    CNode(const CNode& node);
     CNode(CNode* parent, QString name, qint64 layer);
     ~CNode();
 };

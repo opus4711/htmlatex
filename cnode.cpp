@@ -1,5 +1,24 @@
 #include "cnode.h"
 
+/** Copy constructor
+  */
+CNode::CNode(const CNode& node)
+{
+    instCount++;
+    this->_id = instCount;
+    this->_name = node.name();
+    this->_content = node.content();
+    this->_layer = node.layer();
+    this->_parent = node.parent();
+    this->_treeLevel = node.treeLevel();
+    // add child nodes
+    for (int i = 0; i < node.count(); i++)
+        this->addChild(new CNode(*node.childAt(i)));
+    // add attributes
+    QList<QString> keys = node.attributes().keys();
+    for (int i = 0; i < keys.count(); i++)
+        this->addAttribute(keys.at(i), node.attributes()[keys.at(i)]);
+};
 /**
  * Constructs a new object.
  * @param parent Initialiazes the object with the given CNode-object as its parent.
@@ -129,7 +148,7 @@ void CNode::setParent(CNode* parent)
  * Returns the parent node.
  * @author Bjoern Kaiser
  */
-CNode* CNode::parent()
+CNode* CNode::parent() const
 {
     if (_parent != 0)
         return this->_parent;

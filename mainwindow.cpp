@@ -1,15 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QString executablefilename,
-                       QStringList arguments,
+MainWindow::MainWindow(QStringList arguments,
                        QStringList options,
                        QWidget* parent)
                            : QMainWindow(parent),
-                           ui(new Ui::MainWindow),
-                           executableFileName(executablefilename)
+                           ui(new Ui::MainWindow)
 {
-    tree = 0;
     ui->setupUi(this);
     connect(ui->actionSet_Input_Definition, SIGNAL(triggered()),
             this, SLOT(setInputDefinition()));
@@ -147,7 +144,7 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
                 if (filetypestring.toLower() == "tex")
                     filetype = CDocumentData::Tex;
                 // converting...
-                CNode* root = model->root();
+                CNode* root = new CNode(*model->root());
                 converter->convert(targetfilepath, root);
                 if (DEBUG)
                 {
@@ -205,10 +202,8 @@ void MainWindow::open()
             filetype = CDocumentData::Unknown;
         CDocumentReader* reader = new CDocumentReader;
         reader->setTranslationMapper(translationMapper);
-        tree = reader->read(dialog->selectedFiles().at(0), filetype);
-        // CNode *root = new CNode(tree);
-        // TODO
-//        model->setRootNode(root);
+        CNode *root = reader->read(dialog->selectedFiles().at(0), filetype);
+        model->setRootNode(root);
         delete reader;
     }
     delete dialog;
@@ -247,7 +242,8 @@ void MainWindow::convert()
         else if (dialog->selectedFilter() == "any file (*.*)")
             filetype = CDocumentData::Unknown;
         // now begin conversion...
-        converter->convert(dialog->selectedFiles().at(0), tree);
+        CNode* root = new CNode(*model->root());
+        converter->convert(dialog->selectedFiles().at(0), root);
     }
 };
 void MainWindow::setInputDefinition()
@@ -279,10 +275,7 @@ void MainWindow::showSettings()
     {
         if (dialog.restartRequired())
         {
-            QProcess newprocess;
-            newprocess.start(executableFileName, QIODevice::ReadWrite);
-            QProcess currentprocess(this);
-            currentprocess.kill();
+            close();
         }
     }
 };

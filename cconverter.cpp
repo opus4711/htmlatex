@@ -89,11 +89,12 @@ bool CConverter::consume(CNode * node)
         return false;
     }
     QString parentcontent = _replace(parent);
+    //std::cerr << "parentcontent: " << parentcontent.toStdString() << std::endl;
     QString childcontent = _replace();
     for (int i = 0; i < replacementMarks.count(); i++)
     {
         int index = match(parentcontent, replacementMarks.at(i));
-        std::cerr << "index: " << index << std::endl;
+        //std::cerr << "index: " << index << std::endl;
         if (index > 0)
         {
             if (replacementMarks.at(i) == "----CONTENT----")
@@ -106,7 +107,7 @@ bool CConverter::consume(CNode * node)
             parentcontent.append(childcontent);
     }
     parent->setContent(parentcontent);
-    //std::cerr << "node: " << node->name().toStdString() << " parentcontent: " << parentcontent.toStdString() << std::endl;
+    std::cerr << "node: " << node->name().toStdString() << " parentcontent: " << parentcontent.toStdString() << std::endl;
     parent->removeChild(node);
     _cursor = getLeaf(parent);
     return true;
@@ -173,7 +174,7 @@ QString CConverter::_replace(CNode* node)
 {
     QString result("");
     CTranslationData data = _translationMapper->outputMap()[node->name()];
-    QString to = data.to().trimmed();
+    QString to = data.to();
     //std::cerr << "to: " << "?"<< to.toStdString() << "?" << std::endl;
     //std::cerr << "content: " << node->content().toStdString() << std::endl;
     QList<CTranslationDataNode> datanodes = data.requires();
@@ -185,7 +186,7 @@ QString CConverter::_replace(CNode* node)
     }
     for (int i = 0; i < replacementMarks.count(); i++)
         result = to.replace(replacementMarks.at(i), node->content());
-    std::cerr << "_replace: result: " << result.toStdString() << std::endl;
+    //std::cerr << "_replace: result: " << result.toStdString() << std::endl;
     return result;
 };
 int CConverter::match(QString content, QString pattern)
