@@ -47,15 +47,15 @@ void CConverter::convert(const QString filepath, CNode* tree)
             i++;
         }
     }
-    std::cerr << "Converter.convert(): cursor.content: " << _cursor->content().toStdString() << std::endl;
-    std::cerr << "Converter.convert(): cursor.count: " << _cursor->count() << std::endl;
+    std::cerr << "Converter.convert(): cursor.content: " << _cursor->getContent().toStdString() << std::endl;
+    std::cerr << "Converter.convert(): cursor.count: " << _cursor->getCount() << std::endl;
 
     /*
     QString convertedtext(tree->content());
     for (int i = 0; i < _parts.count(); i++)
         convertedtext += _parts.at(i);
         */
-    emit updateTextEdit(_cursor->content());
+    emit updateTextEdit(_cursor->getContent());
 };
 CNode * CConverter::getLeaf(CNode* node)
 {
@@ -66,26 +66,26 @@ CNode * CConverter::getLeaf(CNode* node)
 };
 bool CConverter::isLeaf(CNode * node)
 {
-    return (node->count() == 0);
+    return (node->getCount() == 0);
 };
 QMap<QString,QString> CConverter::getAttributes(CNode * node)
 {
-    return node->attributes();
+    return node->getAttributes();
 };
 QString CConverter::getContent(CNode * node)
 {
-    return node->content();
+    return node->getContent();
 };
 QString getName(CNode * node)
 {
-    return node->name();
+    return node->getName();
 };
 bool CConverter::consume(CNode * node)
 {
-    CNode *parent = node->parent();
+    CNode *parent = node->getParent();
     if (!parent)
     {
-        std::cerr << "ENDE -- Converter.consume(): node.name: " << node->name().toStdString() << std::endl;
+        std::cerr << "ENDE -- Converter.consume(): node.name: " << node->getName().toStdString() << std::endl;
         return false;
     }
     QString parentcontent = _replace(parent);
@@ -107,7 +107,7 @@ bool CConverter::consume(CNode * node)
             parentcontent.append(childcontent);
     }
     parent->setContent(parentcontent);
-    std::cerr << "node: " << node->name().toStdString() << " parentcontent: " << parentcontent.toStdString() << std::endl;
+    std::cerr << "node: " << node->getName().toStdString() << " parentcontent: " << parentcontent.toStdString() << std::endl;
     parent->removeChild(node);
     _cursor = getLeaf(parent);
     return true;
@@ -116,10 +116,10 @@ CNode * CConverter::_getNextSibling()
 {
     // Demo-Code
     CNode* result = 0;
-    CNode* parent = _cursor->parent();
+    CNode* parent = _cursor->getParent();
     int index = parent->indexOf(_cursor);
     // next sibling's index is (index + 1)
-    if (index + 1 < parent->count())
+    if (index + 1 < parent->getCount())
         result = parent->childAt(index + 1);
     // _cursor = result; ?
     return result;
@@ -140,7 +140,7 @@ qint64 CConverter::_getTreeLevel()
 {
     // Demo-Code
     // return the greatest distance of a node to the root node
-    return _root->treeLevel();
+    return _root->getTreeLevel();
 };
 QString CConverter::_peekParent(qint32 distance)
 {
@@ -157,7 +157,7 @@ QBool CConverter::_isEmpty()
 QBool CConverter::_isEmptyContent()
 {
     // Demo-Code
-    return QBool(_cursor->content().isEmpty());
+    return QBool(_cursor->getContent().isEmpty());
 };
 void CConverter::removeToken()
 {
@@ -173,7 +173,7 @@ qint64 CConverter::_tryMatch(QString pattern)
 QString CConverter::_replace(CNode* node)
 {
     QString result("");
-    CTranslationData data = _translationMapper->outputMap()[node->name()];
+    CTranslationData data = _translationMapper->outputMap()[node->getName()];
     QString to = data.to();
     //std::cerr << "to: " << "?"<< to.toStdString() << "?" << std::endl;
     //std::cerr << "content: " << node->content().toStdString() << std::endl;
@@ -185,7 +185,7 @@ QString CConverter::_replace(CNode* node)
         //datanode.name()
     }
     for (int i = 0; i < replacementMarks.count(); i++)
-        result = to.replace(replacementMarks.at(i), node->content());
+        result = to.replace(replacementMarks.at(i), node->getContent());
     //std::cerr << "_replace: result: " << result.toStdString() << std::endl;
     return result;
 };

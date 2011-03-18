@@ -41,7 +41,7 @@ int CModel::rowCount(const QModelIndex &parent) const
     CNode *parentNode = nodeFromIndex(parent);
     if (!parentNode)
         return 0;
-    return parentNode->count();
+    return parentNode->getCount();
 };
 int CModel::columnCount(const QModelIndex &parent) const
 {
@@ -53,10 +53,10 @@ QModelIndex CModel::parent(const QModelIndex &child) const
     CNode* node = nodeFromIndex(child);
     if (!node)
         return QModelIndex();
-    CNode* parentNode = node->parent();
+    CNode* parentNode = node->getParent();
     if (!parentNode)
         return QModelIndex();
-    CNode* grandparentNode = parentNode->parent();
+    CNode* grandparentNode = parentNode->getParent();
     if (!grandparentNode)
         return QModelIndex();
     int row = grandparentNode->indexOf(parentNode);
@@ -69,7 +69,7 @@ QVariant CModel::data(const QModelIndex &index, int role) const
     CNode* node = nodeFromIndex(index);
     if (!node)
         return QVariant();
-    return node->name() + ": " + node->content();
+    return node->getName() + ": " + node->getContent();
 };
 QVariant CModel::headerData(int section, Qt::Orientation orientation, int role) const
 {

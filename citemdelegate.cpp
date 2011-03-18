@@ -66,10 +66,10 @@ void CItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem &option,
     QStyleOptionViewItem opt = option;
     opt.displayAlignment = Qt::AlignLeft | Qt::AlignVCenter;
     CNode* node = model->nodeFromIndex(index);
-    QString text = node->name() + " (" + QString::number(node->layer()) + ")";
+    QString text = node->getName() + " (" + QString::number(node->getLayer()) + ")";
     painter->setPen(color);
-    if (node->content() != "")
-        text += ": " + node->content();
+    if (node->getContent() != "")
+        text += ": " + node->getContent();
     // an item of the treeview is selected
     if (option.state & QStyle::State_Selected)
     {
@@ -80,9 +80,9 @@ void CItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem &option,
         painter->drawRect(QRect(opt.rect.x(), opt.rect.y(), opt.rect.width() - 1, opt.rect.height() - 1));
         painter->restore();
     }
-    if ((node->layer() % 2) == 0)
+    if ((node->getLayer() % 2) == 0)
         painter->setPen(colorLayer0);
-    else if ((node->layer() % 2) == 1)
+    else if ((node->getLayer() % 2) == 1)
         painter->setPen(colorLayer1);
     // determine icon size
     //int size = opt.rect.height() - 2;

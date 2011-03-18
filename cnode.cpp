@@ -4,20 +4,20 @@
   */
 CNode::CNode(const CNode& node)
 {
-    instCount++;
-    this->_id = instCount;
-    this->_name = node.name();
-    this->_content = node.content();
-    this->_layer = node.layer();
-    this->_parent = node.parent();
-    this->_treeLevel = node.treeLevel();
+    _instCount++;
+    this->_id = _instCount;
+    this->_name = node.getName();
+    this->_content = node.getContent();
+    this->_layer = node.getLayer();
+    this->_parent = node.getParent();
+    this->_treeLevel = node.getTreeLevel();
     // add child nodes
-    for (int i = 0; i < node.count(); i++)
+    for (int i = 0; i < node.getCount(); i++)
         this->addChild(new CNode(*node.childAt(i)));
     // add attributes
-    QList<QString> keys = node.attributes().keys();
+    QList<QString> keys = node.getAttributes().keys();
     for (int i = 0; i < keys.count(); i++)
-        this->addAttribute(keys.at(i), node.attributes()[keys.at(i)]);
+        this->addAttribute(keys.at(i), node.getAttributes()[keys.at(i)]);
 };
 /**
  * Constructs a new object.
@@ -27,11 +27,11 @@ CNode::CNode(const CNode& node)
 CNode::CNode(CNode* parent, QString name, qint64 layer) : _parent(parent),
     _layer(layer), _name(name), _content(""), _cursor(0)
 {
-    instCount++;
+    _instCount++;
     if (layer > _treeLevel)
         _treeLevel = layer;
-    this->_id = instCount;
-    this->children = QList<CNode*>();
+    this->_id = _instCount;
+    this->_children = QList<CNode*>();
     this->_attributes = QMap<QString, QString>();
 };
 /**
@@ -40,18 +40,18 @@ CNode::CNode(CNode* parent, QString name, qint64 layer) : _parent(parent),
  */
 CNode::~CNode()
 {
-    qDeleteAll(children);
+    qDeleteAll(_children);
 };
 /**
  * This class instance counter is used to assign unique ID-numbers to each class instance.
  * @author Bjoern Kaiser
  */
-qint64 CNode::instCount = 0;
+qint64 CNode::_instCount = 0;
 qint64 CNode::_treeLevel = 0;
 /**
   Returns the greatest distance of a node to the root node.
   */
-qint64 CNode::treeLevel() const
+qint64 CNode::getTreeLevel() const
 {
     return this->_treeLevel;
 };
@@ -59,7 +59,7 @@ qint64 CNode::treeLevel() const
  * Returns the node's unique ID.
  * @author Bjoern Kaiser
  */
-qint64 CNode::ID() const
+qint64 CNode::getID() const
 {
     return this->_id;
 };
@@ -68,7 +68,7 @@ qint64 CNode::ID() const
   * root node of the tree.
   * @author Bjoern Kaiser
   */
-qint64 CNode::layer() const
+qint64 CNode::getLayer() const
 {
     return this->_layer;
 };
@@ -76,7 +76,7 @@ qint64 CNode::layer() const
  * Returns the node's name.
  * @author Bjoern Kaiser
  */
-QString CNode::name() const
+QString CNode::getName() const
 {
     return this->_name;
 };
@@ -84,7 +84,7 @@ QString CNode::name() const
  * Returns the node's text content.
  * @author Bjoern Kaiser
  */
-QString CNode::content() const
+QString CNode::getContent() const
 {
     return this->_content;
 };
@@ -92,7 +92,7 @@ QString CNode::content() const
  * Returns node's attributes (such as size, width, align etc.).
  * @author Bjoern Kaiser
  */
-QMap<QString, QString> CNode::attributes() const
+QMap<QString, QString> CNode::getAttributes() const
 {
     return this->_attributes;
 };
@@ -126,15 +126,15 @@ void CNode::addAttribute(QString key, QString value)
  */
 CNode* CNode::childAt(int index) const
 {
-    return children.value(index);
+    return _children.value(index);
 };
 /**
  * Returns the number of direct child nodes.
  * @author Bjoern Kaiser
  */
-int CNode::count() const
+int CNode::getCount() const
 {
-    return children.count();
+    return _children.count();
 };
 /**
  * Sets the parent node.
@@ -148,7 +148,7 @@ void CNode::setParent(CNode* parent)
  * Returns the parent node.
  * @author Bjoern Kaiser
  */
-CNode* CNode::parent() const
+CNode* CNode::getParent() const
 {
     if (_parent != 0)
         return this->_parent;
@@ -160,7 +160,7 @@ CNode* CNode::parent() const
  */
 int CNode::indexOf(CNode* node) const
 {
-    return children.indexOf(node);
+    return _children.indexOf(node);
 };
 /**
  * Adds the given node collection to the node's child collection.
@@ -174,7 +174,7 @@ void CNode::addChildren(QList<CNode*> nodes)
         if (!containsChild(nodes.at(i)))
         {
             nodes.at(i)->setParent(this);
-            children.append(nodes.at(i));
+            _children.append(nodes.at(i));
         }
     }
 };
@@ -189,7 +189,7 @@ void CNode::addChild(CNode* node)
         if (!containsChild(node))
         {
             node->setParent(this);
-            children.append(node);
+            _children.append(node);
         }
     }
 };
@@ -200,9 +200,9 @@ void CNode::addChild(CNode* node)
 bool CNode::containsChild(CNode* node) const
 {
     bool result = false;
-    for (int i = 0; i < count(); i++)
+    for (int i = 0; i < _children.count(); i++)
     {
-        if (children.at(i)->_id == node->_id)
+        if (_children.at(i)->_id == node->_id)
         {
             result = true;
             break;
@@ -216,31 +216,34 @@ bool CNode::containsChild(CNode* node) const
  */
 void CNode::removeChild(CNode* node)
 {
-    if (children.removeOne(node))
+    if (_children.removeOne(node))
+    {
+        _cursor = -1;
         delete node;
+    }
 };
 CNode* CNode::nextChild()
 {
-    if (_cursor < children.count())
+    if (_cursor < _children.count())
     {
         _cursor++;
-        return children.at(_cursor - 1);
+        return _children.at(_cursor - 1);
     }
     return 0;
 };
 CNode* CNode::firstChild()
 {
     _cursor = 0;
-    if (children.count() > 0)
-        return children.at(_cursor);
+    if (_children.count() > 0)
+        return _children.at(_cursor);
     return 0;
 };
 CNode* CNode::lastChild()
 {
-    if (children.count())
+    if (_children.count() > 0)
     {
-        _cursor = children.count() - 1;
-        return children.at(_cursor);
+        _cursor = _children.count() - 1;
+        return _children.at(_cursor);
     }
     return 0;
 };

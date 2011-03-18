@@ -1,17 +1,17 @@
 #include "cconsole.h"
 #include "cconverter.h"
 
-/** This class performs the format conversion via console input and output.
-  * @author Bjoern Kaiser
-  */
 CConsole::CConsole(QStringList arguments, QStringList options)
 {
-    performInitialOperations(arguments, options);
+    _performInitialOperations(arguments, options);
 };
 CConsole::~CConsole()
 {
 };
-void CConsole::performInitialOperations(QStringList arguments, QStringList options)
+/* This method processes the application's startup arguments and performs the
+   conversion by means of a DocumentReader and Converter object.
+   */
+void CConsole::_performInitialOperations(QStringList arguments, QStringList options)
 {
     /* arguments:
        0 = source file path

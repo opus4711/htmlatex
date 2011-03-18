@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'settingsdialog.ui'
 **
-** Created: Thu 17. Mar 02:20:17 2011
+** Created: Fri 18. Mar 13:31:30 2011
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -67,7 +67,7 @@ public:
 
     void retranslateUi(QDialog *SettingsDialog)
     {
-        SettingsDialog->setWindowTitle(QApplication::translate("SettingsDialog", "Dialog", 0, QApplication::UnicodeUTF8));
+        SettingsDialog->setWindowTitle(QApplication::translate("SettingsDialog", "Settings", 0, QApplication::UnicodeUTF8));
         groupBox_latexpath->setTitle(QApplication::translate("SettingsDialog", "path to latex.exe", 0, QApplication::UnicodeUTF8));
         pushButton_latexpath->setText(QApplication::translate("SettingsDialog", "&Browse", 0, QApplication::UnicodeUTF8));
         groupBox_language->setTitle(QApplication::translate("SettingsDialog", "Language", 0, QApplication::UnicodeUTF8));

@@ -6,14 +6,16 @@
 #include "cconverter.h"
 #include <QObject>
 #include <QString>
-
 #include <iostream>
 
+/** This class provides the command line functionality of the application.
+    @author Bjoern
+  */
 class CConsole : public QObject
 {
     Q_OBJECT
 private:
-    void performInitialOperations(QStringList arguments, QStringList options);
+    void _performInitialOperations(QStringList arguments, QStringList options);
 public:
     // Constructor
     CConsole(QStringList arguments, QStringList options);

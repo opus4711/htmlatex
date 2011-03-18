@@ -97,7 +97,7 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
             CNode* root = reader->read(arguments.at(0), filetype);
             model->setRootNode(root);
             delete reader;
-            if (root->count() == 0)
+            if (root->getCount() == 0)
             {
                 QMessageBox msg(QMessageBox::Warning,
                                 tr("Error Reading Document"),
