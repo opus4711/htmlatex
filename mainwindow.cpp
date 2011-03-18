@@ -271,11 +271,5 @@ void MainWindow::about()
 void MainWindow::showSettings()
 {
     SettingsDialog dialog;
-    if (dialog.exec() == SettingsDialog::Accepted)
-    {
-        if (dialog.restartRequired())
-        {
-            close();
-        }
-    }
+    dialog.exec();
 };

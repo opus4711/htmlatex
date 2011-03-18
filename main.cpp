@@ -70,9 +70,13 @@ int main(int argc, char* argv[])
     {
         QCoreApplication a(argc, argv);
         // Set translation environment for the application texts
-        QString locale = QLocale::system().name();
+        Settings settings;
+        QLocale::Country language = (QLocale::Country)settings.getValue("language").toInt();
         QTranslator translator;
-        translator.load(QString("htmlatex_") + locale);
+        if (language == QLocale::Germany)
+            translator.load(QString("htmlatex_de.qm"));
+        else
+            translator.load(QString("htmlatex_en.qm"));
         a.installTranslator(&translator);
         QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
         CConsole console(arguments, options);

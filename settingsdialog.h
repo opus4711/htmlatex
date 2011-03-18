@@ -7,6 +7,7 @@
 #include <QProcess>
 #include <QVariant>
 #include <QMessageBox>
+#include <QTranslator>
 
 namespace Ui {
     class SettingsDialog;

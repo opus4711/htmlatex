@@ -61,11 +61,13 @@ void SettingsDialog::apply()
         settings.save();
         if (_initiallySelectedLanguage != ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()))
         {
-            QMessageBox msg(QMessageBox::Question, tr("Restart Application"),
-                            tr("You selected another language. Loading the appropriate translations requires the application to restart.\n\nDo you want htmlatex to restart immediately?"),
-                            QMessageBox::Yes|QMessageBox::No);
-            if (msg.exec() == QMessageBox::Yes)
-                _restartRequired = true;
+            QLocale::Country language = (QLocale::Country)ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()).toInt();
+            QTranslator translator;
+            if (language == QLocale::Germany)
+                translator.load(QString("htmlatex_de.qm"));
+            else
+                translator.load(QString("htmlatex_en.qm"));
+            qApp->installTranslator(&translator);
         }
         accept();
     }
