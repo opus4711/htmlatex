@@ -44,7 +44,6 @@ int main(int argc, char* argv[])
             translator.load(QString("htmlatex_en.qm"));
         a.installTranslator(&translator);
         QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
-        std::cerr << QString::number((int)QLocale::Germany).toStdString() << "\n";
         MainWindow w(arguments, options, 0);
         w.show();
         return a.exec();

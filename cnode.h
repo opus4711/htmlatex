@@ -18,10 +18,6 @@ private:
     // The _treeLevel attribute holds the greatest distance of a leaf to the root
     // of the whole tree.
     static qint64 _treeLevel;
-    // This pointer points to the parent node. In case of the root node it points to null.
-    CNode* _parent;
-    // This is generic array of pointers pointing to the child nodes.
-    QList<CNode*> _children;
     // The _id is a unique number which allows identification of the node.
     qint64 _id;
     // The _layer numbers allows to determine to which layer / generation a node
@@ -32,6 +28,10 @@ private:
     QString _name;
     // This is the content of the node.
     QString _content;
+    // This pointer points to the parent node. In case of the root node it points to null.
+    CNode* _parent;
+    // This is generic array of pointers pointing to the child nodes.
+    QList<CNode*> _children;
     // This is a key-value-structure which provides access to the value of type
     // QString via keys of the type QString.
     QMap<QString, QString> _attributes;
@@ -40,6 +40,27 @@ private:
     // nextChild() and lastChild() are called.
     int _cursor;
 public:
+    // This is the copy-construcotr of the class.
+    CNode(const CNode& node);
+    // This constructor creates an instance initiallzing its _parent, _name and
+    // and _layer number.
+    CNode(CNode* parent, QString name, qint64 layer);
+    // This destructor ensures that all child nodes are deleted as well.
+    ~CNode();
+    // This method returns the _treeLevel number (class member).
+    qint64 getTreeLevel() const;
+    // This method returns the ID of the node.
+    qint64 getID() const;
+    // This method returns the _layer number of the node.
+    qint64 getLayer() const;
+    // This method returns the name of the node.
+    QString getName() const;
+    // This method sets the name of the node.
+    void setName(QString name);
+    // This method returns the content of the node.
+    QString getContent() const;
+    // This method sets the content of the node.
+    void setContent(QString content);
     // This method returns a pointer pointing to the parent node object.
     CNode* getParent() const;
     // This method sets the pointer pointing to the parent node object.
@@ -74,31 +95,10 @@ public:
     // CNode object. If it isn't contained in the array of child dnodes -1 is
     // returned.
     int indexOf(CNode* node) const;
-    // This method returns the ID of the node.
-    qint64 getID() const;
-    // This method returns the _layer number of the node.
-    qint64 getLayer() const;
-    // This method returns the _treeLevel number (class member).
-    qint64 getTreeLevel() const;
-    // This method returns the name of the node.
-    QString getName() const;
-    // This method returns the content of the node.
-    QString getContent() const;
     // This method returns the attributes of the node.
     QMap<QString, QString> getAttributes() const;
-    // This method sets the name of the node.
-    void setName(QString name);
-    // This method sets the content of the node.
-    void setContent(QString content);
     // This method adds an attribute by means of a key-value-pair.
     void addAttribute(QString key, QString value);
-    // This is the copy-construcotr of the class.
-    CNode(const CNode& node);
-    // This constructor creates an instance initiallzing its _parent, _name and
-    // and _layer number.
-    CNode(CNode* parent, QString name, qint64 layer);
-    // This destructor ensures that all child nodes are deleted as well.
-    ~CNode();
 };
 
 #endif // CNODE_H
