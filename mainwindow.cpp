@@ -1,6 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+/** @param arguments is an array of strings which contains the startup argument
+    of the application except the executable file's name and optional paramters.
+    @param options is an array of strings which contains just the optional
+    startup arguments of the application.
+    @param parent is a pointer pointing to the parent widget (QDialog and
+    QMainWindow are derived from QWidget).
+    @author Bjoern
+  */
 MainWindow::MainWindow(QStringList arguments,
                        QStringList options,
                        QWidget* parent)
@@ -22,34 +30,37 @@ MainWindow::MainWindow(QStringList arguments,
             this, SLOT(about()));
     connect(ui->action_Settings, SIGNAL(triggered()),
             this, SLOT(showSettings()));
-    model = new CModel(this);
-    ui->treeView->setModel(model);
-    itemDelegate = new CItemDelegate(model, this);
-    ui->treeView->setItemDelegate(itemDelegate);
-    translationMapper = new CTranslationMapper;
-    converter = new CConverter(this, translationMapper);
-    connect(converter, SIGNAL(updateTextEdit(QString)),
+    _model = new CModel(this);
+    ui->treeView->setModel(_model);
+    _itemDelegate = new CItemDelegate(_model, this);
+    ui->treeView->setItemDelegate(_itemDelegate);
+    _translationMapper = new CTranslationMapper;
+    _converter = new CConverter(this, _translationMapper);
+    connect(_converter, SIGNAL(updateTextEdit(QString)),
             ui->textEdit, SLOT(setPlainText(QString)));
     _settingsDialog = new SettingsDialog(this);
     connect(_settingsDialog, SIGNAL(languageChanged(QLocale::Country)),
             this, SLOT(languageChanged(QLocale::Country)));
     QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
+    // set translation for the application's text
     Settings settings;
     QLocale::Country language = (QLocale::Country)settings.getValue("language").toInt();
     this->languageChanged(language);
-    performInitialOperations(arguments, options);
+    _performInitialOperations(arguments, options);
 };
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete translationMapper;
-    delete converter;
+    delete _translationMapper;
+    delete _converter;
 };
-/** Performs opening and converting operations depending on application's startup
-  * arguments.
-  @author Bjoern Kaiser
+/** @param arguments is an array of strings which contains the startup argument
+    of the application except the executable file's name and optional paramters.
+    @param options is an array of strings which contains just the optional
+    startup arguments of the application.
+    @author Bjoern
   */
-void MainWindow::performInitialOperations(QStringList arguments, QStringList options)
+void MainWindow::_performInitialOperations(QStringList arguments, QStringList options)
 {
     /* arguments:
        0 = source file path
@@ -77,11 +88,11 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
             if (filetypestring.toLower() == "javadoc")
                 filetype = CDocumentData::JavaDocHTML;
             QString inputdefinitionfilepath(arguments.at(2));
-            translationMapper->createInputElementMap(inputdefinitionfilepath);
+                _translationMapper->createInputElementMap(inputdefinitionfilepath);
             CDocumentReader* reader = new CDocumentReader;
-            reader->setTranslationMapper(translationMapper);
+            reader->setTranslationMapper(_translationMapper);
             CNode* root = reader->read(arguments.at(0), filetype);
-            model->setRootNode(root);
+                _model->setRootNode(root);
             delete reader;
             if (root->getCount() == 0)
             {
@@ -122,7 +133,7 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
             QString targetfilepath(arguments.at(3));
             filetypestring = arguments.at(4);
             QString outputdefinitionfilepath(arguments.at(5));
-            translationMapper->createOutputElementMap(outputdefinitionfilepath);
+            _translationMapper->createOutputElementMap(outputdefinitionfilepath);
             QFile file(targetfilepath);
             if (file.open(QFile::WriteOnly))
             {
@@ -130,8 +141,8 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
                 if (filetypestring.toLower() == "tex")
                     filetype = CDocumentData::Tex;
                 // converting...
-                CNode* root = new CNode(*model->root());
-                converter->convert(targetfilepath, root);
+                CNode* root = new CNode(*_model->root());
+                _converter->convert(targetfilepath, root);
                 if (DEBUG)
                 {
                     std::cerr << tr("conversion successfully performed").toStdString() << std::endl;
@@ -171,6 +182,10 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
         msg.exec();
     }
 };
+/** @param language contains the information to which language the _translator is
+    supposed to translate.
+    @author Bjoern
+  */
 void MainWindow::languageChanged(QLocale::Country language)
 {
     // set translation environment for the application texts
@@ -197,9 +212,9 @@ void MainWindow::open()
         else if (dialog->selectedFilter() == "any file (*.*)")
             filetype = CDocumentData::Unknown;
         CDocumentReader* reader = new CDocumentReader;
-        reader->setTranslationMapper(translationMapper);
+        reader->setTranslationMapper(_translationMapper);
         CNode *root = reader->read(dialog->selectedFiles().at(0), filetype);
-        model->setRootNode(root);
+        _model->setRootNode(root);
         delete reader;
     }
     delete dialog;
@@ -238,8 +253,8 @@ void MainWindow::convert()
         else if (dialog->selectedFilter() == "any file (*.*)")
             filetype = CDocumentData::Unknown;
         // now begin conversion...
-        CNode* root = new CNode(*model->root());
-        converter->convert(dialog->selectedFiles().at(0), root);
+        CNode* root = new CNode(*_model->root());
+        _converter->convert(dialog->selectedFiles().at(0), root);
     }
 };
 void MainWindow::setInputDefinition()
@@ -248,7 +263,7 @@ void MainWindow::setInputDefinition()
                                                     tr("Select Input Definition File"),
                                                     "",
                                                     tr("XML files (*.xml);;any file (*.*)"));
-    translationMapper->createInputElementMap(filepath);
+    _translationMapper->createInputElementMap(filepath);
 };
 void MainWindow::setOutputDefinition()
 {
@@ -256,15 +271,15 @@ void MainWindow::setOutputDefinition()
                                                     tr("Select Output Definition File"),
                                                     "",
                                                     tr("XML files (*.xml);;any file (*.*)"));
-    translationMapper->createOutputElementMap(filepath);
+    _translationMapper->createOutputElementMap(filepath);
+};
+void MainWindow::showSettings()
+{
+    _settingsDialog->exec();
 };
 void MainWindow::about()
 {
     QMessageBox::about(this, tr("About htmLaTeX"),
                        tr("htmLaTeX 0.1\nA converter for JavaDoc-generated HTML to LaTeX"
                           "(c) 2011 Björn (Kaiser|Baß)"));
-};
-void MainWindow::showSettings()
-{
-    _settingsDialog->exec();
 };
