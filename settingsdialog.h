@@ -18,14 +18,12 @@ class SettingsDialog : public QDialog
     Q_OBJECT
 private:
     Ui::SettingsDialog *ui;
-    QVariant _initiallySelectedLanguage;
-    bool _restartRequired;
 private slots:
     void apply();
 signals:
     void languageChanged(QLocale::Country language);
 public:
-    bool restartRequired() const;
+    void retranslateUi();
     // Constructor and Destructor
     SettingsDialog(QWidget *parent = 0);
     ~SettingsDialog();

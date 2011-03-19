@@ -173,7 +173,7 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
 };
 void MainWindow::languageChanged(QLocale::Country language)
 {
-    // Set translation environment for the application texts
+    // set translation environment for the application texts
     if (language == QLocale::Germany)
         _translator.load(QString("htmlatex_de.qm"));
     else

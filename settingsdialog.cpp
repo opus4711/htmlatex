@@ -3,13 +3,9 @@
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::SettingsDialog), _restartRequired(false)
+    ui(new Ui::SettingsDialog)
 {
     ui->setupUi(this);
-    ui->groupBox_language->setTitle(tr("Language"));
-    ui->groupBox_latexpath->setTitle(tr("path to latex.exe"));
-    ui->pushButton_apply->setText(tr("&Apply"));
-    ui->pushButton_latexpath->setText(tr("&Browse"));
     ui->comboBox_language->addItem(tr("English"), QVariant(QLocale::C));
     ui->comboBox_language->addItem(tr("German"), QVariant(QLocale::Germany));
     connect(ui->pushButton_apply, SIGNAL(clicked()),
@@ -17,18 +13,14 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     Settings settings;
     ui->lineEdit_latexpath->setText(settings.getValue("latexpath"));
     // select language specified by settings file
-    _initiallySelectedLanguage = QVariant((QLocale::Country)settings.getValue("language").toInt());
+    QLocale::Country initially_selected_language = (QLocale::Country)settings.getValue("language").toInt();
     // retrieve corresponding comboBox item index
-    int itemindex = ui->comboBox_language->findData(_initiallySelectedLanguage);
+    int itemindex = ui->comboBox_language->findData(initially_selected_language);
     ui->comboBox_language->setCurrentIndex(itemindex);
 };
 SettingsDialog::~SettingsDialog()
 {
     delete ui;
-};
-bool SettingsDialog::restartRequired() const
-{
-    return this->_restartRequired;
 };
 void SettingsDialog::apply()
 {
@@ -50,6 +42,11 @@ void SettingsDialog::apply()
         settings.save();
         QLocale::Country language = (QLocale::Country)ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()).toInt();
         emit languageChanged(language);
+        ui->retranslateUi(this);
         accept();
     }
+};
+void SettingsDialog::retranslateUi()
+{
+    ui->retranslateUi(this);
 };
