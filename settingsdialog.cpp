@@ -26,17 +26,6 @@ SettingsDialog::~SettingsDialog()
 {
     delete ui;
 };
-void SettingsDialog::changeEvent(QEvent *e)
-{
-    QDialog::changeEvent(e);
-    switch (e->type()) {
-    case QEvent::LanguageChange:
-        ui->retranslateUi(this);
-        break;
-    default:
-        break;
-    }
-};
 bool SettingsDialog::restartRequired() const
 {
     return this->_restartRequired;
@@ -59,16 +48,8 @@ void SettingsDialog::apply()
         settings.setValue("language", ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()).toString());
         settings.setValue("latexpath", ui->lineEdit_latexpath->text());
         settings.save();
-        if (_initiallySelectedLanguage != ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()))
-        {
-            QLocale::Country language = (QLocale::Country)ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()).toInt();
-            QTranslator translator;
-            if (language == QLocale::Germany)
-                translator.load(QString("htmlatex_de.qm"));
-            else
-                translator.load(QString("htmlatex_en.qm"));
-            qApp->installTranslator(&translator);
-        }
+        QLocale::Country language = (QLocale::Country)ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()).toInt();
+        emit languageChanged(language);
         accept();
     }
 };

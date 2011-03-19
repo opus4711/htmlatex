@@ -35,15 +35,6 @@ int main(int argc, char* argv[])
         | (bool)options.contains("--gui"))
     {
         QApplication a(argc, argv);
-        // Set translation environment for the application texts
-        QTranslator translator;
-        Settings settings;
-        if ((QLocale::Country)settings.getValue("language").toInt() == QLocale::Germany)
-            translator.load(QString("htmlatex_de.qm"));
-        else
-            translator.load(QString("htmlatex_en.qm"));
-        a.installTranslator(&translator);
-        QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
         MainWindow w(arguments, options, 0);
         w.show();
         return a.exec();

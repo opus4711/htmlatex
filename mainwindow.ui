@@ -34,7 +34,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Help">
@@ -55,12 +55,6 @@
     <addaction name="separator"/>
     <addaction name="separator"/>
     <addaction name="action_Quit"/>
-   </widget>
-   <widget class="QMenu" name="menu_Help">
-    <property name="title">
-     <string>&amp;Help</string>
-    </property>
-    <addaction name="action_Info"/>
    </widget>
    <widget class="QMenu" name="menu_Tools">
     <property name="title">
@@ -90,7 +84,7 @@
   </widget>
   <action name="action_Quit">
    <property name="icon">
-    <iconset resource="resource.qrc">
+    <iconset>
      <normaloff>:/Images/icons/exit.png</normaloff>:/Images/icons/exit.png</iconset>
    </property>
    <property name="text">
@@ -99,7 +93,7 @@
   </action>
   <action name="action_Convert">
    <property name="icon">
-    <iconset resource="resource.qrc">
+    <iconset>
      <normaloff>:/Images/icons/button_ok.png</normaloff>:/Images/icons/button_ok.png</iconset>
    </property>
    <property name="text">
@@ -108,7 +102,7 @@
   </action>
   <action name="action_Open">
    <property name="icon">
-    <iconset resource="resource.qrc">
+    <iconset>
      <normaloff>:/Images/icons/fileopen.png</normaloff>:/Images/icons/fileopen.png</iconset>
    </property>
    <property name="text">
@@ -122,7 +116,7 @@
   </action>
   <action name="actionSet_Input_Definition">
    <property name="icon">
-    <iconset resource="resource.qrc">
+    <iconset>
      <normaloff>:/Images/icons/compfile.png</normaloff>:/Images/icons/compfile.png</iconset>
    </property>
    <property name="text">
@@ -131,7 +125,7 @@
   </action>
   <action name="actionSet_O_utput_Definition">
    <property name="icon">
-    <iconset resource="resource.qrc">
+    <iconset>
      <normaloff>:/Images/icons/compfile_up_arrow.png</normaloff>:/Images/icons/compfile_up_arrow.png</iconset>
    </property>
    <property name="text">
@@ -140,7 +134,7 @@
   </action>
   <action name="action_Info">
    <property name="icon">
-    <iconset resource="resource.qrc">
+    <iconset>
      <normaloff>:/Images/icons/help.png</normaloff>:/Images/icons/help.png</iconset>
    </property>
    <property name="text">
@@ -149,7 +143,7 @@
   </action>
   <action name="action_Settings">
    <property name="icon">
-    <iconset resource="resource.qrc">
+    <iconset>
      <normaloff>:/Images/icons/configure.png</normaloff>:/Images/icons/configure.png</iconset>
    </property>
    <property name="text">
@@ -157,8 +151,6 @@
    </property>
   </action>
  </widget>
- <resources>
-  <include location="resource.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -13,6 +13,8 @@
 #include <QHBoxLayout>
 #include <QFileDialog>
 #include <QTextEdit>
+#include <QTranslator>
+#include <QTextCodec>
 
 namespace Ui
 {
@@ -30,6 +32,8 @@ private:
     CItemDelegate* itemDelegate;
     CTranslationMapper* translationMapper;
     CConverter* converter;
+    QTranslator _translator;
+    SettingsDialog* _settingsDialog;
     void performInitialOperations(QStringList arguments, QStringList options);
 private slots:
     void open();
@@ -38,8 +42,7 @@ private slots:
     void setOutputDefinition();
     void about();
     void showSettings();
-protected:
-    void changeEvent(QEvent* e);
+    void languageChanged(QLocale::Country language);
 public:
     // constructor and destructor
     MainWindow(QStringList arguments, QStringList options, QWidget* parent);

@@ -40,6 +40,13 @@ MainWindow::MainWindow(QStringList arguments,
     converter = new CConverter(this, translationMapper);
     connect(converter, SIGNAL(updateTextEdit(QString)),
             textEdit, SLOT(setPlainText(QString)));
+    _settingsDialog = new SettingsDialog(this);
+    connect(_settingsDialog, SIGNAL(languageChanged(QLocale::Country)),
+            this, SLOT(languageChanged(QLocale::Country)));
+    QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
+    Settings settings;
+    QLocale::Country language = (QLocale::Country)settings.getValue("language").toInt();
+    this->languageChanged(language);
     performInitialOperations(arguments, options);
 };
 MainWindow::~MainWindow()
@@ -47,17 +54,6 @@ MainWindow::~MainWindow()
     delete ui;
     delete translationMapper;
     delete converter;
-};
-void MainWindow::changeEvent(QEvent *e)
-{
-    QMainWindow::changeEvent(e);
-    switch (e->type()) {
-    case QEvent::LanguageChange:
-        ui->retranslateUi(this);
-        break;
-    default:
-        break;
-    }
 };
 /** Performs opening and converting operations depending on application's startup
   * arguments.
@@ -185,6 +181,16 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
         msg.exec();
     }
 };
+void MainWindow::languageChanged(QLocale::Country language)
+{
+    // Set translation environment for the application texts
+    if (language == QLocale::Germany)
+        _translator.load(QString("htmlatex_de.qm"));
+    else
+        _translator.load(QString("htmlatex_en.qm"));
+    qApp->installTranslator(&_translator);
+    ui->retranslateUi(this);
+};
 void MainWindow::open()
 {
     QFileDialog* dialog = new QFileDialog(this,
@@ -270,6 +276,5 @@ void MainWindow::about()
 };
 void MainWindow::showSettings()
 {
-    SettingsDialog dialog;
-    dialog.exec();
+    _settingsDialog->exec();
 };

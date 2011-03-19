@@ -7,7 +7,7 @@
 #include <QProcess>
 #include <QVariant>
 #include <QMessageBox>
-#include <QTranslator>
+#include <QLocale>
 
 namespace Ui {
     class SettingsDialog;
@@ -22,8 +22,8 @@ private:
     bool _restartRequired;
 private slots:
     void apply();
-protected:
-    void changeEvent(QEvent *e);
+signals:
+    void languageChanged(QLocale::Country language);
 public:
     bool restartRequired() const;
     // Constructor and Destructor

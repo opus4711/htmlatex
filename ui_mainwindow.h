@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Fri 18. Mar 13:22:01 2011
+** Created: Sat 19. Mar 02:30:04 2011
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -32,7 +32,6 @@ public:
     QAction *action_Quit;
     QAction *action_Convert;
     QAction *action_Open;
-    QAction *actionSet_Replacement_Table;
     QAction *actionSet_Input_Definition;
     QAction *actionSet_O_utput_Definition;
     QAction *action_Info;
@@ -42,7 +41,6 @@ public:
     QMenuBar *menubar;
     QMenu *menu_Help;
     QMenu *menu_File;
-    QMenu *menu_Help1;
     QMenu *menu_Tools;
     QStatusBar *statusbar;
     QToolBar *toolBar;
@@ -68,8 +66,6 @@ public:
         QIcon icon2;
         icon2.addFile(QString::fromUtf8(":/Images/icons/fileopen.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_Open->setIcon(icon2);
-        actionSet_Replacement_Table = new QAction(MainWindow);
-        actionSet_Replacement_Table->setObjectName(QString::fromUtf8("actionSet_Replacement_Table"));
         actionSet_Input_Definition = new QAction(MainWindow);
         actionSet_Input_Definition->setObjectName(QString::fromUtf8("actionSet_Input_Definition"));
         QIcon icon3;
@@ -98,13 +94,11 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 20));
+        menubar->setGeometry(QRect(0, 0, 800, 21));
         menu_Help = new QMenu(menubar);
         menu_Help->setObjectName(QString::fromUtf8("menu_Help"));
         menu_File = new QMenu(menubar);
         menu_File->setObjectName(QString::fromUtf8("menu_File"));
-        menu_Help1 = new QMenu(menubar);
-        menu_Help1->setObjectName(QString::fromUtf8("menu_Help1"));
         menu_Tools = new QMenu(menubar);
         menu_Tools->setObjectName(QString::fromUtf8("menu_Tools"));
         MainWindow->setMenuBar(menubar);
@@ -127,7 +121,6 @@ public:
         menu_File->addSeparator();
         menu_File->addSeparator();
         menu_File->addAction(action_Quit);
-        menu_Help1->addAction(action_Info);
         menu_Tools->addAction(action_Settings);
         toolBar->addAction(actionSet_O_utput_Definition);
         toolBar->addAction(actionSet_Input_Definition);
@@ -145,14 +138,12 @@ public:
         action_Quit->setText(QApplication::translate("MainWindow", "&Quit", 0, QApplication::UnicodeUTF8));
         action_Convert->setText(QApplication::translate("MainWindow", "&Convert", 0, QApplication::UnicodeUTF8));
         action_Open->setText(QApplication::translate("MainWindow", "&Open", 0, QApplication::UnicodeUTF8));
-        actionSet_Replacement_Table->setText(QApplication::translate("MainWindow", "Set &Replacement Table", 0, QApplication::UnicodeUTF8));
         actionSet_Input_Definition->setText(QApplication::translate("MainWindow", "Set &Input Definition", 0, QApplication::UnicodeUTF8));
         actionSet_O_utput_Definition->setText(QApplication::translate("MainWindow", "Set O&utput Definition", 0, QApplication::UnicodeUTF8));
         action_Info->setText(QApplication::translate("MainWindow", "&Info", 0, QApplication::UnicodeUTF8));
         action_Settings->setText(QApplication::translate("MainWindow", "&Settings", 0, QApplication::UnicodeUTF8));
         menu_Help->setTitle(QApplication::translate("MainWindow", "&Help", 0, QApplication::UnicodeUTF8));
         menu_File->setTitle(QApplication::translate("MainWindow", "&File", 0, QApplication::UnicodeUTF8));
-        menu_Help1->setTitle(QApplication::translate("MainWindow", "&Help", 0, QApplication::UnicodeUTF8));
         menu_Tools->setTitle(QApplication::translate("MainWindow", "&Tools", 0, QApplication::UnicodeUTF8));
         toolBar->setWindowTitle(QApplication::translate("MainWindow", "toolBar", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
