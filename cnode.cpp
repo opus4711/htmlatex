@@ -20,6 +20,10 @@ CNode::CNode(const CNode& node)
 CNode::CNode(CNode* parent, QString name, qint64 layer) : _layer(layer),
     _name(name), _content(""), _parent(parent), _cursor(0)
 {
+    if (_parent == 0)
+        _treeNodeCount = 0;
+    else
+        _treeNodeCount++;
     _instCount++;
     if (layer > _treeLevel)
         _treeLevel = layer;
@@ -33,9 +37,14 @@ CNode::~CNode()
 };
 qint64 CNode::_instCount = 0;
 qint64 CNode::_treeLevel = 0;
+qint64 CNode::_treeNodeCount;
 qint64 CNode::getTreeLevel() const
 {
     return this->_treeLevel;
+};
+qint64 CNode::getTreeNodeCount() const
+{
+    return this->_treeNodeCount;
 };
 qint64 CNode::getID() const
 {

@@ -38,6 +38,9 @@ MainWindow::MainWindow(QStringList arguments,
     _converter = new CConverter(this, _translationMapper);
     connect(_converter, SIGNAL(updateTextEdit(QString)),
             ui->textEdit, SLOT(setPlainText(QString)));
+    connect(_converter, SIGNAL(updateProgressBar(int)),
+            this, SLOT(_updateProgressBar(int)));
+    ui->statusbar->addPermanentWidget(ui->progressBar, 1);
     _settingsDialog = new SettingsDialog(this);
     connect(_settingsDialog, SIGNAL(languageChanged(QLocale::Country)),
             this, SLOT(_languageChanged(QLocale::Country)));
@@ -313,4 +316,8 @@ void MainWindow::_treeViewRemoveNode()
         _model->refresh();
         ui->treeView->expandToDepth(depth);
     }
+};
+void MainWindow::_updateProgressBar(int percentage)
+{
+    ui->progressBar->setValue(percentage);
 };

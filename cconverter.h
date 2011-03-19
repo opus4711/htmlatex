@@ -24,6 +24,7 @@ class CConverter : public QObject
     Q_OBJECT
 signals:
     void updateTextEdit(QString text);
+    void updateProgressBar(int percentage);
 public:
     // TODO take parameter for the output-XML-file
     /**Constructor

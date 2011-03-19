@@ -18,6 +18,8 @@ private:
     // The _treeLevel attribute holds the greatest distance of a leaf to the root
     // of the whole tree.
     static qint64 _treeLevel;
+    // The _treeNodeCount attribute holds the number of nodes of the whole tree.
+    static qint64 _treeNodeCount;
     // The _id is a unique number which allows identification of the node.
     qint64 _id;
     // The _layer numbers allows to determine to which layer / generation a node
@@ -49,6 +51,8 @@ public:
     ~CNode();
     // This method returns the _treeLevel number (class member).
     qint64 getTreeLevel() const;
+    // This method returns the number of nodes of the whole tree (class member).
+    qint64 getTreeNodeCount() const;
     // This method returns the ID of the node.
     qint64 getID() const;
     // This method returns the _layer number of the node.

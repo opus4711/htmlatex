@@ -80,6 +80,8 @@ private slots:
     void _showTreeViewContextMenu(QPoint point);
     // This slot is called when the user chooses to remove a node from the treeView.
     void _treeViewRemoveNode();
+    // This slot is connected to the _converter.
+    void _updateProgressBar(int percentage);
 };
 
 #endif // MAINWINDOW_H

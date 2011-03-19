@@ -38,6 +38,7 @@ void CConverter::convert(const QString filepath, CNode* tree)
         return;
     }
     _cursor = getLeaf(tree);
+    int nodecount = (int)tree->getTreeNodeCount();
     int i = 0;
     while (consume())
     {
@@ -45,6 +46,7 @@ void CConverter::convert(const QString filepath, CNode* tree)
         {
             //std::cerr << "CConverter.convert() - while():\n\ti: " << i << std::endl;
             i++;
+            emit updateProgressBar((int)((double)i / (double)nodecount * 100.0));
         }
     }
     std::cerr << "Converter.convert(): cursor.content: " << _cursor->getContent().toStdString() << std::endl;
@@ -56,6 +58,7 @@ void CConverter::convert(const QString filepath, CNode* tree)
         convertedtext += _parts.at(i);
         */
     emit updateTextEdit(_cursor->getContent());
+    emit updateProgressBar(0);
 };
 CNode * CConverter::getLeaf(CNode* node)
 {
