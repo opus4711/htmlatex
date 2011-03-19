@@ -79,3 +79,7 @@ CNode* CModel::root() const
 {
     return this->_root;
 };
+void CModel::refresh()
+{
+    reset();
+};

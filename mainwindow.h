@@ -56,25 +56,30 @@ private:
 private slots:
     // This slot is connected to _settingsDialog and is called when the user
     // applies settings.
-    void languageChanged(QLocale::Country language);
+    void _languageChanged(QLocale::Country language);
     // This slot is called when the user clicks the menu item or tool bar button
     // for "open".
-    void open();
+    void _open();
     // This slot is called when the user clicks the menu item or tool bar button
     // for "convert".
-    void convert();
+    void _convert();
     // This slot is called when the user clicks the menu item or tool bar button
     // for "set input definition".
-    void setInputDefinition();
+    void _setInputDefinition();
     // This slot is called when the user clicks the menu item or tool bar button
     // for "set output definition".
-    void setOutputDefinition();
+    void _setOutputDefinition();
     // This slot is called when the user clicks the menu item or tool bar button
     // for "settings".
-    void showSettings();
+    void _showSettings();
     // This slot is called when the user clicks the menu item or tool bar button
     // for "about".
-    void about();
+    void _about();
+    // This slot is called when the user clicks the right mouse button on the
+    // _treeView to show the context menu.
+    void _showTreeViewContextMenu(QPoint point);
+    // This slot is called when the user chooses to remove a node from the treeView.
+    void _removeNode();
 };
 
 #endif // MAINWINDOW_H

@@ -18,6 +18,7 @@ public:
     int columnCount(const QModelIndex &parent) const;
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    void refresh();
     // Constructor / Destructor
     CModel(QObject* parent = 0);
     ~CModel();

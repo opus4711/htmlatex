@@ -17,19 +17,19 @@ MainWindow::MainWindow(QStringList arguments,
 {
     ui->setupUi(this);
     connect(ui->actionSet_Input_Definition, SIGNAL(triggered()),
-            this, SLOT(setInputDefinition()));
+            this, SLOT(_setInputDefinition()));
     connect(ui->actionSet_O_utput_Definition, SIGNAL(triggered()),
-            this, SLOT(setOutputDefinition()));
+            this, SLOT(_setOutputDefinition()));
     connect(ui->action_Quit, SIGNAL(triggered()),
             this, SLOT(close()));
     connect(ui->action_Convert, SIGNAL(triggered()),
-            this, SLOT(convert()));
+            this, SLOT(_convert()));
     connect(ui->action_Open, SIGNAL(triggered()),
-            this, SLOT(open()));
+            this, SLOT(_open()));
     connect(ui->action_Info, SIGNAL(triggered()),
-            this, SLOT(about()));
+            this, SLOT(_about()));
     connect(ui->action_Settings, SIGNAL(triggered()),
-            this, SLOT(showSettings()));
+            this, SLOT(_showSettings()));
     _model = new CModel(this);
     ui->treeView->setModel(_model);
     _itemDelegate = new CItemDelegate(_model, this);
@@ -40,12 +40,20 @@ MainWindow::MainWindow(QStringList arguments,
             ui->textEdit, SLOT(setPlainText(QString)));
     _settingsDialog = new SettingsDialog(this);
     connect(_settingsDialog, SIGNAL(languageChanged(QLocale::Country)),
-            this, SLOT(languageChanged(QLocale::Country)));
-    QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
+            this, SLOT(_languageChanged(QLocale::Country)));
+    ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(ui->treeView, SIGNAL(customContextMenuRequested(QPoint)),
+            this, SLOT(_showTreeViewContextMenu(QPoint)));
+    // create _treeView's context menu
+    QAction *action_Remove_Node = new QAction("Remove", ui->treeView);
+    connect(action_Remove_Node, SIGNAL(triggered()),
+            this, SLOT(_removeNode()));
+    ui->treeView->addAction(action_Remove_Node);
     // set translation for the application's text
+    QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
     Settings settings;
     QLocale::Country language = (QLocale::Country)settings.getValue("language").toInt();
-    this->languageChanged(language);
+    _languageChanged(language);
     _performInitialOperations(arguments, options);
 };
 MainWindow::~MainWindow()
@@ -186,7 +194,7 @@ void MainWindow::_performInitialOperations(QStringList arguments, QStringList op
     supposed to translate.
     @author Bjoern
   */
-void MainWindow::languageChanged(QLocale::Country language)
+void MainWindow::_languageChanged(QLocale::Country language)
 {
     // set translation environment for the application texts
     if (language == QLocale::Germany)
@@ -196,7 +204,7 @@ void MainWindow::languageChanged(QLocale::Country language)
     qApp->installTranslator(&_translator);
     ui->retranslateUi(this);
 };
-void MainWindow::open()
+void MainWindow::_open()
 {
     QFileDialog* dialog = new QFileDialog(this,
                                           tr("Set Source File"),
@@ -219,7 +227,7 @@ void MainWindow::open()
     }
     delete dialog;
 };
-void MainWindow::convert()
+void MainWindow::_convert()
 {
     QFileDialog* dialog = new QFileDialog(this,
                                           tr("Set Target File"),
@@ -257,7 +265,7 @@ void MainWindow::convert()
         _converter->convert(dialog->selectedFiles().at(0), root);
     }
 };
-void MainWindow::setInputDefinition()
+void MainWindow::_setInputDefinition()
 {
     QString filepath = QFileDialog::getOpenFileName(0,
                                                     tr("Select Input Definition File"),
@@ -265,7 +273,7 @@ void MainWindow::setInputDefinition()
                                                     tr("XML files (*.xml);;any file (*.*)"));
     _translationMapper->createInputElementMap(filepath);
 };
-void MainWindow::setOutputDefinition()
+void MainWindow::_setOutputDefinition()
 {
     QString filepath = QFileDialog::getOpenFileName(0,
                                                     tr("Select Output Definition File"),
@@ -273,13 +281,30 @@ void MainWindow::setOutputDefinition()
                                                     tr("XML files (*.xml);;any file (*.*)"));
     _translationMapper->createOutputElementMap(filepath);
 };
-void MainWindow::showSettings()
+void MainWindow::_showSettings()
 {
     _settingsDialog->exec();
 };
-void MainWindow::about()
+void MainWindow::_about()
 {
     QMessageBox::about(this, tr("About htmLaTeX"),
                        tr("htmLaTeX 0.1\nA converter for JavaDoc-generated HTML to LaTeX"
                           "(c) 2011 Björn (Kaiser|Baß)"));
+};
+void MainWindow::_showTreeViewContextMenu(QPoint point)
+{
+    QMenu menu;
+    menu.addActions(ui->treeView->actions());
+    menu.exec(QCursor::pos());
+    std::cerr << "contextmenu\n";
+};
+void MainWindow::_removeNode()
+{
+    CNode* node = _model->nodeFromIndex(ui->treeView->currentIndex());
+    if (node != 0)
+    {
+        if (node->getParent() != 0)
+            node->getParent()->removeChild(node);
+        _model->refresh();
+    }
 };
