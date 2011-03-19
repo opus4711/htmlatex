@@ -41,7 +41,7 @@ void CConverter::convert(const QString filepath, CNode* tree)
     int i = 0;
     while (consume())
     {
-        if (DEBUG)
+        if (Settings::DEBUG)
         {
             //std::cerr << "CConverter.convert() - while():\n\ti: " << i << std::endl;
             i++;

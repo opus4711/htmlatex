@@ -1,6 +1,4 @@
 #include "cdocumentdata.h"
-#include <iostream>
-#include "constants.h"
 
 /** This class holds information of one document (i.e. webpage). The information
   * consists of the file path (URL), a reference pointing to the corresponding node
@@ -56,7 +54,7 @@ void CDocumentData::preprocessHTML()
     if (_fileType != CDocumentData::JavaDocHTML)
         return;
     QString path = _fileInfo.filePath();
-    if (DEBUG)
+    if (Settings::DEBUG)
     {
         std::cerr << "Path: " << path.toStdString() << std::endl;
     }

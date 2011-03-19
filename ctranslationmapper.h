@@ -2,6 +2,7 @@
 #define CTRANSLATIONMAPPER_H
 
 #include "ctranslationdata.h"
+#include "settings.h"
 #include <QFile>
 #include <QDomDocument>
 #include <QString>

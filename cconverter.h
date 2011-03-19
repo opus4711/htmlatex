@@ -4,7 +4,7 @@
 #include "cnode.h"
 #include "ctranslationmapper.h"
 #include "cconverter.h"
-#include "constants.h"
+#include "settings.h"
 #include <QFile>
 #include <QString>
 #include <QTextStream>

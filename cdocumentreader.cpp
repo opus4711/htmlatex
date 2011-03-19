@@ -1,5 +1,4 @@
 #include "cdocumentreader.h"
-#include "constants.h"
 
 /** This class creates a tree representation of a given document.
   @author Bjoern Kaiser
@@ -93,7 +92,7 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
             }
             else if (element.childNodes().at(i).nodeName().toLower() == "a")
             {
-                if (DEBUG)
+                if (Settings::DEBUG)
                 {
                     std::cerr << "#\tReadElement - 'a': \n#\t\tindexFileInfo.absPath: "
                             << _indexFileInfo.absolutePath().toStdString()
@@ -112,9 +111,9 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
                     myfileinfo = QFileInfo(_indexFileInfo.absolutePath()
                                            + QDir::separator() + new_node->getAttributes()["href"]);
                 _documentStack.push(new CDocumentData(myfileinfo, new_node, _fileType));
-               if(DEBUG)
+                if(Settings::DEBUG)
                 {
-                   std::cerr << "# CDocumentReader::readElement()"
+                    std::cerr << "# CDocumentReader::readElement()"
                            << std::endl << "#\tat \"if (element.childNodes()"
                            << ".at(i).nodeName().toLower() == \"a\")\" returned true"
                            << std::endl << "#\tfound subdocument href="

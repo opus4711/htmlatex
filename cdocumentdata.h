@@ -2,12 +2,14 @@
 #define CDOCUMENTDATA_H
 
 #include "cnode.h"
+#include "settings.h"
 #include <QString>
 #include <QFile>
 #include <QFileInfo>
 #include <QTextStream>
 #include <QStringList>
 #include <QMessageBox>
+#include <iostream>
 
 class CDocumentData
 {

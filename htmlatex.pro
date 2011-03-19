@@ -42,7 +42,6 @@ HEADERS += mainwindow.h \
     ctranslationmapper.h \
     ctranslationdata.h \
     ctranslationdatanode.h \
-    constants.h \
     cconverter.h \
     settingsdialog.h \
     settings.h

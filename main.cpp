@@ -3,13 +3,11 @@
 
 #include "mainwindow.h"
 #include "cconsole.h"
-#include "constants.h"
 #include "settings.h"
 #include <QString>
 #include <QTranslator>
 #include <QTextCodec>
 
-bool DEBUG = true;
 int main(int argc, char* argv[])
 {
     /* 0 = executable's name

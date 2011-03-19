@@ -8,16 +8,17 @@
 
 class Settings
 {
+public:
+    Settings();
+    static bool DEBUG;
 private:
-    const QString SETTINGSFILEPATH;
-    QMap<QString,QString> settingsMap;
-    bool load();
+    const QString _SETTINGSFILEPATH;
+    QMap<QString,QString> _settingsMap;
+    bool _load();
 public:
     bool save();
     void setValue(QString key, QString value);
     QString getValue(QString key) const;
-    // Constructor
-    Settings();
 };
 
 #endif // SETTINGS_H

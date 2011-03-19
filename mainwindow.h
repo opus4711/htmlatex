@@ -5,7 +5,6 @@
 #include "cdocumentreader.h"
 #include "cmodel.h"
 #include "citemdelegate.h"
-#include "constants.h"
 #include "cconverter.h"
 #include "settingsdialog.h"
 #include <QMainWindow>

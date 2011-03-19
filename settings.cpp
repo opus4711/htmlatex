@@ -1,18 +1,19 @@
 #include "settings.h"
 
-Settings::Settings() : SETTINGSFILEPATH("htmlatex_settings.dat")
+Settings::Settings() : _SETTINGSFILEPATH("htmlatex_settings.dat")
 {
-    if (!load())
+    if (!_load())
     {
-        settingsMap["language"] = "82";
-        settingsMap["latexpath"] = "";
+        _settingsMap["language"] = "82";
+        _settingsMap["latexpath"] = "";
     }
 };
+bool Settings::DEBUG = true;
 /** reads the settings from a binary data file
   */
-bool Settings::load()
+bool Settings::_load()
 {
-    QFile file(SETTINGSFILEPATH);
+    QFile file(_SETTINGSFILEPATH);
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
         std::cerr << "Settings.load() - file can't be opened for reading" << std::endl;
@@ -20,7 +21,7 @@ bool Settings::load()
     }
     QDataStream stream(&file);
     stream.setVersion(QDataStream::Qt_4_6);
-    stream >> settingsMap;
+    stream >> _settingsMap;
     file.close();
     return true;
 };
@@ -28,7 +29,7 @@ bool Settings::load()
   */
 bool Settings::save()
 {
-    QFile file(SETTINGSFILEPATH);
+    QFile file(_SETTINGSFILEPATH);
     if (!file.open(QFile::WriteOnly | QFile::Text))
     {
         std::cerr << "Settings.save() - file can't be opened for writing" << std::endl;
@@ -36,15 +37,15 @@ bool Settings::save()
     }
     QDataStream stream(&file);
     stream.setVersion(QDataStream::Qt_4_6);
-    stream << settingsMap;
+    stream << _settingsMap;
     file.close();
     return true;
 };
 QString Settings::getValue(QString key) const
 {
-    return settingsMap[key];
+    return _settingsMap[key];
 };
 void Settings::setValue(QString key, QString value)
 {
-    settingsMap[key] = value;
+    _settingsMap[key] = value;
 };

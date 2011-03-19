@@ -4,6 +4,7 @@
 #include "cnode.h"
 #include "cdocumentdata.h"
 #include "ctranslationmapper.h"
+#include "settings.h"
 #include <QString>
 #include <QDomDocument>
 #include <QDomNamedNodeMap>

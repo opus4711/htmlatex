@@ -103,7 +103,7 @@ void MainWindow::_performInitialOperations(QStringList arguments, QStringList op
                                 QMessageBox::Ok,
                                 this);
                 msg.exec();
-                if (DEBUG)
+                if (Settings::DEBUG)
                 {
                     std::cerr << "MainWindow::performInitialOperations: root.count() == 0: "
                             << "an empty document or an error occurred reading the document: file type: "
@@ -121,7 +121,7 @@ void MainWindow::_performInitialOperations(QStringList arguments, QStringList op
                             QMessageBox::Ok,
                             this);
             msg.exec();
-            if (DEBUG)
+            if (Settings::DEBUG)
             {
                 std::cerr << "MainWindow::performInitialOperations: "
                         << "file.exits returned false: path: " << arguments.at(0).toStdString();
@@ -143,7 +143,7 @@ void MainWindow::_performInitialOperations(QStringList arguments, QStringList op
                 // converting...
                 CNode* root = new CNode(*_model->root());
                 _converter->convert(targetfilepath, root);
-                if (DEBUG)
+                if (Settings::DEBUG)
                 {
                     std::cerr << tr("conversion successfully performed").toStdString() << std::endl;
                 }
@@ -162,7 +162,7 @@ void MainWindow::_performInitialOperations(QStringList arguments, QStringList op
                                 QMessageBox::Ok,
                                 this);
                 msg.exec();
-                if(DEBUG)
+                if(Settings::DEBUG)
                 {
                     std::cerr << "MainWindow::performInitialOperations: "
                             << "file.open returned false\n\tPath: "
@@ -239,7 +239,7 @@ void MainWindow::convert()
         if (suffix.count() > 1)
             suffix.remove(suffix.count() - 1, 1);
         dialog->setDefaultSuffix(suffix);
-        if(DEBUG)
+        if(Settings::DEBUG)
         {
             std::cerr << "MainWindow::convert()\n\tPath: "
                     << QString(dialog->selectedFiles().at(0)).toStdString() << std::endl;
