@@ -79,7 +79,7 @@ private slots:
     // _treeView to show the context menu.
     void _showTreeViewContextMenu(QPoint point);
     // This slot is called when the user chooses to remove a node from the treeView.
-    void _removeNode();
+    void _treeViewRemoveNode();
 };
 
 #endif // MAINWINDOW_H

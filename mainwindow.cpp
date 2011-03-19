@@ -44,10 +44,11 @@ MainWindow::MainWindow(QStringList arguments,
     ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->treeView, SIGNAL(customContextMenuRequested(QPoint)),
             this, SLOT(_showTreeViewContextMenu(QPoint)));
-    // create _treeView's context menu
+    // create menu items for the _treeView's context menu
     QAction *action_Remove_Node = new QAction("Remove", ui->treeView);
+    action_Remove_Node->setShortcut(QKeySequence::Delete);
     connect(action_Remove_Node, SIGNAL(triggered()),
-            this, SLOT(_removeNode()));
+            this, SLOT(_treeViewRemoveNode()));
     ui->treeView->addAction(action_Remove_Node);
     // set translation for the application's text
     QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
@@ -293,18 +294,23 @@ void MainWindow::_about()
 };
 void MainWindow::_showTreeViewContextMenu(QPoint point)
 {
-    QMenu menu;
-    menu.addActions(ui->treeView->actions());
-    menu.exec(QCursor::pos());
-    std::cerr << "contextmenu\n";
+    CNode* node = _model->nodeFromIndex(ui->treeView->currentIndex());
+    if (node != 0)
+    {
+        QMenu menu;
+        menu.addActions(ui->treeView->actions());
+        menu.exec(QCursor::pos());
+    }
 };
-void MainWindow::_removeNode()
+void MainWindow::_treeViewRemoveNode()
 {
     CNode* node = _model->nodeFromIndex(ui->treeView->currentIndex());
     if (node != 0)
     {
+        int depth = node->getLayer();
         if (node->getParent() != 0)
             node->getParent()->removeChild(node);
         _model->refresh();
+        ui->treeView->expandToDepth(depth);
     }
 };
