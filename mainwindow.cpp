@@ -26,20 +26,10 @@ MainWindow::MainWindow(QStringList arguments,
     ui->treeView->setModel(model);
     itemDelegate = new CItemDelegate(model, this);
     ui->treeView->setItemDelegate(itemDelegate);
-    splitter = new QSplitter;
-    splitter->setOrientation(Qt::Horizontal);
-    hBoxLayout = new QHBoxLayout;
-    ui->centralwidget->setLayout(hBoxLayout);
-    hBoxLayout->addWidget(splitter);
-    splitter->addWidget(ui->treeView);
-    textEdit = new QTextEdit;
-    //QString str("quark mit soße und übermäßig reiz");
-    //textEdit->setText(str);
-    splitter->addWidget(textEdit);
     translationMapper = new CTranslationMapper;
     converter = new CConverter(this, translationMapper);
     connect(converter, SIGNAL(updateTextEdit(QString)),
-            textEdit, SLOT(setPlainText(QString)));
+            ui->textEdit, SLOT(setPlainText(QString)));
     _settingsDialog = new SettingsDialog(this);
     connect(_settingsDialog, SIGNAL(languageChanged(QLocale::Country)),
             this, SLOT(languageChanged(QLocale::Country)));

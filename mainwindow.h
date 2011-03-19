@@ -9,10 +9,7 @@
 #include "cconverter.h"
 #include "settingsdialog.h"
 #include <QMainWindow>
-#include <QSplitter>
-#include <QHBoxLayout>
 #include <QFileDialog>
-#include <QTextEdit>
 #include <QTranslator>
 #include <QTextCodec>
 
@@ -25,15 +22,12 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 private:
     Ui::MainWindow* ui;
-    QSplitter* splitter;
-    QHBoxLayout* hBoxLayout;
-    QTextEdit* textEdit;
     CModel* model;
     CItemDelegate* itemDelegate;
+    SettingsDialog* _settingsDialog;
+    QTranslator _translator;
     CTranslationMapper* translationMapper;
     CConverter* converter;
-    QTranslator _translator;
-    SettingsDialog* _settingsDialog;
     void performInitialOperations(QStringList arguments, QStringList options);
 private slots:
     void open();

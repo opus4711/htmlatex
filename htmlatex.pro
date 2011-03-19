@@ -32,10 +32,9 @@ SOURCES += main.cpp \
     cconverter.cpp \
     settingsdialog.cpp \
     settings.cpp
-HEADERS += cdocumentreader.h \
+HEADERS += mainwindow.h \
+    cdocumentreader.h \
     cnode.h \
-    mainwindow.h \
-    ui_mainwindow.h \
     cmodel.h \
     cdocumentdata.h \
     citemdelegate.h \
