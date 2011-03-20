@@ -11,6 +11,8 @@ private:
 public:
     QString getTagName() const;
     QString getUrlContainingAttributeName() const;
+    DocumentReaderData();
+    DocumentReaderData(const DocumentReaderData& documentreaderdata);
     DocumentReaderData(QString tagname, QString urlcontainingattributename);
 };
 

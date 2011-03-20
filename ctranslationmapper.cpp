@@ -2,12 +2,6 @@
 
 CTranslationMapper::CTranslationMapper()
 {
-    _documentReference = 0;
-};
-CTranslationMapper::~CTranslationMapper()
-{
-    if (_documentReference != 0)
-        delete _documentReference;
 };
 void CTranslationMapper::createDocumentReaderData(QString inputfilepath)
 {
@@ -38,7 +32,7 @@ void CTranslationMapper::createDocumentReaderData(QString inputfilepath)
             QDomNamedNodeMap attributes = node.attributes();
             QString tagname = attributes.namedItem("tagname").nodeValue();
             QString urlcontainingattributename = attributes.namedItem("urlcontainingattributename").nodeValue();
-            _documentReference = new DocumentReaderData(tagname, urlcontainingattributename);
+            _documentReference = DocumentReaderData(tagname, urlcontainingattributename);
         }
     }
     else if (Settings::DEBUG)
@@ -113,7 +107,7 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
                 << "\n\tFilecontent: " << filecontent.toStdString() << std::endl;
     }
 };
-DocumentReaderData* CTranslationMapper::getDocumentReference() const
+DocumentReaderData CTranslationMapper::getDocumentReference() const
 {
     return this->_documentReference;
 };

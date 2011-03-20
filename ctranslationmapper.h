@@ -12,17 +12,16 @@
 
 class CTranslationMapper
 {
+public:
+    CTranslationMapper();
 private:
-    DocumentReaderData* _documentReference;
+    DocumentReaderData _documentReference;
     QMap<QString,CTranslationData> _outputMap;
 public:
     void createDocumentReaderData(QString inputfilepath);
     void createOutputElementMap(QString outputfilepath);
-    DocumentReaderData* getDocumentReference() const;
+    DocumentReaderData getDocumentReference() const;
     QMap<QString,CTranslationData> outputMap() const;
-    // Constructor
-    CTranslationMapper();
-    ~CTranslationMapper();
 };
 
 #endif // CTRANSLATIONMAPPER_H
