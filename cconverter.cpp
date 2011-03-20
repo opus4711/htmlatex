@@ -49,7 +49,7 @@ void CConverter::convert(const QString filepath, CNode* tree)
             emit updateProgressBar((int)((double)i / (double)nodecount * 100.0));
         }
     }
-    std::cerr << "Converter.convert(): cursor.content: " << _cursor->getContent().toStdString() << std::endl;
+    //std::cerr << "Converter.convert(): cursor.content: " << _cursor->getContent().toStdString() << std::endl;
     std::cerr << "Converter.convert(): cursor.count: " << _cursor->getCount() << std::endl;
 
     /*
@@ -88,7 +88,7 @@ bool CConverter::consume(CNode * node)
     CNode *parent = node->getParent();
     if (!parent)
     {
-        std::cerr << "ENDE -- Converter.consume(): node.name: " << node->getName().toStdString() << std::endl;
+        //std::cerr << "ENDE -- Converter.consume(): node.name: " << node->getName().toStdString() << std::endl;
         return false;
     }
     QString parentcontent = _replace(parent);
@@ -110,7 +110,7 @@ bool CConverter::consume(CNode * node)
             parentcontent.append(childcontent);
     }
     parent->setContent(parentcontent);
-    std::cerr << "node: " << node->getName().toStdString() << " parentcontent: " << parentcontent.toStdString() << std::endl;
+    //std::cerr << "node: " << node->getName().toStdString() << " parentcontent: " << parentcontent.toStdString() << std::endl;
     parent->removeChild(node);
     _cursor = getLeaf(parent);
     return true;

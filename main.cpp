@@ -16,6 +16,7 @@ int main(int argc, char* argv[])
        3 = target file path
        4 = target file type
        x = "-g" or "--gui"
+       y = "-v" or "--verbose"
     */
     QStringList arguments;
     QStringList options;
@@ -41,7 +42,8 @@ int main(int argc, char* argv[])
         std::cerr << "usage: htmlatex INPUTFILE FORMAT INPUTDEFINITION OUTPUTFILE FORMAT OUTPUTDEFINITION [-g|--gui]\n"
                 << "  e.g. htmlatex index.html javadoc input_javadoc.xml manual.tex tex output_tex.xml -g\n"
                 << "\t-g, --gui \tLaunch the GUI\n"
-                << "\t-h, --help \tShow some examples\n\n"
+                << "\t-h, --help \tShow some examples\n"
+                << "\t-v, --verbose \tVerbose mode\n\n"
                 << "\tSee the \"README\" file for further information." << std::endl;
     else if (argc == 2)
     {
@@ -56,9 +58,17 @@ int main(int argc, char* argv[])
     }
     else
     {
+        Settings settings;
+        if ((bool)options.contains("-v")
+            | (bool)options.contains("--verbose"))
+        {
+            settings.setValue("verbose", "1");
+            std::cerr << "verbose mode" << std::endl;
+        }
+        else
+            settings.setValue("verbose", "0");
         QCoreApplication a(argc, argv);
         // Set translation environment for the application texts
-        Settings settings;
         QLocale::Country language = (QLocale::Country)settings.getValue("language").toInt();
         QTranslator translator;
         if (language == QLocale::Germany)

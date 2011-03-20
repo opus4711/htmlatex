@@ -48,4 +48,6 @@ QString Settings::getValue(QString key) const
 void Settings::setValue(QString key, QString value)
 {
     _settingsMap[key] = value;
+    if (key == "verbose")
+        this->DEBUG = (bool)value.toInt();
 };
