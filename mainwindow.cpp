@@ -100,9 +100,8 @@ void MainWindow::_performInitialOperations(QStringList arguments, QStringList op
             if (filetypestring.toLower() == "javadoc")
                 filetype = CDocumentData::JavaDocHTML;
             QString inputdefinitionfilepath(arguments.at(2));
-                _translationMapper->createInputElementMap(inputdefinitionfilepath);
-            CDocumentReader* reader = new CDocumentReader;
-            reader->setTranslationMapper(_translationMapper);
+                _translationMapper->createDocumentReaderData(inputdefinitionfilepath);
+            CDocumentReader* reader = new CDocumentReader(_translationMapper);
             CNode* root = reader->read(arguments.at(0), filetype);
                 _model->setRootNode(root);
             delete reader;
@@ -207,6 +206,7 @@ void MainWindow::_languageChanged(QLocale::Country language)
         _translator.load(QString("htmlatex_en.qm"));
     qApp->installTranslator(&_translator);
     ui->retranslateUi(this);
+    _settingsDialog->retranslateUi();
 };
 void MainWindow::_open()
 {
@@ -223,8 +223,7 @@ void MainWindow::_open()
             filetype = CDocumentData::JavaDocHTML;
         else if (dialog->selectedFilter() == "any file (*.*)")
             filetype = CDocumentData::Unknown;
-        CDocumentReader* reader = new CDocumentReader;
-        reader->setTranslationMapper(_translationMapper);
+        CDocumentReader* reader = new CDocumentReader(_translationMapper);
         CNode *root = reader->read(dialog->selectedFiles().at(0), filetype);
         _model->setRootNode(root);
         delete reader;
@@ -275,7 +274,7 @@ void MainWindow::_setInputDefinition()
                                                     tr("Select Input Definition File"),
                                                     "",
                                                     tr("XML files (*.xml);;any file (*.*)"));
-    _translationMapper->createInputElementMap(filepath);
+    _translationMapper->createDocumentReaderData(filepath);
 };
 void MainWindow::_setOutputDefinition()
 {

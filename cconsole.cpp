@@ -27,7 +27,7 @@ void CConsole::_performInitialOperations(QStringList arguments, QStringList opti
         QString sourcefilepath(arguments.at(0));
         QString filetypestring(arguments.at(1));
         QString inputdefinitionfilepath(arguments.at(2));
-        translationmapper->createInputElementMap(inputdefinitionfilepath);
+        translationmapper->createDocumentReaderData(inputdefinitionfilepath);
         QFile file(sourcefilepath);
         CNode* root = 0;
         if (file.exists())
@@ -35,7 +35,7 @@ void CConsole::_performInitialOperations(QStringList arguments, QStringList opti
             CDocumentData::FileType filetype = CDocumentData::Unknown;
             if (filetypestring.toLower() == "javadoc")
                 filetype = CDocumentData::JavaDocHTML;
-            CDocumentReader* reader = new CDocumentReader;
+            CDocumentReader* reader = new CDocumentReader(translationmapper);
             root = reader->read(sourcefilepath, filetype);
             delete reader;
             std::cout << tr("Read source file(s) --> success").toStdString() << std::endl;

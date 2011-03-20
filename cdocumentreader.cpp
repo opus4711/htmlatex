@@ -3,9 +3,19 @@
 /** This class creates a tree representation of a given document.
   @author Bjoern Kaiser
   */
-CDocumentReader::CDocumentReader()
+CDocumentReader::CDocumentReader(CTranslationMapper* translationmapper)
 {
     _fileType = CDocumentData::Unknown;
+    _translationMapper = translationmapper;
+    _documentReference = 0;
+    if (_translationMapper != 0)
+        _documentReference = _translationMapper->getDocumentReference();
+    else
+    {
+        if (Settings::DEBUG)
+            std::cerr << "DocumentReader.read() : _translationMapper is 0" << std::endl;
+        return;
+    }
 };
 /** This method
   * @param filetype contains the file filter string selected previously.
@@ -14,6 +24,12 @@ CDocumentReader::CDocumentReader()
 CNode* CDocumentReader::read(QString indexfilepath,
                              CDocumentData::FileType filetype)
 {
+    if (_translationMapper == 0)
+    {
+        if (Settings::DEBUG)
+            std::cerr << "DocumentReader.read() : _translationMapper is 0" << std::endl;
+        return 0;
+    }
     _fileType = filetype;
     _indexFileInfo = QFileInfo(indexfilepath);
     // start reading the whole document tree
@@ -66,6 +82,8 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
 {
     for (int i = 0; i < element.childNodes().count(); i++)
     {
+        // The QDomDocument class creates a node named "#text" which contains
+        // the node value (content).
         if (element.childNodes().at(i).nodeName().toLower() == "#text")
             node->setContent(element.childNodes().at(i).nodeValue());
         else
@@ -75,31 +93,19 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
                                         node->getLayer() + 1);
             node->addChild(new_node);
             QDomNamedNodeMap attributes = element.childNodes().at(i).attributes();
-            if (element.childNodes().at(i).nodeName().toLower() == "font")
-                new_node->addAttribute("size", attributes.namedItem("size").nodeValue());
-            else if (element.childNodes().at(i).nodeName().toLower() == "td")
-            {
-                new_node->addAttribute("align", attributes.namedItem("align").nodeValue());
-                new_node->addAttribute("valign", attributes.namedItem("valign").nodeValue());
-                new_node->addAttribute("width", attributes.namedItem("width").nodeValue());
-            }
-            else if (element.childNodes().at(i).nodeName().toLower() == "tr")
-                new_node->addAttribute("bgcolor", attributes.namedItem("bgcolor").nodeValue());
-            else if (element.childNodes().at(i).nodeName().toLower() == "th")
-            {
-                new_node->addAttribute("align", attributes.namedItem("align").nodeValue());
-                new_node->addAttribute("colspan", attributes.namedItem("colspan").nodeValue());
-            }
-            else if (element.childNodes().at(i).nodeName().toLower() == "a")
+            if (element.childNodes().at(i).nodeName().toLower() == _documentReference->getTagName())
             {
                 if (Settings::DEBUG)
                 {
-                    std::cerr << "#\tReadElement - 'a': \n#\t\tindexFileInfo.absPath: "
+                    std::cerr << "#\tReadElement - '"
+                            << _documentReference->getTagName().toStdString()
+                            << "': \n#\t\tindexFileInfo.absPath: "
                             << _indexFileInfo.absolutePath().toStdString()
                             << std::endl << "#\t\thref: "
                             << new_node->getAttributes()["href"].toStdString() << std::endl;
                 }
-                new_node->addAttribute("href", attributes.namedItem("href").nodeValue());
+                QString urlattribute = _documentReference->getUrlContainingAttributeName();
+                new_node->addAttribute(urlattribute, attributes.namedItem(urlattribute).nodeValue());
                 // compose absolute file path
                 QFileInfo myfileinfo;
                 if (QFileInfo(_indexFileInfo.absolutePath() + new_node->getAttributes()["href"]).exists())
@@ -120,12 +126,17 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
                            << new_node->getAttributes()["href"].toStdString() << std::endl;
                 }
             }
+            else
+            {
+                QDomNode attribute;
+                for (int i = 0; i < attributes.count(); i++)
+                {
+                    attribute = attributes.item(i);
+                    new_node->addAttribute(attribute.nodeName(), attribute.nodeValue());
+                }
+            }
             QDomElement new_element = element.childNodes().at(i).toElement();
             readElement(new_element, new_node);
         }
     }
-};
-void CDocumentReader::setTranslationMapper(CTranslationMapper* translationmapper)
-{
-    this->_translationMapper = translationmapper;
 };

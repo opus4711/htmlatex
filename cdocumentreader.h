@@ -21,12 +21,12 @@ private:
     CDocumentData::FileType _fileType;
     QStack<CDocumentData*> _documentStack;
     CTranslationMapper* _translationMapper;
+    DocumentReaderData* _documentReference;
     void readElement(QDomElement element, CNode* node);
 public:
     CNode* read(QString indexfilepath, CDocumentData::FileType filetype);
-    void setTranslationMapper(CTranslationMapper* translationmapper);
     // constructor
-    CDocumentReader();
+    CDocumentReader(CTranslationMapper* translationmapper);
 };
 
 #endif // CDOCUMENTREADER_H

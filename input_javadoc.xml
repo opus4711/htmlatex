@@ -1,33 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE javadoc [
-<!ELEMENT javadoc (element*)>
-<!ELEMENT element (name, content?, attribute*)>
-<!ELEMENT name (#PCDATA)>
-<!ELEMENT content (#PCDATA)>
-<!ELEMENT attribute (#PCDATA)>
+<!ELEMENT javadoc (documentreference)>
+<!ELEMENT documentreference EMPTY>
+<!ATTLIST documentreference tagname CDATA #REQUIRED
+    urlcontainingattributename CDATA #REQUIRED>
 ]>
 <javadoc>
-    <element>
-        <name>font</name>
-        <attribute>size</attribute>
-    </element>
-    <element>
-        <name>td</name>
-        <attribute>align</attribute>
-        <attribute>valign</attribute>
-        <attribute>width</attribute>
-    </element>
-    <element>
-        <name>tr</name>
-        <attribute>bgcolor</attribute>
-    </element>
-    <element>
-        <name>th</name>
-        <attribute>align</attribute>
-        <attribute>colspan</attribute>
-    </element>
-    <element>
-        <name>a</name>
-        <attribute>href</attribute>
-    </element>
+    <documentreference tagname="a" urlcontainingattributename="href" />
 </javadoc>

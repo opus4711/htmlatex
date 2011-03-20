@@ -2,10 +2,50 @@
 
 CTranslationMapper::CTranslationMapper()
 {
-    this->_outputMap = QMap<QString,CTranslationData>();
+    _documentReference = 0;
 };
-void CTranslationMapper::createInputElementMap(QString inputfilepath)
+CTranslationMapper::~CTranslationMapper()
 {
+    if (_documentReference != 0)
+        delete _documentReference;
+};
+void CTranslationMapper::createDocumentReaderData(QString inputfilepath)
+{
+    QFile file(inputfilepath);
+    if (!file.open(QFile::ReadOnly | QFile::Text))
+    {
+        if(Settings::DEBUG)
+        {
+            std::cerr << "CTranslationMapper.createDocumentReaderData(): "
+                    << "file.open() returned false\n\tPath: "
+                    << inputfilepath.toStdString() << std::endl;
+        }
+        return;
+    }
+    // load content of the XML file into "filecontent"
+    QString filecontent = QString(file.readAll()).toLatin1();
+    file.close();
+    QDomDocument doc;
+    QString errorMsg = "";
+    int errorLine = -1;
+    int errorColumn = -1;
+    if (doc.setContent(filecontent, &errorMsg, &errorLine, &errorColumn))
+    {
+        QDomElement root = doc.documentElement();
+        QDomNode node = root.elementsByTagName("documentreference").at(0);
+        if (!node.isNull())
+        {
+            QDomNamedNodeMap attributes = node.attributes();
+            QString tagname = attributes.namedItem("tagname").nodeValue();
+            QString urlcontainingattributename = attributes.namedItem("urlcontainingattributename").nodeValue();
+            _documentReference = new DocumentReaderData(tagname, urlcontainingattributename);
+        }
+    }
+    else if (Settings::DEBUG)
+    {
+        std::cerr << "CTranslationMapper.createDocumentReaderData(): doc.setContent returned false"
+                << "\n\tFilecontent: " << filecontent.toStdString() << std::endl;
+    }
 };
 void CTranslationMapper::createOutputElementMap(QString outputfilepath)
 {
@@ -72,6 +112,10 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
         std::cerr << "CTranslationMapper.createOutputElementMap(): doc.setContent returned false"
                 << "\n\tFilecontent: " << filecontent.toStdString() << std::endl;
     }
+};
+DocumentReaderData* CTranslationMapper::getDocumentReference() const
+{
+    return this->_documentReference;
 };
 QMap<QString,CTranslationData> CTranslationMapper::outputMap() const
 {
