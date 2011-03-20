@@ -43,7 +43,8 @@ int main(int argc, char* argv[])
                 << "  e.g. htmlatex index.html javadoc input_javadoc.xml manual.tex tex output_tex.xml -g\n"
                 << "\t-g, --gui \tLaunch the GUI\n"
                 << "\t-h, --help \tShow some examples\n"
-                << "\t-v, --verbose \tVerbose mode\n\n"
+                << "\t-v, --verbose \tVerbose mode\n"
+                << "\t-lang=de, -lang=en \tSets the language to German or English\n\n"
                 << "\tSee the \"README\" file for further information." << std::endl;
     else if (argc == 2)
     {
@@ -67,6 +68,20 @@ int main(int argc, char* argv[])
         }
         else
             settings.setValue("verbose", "0");
+        if ((bool)options.contains("-lang=de")
+            | (bool)options.contains("-lang=en"))
+        {
+            if ((bool)options.contains("-lang=de"))
+            {
+                settings.setValue("language", QString::number((int)QLocale::Germany));
+                std::cerr << "language set to German" << std::endl;
+            }
+            else
+            {
+                settings.setValue("language", QString::number((int)QLocale::C));
+                std::cerr << "language set to English" << std::endl;
+            }
+        }
         QCoreApplication a(argc, argv);
         // Set translation environment for the application texts
         QLocale::Country language = (QLocale::Country)settings.getValue("language").toInt();
