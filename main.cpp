@@ -2,7 +2,7 @@
 #include <QtCore/QCoreApplication>
 
 #include "mainwindow.h"
-#include "cconsole.h"
+#include "console.h"
 #include "settings.h"
 #include <QString>
 #include <QTranslator>
@@ -72,27 +72,27 @@ int main(int argc, char* argv[])
             | (bool)options.contains("-lang=en"))
         {
             if ((bool)options.contains("-lang=de"))
-            {
                 settings.setValue("language", QString::number((int)QLocale::Germany));
-                std::cerr << "language set to German" << std::endl;
-            }
             else
-            {
                 settings.setValue("language", QString::number((int)QLocale::C));
-                std::cerr << "language set to English" << std::endl;
-            }
         }
         QCoreApplication a(argc, argv);
         // Set translation environment for the application texts
         QLocale::Country language = (QLocale::Country)settings.getValue("language").toInt();
         QTranslator translator;
         if (language == QLocale::Germany)
-            translator.load(QString("htmlatex_de.qm"));
+        {
+            if(translator.load(QString("htmlatex_de.qm")))
+                std::cerr << "German translation" << std::endl;
+        }
         else
-            translator.load(QString("htmlatex_en.qm"));
+        {
+            if (translator.load(QString("htmlatex_en.qm")))
+                std::cerr << "English translation" << std::endl;
+        }
         a.installTranslator(&translator);
         QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
-        CConsole console(arguments, options);
+        Console console(arguments, options);
         // Invoke external program and write the output to a file
 //        system("ping -c 4 192.168.1.1>>ping_test.txt");
         exit(0);

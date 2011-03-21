@@ -24,7 +24,6 @@ SOURCES += main.cpp \
     cmodel.cpp \
     cdocumentdata.cpp \
     citemdelegate.cpp \
-    cconsole.cpp \
     cdocumentreader.cpp \
     ctranslationmapper.cpp \
     ctranslationdata.cpp \
@@ -32,21 +31,22 @@ SOURCES += main.cpp \
     cconverter.cpp \
     settingsdialog.cpp \
     settings.cpp \
-    documentreaderdata.cpp
+    documentreaderdata.cpp \
+    console.cpp
 HEADERS += mainwindow.h \
     cdocumentreader.h \
     cnode.h \
     cmodel.h \
     cdocumentdata.h \
     citemdelegate.h \
-    cconsole.h \
     ctranslationmapper.h \
     ctranslationdata.h \
     ctranslationdatanode.h \
     cconverter.h \
     settingsdialog.h \
     settings.h \
-    documentreaderdata.h
+    documentreaderdata.h \
+    console.h
 FORMS += mainwindow.ui \
     settingsdialog.ui
 OTHER_FILES += README \

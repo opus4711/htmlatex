@@ -1,17 +1,17 @@
-#include "cconsole.h"
+#include "console.h"
 #include "cconverter.h"
 
-CConsole::CConsole(QStringList arguments, QStringList options)
+Console::Console(QStringList arguments, QStringList options)
 {
     _performInitialOperations(arguments, options);
 };
-CConsole::~CConsole()
+Console::~Console()
 {
 };
 /* This method processes the application's startup arguments and performs the
    conversion by means of a DocumentReader and Converter object.
    */
-void CConsole::_performInitialOperations(QStringList arguments, QStringList options)
+void Console::_performInitialOperations(QStringList arguments, QStringList options)
 {
     /* arguments:
        0 = source file path

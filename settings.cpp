@@ -11,6 +11,7 @@ Settings::Settings() : _SETTINGSFILEPATH("htmlatex_settings.dat")
         _settingsMap["verbose"] = "0";
         // boolean value
         _settingsMap["includesubdocuments"] = "1";
+        _save();
     }
 };
 bool Settings::DEBUG = false;
@@ -48,10 +49,13 @@ bool Settings::_save()
 };
 QString Settings::getValue(QString key)
 {
-    if (!_load() & DEBUG)
+    if (!_load())
     {
-        std::cerr << tr("Settings.getValue() returned default value for key: ").toStdString() << key.toStdString()
-        << tr(", value: ").toStdString() << _settingsMap[key].toStdString() << std::endl;
+        if (DEBUG)
+        {
+            std::cerr << tr("Settings.getValue() returned default value for key: ").toStdString() << key.toStdString()
+            << tr(", value: ").toStdString() << _settingsMap[key].toStdString() << std::endl;
+        }
     }
     return _settingsMap[key];
 };

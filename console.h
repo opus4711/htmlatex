@@ -1,5 +1,5 @@
-#ifndef CCONSOLE_H
-#define CCONSOLE_H
+#ifndef CONSOLE_H
+#define CONSOLE_H
 
 #include "ctranslationmapper.h"
 #include "cdocumentreader.h"
@@ -11,15 +11,15 @@
 /** This class provides the command line functionality of the application.
     @author Bjoern
   */
-class CConsole : public QObject
+class Console : public QObject
 {
     Q_OBJECT
 private:
     void _performInitialOperations(QStringList arguments, QStringList options);
 public:
     // Constructor
-    CConsole(QStringList arguments, QStringList options);
-    ~CConsole();
+    Console(QStringList arguments, QStringList options);
+    ~Console();
 };
 
-#endif // CCONSOLE_H
+#endif // CONSOLE_H
