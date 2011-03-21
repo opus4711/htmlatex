@@ -7,9 +7,6 @@ Console::Console(QStringList arguments, QStringList options)
 Console::~Console()
 {
 };
-/* This method processes the application's startup arguments and performs the
-   conversion by means of a DocumentReader and Converter object.
-   */
 void Console::_performInitialOperations(QStringList arguments, QStringList options)
 {
     /* arguments:
