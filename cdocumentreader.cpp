@@ -7,6 +7,8 @@ CDocumentReader::CDocumentReader(CTranslationMapper* translationmapper)
 {
     _fileType = CDocumentData::Unknown;
     _translationMapper = translationmapper;
+    Settings settings;
+    _includeSubDocuments = (bool)settings.getValue("includesubdocuments").toInt();
 };
 /** This method
   * @param filetype contains the file filter string selected previously.
@@ -21,6 +23,8 @@ CNode* CDocumentReader::read(QString indexfilepath,
             std::cerr << "DocumentReader.read() : _translationMapper is 0" << std::endl;
         return 0;
     }
+    Settings settings;
+    _includeSubDocuments = (bool)settings.getValue("includesubdocuments").toInt();
     _fileType = filetype;
     _indexFileInfo = QFileInfo(indexfilepath);
     // start reading the whole document tree
@@ -89,11 +93,11 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
             {
                 if (Settings::DEBUG)
                 {
-                    std::cerr << "#\tReadElement - '"
+                    std::cerr << tr("#\tReadElement - '").toStdString()
                             << documentreference.getTagName().toStdString()
-                            << "': \n#\t\tindexFileInfo.absPath: "
+                            << tr("': \n#\t\tindexFileInfo.absPath: ").toStdString()
                             << _indexFileInfo.absolutePath().toStdString()
-                            << std::endl << "#\t\thref: "
+                            << std::endl << tr("#\t\thref: ").toStdString()
                             << new_node->getAttributes()["href"].toStdString() << std::endl;
                 }
                 QString urlattribute = documentreference.getUrlContainingAttributeName();
@@ -108,13 +112,14 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
                     // windows
                     myfileinfo = QFileInfo(_indexFileInfo.absolutePath()
                                            + QDir::separator() + new_node->getAttributes()["href"]);
-                _documentStack.push(new CDocumentData(myfileinfo, new_node, _fileType));
+                if (_includeSubDocuments)
+                    _documentStack.push(new CDocumentData(myfileinfo, new_node, _fileType));
                 if(Settings::DEBUG)
                 {
-                    std::cerr << "# CDocumentReader::readElement()"
-                           << std::endl << "#\tat \"if (element.childNodes()"
-                           << ".at(i).nodeName().toLower() == \"a\")\" returned true"
-                           << std::endl << "#\tfound subdocument href="
+                    std::cerr << tr("# CDocumentReader::readElement()").toStdString()
+                           << std::endl << tr("#\tat \"if (element.childNodes()").toStdString()
+                           << tr(".at(i).nodeName().toLower() == \"a\")\" returned true").toStdString()
+                           << std::endl << tr("#\tfound subdocument href=").toStdString()
                            << new_node->getAttributes()["href"].toStdString() << std::endl;
                 }
             }

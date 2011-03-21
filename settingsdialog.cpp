@@ -17,6 +17,8 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     // retrieve corresponding comboBox item index
     int itemindex = ui->comboBox_language->findData(initially_selected_language);
     ui->comboBox_language->setCurrentIndex(itemindex);
+    ui->checkBox_verbose->setChecked((bool)settings.getValue("verbose").toInt());
+    ui->checkBox_includesubdocuments->setChecked((bool)settings.getValue("includesubdocuments").toInt());
 };
 SettingsDialog::~SettingsDialog()
 {
@@ -39,7 +41,8 @@ void SettingsDialog::apply()
         Settings settings;
         settings.setValue("language", ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()).toString());
         settings.setValue("latexpath", ui->lineEdit_latexpath->text());
-        settings.save();
+        settings.setValue("includesubdocuments", QString::number((int)ui->checkBox_includesubdocuments->isChecked()));
+        settings.setValue("verbose", QString::number((int)ui->checkBox_verbose->isChecked()));
         QLocale::Country language = (QLocale::Country)ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()).toInt();
         emit languageChanged(language);
         ui->retranslateUi(this);

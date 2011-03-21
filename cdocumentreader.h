@@ -5,6 +5,7 @@
 #include "cdocumentdata.h"
 #include "ctranslationmapper.h"
 #include "settings.h"
+#include <QObject>
 #include <QString>
 #include <QDomDocument>
 #include <QDomNamedNodeMap>
@@ -14,13 +15,15 @@
 
 #include <iostream>
 
-class CDocumentReader
+class CDocumentReader : public QObject
 {
+    Q_OBJECT
 private:
     QFileInfo _indexFileInfo;
     CDocumentData::FileType _fileType;
     QStack<CDocumentData*> _documentStack;
     CTranslationMapper* _translationMapper;
+    bool _includeSubDocuments;
     void readElement(QDomElement element, CNode* node);
 public:
     CNode* read(QString indexfilepath, CDocumentData::FileType filetype);
