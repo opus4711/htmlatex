@@ -30,7 +30,20 @@
        <enum>Qt::Horizontal</enum>
       </property>
       <widget class="QTreeView" name="treeView"/>
-      <widget class="QTextEdit" name="textEdit"/>
+      <widget class="QWidget" name="widget_Right">
+       <layout class="QVBoxLayout" name="vBoxLayout">
+        <item>
+         <widget class="QTextEdit" name="textEdit"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_Save_As">
+          <property name="text">
+           <string>&amp;Save As</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -100,7 +113,6 @@
    <addaction name="actionSet_Input_Definition"/>
    <addaction name="action_Open"/>
    <addaction name="action_Convert"/>
-   <addaction name="action_Save_As"/>
   </widget>
   <action name="action_Quit">
    <property name="icon">
