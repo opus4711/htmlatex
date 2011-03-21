@@ -1,7 +1,7 @@
 #ifndef DOCUMENTREADER_H
 #define DOCUMENTREADER_H
 
-#include "cnode.h"
+#include "node.h"
 #include "documentdata.h"
 #include "translationmapper.h"
 #include "settings.h"
@@ -24,9 +24,9 @@ private:
     QStack<DocumentData*> _documentStack;
     TranslationMapper* _translationMapper;
     bool _includeSubDocuments;
-    void readElement(QDomElement element, CNode* node);
+    void readElement(QDomElement element, Node* node);
 public:
-    CNode* read(QString indexfilepath, DocumentData::FileType filetype);
+    Node* read(QString indexfilepath, DocumentData::FileType filetype);
     // constructor
     DocumentReader(TranslationMapper* translationmapper);
 };

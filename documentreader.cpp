@@ -14,7 +14,7 @@ DocumentReader::DocumentReader(TranslationMapper* translationmapper)
   * @param filetype contains the file filter string selected previously.
   * @author Bjoern Kaiser
   */
-CNode* DocumentReader::read(QString indexfilepath,
+Node* DocumentReader::read(QString indexfilepath,
                              DocumentData::FileType filetype)
 {
     if (_translationMapper == 0)
@@ -28,7 +28,7 @@ CNode* DocumentReader::read(QString indexfilepath,
     _fileType = filetype;
     _indexFileInfo = QFileInfo(indexfilepath);
     // start reading the whole document tree
-    CNode* root = new CNode(0, "html", 0);
+    Node* root = new Node(0, "html", 0);
     // add the index document to the stack of documents
     _documentStack.push(new DocumentData(_indexFileInfo, root, _fileType));
     // begin processing the documents stored on the document stack
@@ -73,7 +73,7 @@ CNode* DocumentReader::read(QString indexfilepath,
     }
     return root;
 };
-void DocumentReader::readElement(QDomElement element, CNode* node)
+void DocumentReader::readElement(QDomElement element, Node* node)
 {
     for (int i = 0; i < element.childNodes().count(); i++)
     {
@@ -83,7 +83,7 @@ void DocumentReader::readElement(QDomElement element, CNode* node)
             node->setContent(element.childNodes().at(i).nodeValue());
         else
         {
-            CNode* new_node = new CNode(node,
+            Node* new_node = new Node(node,
                                         element.childNodes().at(i).nodeName().toLower(),
                                         node->getLayer() + 1);
             node->addChild(new_node);

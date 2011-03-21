@@ -65,7 +65,7 @@ void ItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem &option,
     painter->save();
     QStyleOptionViewItem opt = option;
     opt.displayAlignment = Qt::AlignLeft | Qt::AlignVCenter;
-    CNode* node = model->nodeFromIndex(index);
+    Node* node = model->nodeFromIndex(index);
     QString text = node->getName() + " (" + QString::number(node->getLayer()) + ")";
     painter->setPen(color);
     if (node->getContent() != "")

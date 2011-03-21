@@ -28,7 +28,7 @@ void Console::_performInitialOperations(QStringList arguments, QStringList optio
         QString inputdefinitionfilepath(arguments.at(2));
         translationmapper->createDocumentReaderData(inputdefinitionfilepath);
         QFile file(sourcefilepath);
-        CNode* root = 0;
+        Node* root = 0;
         if (file.exists())
         {
             DocumentData::FileType filetype = DocumentData::Unknown;

@@ -22,8 +22,8 @@
      <widget class="QSplitter" name="splitter">
       <property name="maximumSize">
        <size>
-        <width>782</width>
-        <height>507</height>
+        <width>16777215</width>
+        <height>16777215</height>
        </size>
       </property>
       <property name="orientation">
@@ -60,6 +60,7 @@
     <addaction name="action_Open"/>
     <addaction name="action_Convert"/>
     <addaction name="separator"/>
+    <addaction name="action_Save_As"/>
     <addaction name="separator"/>
     <addaction name="action_Quit"/>
    </widget>
@@ -74,7 +75,16 @@
    <addaction name="menu_Help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar">
-   <widget class="QProgressBar" name="progressBar"/>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>100</width>
+      <height>30</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
@@ -90,6 +100,7 @@
    <addaction name="actionSet_Input_Definition"/>
    <addaction name="action_Open"/>
    <addaction name="action_Convert"/>
+   <addaction name="action_Save_As"/>
   </widget>
   <action name="action_Quit">
    <property name="icon">
@@ -152,6 +163,15 @@
    </property>
    <property name="text">
     <string>&amp;Settings</string>
+   </property>
+  </action>
+  <action name="action_Save_As">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/Images/icons/save_all.png</normaloff>:/Images/icons/save_all.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Save As</string>
    </property>
   </action>
  </widget>

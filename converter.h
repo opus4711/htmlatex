@@ -1,7 +1,7 @@
 #ifndef CONVERTER_H
 #define CONVERTER_H
 
-#include "cnode.h"
+#include "node.h"
 #include "translationmapper.h"
 #include "settings.h"
 #include <QFile>
@@ -35,7 +35,7 @@ public:
     /** converts to QString and writes the output file
       * @param <qint32> the number of parts in the outputDocument
       */
-    void convert(const QString filepath, CNode* root);
+    void convert(const QString filepath, Node* root);
 private:
     /*****FIELDS*****/
     // outputfile
@@ -43,10 +43,10 @@ private:
     // outputfilestream
     QTextStream _stream;
     // the root node
-    CNode * _root;
+    Node * _root;
     TranslationMapper* _translationMapper;
     // the active node
-    static CNode * _cursor;
+    static Node * _cursor;
     QString _errormessage;
     qint32 _noOfParts;
     QStringList replacementMarks;
@@ -60,33 +60,33 @@ private:
 
     /*****METHODS*****/
     // retrieves the first leaf of the tree
-    CNode * getLeaf(CNode* node = _cursor);
+    Node * getLeaf(Node* node = _cursor);
     // Is the node a leaf?
-    bool isLeaf(CNode * node = _cursor);
+    bool isLeaf(Node * node = _cursor);
     // returns the node's attributes
-    QMap<QString,QString> getAttributes(CNode * node = _cursor);
+    QMap<QString,QString> getAttributes(Node * node = _cursor);
     // returnt the node's content
-    QString getContent(CNode * node = _cursor);
+    QString getContent(Node * node = _cursor);
     // returns the node's name
-    QString getName(CNode * node = _cursor);
+    QString getName(Node * node = _cursor);
     // Writes the information of the current (leaf) node into the parent, deletes
     // the active node and sets the cursor to the next leaf.
-    bool consume(CNode * node = _cursor);
+    bool consume(Node * node = _cursor);
     int match(QString content, QString pattern);
 
-    // QBool isLeaf(CNode * node = _cursor)
+    // QBool isLeaf(Node * node = _cursor)
     // consume
     // // QMap<QString, QString> getAttributes()
     // // QString getContent()
     // // QString getName()
 
     // gets the next sibling
-    CNode * _getNextSibling();
+    Node * _getNextSibling();
     // gets the next child
-    CNode * _getNextChild();
+    Node * _getNextChild();
     // get the next node in the tree
     // if no siblings left it gets the next child
-    CNode * _getNextNode();
+    Node * _getNextNode();
     // get the Level ot the current node
     qint64 _getTreeLevel();
     // gets the key of the parent node <distance> levels up the tree
@@ -110,7 +110,7 @@ private:
     // returns offset if <pattern> is found otherwise returns "-1"
     qint64 _tryMatch(QString pattern);
     // replaces place holder with the content of the current node
-    QString _replace(CNode* node = _cursor);
+    QString _replace(Node* node = _cursor);
 };
 
 #endif // CONVERTER_H

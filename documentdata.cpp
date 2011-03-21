@@ -7,7 +7,7 @@
   * document preprocessing is chosen by means of distinguished file types.
   * @author Bjoern Kaiser
   */
-DocumentData::DocumentData(QFileInfo fileinfo, CNode* node, FileType filetype)
+DocumentData::DocumentData(QFileInfo fileinfo, Node* node, FileType filetype)
 {
     this->_fileInfo = fileinfo;
     this->_node = node;
@@ -25,7 +25,7 @@ QFileInfo DocumentData::fileInfo() const
 /** Returns the pointer to the corresponding tree node of the whole document.
   * @author Bjoern Kaiser
   */
-CNode* DocumentData::node() const
+Node* DocumentData::node() const
 {
     return this->_node;
 };

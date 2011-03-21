@@ -102,7 +102,7 @@ void MainWindow::_performInitialOperations(QStringList arguments, QStringList op
             QString inputdefinitionfilepath(arguments.at(2));
                 _translationMapper->createDocumentReaderData(inputdefinitionfilepath);
             DocumentReader* reader = new DocumentReader(_translationMapper);
-            CNode* root = reader->read(arguments.at(0), filetype);
+            Node* root = reader->read(arguments.at(0), filetype);
                 _model->setRootNode(root);
             delete reader;
             if (root->getCount() == 0)
@@ -152,7 +152,7 @@ void MainWindow::_performInitialOperations(QStringList arguments, QStringList op
                 if (filetypestring.toLower() == "tex")
                     filetype = DocumentData::Tex;
                 // converting...
-                CNode* root = new CNode(*_model->root());
+                Node* root = new Node(*_model->root());
                 _converter->convert(targetfilepath, root);
                 if (Settings::DEBUG)
                 {
@@ -224,7 +224,7 @@ void MainWindow::_open()
         else if (dialog->selectedFilter() == "any file (*.*)")
             filetype = DocumentData::Unknown;
         DocumentReader* reader = new DocumentReader(_translationMapper);
-        CNode *root = reader->read(dialog->selectedFiles().at(0), filetype);
+        Node *root = reader->read(dialog->selectedFiles().at(0), filetype);
         _model->setRootNode(root);
         delete reader;
     }
@@ -264,7 +264,7 @@ void MainWindow::_convert()
         else if (dialog->selectedFilter() == "any file (*.*)")
             filetype = DocumentData::Unknown;
         // now begin conversion...
-        CNode* root = new CNode(*_model->root());
+        Node* root = new Node(*_model->root());
         _converter->convert(dialog->selectedFiles().at(0), root);
     }
 };
@@ -296,7 +296,7 @@ void MainWindow::_about()
 };
 void MainWindow::_showTreeViewContextMenu(QPoint point)
 {
-    CNode* node = _model->nodeFromIndex(ui->treeView->currentIndex());
+    Node* node = _model->nodeFromIndex(ui->treeView->currentIndex());
     if (node != 0)
     {
         QMenu menu;
@@ -306,7 +306,7 @@ void MainWindow::_showTreeViewContextMenu(QPoint point)
 };
 void MainWindow::_treeViewRemoveNode()
 {
-    CNode* node = _model->nodeFromIndex(ui->treeView->currentIndex());
+    Node* node = _model->nodeFromIndex(ui->treeView->currentIndex());
     if (node != 0)
     {
         int depth = node->getLayer();
