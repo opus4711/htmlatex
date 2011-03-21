@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$d6/d56/class_console.html" title="This class provides the command line functionality of the application." alt="" coords="5,364,187,484"/>
+<area shape="rect" id="node5" href="$db/d92/class_converter.html" title="This class converts the QDomDocument&#45;Tree to a textfile by performing the conversions..." alt="" coords="211,139,349,709"/>
+<area shape="rect" id="node7" href="$dc/d86/class_document_reader.html" title="{DocumentReader\n|&#45; _indexFileInfo\l&#45; _fileType\l&#45; _documentStack\l&#45; _translationMapper\l&#45; _includeSubDocuments\l|+ read()\l+ DocumentReader()\l&#45; readElement()\l}" alt="" coords="373,329,539,519"/>
+<area shape="rect" id="node9" href="$db/d2b/class_settings.html" title="{Settings\n|+ DEBUG\l&#45; _SETTINGSFILEPATH\l&#45; _settingsMap\l|+ Settings()\l+ setValue()\l+ getValue()\l&#45; _load()\l&#45; _save()\l}" alt="" coords="563,329,720,519"/>
+</map>
