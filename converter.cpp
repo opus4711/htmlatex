@@ -14,8 +14,8 @@ Converter::Converter(QObject *parent, TranslationMapper* translationmapper)
     std::cerr << "Converter: i: " << QString::number(i).toStdString() << "\n";
     end test */
 };
-CNode* Converter::_cursor = 0;
-void Converter::convert(const QString filepath, CNode* tree)
+Node* Converter::_cursor = 0;
+void Converter::convert(const QString filepath, Node* tree)
 {
     /*
     _file.setFileName(filepath);
@@ -60,32 +60,32 @@ void Converter::convert(const QString filepath, CNode* tree)
     emit updateTextEdit(_cursor->getContent());
     emit updateProgressBar(0);
 };
-CNode * Converter::getLeaf(CNode* node)
+Node * Converter::getLeaf(Node* node)
 {
-    CNode * result = node;
+    Node * result = node;
     while (result->firstChild() != 0)
         result = result->firstChild();
     return result;
 };
-bool Converter::isLeaf(CNode * node)
+bool Converter::isLeaf(Node * node)
 {
     return (node->getCount() == 0);
 };
-QMap<QString,QString> Converter::getAttributes(CNode * node)
+QMap<QString,QString> Converter::getAttributes(Node * node)
 {
     return node->getAttributes();
 };
-QString Converter::getContent(CNode * node)
+QString Converter::getContent(Node * node)
 {
     return node->getContent();
 };
-QString Converter::getName(CNode * node)
+QString Converter::getName(Node * node)
 {
     return node->getName();
 };
-bool Converter::consume(CNode * node)
+bool Converter::consume(Node * node)
 {
-    CNode *parent = node->getParent();
+    Node *parent = node->getParent();
     if (!parent)
     {
         //std::cerr << "ENDE -- Converter.consume(): node.name: " << node->getName().toStdString() << std::endl;
@@ -115,11 +115,11 @@ bool Converter::consume(CNode * node)
     _cursor = getLeaf(parent);
     return true;
 };
-CNode * Converter::_getNextSibling()
+Node * Converter::_getNextSibling()
 {
     // Demo-Code
-    CNode* result = 0;
-    CNode* parent = _cursor->getParent();
+    Node* result = 0;
+    Node* parent = _cursor->getParent();
     int index = parent->indexOf(_cursor);
     // next sibling's index is (index + 1)
     if (index + 1 < parent->getCount())
@@ -127,12 +127,12 @@ CNode * Converter::_getNextSibling()
     // _cursor = result; ?
     return result;
 };
-CNode * Converter::_getNextChild()
+Node * Converter::_getNextChild()
 {
     // Demo-Code
     return _cursor->nextChild();
 };
-CNode * Converter::_getNextNode()
+Node * Converter::_getNextNode()
 {
    // if cursor has sibling return _getNextSibling
    // elseif cursor has children return _getNextChild
@@ -173,7 +173,7 @@ qint64 Converter::_tryMatch(QString pattern)
     // Demo-Code
     return 0;
 };
-QString Converter::_replace(CNode* node)
+QString Converter::_replace(Node* node)
 {
     QString result("");
     TranslationData data = _translationMapper->outputMap()[node->getName()];

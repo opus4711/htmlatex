@@ -1,14 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-/** @param arguments is an array of strings which contains the startup argument
-  *  of the application except the executable file's name and optional paramters.
+  /**  of the application except the executable file's name and optional paramters.
   *  @param options is an array of strings which contains just the optional
   *  startup arguments of the application.
   *  @param parent is a pointer pointing to the parent widget (QDialog and
   *  QMainWindow are derived from QWidget).
-  *  @author Bjoern
-  */
+  *  @author Bjoern*/
 MainWindow::MainWindow(QStringList arguments,
                        QStringList options,
                        QWidget* parent)
@@ -66,15 +64,13 @@ MainWindow::~MainWindow()
     delete _translationMapper;
     delete _converter;
 };
-/** @param arguments is an array of strings which contains the startup argument
-  * of the application except the executable file's name and optional paramters.
+  /** of the application except the executable file's name and optional paramters.
   * @param options is an array of strings which contains just the optional
   * startup arguments of the application.
-  * @author Bjoern
-  */
+  * @author Bjoern */
 void MainWindow::_performInitialOperations(QStringList arguments, QStringList options)
 {
-    /* arguments:
+    /** arguments:
        0 = source file path
        1 = source file type
        2 = input definition file path
@@ -102,7 +98,7 @@ void MainWindow::_performInitialOperations(QStringList arguments, QStringList op
             QString inputdefinitionfilepath(arguments.at(2));
                 _translationMapper->createDocumentReaderData(inputdefinitionfilepath);
             DocumentReader* reader = new DocumentReader(_translationMapper);
-            CNode* root = reader->read(arguments.at(0), filetype);
+            Node* root = reader->read(arguments.at(0), filetype);
                 _model->setRootNode(root);
             delete reader;
             if (root->getCount() == 0)
@@ -152,7 +148,7 @@ void MainWindow::_performInitialOperations(QStringList arguments, QStringList op
                 if (filetypestring.toLower() == "tex")
                     filetype = DocumentData::Tex;
                 // converting...
-                CNode* root = new CNode(*_model->root());
+                Node* root = new Node(*_model->root());
                 _converter->convert(targetfilepath, root);
                 if (Settings::DEBUG)
                 {
@@ -193,10 +189,8 @@ void MainWindow::_performInitialOperations(QStringList arguments, QStringList op
         msg.exec();
     }
 };
-/** @param language contains the information to which language the _translator is
-  * supposed to translate.
-  * @author Bjoern
-  */
+  /** supposed to translate.
+  * @author Bjoern */
 void MainWindow::_languageChanged(QLocale::Country language)
 {
     // set translation environment for the application texts
@@ -224,7 +218,7 @@ void MainWindow::_open()
         else if (dialog->selectedFilter() == "any file (*.*)")
             filetype = DocumentData::Unknown;
         DocumentReader* reader = new DocumentReader(_translationMapper);
-        CNode *root = reader->read(dialog->selectedFiles().at(0), filetype);
+        Node *root = reader->read(dialog->selectedFiles().at(0), filetype);
         _model->setRootNode(root);
         delete reader;
     }
@@ -264,7 +258,7 @@ void MainWindow::_convert()
         else if (dialog->selectedFilter() == "any file (*.*)")
             filetype = DocumentData::Unknown;
         // now begin conversion...
-        CNode* root = new CNode(*_model->root());
+        Node* root = new Node(*_model->root());
         _converter->convert(dialog->selectedFiles().at(0), root);
     }
 };
@@ -296,7 +290,7 @@ void MainWindow::_about()
 };
 void MainWindow::_showTreeViewContextMenu(QPoint point)
 {
-    CNode* node = _model->nodeFromIndex(ui->treeView->currentIndex());
+    Node* node = _model->nodeFromIndex(ui->treeView->currentIndex());
     if (node != 0)
     {
         QMenu menu;
@@ -306,7 +300,7 @@ void MainWindow::_showTreeViewContextMenu(QPoint point)
 };
 void MainWindow::_treeViewRemoveNode()
 {
-    CNode* node = _model->nodeFromIndex(ui->treeView->currentIndex());
+    Node* node = _model->nodeFromIndex(ui->treeView->currentIndex());
     if (node != 0)
     {
         int depth = node->getLayer();

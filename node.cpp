@@ -1,6 +1,6 @@
-#include "cnode.h"
+#include "node.h"
 
-CNode::CNode(const CNode& node)
+Node::Node(const Node& node)
 {
     _instCount++;
     this->_id = _instCount;
@@ -11,13 +11,13 @@ CNode::CNode(const CNode& node)
     this->_treeLevel = node.getTreeLevel();
     // add child nodes
     for (int i = 0; i < node.getCount(); i++)
-        this->addChild(new CNode(*node.childAt(i)));
+        this->addChild(new Node(*node.childAt(i)));
     // add attributes
     QList<QString> keys = node.getAttributes().keys();
     for (int i = 0; i < keys.count(); i++)
         this->addAttribute(keys.at(i), node.getAttributes()[keys.at(i)]);
 };
-CNode::CNode(CNode* parent, QString name, qint64 layer) : _layer(layer),
+Node::Node(Node* parent, QString name, qint64 layer) : _layer(layer),
     _name(name), _content(""), _parent(parent), _cursor(0)
 {
     if (_parent == 0)
@@ -28,63 +28,63 @@ CNode::CNode(CNode* parent, QString name, qint64 layer) : _layer(layer),
     if (layer > _treeLevel)
         _treeLevel = layer;
     this->_id = _instCount;
-    this->_children = QList<CNode*>();
+    this->_children = QList<Node*>();
     this->_attributes = QMap<QString, QString>();
 };
-CNode::~CNode()
+Node::~Node()
 {
     qDeleteAll(_children);
 };
-qint64 CNode::_instCount = 0;
-qint64 CNode::_treeLevel = 0;
-qint64 CNode::_treeNodeCount;
-qint64 CNode::getTreeLevel() const
+qint64 Node::_instCount = 0;
+qint64 Node::_treeLevel = 0;
+qint64 Node::_treeNodeCount;
+qint64 Node::getTreeLevel() const
 {
     return this->_treeLevel;
 };
-qint64 CNode::getTreeNodeCount() const
+qint64 Node::getTreeNodeCount() const
 {
     return this->_treeNodeCount;
 };
-qint64 CNode::getID() const
+qint64 Node::getID() const
 {
     return this->_id;
 };
-qint64 CNode::getLayer() const
+qint64 Node::getLayer() const
 {
     return this->_layer;
 };
-QString CNode::getName() const
+QString Node::getName() const
 {
     return this->_name;
 };
-void CNode::setName(QString name)
+void Node::setName(QString name)
 {
     this->_name = name;
 };
-QString CNode::getContent() const
+QString Node::getContent() const
 {
     return this->_content;
 };
-void CNode::setContent(QString content)
+void Node::setContent(QString content)
 {
     this->_content = content;
 };
-CNode* CNode::getParent() const
+Node* Node::getParent() const
 {
     if (_parent != 0)
         return this->_parent;
     return 0;
 };
-void CNode::setParent(CNode* parent)
+void Node::setParent(Node* parent)
 {
     this->_parent = parent;
 };
-int CNode::getCount() const
+int Node::getCount() const
 {
     return _children.count();
 };
-bool CNode::containsChild(CNode* node) const
+bool Node::containsChild(Node* node) const
 {
     bool result = false;
     for (int i = 0; i < _children.count(); i++)
@@ -97,11 +97,11 @@ bool CNode::containsChild(CNode* node) const
     }
     return result;
 };
-CNode* CNode::childAt(int index) const
+Node* Node::childAt(int index) const
 {
     return _children.value(index);
 };
-CNode* CNode::nextChild()
+Node* Node::nextChild()
 {
     if (_cursor < _children.count())
     {
@@ -110,14 +110,14 @@ CNode* CNode::nextChild()
     }
     return 0;
 };
-CNode* CNode::firstChild()
+Node* Node::firstChild()
 {
     _cursor = 0;
     if (_children.count() > 0)
         return _children.at(_cursor);
     return 0;
 };
-CNode* CNode::lastChild()
+Node* Node::lastChild()
 {
     if (_children.count() > 0)
     {
@@ -126,7 +126,7 @@ CNode* CNode::lastChild()
     }
     return 0;
 };
-void CNode::addChildren(QList<CNode*> nodes)
+void Node::addChildren(QList<Node*> nodes)
 {
     for (int i = 0; i < nodes.count(); i++)
     {
@@ -137,7 +137,7 @@ void CNode::addChildren(QList<CNode*> nodes)
         }
     }
 };
-void CNode::addChild(CNode* node)
+void Node::addChild(Node* node)
 {
     if (node != 0)
     {
@@ -148,7 +148,7 @@ void CNode::addChild(CNode* node)
         }
     }
 };
-void CNode::removeChild(CNode* node)
+void Node::removeChild(Node* node)
 {
     if (_children.removeOne(node))
     {
@@ -156,15 +156,15 @@ void CNode::removeChild(CNode* node)
         delete node;
     }
 };
-int CNode::indexOf(CNode* node) const
+int Node::indexOf(Node* node) const
 {
     return _children.indexOf(node);
 };
-QMap<QString, QString> CNode::getAttributes() const
+QMap<QString, QString> Node::getAttributes() const
 {
     return this->_attributes;
 };
-void CNode::addAttribute(QString key, QString value)
+void Node::addAttribute(QString key, QString value)
 {
     this->_attributes[key] = value;
 };

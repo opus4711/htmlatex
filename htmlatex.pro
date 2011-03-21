@@ -19,7 +19,6 @@ unix {
     OBJECTS_DIR = .obj
 }
 SOURCES += main.cpp \
-    cnode.cpp \
     mainwindow.cpp \
     settingsdialog.cpp \
     settings.cpp \
@@ -32,9 +31,9 @@ SOURCES += main.cpp \
     itemdelegate.cpp \
     translationmapper.cpp \
     translationdatanode.cpp \
-    translationdata.cpp
+    translationdata.cpp \
+    node.cpp
 HEADERS += mainwindow.h \
-    cnode.h \
     settingsdialog.h \
     settings.h \
     documentreaderdata.h \
@@ -46,7 +45,8 @@ HEADERS += mainwindow.h \
     itemdelegate.h \
     translationmapper.h \
     translationdatanode.h \
-    translationdata.h
+    translationdata.h \
+    node.h
 FORMS += mainwindow.ui \
     settingsdialog.ui
 OTHER_FILES += README \

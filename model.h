@@ -1,17 +1,17 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include "cnode.h"
+#include "node.h"
 #include <QAbstractItemModel>
 
 class Model : public QAbstractItemModel
 {
 private:
-    CNode* _root;
+    Node* _root;
 public:
-    CNode* nodeFromIndex(const QModelIndex &index) const;
-    void setRootNode(CNode* node);
-    CNode* root() const;
+    Node* nodeFromIndex(const QModelIndex &index) const;
+    void setRootNode(Node* node);
+    Node* root() const;
     QModelIndex index(int row, int column, const QModelIndex &parent) const;
     QModelIndex parent(const QModelIndex &child) const;
     int rowCount(const QModelIndex &parent) const;
