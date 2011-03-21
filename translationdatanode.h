@@ -1,10 +1,10 @@
-#ifndef CTRANSLATIONDATANODE_H
-#define CTRANSLATIONDATANODE_H
+#ifndef TRANSLATIONDATANODE_H
+#define TRANSLATIONDATANODE_H
 
 #include <QString>
 #include <QMap>
 
-class CTranslationDataNode
+class TranslationDataNode
 {
 private:
     QString _name;
@@ -18,7 +18,7 @@ public:
     QMap<QString,QString> attributes() const;
     void addAttribute(QString name, QString value);
     // Constructor
-    CTranslationDataNode();
+    TranslationDataNode();
 };
 
-#endif // CTRANSLATIONDATANODE_H
+#endif // TRANSLATIONDATANODE_H

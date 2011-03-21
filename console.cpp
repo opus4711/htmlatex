@@ -1,5 +1,4 @@
 #include "console.h"
-#include "cconverter.h"
 
 Console::Console(QStringList arguments, QStringList options)
 {
@@ -23,7 +22,7 @@ void Console::_performInitialOperations(QStringList arguments, QStringList optio
     */
     if (arguments.count() == 6)
     {
-        CTranslationMapper* translationmapper = new CTranslationMapper;
+        TranslationMapper* translationmapper = new TranslationMapper;
         QString sourcefilepath(arguments.at(0));
         QString filetypestring(arguments.at(1));
         QString inputdefinitionfilepath(arguments.at(2));
@@ -32,10 +31,10 @@ void Console::_performInitialOperations(QStringList arguments, QStringList optio
         CNode* root = 0;
         if (file.exists())
         {
-            CDocumentData::FileType filetype = CDocumentData::Unknown;
+            DocumentData::FileType filetype = DocumentData::Unknown;
             if (filetypestring.toLower() == "javadoc")
-                filetype = CDocumentData::JavaDocHTML;
-            CDocumentReader* reader = new CDocumentReader(translationmapper);
+                filetype = DocumentData::JavaDocHTML;
+            DocumentReader* reader = new DocumentReader(translationmapper);
             root = reader->read(sourcefilepath, filetype);
             delete reader;
             std::cout << tr("Read source file(s) --> success").toStdString() << std::endl;
@@ -55,11 +54,11 @@ void Console::_performInitialOperations(QStringList arguments, QStringList optio
         file.setFileName(targetfilepath);
         if (file.open(QFile::WriteOnly))
         {
-            CDocumentData::FileType filetype = CDocumentData::Unknown;
+            DocumentData::FileType filetype = DocumentData::Unknown;
             if (filetypestring.toLower() == "tex")
-                filetype = CDocumentData::Tex;
+                filetype = DocumentData::Tex;
             // root - converting...
-            CConverter* converter = new CConverter(this, translationmapper);
+            Converter* converter = new Converter(this, translationmapper);
             converter->convert(targetfilepath, root);
             std::cout << tr("Perform conversion  --> success").toStdString() << std::endl;
             delete converter;

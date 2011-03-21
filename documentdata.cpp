@@ -1,4 +1,4 @@
-#include "cdocumentdata.h"
+#include "documentdata.h"
 
 /** This class holds information of one document (i.e. webpage). The information
   * consists of the file path (URL), a reference pointing to the corresponding node
@@ -7,7 +7,7 @@
   * document preprocessing is chosen by means of distinguished file types.
   * @author Bjoern Kaiser
   */
-CDocumentData::CDocumentData(QFileInfo fileinfo, CNode* node, FileType filetype)
+DocumentData::DocumentData(QFileInfo fileinfo, CNode* node, FileType filetype)
 {
     this->_fileInfo = fileinfo;
     this->_node = node;
@@ -18,21 +18,21 @@ CDocumentData::CDocumentData(QFileInfo fileinfo, CNode* node, FileType filetype)
 /** Returns the URL to this document.
   * @author Bjoern Kaiser
   */
-QFileInfo CDocumentData::fileInfo() const
+QFileInfo DocumentData::fileInfo() const
 {
     return this->_fileInfo;
 };
 /** Returns the pointer to the corresponding tree node of the whole document.
   * @author Bjoern Kaiser
   */
-CNode* CDocumentData::node() const
+CNode* DocumentData::node() const
 {
     return this->_node;
 };
 /** Returns the document as a preprocessed QString.
   * @author Bjoern Kaiser
   */
-QString CDocumentData::text()
+QString DocumentData::text()
 {
     // the preprocessed document is stored in the attribute "_text"
     if (!_preprocessed)
@@ -42,16 +42,16 @@ QString CDocumentData::text()
 /** This hook-method calls all preprocessing methods.
   * @author Bjoern Kaiser
   */
-void CDocumentData::preprocessingHook()
+void DocumentData::preprocessingHook()
 {
     preprocessHTML();
 };
 /** This method changes the specified HTML-file in order to gain well-formed XML (XHTML).
   * @author Bjoern Kaiser
   */
-void CDocumentData::preprocessHTML()
+void DocumentData::preprocessHTML()
 {
-    if (_fileType != CDocumentData::JavaDocHTML)
+    if (_fileType != DocumentData::JavaDocHTML)
         return;
     QString path = _fileInfo.filePath();
     if (Settings::DEBUG)

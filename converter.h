@@ -1,9 +1,8 @@
-#ifndef CCONVERTER_H
-#define CCONVERTER_H
+#ifndef CONVERTER_H
+#define CONVERTER_H
 
 #include "cnode.h"
-#include "ctranslationmapper.h"
-#include "cconverter.h"
+#include "translationmapper.h"
 #include "settings.h"
 #include <QFile>
 #include <QString>
@@ -11,7 +10,6 @@
 #include <QStringList>
 #include <QDir>
 #include <QObject>
-
 #include <iostream>
 
 /** This class converts the QDomDocument-Tree to a textfile
@@ -19,7 +17,7 @@
   * @author Bjoern Bass
   * @version 0.1
   */
-class CConverter : public QObject
+class Converter : public QObject
 {
     Q_OBJECT
 signals:
@@ -33,7 +31,7 @@ public:
       * TODO: @param <parts> the number of parts that are needed for the conversion
       * use enum{start=0, content=1, end=2} (change the XML aliases to numbers)
       */
-    CConverter(QObject* parent, CTranslationMapper* translationmapper);
+    Converter(QObject* parent, TranslationMapper* translationmapper);
     /** converts to QString and writes the output file
       * @param <qint32> the number of parts in the outputDocument
       */
@@ -46,7 +44,7 @@ private:
     QTextStream _stream;
     // the root node
     CNode * _root;
-    CTranslationMapper* _translationMapper;
+    TranslationMapper* _translationMapper;
     // the active node
     static CNode * _cursor;
     QString _errormessage;
@@ -115,4 +113,4 @@ private:
     QString _replace(CNode* node = _cursor);
 };
 
-#endif // CCONVERTER_H
+#endif // CONVERTER_H

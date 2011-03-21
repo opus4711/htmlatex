@@ -1,9 +1,9 @@
-#include "ctranslationmapper.h"
+#include "translationmapper.h"
 
-CTranslationMapper::CTranslationMapper()
+TranslationMapper::TranslationMapper()
 {
 };
-void CTranslationMapper::createDocumentReaderData(QString inputfilepath)
+void TranslationMapper::createDocumentReaderData(QString inputfilepath)
 {
     QFile file(inputfilepath);
     if (!file.open(QFile::ReadOnly | QFile::Text))
@@ -41,9 +41,9 @@ void CTranslationMapper::createDocumentReaderData(QString inputfilepath)
                 << "\n\tFilecontent: " << filecontent.toStdString() << std::endl;
     }
 };
-void CTranslationMapper::createOutputElementMap(QString outputfilepath)
+void TranslationMapper::createOutputElementMap(QString outputfilepath)
 {
-    _outputMap = QMap<QString,CTranslationData>();
+    _outputMap = QMap<QString,TranslationData>();
     QFile file(outputfilepath);
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
@@ -71,7 +71,7 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
         {
             // create a node list from "node"-element's child nodes
             QDomNodeList subnodes = nodes.at(i).childNodes();
-            CTranslationData translationdata;
+            TranslationData translationdata;
             for (int j = 0; j < subnodes.count(); j++)
             {
                 if (subnodes.at(j).nodeName().toLower() == "from")
@@ -85,7 +85,7 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
                     QDomNodeList requiresnodes = subnodes.at(j).childNodes();
                     for (int k = 0; k < requiresnodes.count(); k++)
                     {
-                        CTranslationDataNode datanode;
+                        TranslationDataNode datanode;
                         datanode.setName(requiresnodes.at(k).nodeName());
                         datanode.setContent(requiresnodes.at(k).firstChild().nodeValue());
                         QDomNamedNodeMap attributes = requiresnodes.at(k).attributes();
@@ -107,11 +107,11 @@ void CTranslationMapper::createOutputElementMap(QString outputfilepath)
                 << "\n\tFilecontent: " << filecontent.toStdString() << std::endl;
     }
 };
-DocumentReaderData CTranslationMapper::getDocumentReference() const
+DocumentReaderData TranslationMapper::getDocumentReference() const
 {
     return this->_documentReference;
 };
-QMap<QString,CTranslationData> CTranslationMapper::outputMap() const
+QMap<QString,TranslationData> TranslationMapper::outputMap() const
 {
     return this->_outputMap;
 };

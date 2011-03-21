@@ -1,7 +1,7 @@
-#ifndef CTRANSLATIONMAPPER_H
-#define CTRANSLATIONMAPPER_H
+#ifndef TRANSLATIONMAPPER_H
+#define TRANSLATIONMAPPER_H
 
-#include "ctranslationdata.h"
+#include "translationdata.h"
 #include "settings.h"
 #include "documentreaderdata.h"
 #include <QFile>
@@ -10,18 +10,18 @@
 #include <QMap>
 #include <iostream>
 
-class CTranslationMapper
+class TranslationMapper
 {
 public:
-    CTranslationMapper();
+    TranslationMapper();
 private:
     DocumentReaderData _documentReference;
-    QMap<QString,CTranslationData> _outputMap;
+    QMap<QString,TranslationData> _outputMap;
 public:
     void createDocumentReaderData(QString inputfilepath);
     void createOutputElementMap(QString outputfilepath);
     DocumentReaderData getDocumentReference() const;
-    QMap<QString,CTranslationData> outputMap() const;
+    QMap<QString,TranslationData> outputMap() const;
 };
 
-#endif // CTRANSLATIONMAPPER_H
+#endif // TRANSLATIONMAPPER_H

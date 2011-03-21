@@ -1,17 +1,17 @@
-#ifndef CITEMDELEGATE_H
-#define CITEMDELEGATE_H
+#ifndef ITEMDELEGATE_H
+#define ITEMDELEGATE_H
 
-#include "cmodel.h"
+#include "model.h"
 #include <QItemDelegate>
 #include <QPainter>
 #include <QPixmap>
 #include <QBrush>
 
-class CItemDelegate : public QItemDelegate
+class ItemDelegate : public QItemDelegate
 {
     Q_OBJECT
 private:
-    CModel* model;
+    Model* model;
     QColor colorFocusLine;
     QColor colorFocusBackground;
     QColor colorMarked;
@@ -34,7 +34,7 @@ public:
     void paint(QPainter* painter, const QStyleOptionViewItem &option,
                const QModelIndex &index) const;
     // Constructor
-    CItemDelegate(CModel* model = 0, QObject* parent = 0);
+    ItemDelegate(Model* model = 0, QObject* parent = 0);
 };
 
-#endif // CITEMDELEGATE_H
+#endif // ITEMDELEGATE_H

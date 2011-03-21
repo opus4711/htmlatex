@@ -1,10 +1,10 @@
-#ifndef CCUSTOMMODEL_H
-#define CCUSTOMMODEL_H
+#ifndef MODEL_H
+#define MODEL_H
 
 #include "cnode.h"
 #include <QAbstractItemModel>
 
-class CModel : public QAbstractItemModel
+class Model : public QAbstractItemModel
 {
 private:
     CNode* _root;
@@ -20,8 +20,8 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     void refresh();
     // Constructor / Destructor
-    CModel(QObject* parent = 0);
-    ~CModel();
+    Model(QObject* parent = 0);
+    ~Model();
 };
 
-#endif // CCUSTOMMODEL_H
+#endif // MODEL_H

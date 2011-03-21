@@ -30,12 +30,12 @@ MainWindow::MainWindow(QStringList arguments,
             this, SLOT(_about()));
     connect(ui->action_Settings, SIGNAL(triggered()),
             this, SLOT(_showSettings()));
-    _model = new CModel(this);
+    _model = new Model(this);
     ui->treeView->setModel(_model);
-    _itemDelegate = new CItemDelegate(_model, this);
+    _itemDelegate = new ItemDelegate(_model, this);
     ui->treeView->setItemDelegate(_itemDelegate);
-    _translationMapper = new CTranslationMapper;
-    _converter = new CConverter(this, _translationMapper);
+    _translationMapper = new TranslationMapper;
+    _converter = new Converter(this, _translationMapper);
     connect(_converter, SIGNAL(updateTextEdit(QString)),
             ui->textEdit, SLOT(setPlainText(QString)));
     connect(_converter, SIGNAL(updateProgressBar(int)),
@@ -96,12 +96,12 @@ void MainWindow::_performInitialOperations(QStringList arguments, QStringList op
         QFile file(sourcefilepath);
         if (file.exists())
         {
-            CDocumentData::FileType filetype = CDocumentData::Unknown;
+            DocumentData::FileType filetype = DocumentData::Unknown;
             if (filetypestring.toLower() == "javadoc")
-                filetype = CDocumentData::JavaDocHTML;
+                filetype = DocumentData::JavaDocHTML;
             QString inputdefinitionfilepath(arguments.at(2));
                 _translationMapper->createDocumentReaderData(inputdefinitionfilepath);
-            CDocumentReader* reader = new CDocumentReader(_translationMapper);
+            DocumentReader* reader = new DocumentReader(_translationMapper);
             CNode* root = reader->read(arguments.at(0), filetype);
                 _model->setRootNode(root);
             delete reader;
@@ -148,9 +148,9 @@ void MainWindow::_performInitialOperations(QStringList arguments, QStringList op
             QFile file(targetfilepath);
             if (file.open(QFile::WriteOnly))
             {
-                CDocumentData::FileType filetype = CDocumentData::Unknown;
+                DocumentData::FileType filetype = DocumentData::Unknown;
                 if (filetypestring.toLower() == "tex")
-                    filetype = CDocumentData::Tex;
+                    filetype = DocumentData::Tex;
                 // converting...
                 CNode* root = new CNode(*_model->root());
                 _converter->convert(targetfilepath, root);
@@ -218,12 +218,12 @@ void MainWindow::_open()
     if (dialog->exec() == QFileDialog::Accepted)
     {
         // determine file type
-        CDocumentData::FileType filetype = CDocumentData::Unknown;
+        DocumentData::FileType filetype = DocumentData::Unknown;
         if (dialog->selectedFilter() == "JavaDoc (*.html *.htm)")
-            filetype = CDocumentData::JavaDocHTML;
+            filetype = DocumentData::JavaDocHTML;
         else if (dialog->selectedFilter() == "any file (*.*)")
-            filetype = CDocumentData::Unknown;
-        CDocumentReader* reader = new CDocumentReader(_translationMapper);
+            filetype = DocumentData::Unknown;
+        DocumentReader* reader = new DocumentReader(_translationMapper);
         CNode *root = reader->read(dialog->selectedFiles().at(0), filetype);
         _model->setRootNode(root);
         delete reader;
@@ -256,13 +256,13 @@ void MainWindow::_convert()
                     << QString(dialog->selectedFiles().at(0)).toStdString() << std::endl;
         }
         // determine file type
-        CDocumentData::FileType filetype = CDocumentData::Unknown;
+        DocumentData::FileType filetype = DocumentData::Unknown;
         if (dialog->selectedFilter() == "JavaDoc (*.html *.htm)")
-            filetype = CDocumentData::JavaDocHTML;
+            filetype = DocumentData::JavaDocHTML;
         if (dialog->selectedFilter() == "Tex (*.tex)")
-            filetype = CDocumentData::Tex;
+            filetype = DocumentData::Tex;
         else if (dialog->selectedFilter() == "any file (*.*)")
-            filetype = CDocumentData::Unknown;
+            filetype = DocumentData::Unknown;
         // now begin conversion...
         CNode* root = new CNode(*_model->root());
         _converter->convert(dialog->selectedFiles().at(0), root);

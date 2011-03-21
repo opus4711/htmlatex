@@ -1,11 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "ctranslationmapper.h"
-#include "cdocumentreader.h"
-#include "cmodel.h"
-#include "citemdelegate.h"
-#include "cconverter.h"
+#include "translationmapper.h"
+#include "documentreader.h"
+#include "model.h"
+#include "itemdelegate.h"
+#include "converter.h"
 #include "settingsdialog.h"
 #include <QMainWindow>
 #include <QFileDialog>
@@ -38,18 +38,18 @@ private:
     // short label ui.
     Ui::MainWindow* ui;
     // The model is the data source of the treeView.
-    CModel* _model;
+    Model* _model;
     // The _itemDelegate controls how the treeView displays data.
-    CItemDelegate* _itemDelegate;
+    ItemDelegate* _itemDelegate;
     // The _settingsDialog is a modal dialog whose settings are saved to binary file.
     SettingsDialog* _settingsDialog;
     // The _translator translates the application's texts.
     QTranslator _translator;
     // The _translationMapper provides key-value-pair structures which are used
     // reading the input data and creating the output data.
-    CTranslationMapper* _translationMapper;
+    TranslationMapper* _translationMapper;
     // The _converter converts the internal tree structure.
-    CConverter* _converter;
+    Converter* _converter;
     // This method performs opening and converting operations depending on the
     // application's startup arguments.
     void _performInitialOperations(QStringList arguments, QStringList options);

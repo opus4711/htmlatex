@@ -1,6 +1,6 @@
-#include "citemdelegate.h"
+#include "itemdelegate.h"
 
-CItemDelegate::CItemDelegate(CModel* model, QObject* parent)
+ItemDelegate::ItemDelegate(Model* model, QObject* parent)
     : QItemDelegate(parent)
 {
     this->model = model;
@@ -11,55 +11,55 @@ CItemDelegate::CItemDelegate(CModel* model, QObject* parent)
     this->colorLayer0 = QColor(30,86, 45, 255);
     this->colorLayer1 = QColor(0, 0, 255, 255);
 };
-void CItemDelegate::setColorFocusLine(QColor color)
+void ItemDelegate::setColorFocusLine(QColor color)
 {
     this->colorFocusLine = color;
 };
-QColor CItemDelegate::getColorFocusLine() const
+QColor ItemDelegate::getColorFocusLine() const
 {
     return this->colorFocusLine;
 };
-void CItemDelegate::setColorFocusBackground(QColor color)
+void ItemDelegate::setColorFocusBackground(QColor color)
 {
     this->colorFocusBackground = color;
 };
-QColor CItemDelegate::getColorFocusBackground() const
+QColor ItemDelegate::getColorFocusBackground() const
 {
     return this->colorFocusBackground;
 };
-void CItemDelegate::setColorMarked(QColor color)
+void ItemDelegate::setColorMarked(QColor color)
 {
     this->colorMarked = color;
 };
-QColor CItemDelegate::getColorMarked() const
+QColor ItemDelegate::getColorMarked() const
 {
     return this->colorMarked;
 };
-void CItemDelegate::setColor(QColor color)
+void ItemDelegate::setColor(QColor color)
 {
     this->color = color;
 };
-QColor CItemDelegate::getColor() const
+QColor ItemDelegate::getColor() const
 {
     return this->color;
 };
-void CItemDelegate::setColorLayer0(QColor color)
+void ItemDelegate::setColorLayer0(QColor color)
 {
     this->colorLayer0 = color;
 };
-QColor CItemDelegate::getColorLayer0() const
+QColor ItemDelegate::getColorLayer0() const
 {
     return this->colorLayer0;
 };
-void CItemDelegate::setColorLayer1(QColor color)
+void ItemDelegate::setColorLayer1(QColor color)
 {
     this->colorLayer1 = color;
 };
-QColor CItemDelegate::getColorLayer1() const
+QColor ItemDelegate::getColorLayer1() const
 {
     return this->colorLayer1;
 };
-void CItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem &option,
+void ItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem &option,
            const QModelIndex &index) const
 {
     painter->save();
@@ -84,9 +84,6 @@ void CItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem &option,
         painter->setPen(colorLayer0);
     else if ((node->getLayer() % 2) == 1)
         painter->setPen(colorLayer1);
-    // determine icon size
-    //int size = opt.rect.height() - 2;
-    //painter->drawText(QRect(opt.rect.x() + size + 4, opt.rect.y(), opt.rect.width(), opt.rect.height()), text, QTextOption(Qt::AlignLeft|Qt::AlignVCenter));
     painter->drawText(QRect(opt.rect.x(), opt.rect.y(), opt.rect.width(), opt.rect.height()), text, QTextOption(Qt::AlignLeft|Qt::AlignVCenter));
     painter->restore();
 };

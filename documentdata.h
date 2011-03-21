@@ -1,5 +1,5 @@
-#ifndef CDOCUMENTDATA_H
-#define CDOCUMENTDATA_H
+#ifndef DOCUMENTDATA_H
+#define DOCUMENTDATA_H
 
 #include "cnode.h"
 #include "settings.h"
@@ -11,7 +11,7 @@
 #include <QMessageBox>
 #include <iostream>
 
-class CDocumentData
+class DocumentData
 {
 public:
     enum FileType { JavaDocHTML, HTML, Tex, Unknown };
@@ -31,7 +31,7 @@ public:
     FileType fileType() const;
     QFileInfo indexFileInfo() const;
     // Constructor
-    CDocumentData(QFileInfo fileinfo, CNode* node, FileType filetype);
+    DocumentData(QFileInfo fileinfo, CNode* node, FileType filetype);
 };
 
-#endif // CDOCUMENTDATA_H
+#endif // DOCUMENTDATA_H

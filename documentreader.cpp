@@ -1,11 +1,11 @@
-#include "cdocumentreader.h"
+#include "documentreader.h"
 
 /** This class creates a tree representation of a given document.
   @author Bjoern Kaiser
   */
-CDocumentReader::CDocumentReader(CTranslationMapper* translationmapper)
+DocumentReader::DocumentReader(TranslationMapper* translationmapper)
 {
-    _fileType = CDocumentData::Unknown;
+    _fileType = DocumentData::Unknown;
     _translationMapper = translationmapper;
     Settings settings;
     _includeSubDocuments = (bool)settings.getValue("includesubdocuments").toInt();
@@ -14,8 +14,8 @@ CDocumentReader::CDocumentReader(CTranslationMapper* translationmapper)
   * @param filetype contains the file filter string selected previously.
   * @author Bjoern Kaiser
   */
-CNode* CDocumentReader::read(QString indexfilepath,
-                             CDocumentData::FileType filetype)
+CNode* DocumentReader::read(QString indexfilepath,
+                             DocumentData::FileType filetype)
 {
     if (_translationMapper == 0)
     {
@@ -30,11 +30,11 @@ CNode* CDocumentReader::read(QString indexfilepath,
     // start reading the whole document tree
     CNode* root = new CNode(0, "html", 0);
     // add the index document to the stack of documents
-    _documentStack.push(new CDocumentData(_indexFileInfo, root, _fileType));
+    _documentStack.push(new DocumentData(_indexFileInfo, root, _fileType));
     // begin processing the documents stored on the document stack
     while(!_documentStack.isEmpty())
     {
-        CDocumentData* documentdata = _documentStack.pop();
+        DocumentData* documentdata = _documentStack.pop();
         QDomDocument doc;
         QString errorStr = "";
         int errorLine = -1;
@@ -73,7 +73,7 @@ CNode* CDocumentReader::read(QString indexfilepath,
     }
     return root;
 };
-void CDocumentReader::readElement(QDomElement element, CNode* node)
+void DocumentReader::readElement(QDomElement element, CNode* node)
 {
     for (int i = 0; i < element.childNodes().count(); i++)
     {
@@ -113,7 +113,7 @@ void CDocumentReader::readElement(QDomElement element, CNode* node)
                     myfileinfo = QFileInfo(_indexFileInfo.absolutePath()
                                            + QDir::separator() + new_node->getAttributes()["href"]);
                 if (_includeSubDocuments)
-                    _documentStack.push(new CDocumentData(myfileinfo, new_node, _fileType));
+                    _documentStack.push(new DocumentData(myfileinfo, new_node, _fileType));
                 if(Settings::DEBUG)
                 {
                     std::cerr << tr("# CDocumentReader::readElement()").toStdString()

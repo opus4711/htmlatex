@@ -1,9 +1,9 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
-#include "ctranslationmapper.h"
-#include "cdocumentreader.h"
-#include "cconverter.h"
+#include "translationmapper.h"
+#include "documentreader.h"
+#include "converter.h"
 #include <QObject>
 #include <QString>
 #include <iostream>

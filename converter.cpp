@@ -1,6 +1,6 @@
-#include "cconverter.h"
+#include "converter.h"
 
-CConverter::CConverter(QObject *parent, CTranslationMapper* translationmapper)
+Converter::Converter(QObject *parent, TranslationMapper* translationmapper)
     : QObject(parent), _errormessage(""), _noOfParts(0)
 {
     _root = 0;
@@ -14,8 +14,8 @@ CConverter::CConverter(QObject *parent, CTranslationMapper* translationmapper)
     std::cerr << "Converter: i: " << QString::number(i).toStdString() << "\n";
     end test */
 };
-CNode* CConverter::_cursor = 0;
-void CConverter::convert(const QString filepath, CNode* tree)
+CNode* Converter::_cursor = 0;
+void Converter::convert(const QString filepath, CNode* tree)
 {
     /*
     _file.setFileName(filepath);
@@ -60,30 +60,30 @@ void CConverter::convert(const QString filepath, CNode* tree)
     emit updateTextEdit(_cursor->getContent());
     emit updateProgressBar(0);
 };
-CNode * CConverter::getLeaf(CNode* node)
+CNode * Converter::getLeaf(CNode* node)
 {
     CNode * result = node;
     while (result->firstChild() != 0)
         result = result->firstChild();
     return result;
 };
-bool CConverter::isLeaf(CNode * node)
+bool Converter::isLeaf(CNode * node)
 {
     return (node->getCount() == 0);
 };
-QMap<QString,QString> CConverter::getAttributes(CNode * node)
+QMap<QString,QString> Converter::getAttributes(CNode * node)
 {
     return node->getAttributes();
 };
-QString CConverter::getContent(CNode * node)
+QString Converter::getContent(CNode * node)
 {
     return node->getContent();
 };
-QString getName(CNode * node)
+QString Converter::getName(CNode * node)
 {
     return node->getName();
 };
-bool CConverter::consume(CNode * node)
+bool Converter::consume(CNode * node)
 {
     CNode *parent = node->getParent();
     if (!parent)
@@ -115,7 +115,7 @@ bool CConverter::consume(CNode * node)
     _cursor = getLeaf(parent);
     return true;
 };
-CNode * CConverter::_getNextSibling()
+CNode * Converter::_getNextSibling()
 {
     // Demo-Code
     CNode* result = 0;
@@ -127,61 +127,61 @@ CNode * CConverter::_getNextSibling()
     // _cursor = result; ?
     return result;
 };
-CNode * CConverter::_getNextChild()
+CNode * Converter::_getNextChild()
 {
     // Demo-Code
     return _cursor->nextChild();
 };
-CNode * CConverter::_getNextNode()
+CNode * Converter::_getNextNode()
 {
    // if cursor has sibling return _getNextSibling
    // elseif cursor has children return _getNextChild
     //else
     return 0;
 };
-qint64 CConverter::_getTreeLevel()
+qint64 Converter::_getTreeLevel()
 {
     // Demo-Code
     // return the greatest distance of a node to the root node
     return _root->getTreeLevel();
 };
-QString CConverter::_peekParent(qint32 distance)
+QString Converter::_peekParent(qint32 distance)
 {
     // if distance < current->layer()
     //   return the parent node <distance> hops up the tree
     // Demo-Code
     return QString("");
 };
-QBool CConverter::_isEmpty()
+QBool Converter::_isEmpty()
 {
     // Demo-Code
     return QBool(false);
 };
-QBool CConverter::_isEmptyContent()
+QBool Converter::_isEmptyContent()
 {
     // Demo-Code
     return QBool(_cursor->getContent().isEmpty());
 };
-void CConverter::removeToken()
+void Converter::removeToken()
 {
 };
-void CConverter::_write(QString content, qint32 part)
+void Converter::_write(QString content, qint32 part)
 {
 };
-qint64 CConverter::_tryMatch(QString pattern)
+qint64 Converter::_tryMatch(QString pattern)
 {
     // Demo-Code
     return 0;
 };
-QString CConverter::_replace(CNode* node)
+QString Converter::_replace(CNode* node)
 {
     QString result("");
-    CTranslationData data = _translationMapper->outputMap()[node->getName()];
+    TranslationData data = _translationMapper->outputMap()[node->getName()];
     QString to = data.to();
     //std::cerr << "to: " << "?"<< to.toStdString() << "?" << std::endl;
     //std::cerr << "content: " << node->content().toStdString() << std::endl;
-    QList<CTranslationDataNode> datanodes = data.requires();
-    CTranslationDataNode datanode;
+    QList<TranslationDataNode> datanodes = data.requires();
+    TranslationDataNode datanode;
     for (int j = 0; j < datanodes.count(); j++)
     {
         datanode = datanodes.at(j);
@@ -192,7 +192,7 @@ QString CConverter::_replace(CNode* node)
     //std::cerr << "_replace: result: " << result.toStdString() << std::endl;
     return result;
 };
-int CConverter::match(QString content, QString pattern)
+int Converter::match(QString content, QString pattern)
 {
     if (!content.isEmpty())
         return content.indexOf(pattern, 0, Qt::CaseSensitive);

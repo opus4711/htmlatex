@@ -21,32 +21,32 @@ unix {
 SOURCES += main.cpp \
     cnode.cpp \
     mainwindow.cpp \
-    cmodel.cpp \
-    cdocumentdata.cpp \
-    citemdelegate.cpp \
-    cdocumentreader.cpp \
-    ctranslationmapper.cpp \
-    ctranslationdata.cpp \
-    ctranslationdatanode.cpp \
-    cconverter.cpp \
     settingsdialog.cpp \
     settings.cpp \
     documentreaderdata.cpp \
-    console.cpp
+    console.cpp \
+    converter.cpp \
+    documentreader.cpp \
+    documentdata.cpp \
+    model.cpp \
+    itemdelegate.cpp \
+    translationmapper.cpp \
+    translationdatanode.cpp \
+    translationdata.cpp
 HEADERS += mainwindow.h \
-    cdocumentreader.h \
     cnode.h \
-    cmodel.h \
-    cdocumentdata.h \
-    citemdelegate.h \
-    ctranslationmapper.h \
-    ctranslationdata.h \
-    ctranslationdatanode.h \
-    cconverter.h \
     settingsdialog.h \
     settings.h \
     documentreaderdata.h \
-    console.h
+    console.h \
+    converter.h \
+    documentreader.h \
+    documentdata.h \
+    model.h \
+    itemdelegate.h \
+    translationmapper.h \
+    translationdatanode.h \
+    translationdata.h
 FORMS += mainwindow.ui \
     settingsdialog.ui
 OTHER_FILES += README \
