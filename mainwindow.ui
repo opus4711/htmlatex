@@ -36,11 +36,24 @@
          <widget class="QTextEdit" name="textEdit"/>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_Save_As">
-          <property name="text">
-           <string>&amp;Save As</string>
+         <layout class="QHBoxLayout" name="hBoxLayout">
+          <property name="spacing">
+           <number>200</number>
           </property>
-         </widget>
+          <property name="sizeConstraint">
+           <enum>QLayout::SetDefaultConstraint</enum>
+          </property>
+          <item>
+           <widget class="QWidget" name="widget_Spacer" native="true"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_Save_As">
+            <property name="text">
+             <string>&amp;Save As</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
