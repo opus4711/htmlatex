@@ -39,177 +39,229 @@ Abgabetermin: 23.03.2011
 
 %-------------TEXTBEGINN--------------------------
 \section{Einleitung - Motivation}
+Das Ziel dieses Projektes ist eine möglichst flexible Anwendung zu schaffen, die aus einem Markup in eine andere per XML\footnote{\textbf{X}tensible \textbf{M}arkup \textbf{L}anguage}-definierbare Syntax konvertieren kann.
 
-\section{Listings}
-\subsection{cconsole}
-\lstinputlisting[
-	language={Qt},
-	caption={Qt-Input-capiton},
-% 	label={Qt-Input-Label},
-	name={Qt-Inputname},
-	frame=single, flexiblecolumns=true,
-	inputencoding={utf8}
-	%firstline=603,
-	%lastline=642
-	]
-	{../cconsole.cpp}
+Dies wurde am Beispiel von der Konvertierung von JavaDoc - generiertem HTML-Code und einer anschließenden Umwandlung zu \LaTeX\footnote{\textbf{La}mport \textbf{TeX} - umfangreiche Sammlung von TeX-Makros} verfolgt.
 
-\subsection{cdocumentdata}
-\lstinputlisting[
-	language={Qt},
-	caption={Qt-Input-capiton},
-% 	label={Qt-Input-Label},
-	name={Qt-Inputname},
-	frame=single, flexiblecolumns=true,
-	inputencoding={utf8}
-	%firstline=603,
-	%lastline=642
-	]
-	{../cdocumentdata.cpp}
+Um möglichst menschenlesbar weitere Konvertierungsszenarien umsetzen zu können wurden folgende Festlegungen getroffen:
+\begin{itemize}
+ \item Die Eingabesemantik wird in einer XML-Datei beschrieben und soll die Umsetzung des Ausgangscodes in eine (pseudo)-HTML Semantik beschreiben.
+ \item Die Ausgabesemantik wird ebenso beschrieben und definiert die Konvertierung in das Zielformat.
+ \item Diese beiden Konfigurationsdateitypen müssen im Rahmen ihrer Syntax in der jeweils inline verfassten DTD \footnote{\textbf{D}okument\textbf{t}yp\textbf{d}efinition} frei beschrieben werden können.
+\end{itemize}
 
-\subsection{cdocumentreader}
-\lstinputlisting[
-	language={Qt},
-	caption={Qt-Input-capiton},
-% 	label={Qt-Input-Label},
-	name={Qt-Inputname},
-	frame=single, flexiblecolumns=true,
-	inputencoding={utf8}
-	%firstline=603,
-	%lastline=642
-	]
-	{../cdocumentreader.cpp}
+\section{Durchführung der Projektarbeit}
+\subsection{Rahmenbedingungen und Tools}
+\begin{description}
+ \item[Betriebssystem]
+ Es wurde parallel unter \emph{Windows 7}\footnote{Microsoft\textregistered ~und Windows\textregistered ~sind eingetragene Marken der Microsoft Corporation.} und \emph{Linux}\footnote{Linux\textregistered ~ist ein eingetragenes Markenzeichen von Linus Torvalds} entwickelt
 
-\subsection{citemdelegate}
-\lstinputlisting[
-	language={Qt},
-	caption={Qt-Input-capiton},
-% 	label={Qt-Input-Label},
-	name={Qt-Inputname},
-	frame=single, flexiblecolumns=true,
-	inputencoding={utf8}
-	%firstline=603,
-	%lastline=642
-	]
-	{../citemdelegate.cpp}
+ \item[Sprache]
+Um einerseits hohe Plattformunabhängigkeit und andererseits Performanz zu erreichen wurde das Projekt in der C++ Klassenbibliothek \emph{Qt}\footnote{Qt\textregistered ~ist ein eingetragenes Markenzeichen der Nokia Corporation. \href{http://qt.nokia.com/}{http://qt.nokia.com/}} erstellt.
 
-\subsection{cmodel}
-\lstinputlisting[
-	language={Qt},
-	caption={Qt-Input-capiton},
-% 	label={Qt-Input-Label},
-	name={Qt-Inputname},
-	frame=single, flexiblecolumns=true,
-	inputencoding={utf8}
-	%firstline=603,
-	%lastline=642
-	]
-	{../cmodel.cpp}
+ \item[IDE]
+Es wurde die Entwicklungsumgebung\footnote{engl. \textbf{I}ntegrated \textbf{D}evelopment \textbf{E}nvironment} \emph{Qt Creator}\footnote{\href{http://qt.nokia.com/products/developer-tools}{http://qt.nokia.com/products/developer-tools}} benutzt.
 
-\subsection{cnode}
-\lstinputlisting[
-	language={Qt},
-	caption={Qt-Input-capiton},
-% 	label={Qt-Input-Label},
-	name={Qt-Inputname},
-	frame=single, flexiblecolumns=true,
-	inputencoding={utf8}
-	%firstline=603,
-	%lastline=642
-	]
-	{../cnode.cpp}
+ \item[Lokalisierung]
+Es wurden Übersetzungen in den Sprachen Englisch und Deutsch erstellt, die zur Laufzeit gewechselt werden können.
 
-\subsection{ctranslationdata}
-\lstinputlisting[
-	language={Qt},
-	caption={Qt-Input-capiton},
-% 	label={Qt-Input-Label},
-	name={Qt-Inputname},
-	frame=single, flexiblecolumns=true,
-	inputencoding={utf8}
-	%firstline=603,
-	%lastline=642
-	]
-	{../ctranslationdata.cpp}
+ \item[Interface]
+Das Programm ist sowohl über ein grafisches Interface als auch als per Skript bedienbar und verwaltet die Programmeinstellungen in einer XML-Datei.
 
-\subsection{ctranslationdatanode}
-\lstinputlisting[
-	language={Qt},
-	caption={Qt-Input-capiton},
-% 	label={Qt-Input-Label},
-	name={Qt-Inputname},
-	frame=single, flexiblecolumns=true,
-	inputencoding={utf8}
-	%firstline=603,
-	%lastline=642
-	]
-	{../ctranslationdatanode.cpp}
+ \item[Dokumentation]
+Die Dokumentation der Implementierungsdetails wurde aus dem Quellcode mithilfe des freien Dokumentationswerkzeuges \emph{Doxygen}\footnote{\href{http://www.stack.nl/~dimitri/doxygen/index.html}{http://www.stack.nl/\textasciitilde dimitri/doxygen/index.html}} generiert.
 
-\subsection{ctranslationmapper}
-\lstinputlisting[
-	language={Qt},
-	caption={Qt-Input-capiton},
-% 	label={Qt-Input-Label},
-	name={Qt-Inputname},
-	frame=single, flexiblecolumns=true,
-	inputencoding={utf8}
-	%firstline=603,
-	%lastline=642
-	]
-	{../ctranslationmapper.cpp}
+ \item[Versionierung]
+Für die Versionierung wurde das verteilte Versionskontrollsystem \emph{Git}\footnote{\href{http://git-scm.com/}{http://git-scm.com/}} verwandt. Als Hoster diente der spezialisierte Webhosting-Dienst \emph{GitHub}\footnote{\href{http://github.com/}{http://github.com/}}.
 
-\subsection{main}
-\lstinputlisting[
-	language={Qt},
-	caption={Qt-Input-capiton},
-% 	label={Qt-Input-Label},
-	name={Qt-Inputname},
-	frame=single, flexiblecolumns=true,
-	inputencoding={utf8}
-	%firstline=603,
-	%lastline=642
-	]
-	{../main.cpp}
+ \item[Webpräsenz]
+Auf \href{http://opus4711.github.com/htmlatex/}{http://opus4711.github.com/htmlatex/} können der Quelltext, das Pflichtenheft und die Ausarbeitung (dieses Dokument) in einem Zip oder tar-Archiv heruntergeladen werden.
 
-\subsection{input-javadoc.xml}
-\lstinputlisting[
-	language={XML},
-	caption={XML-Input-capiton},
-% 	label={XML-Input-Label},
-	name={XML-Inputname},
-	frame=single, flexiblecolumns=true,
-	inputencoding={utf8}
-	%firstline=603,
-	%lastline=642
-	]
-	{../input_javadoc.xml}
+ \item[Eingabehilfen]
+ Als Screenreader wurde \emph{Dolphin}\footnote{Dolphin\textregistered ~ist ein eingetragenes Markenzeichen der Dolphin Computer Access Ltd. \newline \href{http://www.yourdolphin.com/}{http://www.yourdolphin.com/}} eingesetzt.
 
-\subsection{output-tex.xml}
-\lstinputlisting[
-	language={XML},
-	caption={XML-Input-capiton},
-% 	label={XML-Input-Label},
-	name={XML-Inputname},
-	frame=single, flexiblecolumns=true,
-	inputencoding={utf8}
-	%firstline=603,
-	%lastline=642
-	]
-	{../output_tex.xml}
+  \item[Issues]
+Als Issue-Tracking-System wurde die Issues-Komponente von \emph{GitHub} eingesetzt.
 
+ \end{description}
 
-\section{Funktionsumfang}
+\subsection{Implementierungsphase}
+Das Projekt wurde mithilfe der Extreme Programming-Methode teils in paralleler Einzelarbeit auf Personen- und Issue bezogenen Branches, teils gemeinsam umgesetzt.
 
-\subsection{Konsolenanwendung}
+\subsection{Reflektion}
 
-\subsection{Grafische Oberfläche}
+\section{Implementierung}
+
+% \section{Listings}
+% \subsection{cconsole}
+% \lstinputlisting[
+% 	language={Qt},
+% 	caption={Qt-Input-caption},
+% % 	label={Qt-Input-Label},
+% 	name={Qt-Inputname},
+% 	frame=single, flexiblecolumns=true,
+% 	inputencoding={utf8}
+% 	%firstline=603,
+% 	%lastline=642
+% 	]
+% 	{../cconsole.cpp}
+%
+% \subsection{cdocumentdata}
+% \lstinputlisting[
+% 	language={Qt},
+% 	caption={Qt-Input-caption},
+% % 	label={Qt-Input-Label},
+% 	name={Qt-Inputname},
+% 	frame=single, flexiblecolumns=true,
+% 	inputencoding={utf8}
+% 	%firstline=603,
+% 	%lastline=642
+% 	]
+% 	{../cdocumentdata.cpp}
+%
+% \subsection{cdocumentreader}
+% \lstinputlisting[
+% 	language={Qt},
+% 	caption={Qt-Input-caption},
+% % 	label={Qt-Input-Label},
+% 	name={Qt-Inputname},
+% 	frame=single, flexiblecolumns=true,
+% 	inputencoding={utf8}
+% 	%firstline=603,
+% 	%lastline=642
+% 	]
+% 	{../cdocumentreader.cpp}
+%
+% \subsection{citemdelegate}
+% \lstinputlisting[
+% 	language={Qt},
+% 	caption={Qt-Input-caption},
+% % 	label={Qt-Input-Label},
+% 	name={Qt-Inputname},
+% 	frame=single, flexiblecolumns=true,
+% 	inputencoding={utf8}
+% 	%firstline=603,
+% 	%lastline=642
+% 	]
+% 	{../citemdelegate.cpp}
+%
+% \subsection{cmodel}
+% \lstinputlisting[
+% 	language={Qt},
+% 	caption={Qt-Input-caption},
+% % 	label={Qt-Input-Label},
+% 	name={Qt-Inputname},
+% 	frame=single, flexiblecolumns=true,
+% 	inputencoding={utf8}
+% 	%firstline=603,
+% 	%lastline=642
+% 	]
+% 	{../cmodel.cpp}
+%
+% \subsection{cnode}
+% \lstinputlisting[
+% 	language={Qt},
+% 	caption={Qt-Input-caption},
+% % 	label={Qt-Input-Label},
+% 	name={Qt-Inputname},
+% 	frame=single, flexiblecolumns=true,
+% 	inputencoding={utf8}
+% 	%firstline=603,
+% 	%lastline=642
+% 	]
+% 	{../cnode.cpp}
+%
+% \subsection{ctranslationdata}
+% \lstinputlisting[
+% 	language={Qt},
+% 	caption={Qt-Input-caption},
+% % 	label={Qt-Input-Label},
+% 	name={Qt-Inputname},
+% 	frame=single, flexiblecolumns=true,
+% 	inputencoding={utf8}
+% 	%firstline=603,
+% 	%lastline=642
+% 	]
+% 	{../ctranslationdata.cpp}
+%
+% \subsection{ctranslationdatanode}
+% \lstinputlisting[
+% 	language={Qt},
+% 	caption={Qt-Input-caption},
+% % 	label={Qt-Input-Label},
+% 	name={Qt-Inputname},
+% 	frame=single, flexiblecolumns=true,
+% 	inputencoding={utf8}
+% 	%firstline=603,
+% 	%lastline=642
+% 	]
+% 	{../ctranslationdatanode.cpp}
+%
+% \subsection{ctranslationmapper}
+% \lstinputlisting[
+% 	language={Qt},
+% 	caption={Qt-Input-caption},
+% % 	label={Qt-Input-Label},
+% 	name={Qt-Inputname},
+% 	frame=single, flexiblecolumns=true,
+% 	inputencoding={utf8}
+% 	%firstline=603,
+% 	%lastline=642
+% 	]
+% 	{../ctranslationmapper.cpp}
+%
+% \subsection{main}
+% \lstinputlisting[
+% 	language={Qt},
+% 	caption={Qt-Input-caption},
+% % 	label={Qt-Input-Label},
+% 	name={Qt-Inputname},
+% 	frame=single, flexiblecolumns=true,
+% 	inputencoding={utf8}
+% 	%firstline=603,
+% 	%lastline=642
+% 	]
+% 	{../main.cpp}
+%
+% % \subsection{input-javadoc.xml}
+% % \lstinputlisting[
+% % 	language={XML},
+% % 	caption={XML-Input-caption},
+% % 	label={XML-Input-Label},
+% % 	name={XML-Inputname},
+% % 	frame=single, flexiblecolumns=true,
+% % 	inputencoding={utf8}
+% % 	firstline=603,
+% % 	lastline=642
+% % 	]
+% % 	{../input_javadoc.xml}
+%
+% % \subsection{output-tex.xml}
+% % \lstinputlisting[
+% % 	language={XML},
+% % 	caption={XML-Input-caption},
+% % 	label={XML-Input-Label},
+% % 	name={XML-Inputname},
+% % 	frame=single, flexiblecolumns=true,
+% % 	inputencoding={utf8}
+% % 	firstline=603,
+% % 	lastline=642
+% % 	]
+% % 	{../output_tex.xml}
+%
+
+\subsection{Funktionsumfang}
+
+\subsubsection{Konsolenanwendung}
+
+\subsubsection{Grafische Oberfläche}
 \begin{figure} [H]
     \centering
 	\includegraphics[width=.5\textwidth, keepaspectratio]{./img/screenshot.eps}
     \caption{BILDUNTERSCHRIFT}
 \end{figure}
 
-\section{Implementierung}
+
 \begin{figure} [H]
 \centering
 \resizebox*{.70\textheight}{!}{\input{./img/konverter-baum}}
@@ -219,25 +271,27 @@ Abgabetermin: 23.03.2011
 
 
 
-\section{Leistungsanforderungen}
-Keine besonderen Leistungsanforderungen.
-
-\section{Abgabe}
-\begin{description}
- \item[Termin:] Montag, 07.03.2011, Ort wird vom Betreuer bekannt gegeben.
- \end{description}
-\begin{itemize}
- \item Projektordner mit CD
- \item kurze Präsentation des Ergebnisses
-\end{itemize}
+% \section{Leistungsanforderungen}
+% Keine besonderen Leistungsanforderungen.
+%
+% \section{Abgabe}
+% \begin{description}
+%  \item[Termin:] Montag, 07.03.2011, Ort wird vom Betreuer bekannt gegeben.
+%  \end{description}
+% \begin{itemize}
+%  \item Projektordner mit CD
+%  \item kurze Präsentation des Ergebnisses
+% \end{itemize}
 
 \newpage
-\nocite{Algorithmen_in_C++}
-\nocite{Algorithmen_in_Java}
-\bibliographystyle{babalpha}
-\bibliography{quellen}
-\newpage
+% \nocite{Algorithmen_in_C++}
+% \nocite{Algorithmen_in_Java}
+% \bibliographystyle{babalpha}
+% \bibliography{quellen}
+% \newpage
+
 %\thispagestyle{empty}
+\appendix
 \section{Erklärung}
 Hiermit erklären wir, dass das Projekt htm\LaTeX von uns selbständig und ohne Hilfe Dritter erarbeitet und realisiert wurde.
 
