@@ -1,8 +1,5 @@
 #include "documentreader.h"
 
-/** This class creates a tree representation of a given document.
-  @author Bjoern
-  */
 DocumentReader::DocumentReader(TranslationMapper* translationmapper)
 {
     _fileType = DocumentData::Unknown;
@@ -10,17 +7,24 @@ DocumentReader::DocumentReader(TranslationMapper* translationmapper)
     Settings settings;
     _includeSubDocuments = (bool)settings.getValue("includesubdocuments").toInt();
 };
-/** This method
-  * @param filetype contains the file filter string selected previously.
-  * @author Bjoern
+/** This method starts by pushing a DocumentData object created from the index
+    document to the _documentStack. Then the iteration loop is started which ends
+    when all DocumentData objects are popped from the _documentStack. Each
+    DocumentData object contains a well-formed XML representaion of the underlying
+    input document. Additionally it provides a pointer to the node of the
+    application's internal tree structure to which the document will be added to.
+    This XML representation is passed to a QDomDocument object which validates it
+    and retrieves the root element. Then the _readElement() method processes the
+    document with the given root element.
+    @author Bjoern
   */
 Node* DocumentReader::read(QString indexfilepath,
-                             DocumentData::FileType filetype)
+                           DocumentData::FileType filetype)
 {
     if (_translationMapper == 0)
     {
         if (Settings::DEBUG)
-            std::cerr << "DocumentReader.read() : _translationMapper is 0" << std::endl;
+            std::cerr << tr("DocumentReader.read() : _translationMapper is 0").toStdString() << std::endl;
         return 0;
     }
     Settings settings;
@@ -46,14 +50,14 @@ Node* DocumentReader::read(QString indexfilepath,
                            &errorColumn))
         {
             if (doc.documentElement().tagName().toLower() == "html")
-                readElement(doc.documentElement(), documentdata->node());
+                _readElement(doc.documentElement(), documentdata->node());
             else
             {
-                std::cerr << "Error in CDocumentReader::read()"
-                        << std::endl << "\tat \"if (doc.setContent())\" returned false;"
-                        << std::endl << "\tFile name: "
+                std::cerr << tr("Error in DocumentReader::read()").toStdString()
+                        << std::endl << tr("\tat \"if (doc.setContent())\" returned false;").toStdString()
+                        << std::endl << tr("\tFile name: ").toStdString()
                         << documentdata->fileInfo().filePath().toStdString()
-                        << std::endl << "\tError message: <html>-tag not found"
+                        << std::endl << tr("\tError message: <html>-tag not found").toStdString()
                         << std::endl;
             }
         }
@@ -73,7 +77,7 @@ Node* DocumentReader::read(QString indexfilepath,
     }
     return root;
 };
-void DocumentReader::readElement(QDomElement element, Node* node)
+void DocumentReader::_readElement(QDomElement element, Node* node)
 {
     for (int i = 0; i < element.childNodes().count(); i++)
     {
@@ -84,8 +88,8 @@ void DocumentReader::readElement(QDomElement element, Node* node)
         else
         {
             Node* new_node = new Node(node,
-                                        element.childNodes().at(i).nodeName().toLower(),
-                                        node->getLayer() + 1);
+                                      element.childNodes().at(i).nodeName().toLower(),
+                                      node->getLayer() + 1);
             node->addChild(new_node);
             QDomNamedNodeMap attributes = element.childNodes().at(i).attributes();
             DocumentReaderData documentreference = _translationMapper->getDocumentReference();
@@ -133,7 +137,7 @@ void DocumentReader::readElement(QDomElement element, Node* node)
                 }
             }
             QDomElement new_element = element.childNodes().at(i).toElement();
-            readElement(new_element, new_node);
+            _readElement(new_element, new_node);
         }
     }
 };

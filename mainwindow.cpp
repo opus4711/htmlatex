@@ -1,12 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-  /**  of the application except the executable file's name and optional paramters.
-  *  @param options is an array of strings which contains just the optional
-  *  startup arguments of the application.
-  *  @param parent is a pointer pointing to the parent widget (QDialog and
-  *  QMainWindow are derived from QWidget).
-  *  @author Bjoern*/
 MainWindow::MainWindow(QStringList arguments,
                        QStringList options,
                        QWidget* parent)
@@ -64,13 +58,9 @@ MainWindow::~MainWindow()
     delete _translationMapper;
     delete _converter;
 };
-  /** of the application except the executable file's name and optional paramters.
-  * @param options is an array of strings which contains just the optional
-  * startup arguments of the application.
-  * @author Bjoern */
 void MainWindow::_performInitialOperations(QStringList arguments, QStringList options)
 {
-    /** arguments:
+    /* arguments:
        0 = source file path
        1 = source file type
        2 = input definition file path
@@ -189,8 +179,6 @@ void MainWindow::_performInitialOperations(QStringList arguments, QStringList op
         msg.exec();
     }
 };
-  /** supposed to translate.
-  * @author Bjoern */
 void MainWindow::_languageChanged(QLocale::Country language)
 {
     // set translation environment for the application texts

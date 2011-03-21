@@ -30,11 +30,11 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 public:
     /** This is the only constructor.
-        @param arguments is an array of strings which contains the startup argument
+        @param <arguments> is an array of strings which contains the startup argument
         of the application except the executable file's name and optional paramters.
-        @param options is an array of strings which contains just the optional
+        @param <options> is an array of strings which contains just the optional
         startup arguments of the application.
-        @param parent is a pointer pointing to the parent widget (QDialog and
+        @param <parent> is a pointer pointing to the parent widget (QDialog and
         QMainWindow are derived from QWidget).
         @author Bjoern
       */
@@ -80,9 +80,9 @@ private:
     Converter* _converter;
     /** This method performs opening and converting operations depending on the
         application's startup arguments.
-        @param arguments is an array of strings which contains the startup argument
+        @param <arguments> is an array of strings which contains the startup argument
         of the application except the executable file's name and optional paramters.
-        @param options is an array of strings which contains just the optional
+        @param <options> is an array of strings which contains just the optional
         startup arguments of the application.
         @author Bjoern
       */
@@ -90,7 +90,7 @@ private:
 private slots:
     /** This slot is connected to _settingsDialog and is called when the user
         applies settings. It triggers the retranslation of the application's texts.
-        @param language contains the information to which language the
+        @param <language> contains the information to which language the
         _translator is supposed to translate.
         @author Bjoern
       */
