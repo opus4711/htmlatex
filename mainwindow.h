@@ -107,6 +107,11 @@ private slots:
         @author Bjoern
       */
     void _convert();
+    /** This slot is called when the user clicks the menu item or the push button
+        for "save as". It allows to save the conversion output as .tex or .pdf file.
+        @author Bjoern
+      */
+    void _saveAs();
     /** This slot is called when the user clicks the menu item or tool bar button
         for "set input definition".
         @author Bjoern

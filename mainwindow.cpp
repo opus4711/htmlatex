@@ -18,6 +18,8 @@ MainWindow::MainWindow(QStringList arguments,
             this, SLOT(_convert()));
     connect(ui->action_Open, SIGNAL(triggered()),
             this, SLOT(_open()));
+    connect(ui->action_Save_As, SIGNAL(triggered()),
+            this, SLOT(_saveAs()));
     connect(ui->action_Info, SIGNAL(triggered()),
             this, SLOT(_about()));
     connect(ui->action_Settings, SIGNAL(triggered()),
@@ -249,6 +251,9 @@ void MainWindow::_convert()
         Node* root = new Node(*_model->root());
         _converter->convert(dialog->selectedFiles().at(0), root);
     }
+};
+void MainWindow::_saveAs()
+{
 };
 void MainWindow::_setInputDefinition()
 {
