@@ -27,7 +27,7 @@ private:
     void readElement(QDomElement element, CNode* node);
 public:
     CNode* read(QString indexfilepath, DocumentData::FileType filetype);
-    // constructor
+    /** constructor */
     DocumentReader(TranslationMapper* translationmapper);
 };
 

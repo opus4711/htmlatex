@@ -17,7 +17,7 @@ public:
     void setContent(QString content);
     QMap<QString,QString> attributes() const;
     void addAttribute(QString name, QString value);
-    // Constructor
+    /** Constructor */
     TranslationDataNode();
 };
 

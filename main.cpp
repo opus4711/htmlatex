@@ -10,14 +10,14 @@
 
 int main(int argc, char* argv[])
 {
-    /* 0 = executable's name
-       1 = source file path
-       2 = source file type
-       3 = target file path
-       4 = target file type
-       x = "-g" or "--gui"
-       y = "-v" or "--verbose"
-    */
+    /** 0 = executable's name
+     *  1 = source file path
+     *  2 = source file type
+     *  3 = target file path
+     *  4 = target file type
+     *  x = "-g" or "--gui"
+     *  y = "-v" or "--verbose"
+     */
     QStringList arguments;
     QStringList options;
     for (int i = 1; i < argc; i++)
@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
         else
             arguments << argument;
     }
-    // open the GUI if argument "-g" or "--gui" is given
+    /** open the GUI if argument "-g" or "--gui" is given */
     if ((bool)options.contains("-g")
         | (bool)options.contains("--gui"))
     {

@@ -5,7 +5,7 @@
   * in the document tree, which represents the whole document. This also stores a
   * QFileInfo-object for the whole documents' index document. The appropriate
   * document preprocessing is chosen by means of distinguished file types.
-  * @author Bjoern Kaiser
+  * @author Bjoern
   */
 DocumentData::DocumentData(QFileInfo fileinfo, CNode* node, FileType filetype)
 {
@@ -16,21 +16,21 @@ DocumentData::DocumentData(QFileInfo fileinfo, CNode* node, FileType filetype)
     this->_preprocessed = false;
 };
 /** Returns the URL to this document.
-  * @author Bjoern Kaiser
+  * @author Bjoern
   */
 QFileInfo DocumentData::fileInfo() const
 {
     return this->_fileInfo;
 };
 /** Returns the pointer to the corresponding tree node of the whole document.
-  * @author Bjoern Kaiser
+  * @author Bjoern
   */
 CNode* DocumentData::node() const
 {
     return this->_node;
 };
 /** Returns the document as a preprocessed QString.
-  * @author Bjoern Kaiser
+  * @author Bjoern
   */
 QString DocumentData::text()
 {
@@ -40,14 +40,14 @@ QString DocumentData::text()
     return _text;
 };
 /** This hook-method calls all preprocessing methods.
-  * @author Bjoern Kaiser
+  * @author Bjoern
   */
 void DocumentData::preprocessingHook()
 {
     preprocessHTML();
 };
 /** This method changes the specified HTML-file in order to gain well-formed XML (XHTML).
-  * @author Bjoern Kaiser
+  * @author Bjoern
   */
 void DocumentData::preprocessHTML()
 {

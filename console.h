@@ -9,7 +9,7 @@
 #include <iostream>
 
 /** This class provides the command line functionality of the application.
-    @author Bjoern
+  * @author Bjoern
   */
 class Console : public QObject
 {

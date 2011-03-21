@@ -7,19 +7,19 @@ Console::Console(QStringList arguments, QStringList options)
 Console::~Console()
 {
 };
-/* This method processes the application's startup arguments and performs the
-   conversion by means of a DocumentReader and Converter object.
-   */
+/** This method processes the application's startup arguments and performs the
+  * conversion by means of a DocumentReader and Converter object.
+  */
 void Console::_performInitialOperations(QStringList arguments, QStringList options)
 {
-    /* arguments:
-       0 = source file path
-       1 = source file type
-       2 = input definition file path
-       3 = target file path
-       4 = target file type
-       5 = output definition file path
-    */
+    /** arguments:
+      * 0 = source file path
+      * 1 = source file type
+      * 2 = input definition file path
+      * 3 = target file path
+      * 4 = target file type
+      * 5 = output definition file path
+      */
     if (arguments.count() == 6)
     {
         TranslationMapper* translationmapper = new TranslationMapper;

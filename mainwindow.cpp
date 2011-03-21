@@ -2,12 +2,12 @@
 #include "ui_mainwindow.h"
 
 /** @param arguments is an array of strings which contains the startup argument
-    of the application except the executable file's name and optional paramters.
-    @param options is an array of strings which contains just the optional
-    startup arguments of the application.
-    @param parent is a pointer pointing to the parent widget (QDialog and
-    QMainWindow are derived from QWidget).
-    @author Bjoern
+  *  of the application except the executable file's name and optional paramters.
+  *  @param options is an array of strings which contains just the optional
+  *  startup arguments of the application.
+  *  @param parent is a pointer pointing to the parent widget (QDialog and
+  *  QMainWindow are derived from QWidget).
+  *  @author Bjoern
   */
 MainWindow::MainWindow(QStringList arguments,
                        QStringList options,
@@ -67,10 +67,10 @@ MainWindow::~MainWindow()
     delete _converter;
 };
 /** @param arguments is an array of strings which contains the startup argument
-    of the application except the executable file's name and optional paramters.
-    @param options is an array of strings which contains just the optional
-    startup arguments of the application.
-    @author Bjoern
+  * of the application except the executable file's name and optional paramters.
+  * @param options is an array of strings which contains just the optional
+  * startup arguments of the application.
+  * @author Bjoern
   */
 void MainWindow::_performInitialOperations(QStringList arguments, QStringList options)
 {
@@ -194,8 +194,8 @@ void MainWindow::_performInitialOperations(QStringList arguments, QStringList op
     }
 };
 /** @param language contains the information to which language the _translator is
-    supposed to translate.
-    @author Bjoern
+  * supposed to translate.
+  * @author Bjoern
   */
 void MainWindow::_languageChanged(QLocale::Country language)
 {

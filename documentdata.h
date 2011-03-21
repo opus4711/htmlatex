@@ -30,7 +30,7 @@ public:
     QString text();
     FileType fileType() const;
     QFileInfo indexFileInfo() const;
-    // Constructor
+    /** Constructor */
     DocumentData(QFileInfo fileinfo, CNode* node, FileType filetype);
 };
 

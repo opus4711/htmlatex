@@ -24,7 +24,7 @@ signals:
     void languageChanged(QLocale::Country language);
 public:
     void retranslateUi();
-    // Constructor and Destructor
+    /** Constructor */
     SettingsDialog(QWidget *parent = 0);
     ~SettingsDialog();
 };

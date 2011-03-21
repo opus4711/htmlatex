@@ -21,7 +21,7 @@ public:
     void setTo(QString to);
     QList<TranslationDataNode> requires() const;
     void addRequiresNode(TranslationDataNode requiresnode);
-    // Constructor
+    /** Constructor */
     TranslationData();
 };
 

@@ -1,7 +1,7 @@
 #include "documentreader.h"
 
 /** This class creates a tree representation of a given document.
-  @author Bjoern Kaiser
+  @author Bjoern
   */
 DocumentReader::DocumentReader(TranslationMapper* translationmapper)
 {
@@ -12,7 +12,7 @@ DocumentReader::DocumentReader(TranslationMapper* translationmapper)
 };
 /** This method
   * @param filetype contains the file filter string selected previously.
-  * @author Bjoern Kaiser
+  * @author Bjoern
   */
 CNode* DocumentReader::read(QString indexfilepath,
                              DocumentData::FileType filetype)

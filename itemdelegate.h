@@ -33,7 +33,7 @@ public:
     QColor getColorLayer1() const;
     void paint(QPainter* painter, const QStyleOptionViewItem &option,
                const QModelIndex &index) const;
-    // Constructor
+    /** Constructor*/
     ItemDelegate(Model* model = 0, QObject* parent = 0);
 };
 
