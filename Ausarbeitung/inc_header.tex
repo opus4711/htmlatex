@@ -24,10 +24,15 @@
 	    ]{geometry} 		% Layout der Seiten anpassen
 
 %-------Hyperref und Hypercap als letztes Paket einbinden!-------
-\usepackage[%colorlinks=true,		% farbige Links aktivieren
-	    %linkcolor=black,		% Linkfarbe festlegen
+\usepackage[colorlinks=true,		% farbige Links aktivieren
+	    linkcolor=black,		% Linkfarbe festlegen
 	    %breaklinks=true,		% Links dürfen umgebrochen werden (Wichtig im Inhaltsverzeichnis)
  	    linktocpage=true,		% Abbildungsverzeichnis mit Bildern verlinken und Links nur auf die Zahlen setzen
+ 	    linkcolor=black,		% Dokument-interne Links
+ 	    citecolor=black, 		% Links zum Literaturverzeichnis
+ 	    urlcolor=blue,		% Farbe des verlinkten Textes, externe URLs
+ 	    filecolor=blue,		% Links auf lokale Dateien
+%  	    frenchlinks=true,		% Links werden als smallcaps, anstatt farbig dargestellt.
 	    pdfborder={0 0 0},		% Rahmen um Links auf 0 festlegen
 	    ]{hyperref}			% anklickbare Links im Inhaltsverzeichnis
 \usepackage[all]{hypcap}		% Erlaubt Links auf Abbildungen nicht nur unterhalb der caption zu setzen

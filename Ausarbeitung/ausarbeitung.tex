@@ -74,8 +74,11 @@ Die Dokumentation der Implementierungsdetails wurde aus dem Quellcode mithilfe d
  \item[Versionierung]
 Für die Versionierung wurde das verteilte Versionskontrollsystem \emph{Git}\footnote{\href{http://git-scm.com/}{http://git-scm.com/}} verwandt. Als Hoster diente der spezialisierte Webhosting-Dienst \emph{GitHub}\footnote{\href{http://github.com/}{http://github.com/}}.
 
+\item[Unit Tests]
+Nach einigen Problemen mit der Qt-eigenen Komponente für Unit Tests (QTestLib) haben wir auf Unit Tests vorerst verzichtet.
+
  \item[Webpräsenz]
-Auf \href{http://opus4711.github.com/htmlatex/}{http://opus4711.github.com/htmlatex/} können der Quelltext, das Pflichtenheft und die Ausarbeitung (dieses Dokument) in einem Zip oder tar-Archiv heruntergeladen werden.
+Auf \href{http://opus4711.github.com/htmlatex/}{http://opus4711.github.com/htmlatex/} können der Quelltext, die \href{http://opus4711.github.com/htmlatex/documentation/html/index.html}{Entwicklerdokumentation}, das \href{http://opus4711.github.com/htmlatex/Pflichtenheft/pflichtenheft.pdf}{Pflichtenheft} und die \href{http://opus4711.github.com/htmlatex/Ausarbeitung/ausarbeitung.pdf}{Ausarbeitung} (dieses Dokument) in einem \href{http://github.com/opus4711/htmlatex/zipball/master}{zip} oder \href{http://github.com/opus4711/htmlatex/tarball/master}{tar-Archiv} heruntergeladen werden.
 
  \item[Eingabehilfen]
  Als Screenreader wurde \emph{Dolphin}\footnote{Dolphin\textregistered ~ist ein eingetragenes Markenzeichen der Dolphin Computer Access Ltd. \newline \href{http://www.yourdolphin.com/}{http://www.yourdolphin.com/}} eingesetzt.
@@ -86,13 +89,65 @@ Als Issue-Tracking-System wurde die Issues-Komponente von \emph{GitHub} eingeset
  \end{description}
 
 \subsection{Implementierungsphase}
-Das Projekt wurde mithilfe der Extreme Programming-Methode teils in paralleler Einzelarbeit auf Personen- und Issue bezogenen Branches, teils gemeinsam umgesetzt.
+Das Projekt wurde mithilfe der Extreme Programming-Methode teils in paralleler Einzelarbeit auf Personen- und Aufgaben(Issue)-bezogenen Entwicklungszweigen, teils gemeinsam umgesetzt.
 
+Zu Begin wurde auf dem Hauptentwicklungszweig ``master'' der noch funktionslose Prototyp der Anwendung erstellt und die grafische Oberfläche entworfen. Im Folgenden wurden Teilfunktionalitäten in getrennten Branches in kurzen Zyklen (zwischen 30 Min und 5 Std. Programmierzeit) implementiert. Nach gegenseitiger Absprache wurde der Branch dann auf den beiden Betriebssystemen getestet und mit dem Hauptentwicklungzweig verschmolzen (``merge'').
+
+\begin{description}
+ \item[Kodierung] Die Kodierungsfunktionen von Qt lieferten entgegen der Dokumentation nicht auf beiden Systemen die angestrebten Ergebnisse.
+
+ Wurde ein \texttt{QTextStream} mit \texttt{setCodec("UTF-8")} festgelegt, konnte er UTF-8 Text mit und ohne BOM\footnote{Byte Order Mark} nicht korrekt verarbeiten. Erst die auf einen \texttt{QString} angewandte Methode \texttt{toLatin1()} konnte plattformübergreifend die von uns genutzte UTF-8 Auswahl korrekt darstellen. Uns ist bewusst, dass die Latin1-Codierung in diesem Bereich weitestgehend deckungsgleich ist, dies aber für größtmögliche Flexibiltät wohl nur ein Workaround ist. Bei der Verarbeitung der Übersetzungsdateien für dieses Projekt mittels \texttt{QTextCodec} und der Methode \texttt{codecForName("utf8")} trat dieses seltsame Verhalten nicht auf.
+
+ \item[Interface]
+ Bei der Gestaltung der Kommandozeilenversion haben wir uns in vielen Fällen an den GNU Coding Standards\footnote{\href{http://www.gnu.org/prep/standards/standards.html}{http://www.gnu.org/prep/standards/standards.html}} orientiert.
+ \begin{figure} [H]
+    \centering
+	\includegraphics[width=\textwidth, keepaspectratio]{./img/console_usage.eps}
+    \caption{GUI}
+\end{figure}
+
+ \begin{figure} [H]
+    \centering
+	\includegraphics[width=.7\textwidth, keepaspectratio]{./img/GUI.eps}
+    \caption{GUI-Variante}
+\end{figure}
+Die GUI-Variante bietet alle Elemente der Konsolenversion zzgl. Shortcuts, einer Info-Seite, einem Fortschrittsbalken, der grafischen Darstellung des geparsten Baumes des Eingabedokumentes und eines Editorfensters in dem die (konvertierte) Ausgabe weiter bearbeitet werden kann.
+
+Dank des Dokument-Generators Doxygen ist eine Einbindung der Entwicklerdokumentation dieses Projektes als ``Hilfe''-Komponente kein großer Aufwand mehr, da direkt Qt Compressed Help (.qch) ausgegeben werden kann.
+
+ \item[Einstellungen] Die Einstellungen werden in der Datei \texttt{htmlatex\_settings.dat} binär serialisiert.
+
+ \item[Lokalisierung] Zu übersetzende Strings wurden mittels der Qt-Funktion \texttt{tr("str")}  markiert, mit dem Programm \texttt{lupdate} in ein XML-Zwischenformat (.ts) extrahiert und mithilfe des \texttt{QtLinguist} für deutsch und englisch übersetzt. Die Übersetzungen werden dann mittels des Programms \texttt{lrelease} in das binäre .qm-Format (Qt Message File Format) überführt, das auf hohe lookup-Ge\-schwin\-dig\-keit optimiert ist und von der Programmdatei direkt genutzt wird. Fehlt die gewünschte Sprachdatei, werden die im Quelltext direkt geschriebenen Strings ausgegeben.
+  \begin{figure} [H]
+    \centering
+	\includegraphics[width=.5\textwidth, keepaspectratio]{./img/GUI_settings.eps}
+    \caption{Einstellungen}
+\end{figure}
+
+\item[externer Programmaufruf]
+Der Pfad zu \LaTeX Programmdatei kann ebenfalls in den Einstellungen eingegeben werden.
+Für Linux könnte auch ein Aufruf des Kommandos \texttt{which} Voreinstellungen liefern.
+
+ \end{description}
 
 \subsection{Reflektion}
 
-\section{Implementierung}
 
+\section{Implementierung der Konvertierung}
+Es wurde die im Pflichtenheft visualisierte Basis für die Konvertierung angestrebt. Hierbei haben wir uns für einen XML-DOM\footnote{Document Object Model}-Baum für die interne Verarbeitung festgelegt.
+\begin{enumerate}
+ \item Das Eingabeformat steht -- im Falle von JavaDoc, wie es z.B. für Java unter \href{http://download.oracle.com/javase/6/docs/api/overview-summary.html}{http://download.oracle.com/javase/6/docs/api/overview-summary.html} zu finden ist -- leider nicht in einem XML konformen Format bereit. Um es hierin zu überführen, nimmt ein Präprozessor die nötigen Umformungen vor. Er wird in einer Hook-Methode vor dem Einlesevorgang ausgeführt und ist leicht zu ersetzen.
+ \item Nun beginnt der Einlesevorgang mithilfe der Eingabe-Definitionsdatei im XML-Format.
+\end{enumerate}
+
+
+
+
+\begin{figure} [H]
+\centering
+\resizebox*{.70\textheight}{!}{\input{./img/konverter-baum}}
+\end{figure}
+\section{Ausblick}
 % \section{Listings}
 % \subsection{cconsole}
 % \lstinputlisting[
@@ -263,12 +318,18 @@ Das Projekt wurde mithilfe der Extreme Programming-Methode teils in paralleler E
 \end{figure}
 
 
-\begin{figure} [H]
-\centering
-\resizebox*{.70\textheight}{!}{\input{./img/konverter-baum}}
-\end{figure}
-\section{Ausblick}
 
+Neben Verbesserungen am Interface ist es nun interessant zu überprüfen, ob das Programm in der Lage ist in, der Praxis mit mehr Formaten erfolgreich zu arbeiten und Aussenstehende zu gewinnen, die Formatdefinitonen in XML-Form anpassen.
+
+Zur Senkung des Aufwandes wäre es wohl sehr wünschenswert, wenn dieses z.B. mittels einer Eingabemaske zum Bearbeiten und Erstellen dieser Beschreibungsdateien geschähe. Darüber hinaus würde ein Syntaxhighlighting Tippfehler weiter minimieren.
+
+Der die Anpassungen, die der Präprozessor vorzunehmen hat, damit das Eingabeformat XML-Konform wird könnten auch anpassbar in XML definiert werden.
+
+Der Editor für die Ausgabedateien sollte neben ``Suchen\&Ersetzen'' und einer Schriftgrößen-Einstellung die üblichen Textbearbeitungswerkzeuge zum \emph{Ausschneiden}, \emph{Kopieren} und \emph{Einfügen}, so wie für \emph{Rückgängig}  und \emph{Wiederholen} bekommen. \texttt{undo()}, \texttt{redo()}, \texttt{cut()}, \texttt{copy()}, \texttt{paste()} und \texttt{setFontPointSize()} sind im \emph{QTextEdit}-Widget schon enthalten und deshalb auch leicht nachzurüsten.
+
+Die Baumansicht des Eingabedokumentes sollte per Kontextmenü einen speziellen Knoten oder Unterbaum vor dem Übersetzungsvorgang entfernen können, um in Dokumentenstrukturen mit vielen Unterdokumenten die Auswahl begrenzen zu können.
+
+Ebenso ist es erstrebenswert, die maximal zu verfolgende Linktiefe begrenzen zu können und Linkschleifen zu vermeiden.
 
 
 
