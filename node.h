@@ -6,9 +6,9 @@
 #include <QMap>
 
 /** The Node class provides rudimental functionality to build tree structures and
-  access its nodes. Each node is aware of its parent and children which can be
-  accessed by methods such as getParent() or childAt(int index). Additionally
-  each node holds an array of attributes.
+    access its nodes. Each node is aware of its parent and children which can be
+    accessed by methods such as getParent() or childAt(int index). Additionally
+    each node holds an array of attributes.
   */
 class Node
 {

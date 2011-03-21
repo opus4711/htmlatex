@@ -20,10 +20,10 @@ namespace Ui
     class MainWindow;
 };
 /** This is the central class of the GUI application. The treeView on the left
-  * hand side displays the opened document as a tree structure and allows
-  * modification via context menu. The textEdit on the right hand side displays
-  * the conversion output and can be edited directly.
-  * @author Bjoern
+    hand side displays the opened document as a tree structure and allows
+    modification via context menu. The textEdit on the right hand side displays
+    the conversion output and can be edited directly.
+    @author Bjoern
   */
 class MainWindow : public QMainWindow
 {
@@ -39,7 +39,9 @@ public:
         @author Bjoern
       */
     MainWindow(QStringList arguments, QStringList options, QWidget* parent);
-    /** This is the destructor. */
+    /** This is the destructor.
+        @author Bjoern
+      */
     ~MainWindow();
 private:
     /** This declaration allows access to the separated GUI source code via the

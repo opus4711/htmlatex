@@ -12,9 +12,12 @@
 #include <QMapIterator>
 #include <QStack>
 #include <QDir>
-
 #include <iostream>
 
+/** The DocumentReader class creates the application's internal tree structure
+    from a specified input document and is able to include referenced subdocuments.
+    @author Bjoern
+  */
 class DocumentReader : public QObject
 {
     Q_OBJECT

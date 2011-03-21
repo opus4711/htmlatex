@@ -23,10 +23,6 @@ public:
         @author Bjoern
       */
     Console(QStringList arguments, QStringList options);
-    /** This is an empty destructor.
-        @author Bjoern
-      */
-    ~Console();
 private:
     /** This method processes the application's startup arguments and performs the
         conversion by means of a DocumentReader and a Converter object.
