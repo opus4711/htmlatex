@@ -1,6 +1,7 @@
 #include "documentreaderdata.h"
 
-DocumentReaderData::DocumentReaderData() : _tagName(""), _urlContainingAttributeName("")
+DocumentReaderData::DocumentReaderData() : _tagName(""),
+                                           _urlContainingAttributeName("")
 {
 };
 DocumentReaderData::DocumentReaderData(const DocumentReaderData& documentreaderdata)
