@@ -91,9 +91,18 @@ void Converter::convert(const QString filepath, Node* tree, DocumentData::FileTy
             std::cerr << tr("Converter.convert() save to PDF:\ncommand: ").toStdString()
                     << command.toAscii().data() << std::endl;
         }
-        system(command.toAscii().data());
-        if (Settings::DEBUG)
-            std::cerr << tr("Converter.convert() saved to PDF file").toStdString() << std::endl;
+        int errorcode = system(command.toAscii().data());
+        if (errorcode == 0)
+        {
+            if (Settings::DEBUG)
+                std::cerr << tr("Converter.convert() saved to PDF file").toStdString() << std::endl;
+        }
+        else
+        {
+            if (Settings::DEBUG)
+                std::cerr << tr("Converter.convert() en error occurred saving to PDF file: error code ").toStdString()
+                << QString::number(errorcode).toStdString() << std::endl;
+        }
     }
     else
         std::cerr << tr("Converter.convert(): file not saved - unknown file type").toStdString() << std::endl;
