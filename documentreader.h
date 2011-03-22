@@ -30,10 +30,10 @@ public:
       */
     DocumentReader(TranslationMapper* translationmapper);
     /** This method creates a Node tree structure which corresponds to the whole
-        input document including its sub documents if desired
+        input document including its subdocuments if desired
         (_includeSubDocuments is set). The nodes of each document are processed
         recursively by the _readElement() method. Whereas the documents
-        (sub documents) are processed in an iteration loop by means of the
+        (subdocuments) are processed in an iteration loop by means of the
         _documentStack.
         @param <indexfilepath> contains the absolute file path to the index document.
         @param <filetype> indicates of which type the input document is.
@@ -58,19 +58,19 @@ private:
     DocumentData::FileType _fileType;
     /** This stack is populated with DocumentData objects when processing the
         input document. The usage of a stack allows to process the input document
-        and its sub documents in an iteration loop instead of a recursion because
+        and its subdocuments in an iteration loop instead of a recursion because
         a recursion may raise a stack overflow issue.
         @author Bjoern
       */
     QStack<DocumentData*> _documentStack;
-    /** This attribute indicates whether sub documents are included by the
-        input document processing or not.
+    /** This attribute indicates whether or not subdocuments are included by the
+        input document processing.
         @author Bjoern
       */
     bool _includeSubDocuments;
     /** This method processes a single document recursively. It adds for each node
         of the input document a corresponding Node object to the application's
-        internal tree structure. If a reference to a sub document is found a new
+        internal tree structure. If a reference to a subdocument is found a new
         DocumentData object is generated and pushed on the _documentStack.
         @param <element> is the current parent QDomElement object. Notice that the
         _readElement() method performs a recursion to process a single document.

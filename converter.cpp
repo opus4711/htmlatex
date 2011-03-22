@@ -17,24 +17,9 @@ Converter::Converter(QObject *parent, TranslationMapper* translationmapper)
 Node* Converter::_cursor = 0;
 void Converter::convert(const QString filepath, Node* tree, DocumentData::FileType filetype)
 {
-    /*
-    _file.setFileName(filepath);
-    _root = root;
-    if (!_file.open(QFile::WriteOnly))
-    {
-        std::cerr << "Cannot open file for writing: "
-                << qPrintable(_file.errorString()) << std::endl;
-        return;
-    }
-    // TODO : ist _stream instanziiert?
-    _stream.setDevice(&_file);
-    _stream.setCodec("UTF-8");
-    // converting...
-    */
-    // consume
     if (!tree)
     {
-        std::cerr << "error - CConverter.convert() : tree == 0" << std::endl;
+        std::cerr << tr("error - CConverter.convert() : tree == 0").toStdString() << std::endl;
         return;
     }
     _cursor = getLeaf(tree);
@@ -45,12 +30,13 @@ void Converter::convert(const QString filepath, Node* tree, DocumentData::FileTy
         if (Settings::DEBUG)
         {
             //std::cerr << "CConverter.convert() - while():\n\ti: " << i << std::endl;
-            i++;
-            emit updateProgressBar((int)((double)i / (double)nodecount * 100.0));
         }
+        i++;
+        emit updateProgressBar((int)((double)i / (double)nodecount * 100.0));
     }
-    //std::cerr << "Converter.convert(): cursor.content: " << _cursor->getContent().toStdString() << std::endl;
     std::cerr << "Converter.convert(): cursor.count: " << _cursor->getCount() << std::endl;
+    if (Settings::DEBUG)
+        std::cerr << "Content: " << _cursor->getContent().toStdString() << std::endl;
 
     /*
     QString convertedtext(tree->content());
@@ -116,31 +102,19 @@ Node * Converter::getLeaf(Node* node)
         result = result->firstChild();
     return result;
 };
-bool Converter::isLeaf(Node * node)
-{
-    return (node->getCount() == 0);
-};
-QMap<QString,QString> Converter::getAttributes(Node * node)
-{
-    return node->getAttributes();
-};
-QString Converter::getContent(Node * node)
-{
-    return node->getContent();
-};
-QString Converter::getName(Node * node)
-{
-    return node->getName();
-};
 bool Converter::consume(Node * node)
 {
     Node *parent = node->getParent();
     if (!parent)
     {
-        //std::cerr << "ENDE -- Converter.consume(): node.name: " << node->getName().toStdString() << std::endl;
+        if (Settings::DEBUG)
+        {
+            std::cerr << "Converter.consume(): root node found. node.getName(): "
+                    << node->getName().toStdString() << std::endl;
+        }
         return false;
     }
-    QString parentcontent = _replace(parent);
+    QString parentcontent = parent->getContent();//_replace(parent);
     //std::cerr << "parentcontent: " << parentcontent.toStdString() << std::endl;
     QString childcontent = _replace();
     for (int i = 0; i < replacementMarks.count(); i++)
@@ -163,6 +137,22 @@ bool Converter::consume(Node * node)
     parent->removeChild(node);
     _cursor = getLeaf(parent);
     return true;
+};
+bool Converter::isLeaf(Node * node)
+{
+    return (node->getCount() == 0);
+};
+QMap<QString,QString> Converter::getAttributes(Node * node)
+{
+    return node->getAttributes();
+};
+QString Converter::getContent(Node * node)
+{
+    return node->getContent();
+};
+QString Converter::getName(Node * node)
+{
+    return node->getName();
 };
 Node * Converter::_getNextSibling()
 {
