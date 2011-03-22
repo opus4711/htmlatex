@@ -15,7 +15,7 @@ Converter::Converter(QObject *parent, TranslationMapper* translationmapper)
     end test */
 };
 Node* Converter::_cursor = 0;
-void Converter::convert(const QString filepath, Node* tree)
+void Converter::convert(const QString filepath, Node* tree, DocumentData::FileType filetype)
 {
     /*
     _file.setFileName(filepath);
@@ -57,6 +57,46 @@ void Converter::convert(const QString filepath, Node* tree)
     for (int i = 0; i < _parts.count(); i++)
         convertedtext += _parts.at(i);
         */
+
+    // ERNSTER CODE !!!
+    // save conversion output to file
+    if (filetype == DocumentData::Tex)
+    {
+        QFile file(filepath);
+        if (!file.open(QFile::WriteOnly | QFile::Text))
+        {
+            if (Settings::DEBUG)
+            {
+                std::cerr << tr("MainWindow._saveAs() - can't write to file: path: ").toStdString()
+                        << filepath.toStdString() << std::endl;
+            }
+        }
+        else
+        {
+            QTextStream stream(&file);
+            stream.setCodec("UTF-8");
+            stream << _cursor->getContent().toLatin1();
+            file.close();
+            if (Settings::DEBUG)
+                std::cerr << tr("Converter.convert() saved to TEX file").toStdString() << std::endl;
+        }
+    }
+    else if (filetype == DocumentData::PDF)
+    {
+        Settings settings;
+        // invoke external program and write the output to a file
+        QString command = settings.getValue("latexpath") + " " + filepath;
+        if (Settings::DEBUG)
+        {
+            std::cerr << tr("Converter.convert() save to PDF:\ncommand: ").toStdString()
+                    << command.toAscii().data() << std::endl;
+        }
+        system(command.toAscii().data());
+        if (Settings::DEBUG)
+            std::cerr << tr("Converter.convert() saved to PDF file").toStdString() << std::endl;
+    }
+    else
+        std::cerr << tr("Converter.convert(): file not saved - unknown file type").toStdString() << std::endl;
     emit updateTextEdit(_cursor->getContent());
     emit updateProgressBar(0);
 };

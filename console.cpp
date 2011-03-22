@@ -55,9 +55,11 @@ void Console::_performInitialOperations(QStringList arguments, QStringList optio
             DocumentData::FileType filetype = DocumentData::Unknown;
             if (filetypestring.toLower() == "tex")
                 filetype = DocumentData::Tex;
+            else if (filetypestring.toLower() == "pdf")
+                filetype = DocumentData::PDF;
             // root - converting...
             Converter* converter = new Converter(this, translationmapper);
-            converter->convert(targetfilepath, root);
+            converter->convert(targetfilepath, root, filetype);
             std::cout << tr("Perform conversion  --> success").toStdString() << std::endl;
             delete converter;
         }

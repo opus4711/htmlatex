@@ -20,6 +20,8 @@ MainWindow::MainWindow(QStringList arguments,
             this, SLOT(_open()));
     connect(ui->action_Save_As, SIGNAL(triggered()),
             this, SLOT(_saveAs()));
+    connect(ui->pushButton_Save_As, SIGNAL(clicked()),
+            this, SLOT(_saveAs()));
     connect(ui->action_Info, SIGNAL(triggered()),
             this, SLOT(_about()));
     connect(ui->action_Settings, SIGNAL(triggered()),
@@ -139,13 +141,13 @@ void MainWindow::_performInitialOperations(QStringList arguments, QStringList op
                 DocumentData::FileType filetype = DocumentData::Unknown;
                 if (filetypestring.toLower() == "tex")
                     filetype = DocumentData::Tex;
+                else if (filetypestring.toLower() == "pdf")
+                    filetype = DocumentData::PDF;
                 // converting...
                 Node* root = new Node(*_model->root());
-                _converter->convert(targetfilepath, root);
+                _converter->convert(targetfilepath, root, filetype);
                 if (Settings::DEBUG)
-                {
                     std::cerr << tr("conversion successfully performed").toStdString() << std::endl;
-                }
                 QMessageBox msg(QMessageBox::Information,
                                 tr("Information"),
                                 tr("Conversion successfully performed."),
@@ -219,7 +221,7 @@ void MainWindow::_convert()
     QFileDialog* dialog = new QFileDialog(this,
                                           tr("Set Target File"),
                                           "",
-                                          "Tex (*.tex);;JavaDoc (*.html *.htm);;any file (*.*)");
+                                          "Tex (*.tex);;PDF (*.pdf);;any file (*.*)");
     dialog->setFileMode(QFileDialog::AnyFile);
     dialog->setAcceptMode(QFileDialog::AcceptSave);
     // retrieve target file path and type
@@ -236,24 +238,88 @@ void MainWindow::_convert()
         dialog->setDefaultSuffix(suffix);
         if(Settings::DEBUG)
         {
-            std::cerr << "MainWindow::convert()\n\tPath: "
+            std::cerr << "MainWindow::_convert()\n\tPath: "
                     << QString(dialog->selectedFiles().at(0)).toStdString() << std::endl;
         }
         // determine file type
         DocumentData::FileType filetype = DocumentData::Unknown;
-        if (dialog->selectedFilter() == "JavaDoc (*.html *.htm)")
-            filetype = DocumentData::JavaDocHTML;
         if (dialog->selectedFilter() == "Tex (*.tex)")
             filetype = DocumentData::Tex;
-        else if (dialog->selectedFilter() == "any file (*.*)")
-            filetype = DocumentData::Unknown;
+        else if (dialog->selectedFilter() == "PDF (*.pdf)")
+            filetype = DocumentData::PDF;
         // now begin conversion...
         Node* root = new Node(*_model->root());
-        _converter->convert(dialog->selectedFiles().at(0), root);
+        _converter->convert(dialog->selectedFiles().at(0), root, filetype);
     }
+    delete dialog;
 };
 void MainWindow::_saveAs()
 {
+    if (ui->textEdit->toPlainText().isEmpty())
+    {
+        if (Settings::DEBUG)
+            std::cerr << tr("MainWindow._saveAs() : textEdit.toPlainText() is empty").toStdString() << std::endl;
+        return;
+    }
+    QFileDialog* dialog = new QFileDialog(this,
+                                          tr("Save as"),
+                                          "",
+                                          tr("Tex (*.tex);;PDF (*.pdf)"));
+    dialog->setFileMode(QFileDialog::AnyFile);
+    dialog->setAcceptMode(QFileDialog::AcceptSave);
+    // retrieve target file path and type
+    if (dialog->exec() == QFileDialog::Accepted)
+    {
+        // set suffix if no file suffix/extension is specified
+        QString suffix = dialog->selectedFilter().split(".",
+                                                        QString::SkipEmptyParts,
+                                                        Qt::CaseInsensitive)[dialog->selectedFilter().split(".",
+                                                                                                            QString::SkipEmptyParts,
+                                                                                                            Qt::CaseInsensitive).count() - 1];
+        if (suffix.count() > 1)
+            suffix.remove(suffix.count() - 1, 1);
+        dialog->setDefaultSuffix(suffix);
+        if (Settings::DEBUG)
+        {
+            std::cerr << "MainWindow._saveAs()\n\tPath: "
+                    << QString(dialog->selectedFiles().at(0)).toStdString() << std::endl;
+        }
+        // determine file type
+        if (dialog->selectedFilter() == "Tex (*.tex)")
+        {
+            QFile file(dialog->selectedFiles().at(0));
+            if (!file.open(QFile::WriteOnly | QFile::Text))
+            {
+                if (Settings::DEBUG)
+                {
+                    std::cerr << tr("MainWindow._saveAs() - can't write to file: path: ").toStdString()
+                            << dialog->selectedFiles().at(0).toStdString() << std::endl;
+                }
+                return;
+            }
+            QTextStream stream(&file);
+            stream.setCodec("UTF-8");
+            stream << ui->textEdit->toPlainText().toLatin1();
+            file.close();
+        }
+        else if (dialog->selectedFilter() == "PDF (*.pdf)")
+        {
+            Settings settings;
+            // invoke external program and write the output to a file
+            QString command = settings.getValue("latexpath") + " " + dialog->selectedFiles().at(0);
+            if (Settings::DEBUG)
+            {
+                std::cerr << tr("MainWindow._saveAs() save to PDF:\ncommand: ").toStdString()
+                        << command.toAscii().data() << std::endl;
+            }
+            system(command.toAscii().data());
+            if (Settings::DEBUG)
+                std::cerr << tr("MainWindow._saveAs() saved to PDF file").toStdString() << std::endl;
+        }
+        else
+            std::cerr << tr("MainWindow._saveAs(): file not saved - unknown file type").toStdString() << std::endl;
+    }
+    delete dialog;
 };
 void MainWindow::_setInputDefinition()
 {

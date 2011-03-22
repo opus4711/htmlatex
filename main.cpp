@@ -83,18 +83,16 @@ int main(int argc, char* argv[])
         if (language == QLocale::Germany)
         {
             if(translator.load(QString("htmlatex_de.qm")))
-                std::cerr << "German translation" << std::endl;
+                std::cerr << "language set to German" << std::endl;
         }
         else
         {
             if (translator.load(QString("htmlatex_en.qm")))
-                std::cerr << "English translation" << std::endl;
+                std::cerr << "language set to English" << std::endl;
         }
         a.installTranslator(&translator);
         QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
         Console console(arguments, options);
-        // Invoke external program and write the output to a file
-//        system("ping -c 4 192.168.1.1>>ping_test.txt");
         exit(0);
         return a.exec();
     }

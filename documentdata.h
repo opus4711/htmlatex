@@ -14,7 +14,7 @@
 class DocumentData
 {
 public:
-    enum FileType { JavaDocHTML, HTML, Tex, Unknown };
+    enum FileType { JavaDocHTML, HTML, Tex, PDF, Unknown };
 private:
     QFileInfo _fileInfo;
     Node* _node;

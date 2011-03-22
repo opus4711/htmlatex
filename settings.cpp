@@ -29,6 +29,7 @@ bool Settings::_load()
     stream.setVersion(QDataStream::Qt_4_6);
     stream >> _settingsMap;
     file.close();
+    DEBUG = (bool)_settingsMap["verbose"].toInt();
     return true;
 };
 /** writes the settings to a binary data file
