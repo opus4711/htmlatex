@@ -37,7 +37,7 @@ private:
       */
     QString _to;
     /** This array of TranslationDataNode objects allows inclusion of special
-        target document formatting instructions(i.e. "requires" in TEX).
+        target document formatting instructions (i.e. "requires" in TEX).
       */
     QList<TranslationDataNode> _requires;
 public:

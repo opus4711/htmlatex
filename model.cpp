@@ -9,9 +9,10 @@ Model::~Model()
 };
 void Model::setRootNode(Node* node)
 {
-    delete _root;
+    if (_root != 0)
+        delete _root;
     _root = node;
-    // reset() notifies the views to refetch data for visible items
+    // reset() notifies the treeView to refetch data for visible items
     reset();
 };
 QModelIndex Model::index(int row, int column, const QModelIndex &parent) const
