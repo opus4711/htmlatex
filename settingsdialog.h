@@ -3,11 +3,12 @@
 
 #include "settings.h"
 #include <QDialog>
-#include <QDir>
+#include <QFileInfo>
 #include <QProcess>
 #include <QVariant>
 #include <QMessageBox>
 #include <QLocale>
+#include <QFileDialog>
 
 namespace Ui {
     class SettingsDialog;
@@ -19,7 +20,8 @@ class SettingsDialog : public QDialog
 private:
     Ui::SettingsDialog *ui;
 private slots:
-    void apply();
+    void _apply();
+    void _open();
 signals:
     void languageChanged(QLocale::Country language);
 public:
