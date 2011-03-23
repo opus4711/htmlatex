@@ -1,6 +1,6 @@
-#include "citemdelegate.h"
+#include "itemdelegate.h"
 
-CItemDelegate::CItemDelegate(CModel* model, QObject* parent)
+ItemDelegate::ItemDelegate(Model* model, QObject* parent)
     : QItemDelegate(parent)
 {
     this->model = model;
@@ -11,82 +11,83 @@ CItemDelegate::CItemDelegate(CModel* model, QObject* parent)
     this->colorLayer0 = QColor(30,86, 45, 255);
     this->colorLayer1 = QColor(0, 0, 255, 255);
 };
-void CItemDelegate::setColorFocusLine(QColor color)
+void ItemDelegate::setColorFocusLine(QColor color)
 {
     this->colorFocusLine = color;
 };
-QColor CItemDelegate::getColorFocusLine() const
+QColor ItemDelegate::getColorFocusLine() const
 {
     return this->colorFocusLine;
 };
-void CItemDelegate::setColorFocusBackground(QColor color)
+void ItemDelegate::setColorFocusBackground(QColor color)
 {
     this->colorFocusBackground = color;
 };
-QColor CItemDelegate::getColorFocusBackground() const
+QColor ItemDelegate::getColorFocusBackground() const
 {
     return this->colorFocusBackground;
 };
-void CItemDelegate::setColorMarked(QColor color)
+void ItemDelegate::setColorMarked(QColor color)
 {
     this->colorMarked = color;
 };
-QColor CItemDelegate::getColorMarked() const
+QColor ItemDelegate::getColorMarked() const
 {
     return this->colorMarked;
 };
-void CItemDelegate::setColor(QColor color)
+void ItemDelegate::setColor(QColor color)
 {
     this->color = color;
 };
-QColor CItemDelegate::getColor() const
+QColor ItemDelegate::getColor() const
 {
     return this->color;
 };
-void CItemDelegate::setColorLayer0(QColor color)
+void ItemDelegate::setColorLayer0(QColor color)
 {
     this->colorLayer0 = color;
 };
-QColor CItemDelegate::getColorLayer0() const
+QColor ItemDelegate::getColorLayer0() const
 {
     return this->colorLayer0;
 };
-void CItemDelegate::setColorLayer1(QColor color)
+void ItemDelegate::setColorLayer1(QColor color)
 {
     this->colorLayer1 = color;
 };
-QColor CItemDelegate::getColorLayer1() const
+QColor ItemDelegate::getColorLayer1() const
 {
     return this->colorLayer1;
 };
-void CItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem &option,
+void ItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem &option,
            const QModelIndex &index) const
 {
+    // stores the current state of the painter
     painter->save();
     QStyleOptionViewItem opt = option;
     opt.displayAlignment = Qt::AlignLeft | Qt::AlignVCenter;
-    CNode* node = model->nodeFromIndex(index);
-    QString text = node->name() + " (" + QString::number(node->layer()) + ")";
+    Node* node = model->nodeFromIndex(index);
+    QString text = node->getName() + " (" + QString::number(node->getLayer()) + ")";
     painter->setPen(color);
-    if (node->content() != "")
-        text += ": " + node->content();
+    if (node->getContent() != "")
+        text += ": " + node->getContent();
     // an item of the treeview is selected
     if (option.state & QStyle::State_Selected)
     {
+        // stores the current state of the painter
         painter->save();
         painter->setBrush(colorFocusBackground);
         painter->fillRect(QRect(opt.rect.x(), opt.rect.y(), opt.rect.width() - 1, opt.rect.height() - 1), Qt::SolidPattern);
         painter->setPen(QPen(QBrush(colorFocusLine, Qt::SolidPattern), 1.0, Qt::DashLine, Qt::RoundCap, Qt::BevelJoin));
         painter->drawRect(QRect(opt.rect.x(), opt.rect.y(), opt.rect.width() - 1, opt.rect.height() - 1));
+        // restores the stored state of the painter
         painter->restore();
     }
-    if ((node->layer() % 2) == 0)
+    if ((node->getLayer() % 2) == 0)
         painter->setPen(colorLayer0);
-    else if ((node->layer() % 2) == 1)
+    else if ((node->getLayer() % 2) == 1)
         painter->setPen(colorLayer1);
-    // determine icon size
-    //int size = opt.rect.height() - 2;
-    //painter->drawText(QRect(opt.rect.x() + size + 4, opt.rect.y(), opt.rect.width(), opt.rect.height()), text, QTextOption(Qt::AlignLeft|Qt::AlignVCenter));
     painter->drawText(QRect(opt.rect.x(), opt.rect.y(), opt.rect.width(), opt.rect.height()), text, QTextOption(Qt::AlignLeft|Qt::AlignVCenter));
+    // restores the initially stored state of the painter
     painter->restore();
 };

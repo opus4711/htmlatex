@@ -12,41 +12,42 @@ TRANSLATIONS = htmlatex_en.ts \
 CODECFORTR = UTF-8
 
 # CODECFORTR = ISO-8859-1
-CONFIG += console
+CONFIG += console \
+static
 unix { 
     UI_DIR = .ui
     MOC_DIR = .moc
     OBJECTS_DIR = .obj
 }
 SOURCES += main.cpp \
-    cnode.cpp \
     mainwindow.cpp \
-    cmodel.cpp \
-    cdocumentdata.cpp \
-    citemdelegate.cpp \
-    cconsole.cpp \
-    cdocumentreader.cpp \
-    ctranslationmapper.cpp \
-    ctranslationdata.cpp \
-    ctranslationdatanode.cpp \
-    cconverter.cpp \
     settingsdialog.cpp \
-    settings.cpp
-HEADERS += cdocumentreader.h \
-    cnode.h \
-    mainwindow.h \
-    ui_mainwindow.h \
-    cmodel.h \
-    cdocumentdata.h \
-    citemdelegate.h \
-    cconsole.h \
-    ctranslationmapper.h \
-    ctranslationdata.h \
-    ctranslationdatanode.h \
-    constants.h \
-    cconverter.h \
+    settings.cpp \
+    documentreaderdata.cpp \
+    console.cpp \
+    converter.cpp \
+    documentreader.cpp \
+    documentdata.cpp \
+    model.cpp \
+    itemdelegate.cpp \
+    translationmapper.cpp \
+    translationdatanode.cpp \
+    translationdata.cpp \
+    node.cpp
+HEADERS += mainwindow.h \
     settingsdialog.h \
-    settings.h
+    settings.h \
+    documentreaderdata.h \
+    console.h \
+    converter.h \
+    documentreader.h \
+    documentdata.h \
+    model.h \
+    itemdelegate.h \
+    translationmapper.h \
+    translationdatanode.h \
+    translationdata.h \
+    node.h
 FORMS += mainwindow.ui \
     settingsdialog.ui
 OTHER_FILES += README \

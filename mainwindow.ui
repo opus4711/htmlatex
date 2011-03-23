@@ -17,16 +17,49 @@
    <locale language="English" country="UnitedStates"/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTreeView" name="treeView">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>511</width>
-      <height>531</height>
-     </rect>
-    </property>
-   </widget>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QSplitter" name="splitter">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QTreeView" name="treeView"/>
+      <widget class="QWidget" name="widget_Right">
+       <layout class="QVBoxLayout" name="vBoxLayout">
+        <item>
+         <widget class="QTextEdit" name="textEdit"/>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="hBoxLayout">
+          <property name="spacing">
+           <number>200</number>
+          </property>
+          <property name="sizeConstraint">
+           <enum>QLayout::SetDefaultConstraint</enum>
+          </property>
+          <item>
+           <widget class="QWidget" name="widget_Spacer" native="true"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_Save_As">
+            <property name="text">
+             <string>&amp;Save As</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -34,7 +67,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Help">
@@ -53,14 +86,9 @@
     <addaction name="action_Open"/>
     <addaction name="action_Convert"/>
     <addaction name="separator"/>
+    <addaction name="action_Save_As"/>
     <addaction name="separator"/>
     <addaction name="action_Quit"/>
-   </widget>
-   <widget class="QMenu" name="menu_Help">
-    <property name="title">
-     <string>&amp;Help</string>
-    </property>
-    <addaction name="action_Info"/>
    </widget>
    <widget class="QMenu" name="menu_Tools">
     <property name="title">
@@ -72,7 +100,18 @@
    <addaction name="menu_Tools"/>
    <addaction name="menu_Help"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusbar">
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>100</width>
+      <height>30</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
     <string>toolBar</string>
@@ -115,11 +154,6 @@
     <string>&amp;Open</string>
    </property>
   </action>
-  <action name="actionSet_Replacement_Table">
-   <property name="text">
-    <string>Set &amp;Replacement Table</string>
-   </property>
-  </action>
   <action name="actionSet_Input_Definition">
    <property name="icon">
     <iconset resource="resource.qrc">
@@ -154,6 +188,15 @@
    </property>
    <property name="text">
     <string>&amp;Settings</string>
+   </property>
+  </action>
+  <action name="action_Save_As">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/Images/icons/save_all.png</normaloff>:/Images/icons/save_all.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Save As</string>
    </property>
   </action>
  </widget>

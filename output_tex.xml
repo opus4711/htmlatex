@@ -18,32 +18,20 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 
 <!-- html -->
 <node>
-  <key>
-   html
-  </key>
-  <from>
-    <![CDATA[<
-----CONTENT----
-    ]]>
-  </from>
-  <to>
-    <![CDATA[ 
-    ]]>
-  </to>
+  <key>html</key>
+  <from><![CDATA[<----CONTENT----]]></from>
+  <to><![CDATA[]]></to>
 </node>
 
 <!-- head  -->
 <node>
   <key>head</key>
-  <from><![CDATA[
-  <----CONTENT----]]>
-  </from>
+  <from><![CDATA[<----CONTENT----]]></from>
   <to><![CDATA[]]></to>
   <requires>
-    <location position="start"><![CDATA[
-    \documentclass[a4paper,% DIN A4
-    fontsize=12pt		% Schriftgröße 12 Punkt
-    ]{scrartcl}                 % 'article' aus dem 'Koma'-Script]]>
+    <location position="start"><![CDATA[\documentclass[a4paper,% DIN A4
+fontsize=12pt		% Schriftgröße 12 Punkt
+]{scrartcl}             % 'article' aus dem 'Koma'-Script]]>
     </location>
   </requires>
 </node>
@@ -52,18 +40,10 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 <!-- title -->
 <node>
   <key>title</key>
-  <from><![CDATA[<
-----CONTENT----
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-    ]]>
-  </to>
+  <from><![CDATA[<----CONTENT----]]></from>
+  <to><![CDATA[]]></to>
   <requires>
-    <location position="start">
-     <![CDATA[\title{----CONTENT----}]]>
-    </location>
+    <location position="start"><![CDATA[\title{----CONTENT----}]]></location>
   </requires>
 </node>
 
@@ -71,21 +51,9 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 
 <!-- body  -->
 <node>
-  <key>
-   body
-  </key>
-  <from>
-    <![CDATA[<
-----CONTENT----
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-    \begin{document}
-----CONTENT----
-\end{document}
-    ]]>
-  </to>
+  <key>body</key>
+  <from><![CDATA[<----CONTENT----]]></from>
+  <to><![CDATA[\begin{document}----CONTENT----\end{document}]]></to>
 </node>
 
 
@@ -93,19 +61,10 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 <!-- author -->
 <node>
   <key>author</key>
-  <from>
-    <![CDATA[<
-----TEXT----
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-    ]]>
-  </to>
+  <from><![CDATA[<----TEXT----]]></from>
+  <to><![CDATA[]]></to>
   <requires>
-    <location position="start">
-     <![CDATA[\author{----CONTENT----}]]>
-    </location>
+    <location position="start"><![CDATA[\author{----CONTENT----}]]></location>
   </requires>
 </node>
 
@@ -114,116 +73,64 @@ td, b, a, dl, dt, dd, font, noscript, script, ul, li, link,!doctype -->
 <!-- h1 -->
 <node>
 <key>h1</key>
-  <from>
-    <![CDATA[<INHALT]]>
-  </from>
-  <to>
-    <![CDATA[\section{
-    INHALT
-    }]]>
-  </to>
+  <from><![CDATA[<----CONTENT----]]></from>
+  <to><![CDATA[\section{----CONTENT----}]]></to>
 </node>
 
 
 <!-- h2 -->
 <node>
 <key>h2</key>
-  <from>
-    <![CDATA[<INHALT]]>
-  </from>
-  <to>
-    <![CDATA[\subsection{
-    INHALT]]>
-    }
-  </to>
+  <from><![CDATA[<----CONTENT----]]></from>
+  <to><![CDATA[\subsection{----CONTENT----]]>}</to>
 </node>
 
 
 <!-- h3 -->
 <node>
 <key>h1</key>
-  <from>
-    <![CDATA[<INHALT]]>
-  </from>
-  <to>
-    <![CDATA[\subsubsection{
-    INHALT
-    }]]>
-  </to>
+  <from><![CDATA[<----CONTENT----]]></from>
+  <to><![CDATA[\subsubsection{----CONTENT----}]]></to>
 </node>
 
 
 <!-- br  -->
 <node>
   <key>br</key>
-  <from>
-  </from>
-  <to>
-    <![CDATA[
-    \newline
-    ]]>
-  </to>
+  <from></from>
+  <to><![CDATA[\newline]]></to>
 </node>
 
 
 <!-- p  -->
 <node>
   <key>p</key>
-  <from>
-    <![CDATA[<
-----CONTENT----
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-    
-----CONTENT----
-
-    ]]>
-  </to>
+  <from><![CDATA[<----CONTENT----]]></from>
+  <to><![CDATA[----CONTENT----]]></to>
 </node>
 
 
 <!-- table  -->
 <node>
   <key>table</key>
-  <from>
-    <![CDATA[INHALT]]>
-  </from>
-  <to>
-    <![CDATA[begin{longtable}{|p{.2textwidth}|p{.8textwidth}|}
-    hline
-    INHALT
-    end{longtable}]]>
-  </to>
+  <from><![CDATA[----CONTENT----]]></from>
+  <to><![CDATA[begin{longtable}{|p{.2textwidth}|p{.8textwidth}|}
+hline----CONTENT----end{longtable}]]></to>
   <requires>
-    <location position="start">
-     <![CDATA[\usepackage{longtable}]]>
-    </location>
+    <location position="start"><![CDATA[\usepackage{longtable}]]></location>
   </requires>
 </node>
 
 <!-- th  -->
 <node>
   <key>th</key>
-  <from>
-    <![CDATA[<
-----CONTENT----
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-----CONTENT----&----CONTENT---- \\ \hline \endhead
-    ]]>
-  </to>
+  <from><![CDATA[<----CONTENT----]]></from>
+  <to><![CDATA[----CONTENT----&----CONTENT---- \\ \hline \endhead]]></to>
 </node>
 
 
 <!-- tr 
 hier wirds kompliziert:
-das sind 2 Spalten und vier Zeilen,
-in der letzten Zeile wird nicht mit "\\"
-abgeschlossen und zwischen den Zellen steht ein "&"
 × & ×\\
 × & ×\\
 × & ×\\
@@ -231,32 +138,16 @@ abgeschlossen und zwischen den Zellen steht ein "&"
 -->
 <node>
   <key>tr</key>
-  <from>
-    <![CDATA[<
-<td>----CONTENT----</td>&<td>----CONTENT----</td>
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-----CONTENT----&----CONTENT---- \\ \hline
-    ]]>
-  </to>
+  <from><![CDATA[<<td>----CONTENT----</td>&<td>----CONTENT----</td>]]></from>
+  <to><![CDATA[----CONTENT----&----CONTENT---- \\ \hline]]></to>
 </node>
 
 
 <!-- b  -->
 <node>
   <key>b</key>
-  <from>
-    <![CDATA[<
-----CONTENT----
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-    \textbf{----CONTENT----}
-    ]]>
-  </to>
+  <from><![CDATA[<----CONTENT----]]></from>
+  <to><![CDATA[\textbf{----CONTENT----}]]></to>
 </node>
 
 
@@ -266,50 +157,24 @@ sonst eine weitere .tex-Datei erstellen und einbinden
 -->
 <node>
   <key>a</key>
-  <from>
-    <![CDATA[<
-----HREF----
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-    \input{----HREF----.tex}
-    ]]>
-  </to>
+  <from><![CDATA[<----HREF----]]></from>
+  <to><![CDATA[\input{----HREF----.tex}]]></to>
 </node>
 
 
 <!-- dl  -->
 <node>
   <key>dl</key>
-  <from>
-    <![CDATA[<
-----CONTENT----
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-    \begin{description}
-----CONTENT----
- \textbf{}\end{description}
-    ]]>
-  </to>
+  <from><![CDATA[<----CONTENT----]]></from>
+  <to><![CDATA[\begin{description}----CONTENT----\textbf{}\end{description}]]></to>
 </node>
 
 
 <!-- dt  -->
 <node>
   <key>dt</key>
-  <from>
-    <![CDATA[<
-----CONTENT----
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-    \item[----CONTENT----]
-    ]]>
-  </to>
+  <from><![CDATA[<----CONTENT----]]></from>
+  <to><![CDATA[\item[----CONTENT----]]]></to>
 </node>
 
 
@@ -317,110 +182,56 @@ sonst eine weitere .tex-Datei erstellen und einbinden
 fehlte in der ursprünglichen Liste der Tags... -->
 <node>
   <key>dd</key>
-  <from>
-    <![CDATA[<
-----CONTENT----
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-----CONTENT----
-    ]]>
-  </to>
+  <from><![CDATA[<----CONTENT----]]></from>
+  <to><![CDATA[----CONTENT----]]></to>
 </node>
 
 
 <!-- ul  -->
 <node>
   <key>ul</key>
-  <from>
-    <![CDATA[<
-
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-\begin{itemize}
-----CONTENT---- 
-\end{itemize}
-    ]]>
-  </to>
+  <from><![CDATA[<]]></from>
+  <to><![CDATA[\begin{itemize}----CONTENT----\end{itemize}]]></to>
 </node>
 
 
 <!-- li -->
 <node>
   <key>li</key>
-  <from>
-    <![CDATA[<
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-\item ----CONTENT----
-    ]]>
-  </to>
+  <from><![CDATA[<]]></from>
+  <to><![CDATA[\item ----CONTENT----]]></to>
 </node>
 
 
 <!-- font -->
 <node>
   <key>font</key>
-  <from>
-    <![CDATA[<
-----CONTENT----
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-----CONTENT----
-    ]]>
-  </to>
+  <from><![CDATA[<----CONTENT----]]></from>
+  <to><![CDATA[----CONTENT----]]></to>
 </node>
 
 
 <!-- noscript -->
 <node>
   <key>noscript</key>
-  <from>
-    <![CDATA[<
-----CONTENT----
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-    ]]>
-  </to>
+  <from><![CDATA[<----CONTENT----]]></from>
+  <to><![CDATA[]]></to>
 </node>
 
 
 <!-- script -->
 <node>
   <key>script</key>
-  <from>
-    <![CDATA[<
-----CONTENT----
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-    ]]>
-  </to>
+  <from><![CDATA[<----CONTENT----]]></from>
+  <to><![CDATA[]]></to>
 </node>
 
 
 <!-- link -->
 <node>
   <key>link</key>
-  <from>
-    <![CDATA[<
-----CONTENT----
-    ]]>
-  </from>
-  <to>
-    <![CDATA[
-    ]]>
-  </to>
+  <from><![CDATA[<----CONTENT----]]></from>
+  <to><![CDATA[]]></to>
 </node>
 
 </tex>

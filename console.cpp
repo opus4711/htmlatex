@@ -1,17 +1,14 @@
-#include "cconsole.h"
-#include "cconverter.h"
+#include "console.h"
 
-/** This class performs the format conversion via console input and output.
-  * @author Bjoern Kaiser
+Console::Console(QStringList arguments, QStringList options)
+{
+    _performInitialOperations(arguments, options);
+};
+/** This method processes the application's startup arguments and performs the
+    conversion by means of a DocumentReader and Converter object.
+    @author Bjoern
   */
-CConsole::CConsole(QStringList arguments, QStringList options)
-{
-    performInitialOperations(arguments, options);
-};
-CConsole::~CConsole()
-{
-};
-void CConsole::performInitialOperations(QStringList arguments, QStringList options)
+void Console::_performInitialOperations(QStringList arguments, QStringList options)
 {
     /* arguments:
        0 = source file path
@@ -23,19 +20,19 @@ void CConsole::performInitialOperations(QStringList arguments, QStringList optio
     */
     if (arguments.count() == 6)
     {
-        CTranslationMapper* translationmapper = new CTranslationMapper;
+        TranslationMapper* translationmapper = new TranslationMapper;
         QString sourcefilepath(arguments.at(0));
         QString filetypestring(arguments.at(1));
         QString inputdefinitionfilepath(arguments.at(2));
-        translationmapper->createInputElementMap(inputdefinitionfilepath);
+        translationmapper->createDocumentReaderData(inputdefinitionfilepath);
         QFile file(sourcefilepath);
-        CNode* root = 0;
+        Node* root = 0;
         if (file.exists())
         {
-            CDocumentData::FileType filetype = CDocumentData::Unknown;
+            DocumentData::FileType filetype = DocumentData::Unknown;
             if (filetypestring.toLower() == "javadoc")
-                filetype = CDocumentData::JavaDocHTML;
-            CDocumentReader* reader = new CDocumentReader;
+                filetype = DocumentData::JavaDocHTML;
+            DocumentReader* reader = new DocumentReader(translationmapper);
             root = reader->read(sourcefilepath, filetype);
             delete reader;
             std::cout << tr("Read source file(s) --> success").toStdString() << std::endl;
@@ -55,12 +52,14 @@ void CConsole::performInitialOperations(QStringList arguments, QStringList optio
         file.setFileName(targetfilepath);
         if (file.open(QFile::WriteOnly))
         {
-            CDocumentData::FileType filetype = CDocumentData::Unknown;
+            DocumentData::FileType filetype = DocumentData::Unknown;
             if (filetypestring.toLower() == "tex")
-                filetype = CDocumentData::Tex;
+                filetype = DocumentData::Tex;
+            else if (filetypestring.toLower() == "pdf")
+                filetype = DocumentData::PDF;
             // root - converting...
-            CConverter* converter = new CConverter(this, translationmapper);
-            converter->convert(targetfilepath, root);
+            Converter* converter = new Converter(this, translationmapper);
+            converter->convert(targetfilepath, root, filetype);
             std::cout << tr("Perform conversion  --> success").toStdString() << std::endl;
             delete converter;
         }

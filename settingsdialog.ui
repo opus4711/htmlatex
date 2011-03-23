@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>188</height>
+    <height>236</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Settings</string>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
@@ -82,7 +82,7 @@
    <property name="geometry">
     <rect>
      <x>320</x>
-     <y>160</y>
+     <y>210</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -90,6 +90,57 @@
    <property name="text">
     <string>&amp;Apply</string>
    </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_misc">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>110</y>
+     <width>191</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Misc</string>
+   </property>
+   <widget class="QCheckBox" name="checkBox_includesubdocuments">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>151</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>when opening a document referenced sub-documents are included</string>
+    </property>
+    <property name="text">
+     <string>include sub-documents</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_verbose">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>151</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>enables additional information on console window</string>
+    </property>
+    <property name="text">
+     <string>verbose mode</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

@@ -1,8 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget* parent)
-                           : QMainWindow(parent),
+MainWindow::MainWindow(QStringList arguments,
                            ui(new Ui::MainWindow)
 {
 };
@@ -13,70 +12,61 @@ MainWindow::MainWindow(QStringList arguments,
                            ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    /*
-    ui->actionSet_Input_Definition->setText(tr("Set &Input Definition"));
-    ui->actionSet_O_utput_Definition->setText(tr("Set O&utput Definition"));
-    ui->action_Open->setText(tr("&Open"));
-    ui->action_Convert->setText(tr("&Convert"));
-    ui->action_Settings->setText(tr("&Settings"));
-    ui->action_Quit->setText(tr("&Quit"));
-    */
     connect(ui->actionSet_Input_Definition, SIGNAL(triggered()),
-            this, SLOT(setInputDefinition()));
+            this, SLOT(_setInputDefinition()));
     connect(ui->actionSet_O_utput_Definition, SIGNAL(triggered()),
-            this, SLOT(setOutputDefinition()));
+            this, SLOT(_setOutputDefinition()));
     connect(ui->action_Quit, SIGNAL(triggered()),
             this, SLOT(close()));
     connect(ui->action_Convert, SIGNAL(triggered()),
-            this, SLOT(convert()));
+            this, SLOT(_convert()));
     connect(ui->action_Open, SIGNAL(triggered()),
-            this, SLOT(open()));
+            this, SLOT(_open()));
+    connect(ui->action_Save_As, SIGNAL(triggered()),
+            this, SLOT(_saveAs()));
+    connect(ui->pushButton_Save_As, SIGNAL(clicked()),
+            this, SLOT(_saveAs()));
     connect(ui->action_Info, SIGNAL(triggered()),
-            this, SLOT(about()));
+            this, SLOT(_about()));
     connect(ui->action_Settings, SIGNAL(triggered()),
-            this, SLOT(showSettings()));
-    model = new CModel(this);
-    ui->treeView->setModel(model);
-    itemDelegate = new CItemDelegate(model, this);
-    ui->treeView->setItemDelegate(itemDelegate);
-    splitter = new QSplitter;
-    splitter->setOrientation(Qt::Horizontal);
-    hBoxLayout = new QHBoxLayout;
-    ui->centralwidget->setLayout(hBoxLayout);
-    hBoxLayout->addWidget(splitter);
-    splitter->addWidget(ui->treeView);
-    textEdit = new QTextEdit;
-    //QString str("quark mit soße und übermäßig reiz");
-    //textEdit->setText(str);
-    splitter->addWidget(textEdit);
-    translationMapper = new CTranslationMapper;
-    converter = new CConverter(this, translationMapper);
-    connect(converter, SIGNAL(updateTextEdit(QString)),
-            textEdit, SLOT(setPlainText(QString)));
-    performInitialOperations(arguments, options);
+            this, SLOT(_showSettings()));
+    _model = new Model(this);
+    ui->treeView->setModel(_model);
+    _itemDelegate = new ItemDelegate(_model, this);
+    ui->treeView->setItemDelegate(_itemDelegate);
+    _translationMapper = new TranslationMapper;
+    _converter = new Converter(this, _translationMapper);
+    connect(_converter, SIGNAL(updateTextEdit(QString)),
+            ui->textEdit, SLOT(setPlainText(QString)));
+    connect(_converter, SIGNAL(updateProgressBar(int)),
+            this, SLOT(_updateProgressBar(int)));
+    ui->statusbar->addPermanentWidget(ui->progressBar, 1);
+    _settingsDialog = new SettingsDialog(this);
+    connect(_settingsDialog, SIGNAL(languageChanged(QLocale::Country)),
+            this, SLOT(_languageChanged(QLocale::Country)));
+    ui->treeView->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(ui->treeView, SIGNAL(customContextMenuRequested(QPoint)),
+            this, SLOT(_showTreeViewContextMenu(QPoint)));
+    // create menu items for the _treeView's context menu
+    QAction *action_Remove_Node = new QAction("Remove", ui->treeView);
+    action_Remove_Node->setShortcut(QKeySequence::Delete);
+    connect(action_Remove_Node, SIGNAL(triggered()),
+            this, SLOT(_treeViewRemoveNode()));
+    ui->treeView->addAction(action_Remove_Node);
+    // set translation for the application's text
+    QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
+    Settings settings;
+    QLocale::Country language = (QLocale::Country)settings.getValue("language").toInt();
+    _languageChanged(language);
+    _performInitialOperations(arguments, options);
 };
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete translationMapper;
-    delete converter;
+    delete _translationMapper;
+    delete _converter;
 };
-void MainWindow::changeEvent(QEvent *e)
-{
-    QMainWindow::changeEvent(e);
-    switch (e->type()) {
-    case QEvent::LanguageChange:
-        ui->retranslateUi(this);
-        break;
-    default:
-        break;
-    }
-};
-/** Performs opening and converting operations depending on application's startup
-  * arguments.
-  @author Bjoern Kaiser
-  */
-void MainWindow::performInitialOperations(QStringList arguments, QStringList options)
+void MainWindow::_performInitialOperations(QStringList arguments, QStringList options)
 {
     /* arguments:
        0 = source file path
@@ -100,17 +90,16 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
         QFile file(sourcefilepath);
         if (file.exists())
         {
-            CDocumentData::FileType filetype = CDocumentData::Unknown;
+            DocumentData::FileType filetype = DocumentData::Unknown;
             if (filetypestring.toLower() == "javadoc")
-                filetype = CDocumentData::JavaDocHTML;
+                filetype = DocumentData::JavaDocHTML;
             QString inputdefinitionfilepath(arguments.at(2));
-            translationMapper->createInputElementMap(inputdefinitionfilepath);
-            CDocumentReader* reader = new CDocumentReader;
-            reader->setTranslationMapper(translationMapper);
-            CNode* root = reader->read(arguments.at(0), filetype);
-            model->setRootNode(root);
+                _translationMapper->createDocumentReaderData(inputdefinitionfilepath);
+            DocumentReader* reader = new DocumentReader(_translationMapper);
+            Node* root = reader->read(arguments.at(0), filetype);
+                _model->setRootNode(root);
             delete reader;
-            if (root->count() == 0)
+            if (root->getCount() == 0)
             {
                 QMessageBox msg(QMessageBox::Warning,
                                 tr("Error Reading Document"),
@@ -119,7 +108,7 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
                                 QMessageBox::Ok,
                                 this);
                 msg.exec();
-                if (DEBUG)
+                if (Settings::DEBUG)
                 {
                     std::cerr << "MainWindow::performInitialOperations: root.count() == 0: "
                             << "an empty document or an error occurred reading the document: file type: "
@@ -137,7 +126,7 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
                             QMessageBox::Ok,
                             this);
             msg.exec();
-            if (DEBUG)
+            if (Settings::DEBUG)
             {
                 std::cerr << "MainWindow::performInitialOperations: "
                         << "file.exits returned false: path: " << arguments.at(0).toStdString();
@@ -149,20 +138,20 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
             QString targetfilepath(arguments.at(3));
             filetypestring = arguments.at(4);
             QString outputdefinitionfilepath(arguments.at(5));
-            translationMapper->createOutputElementMap(outputdefinitionfilepath);
+            _translationMapper->createOutputElementMap(outputdefinitionfilepath);
             QFile file(targetfilepath);
             if (file.open(QFile::WriteOnly))
             {
-                CDocumentData::FileType filetype = CDocumentData::Unknown;
+                DocumentData::FileType filetype = DocumentData::Unknown;
                 if (filetypestring.toLower() == "tex")
-                    filetype = CDocumentData::Tex;
+                    filetype = DocumentData::Tex;
+                else if (filetypestring.toLower() == "pdf")
+                    filetype = DocumentData::PDF;
                 // converting...
-                CNode* root = model->root();
-                converter->convert(targetfilepath, root);
-                if (DEBUG)
-                {
+                Node* root = new Node(*_model->root());
+                _converter->convert(targetfilepath, root, filetype);
+                if (Settings::DEBUG)
                     std::cerr << tr("conversion successfully performed").toStdString() << std::endl;
-                }
                 QMessageBox msg(QMessageBox::Information,
                                 tr("Information"),
                                 tr("Conversion successfully performed."),
@@ -178,7 +167,7 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
                                 QMessageBox::Ok,
                                 this);
                 msg.exec();
-                if(DEBUG)
+                if(Settings::DEBUG)
                 {
                     std::cerr << "MainWindow::performInitialOperations: "
                             << "file.open returned false\n\tPath: "
@@ -198,7 +187,18 @@ void MainWindow::performInitialOperations(QStringList arguments, QStringList opt
         msg.exec();
     }
 };
-void MainWindow::open()
+void MainWindow::_languageChanged(QLocale::Country language)
+{
+    // set translation environment for the application texts
+    if (language == QLocale::Germany)
+        _translator.load(QString("htmlatex_de.qm"));
+    else
+        _translator.load(QString("htmlatex_en.qm"));
+    qApp->installTranslator(&_translator);
+    ui->retranslateUi(this);
+    _settingsDialog->retranslateUi();
+};
+void MainWindow::_open()
 {
     QFileDialog* dialog = new QFileDialog(this,
                                           tr("Set Source File"),
@@ -208,25 +208,24 @@ void MainWindow::open()
     if (dialog->exec() == QFileDialog::Accepted)
     {
         // determine file type
-        CDocumentData::FileType filetype = CDocumentData::Unknown;
+        DocumentData::FileType filetype = DocumentData::Unknown;
         if (dialog->selectedFilter() == "JavaDoc (*.html *.htm)")
-            filetype = CDocumentData::JavaDocHTML;
+            filetype = DocumentData::JavaDocHTML;
         else if (dialog->selectedFilter() == "any file (*.*)")
-            filetype = CDocumentData::Unknown;
-        CDocumentReader* reader = new CDocumentReader;
-        reader->setTranslationMapper(translationMapper);
-        CNode* root = reader->read(dialog->selectedFiles().at(0), filetype);
-        model->setRootNode(root);
+            filetype = DocumentData::Unknown;
+        DocumentReader* reader = new DocumentReader(_translationMapper);
+        Node *root = reader->read(dialog->selectedFiles().at(0), filetype);
+        _model->setRootNode(root);
         delete reader;
     }
     delete dialog;
 };
-void MainWindow::convert()
+void MainWindow::_convert()
 {
     QFileDialog* dialog = new QFileDialog(this,
                                           tr("Set Target File"),
                                           "",
-                                          "Tex (*.tex);;JavaDoc (*.html *.htm);;any file (*.*)");
+                                          "Tex (*.tex);;PDF (*.pdf);;any file (*.*)");
     dialog->setFileMode(QFileDialog::AnyFile);
     dialog->setAcceptMode(QFileDialog::AcceptSave);
     // retrieve target file path and type
@@ -241,48 +240,148 @@ void MainWindow::convert()
         if (suffix.count() > 1)
             suffix.remove(suffix.count() - 1, 1);
         dialog->setDefaultSuffix(suffix);
-        if(DEBUG)
+        if(Settings::DEBUG)
         {
-            std::cerr << "MainWindow::convert()\n\tPath: "
+            std::cerr << "MainWindow::_convert()\n\tPath: "
                     << QString(dialog->selectedFiles().at(0)).toStdString() << std::endl;
         }
         // determine file type
-        CDocumentData::FileType filetype = CDocumentData::Unknown;
-        if (dialog->selectedFilter() == "JavaDoc (*.html *.htm)")
-            filetype = CDocumentData::JavaDocHTML;
+        DocumentData::FileType filetype = DocumentData::Unknown;
         if (dialog->selectedFilter() == "Tex (*.tex)")
-            filetype = CDocumentData::Tex;
-        else if (dialog->selectedFilter() == "any file (*.*)")
-            filetype = CDocumentData::Unknown;
-        CNode* root = model->root();
+            filetype = DocumentData::Tex;
+        else if (dialog->selectedFilter() == "PDF (*.pdf)")
+            filetype = DocumentData::PDF;
         // now begin conversion...
-        converter->convert(dialog->selectedFiles().at(0), root);
+        Node* root = new Node(*_model->root());
+        _converter->convert(dialog->selectedFiles().at(0), root, filetype);
     }
+    delete dialog;
 };
-void MainWindow::setInputDefinition()
+void MainWindow::_saveAs()
+{
+    if (ui->textEdit->toPlainText().isEmpty())
+    {
+        if (Settings::DEBUG)
+            std::cerr << tr("MainWindow._saveAs() : textEdit.toPlainText() is empty").toStdString() << std::endl;
+        return;
+    }
+    QFileDialog* dialog = new QFileDialog(this,
+                                          tr("Save as"),
+                                          "",
+                                          tr("Tex (*.tex);;PDF (*.pdf)"));
+    dialog->setFileMode(QFileDialog::AnyFile);
+    dialog->setAcceptMode(QFileDialog::AcceptSave);
+    // retrieve target file path and type
+    if (dialog->exec() == QFileDialog::Accepted)
+    {
+        // set suffix if no file suffix/extension is specified
+        QString suffix = dialog->selectedFilter().split(".",
+                                                        QString::SkipEmptyParts,
+                                                        Qt::CaseInsensitive)[dialog->selectedFilter().split(".",
+                                                                                                            QString::SkipEmptyParts,
+                                                                                                            Qt::CaseInsensitive).count() - 1];
+        if (suffix.count() > 1)
+            suffix.remove(suffix.count() - 1, 1);
+        dialog->setDefaultSuffix(suffix);
+        if (Settings::DEBUG)
+        {
+            std::cerr << "MainWindow._saveAs()\n\tPath: "
+                    << QString(dialog->selectedFiles().at(0)).toStdString() << std::endl;
+        }
+        // determine file type
+        if (dialog->selectedFilter() == "Tex (*.tex)")
+        {
+            QFile file(dialog->selectedFiles().at(0));
+            if (!file.open(QFile::WriteOnly | QFile::Text))
+            {
+                if (Settings::DEBUG)
+                {
+                    std::cerr << tr("MainWindow._saveAs() - can't write to file: path: ").toStdString()
+                            << dialog->selectedFiles().at(0).toStdString() << std::endl;
+                }
+                return;
+            }
+            QTextStream stream(&file);
+            stream.setCodec("UTF-8");
+            stream << ui->textEdit->toPlainText().toLatin1();
+            file.close();
+        }
+        else if (dialog->selectedFilter() == "PDF (*.pdf)")
+        {
+            Settings settings;
+            // invoke external program and write the output to a file
+            QString command = settings.getValue("latexpath") + " " + dialog->selectedFiles().at(0);
+            if (Settings::DEBUG)
+            {
+                std::cerr << tr("MainWindow._saveAs() save to PDF:\ncommand: ").toStdString()
+                        << command.toAscii().data() << std::endl;
+            }
+            int errorcode = system(command.toAscii().data());
+            if (errorcode == 0)
+            {
+                if (Settings::DEBUG)
+                    std::cerr << tr("MainWindow._saveAs() saved to PDF file").toStdString() << std::endl;
+            }
+            else
+            {
+                if (Settings::DEBUG)
+                    std::cerr << tr("MainWindow._saveAs() en error occurred saving to PDF file: error code ").toStdString()
+                    << QString::number(errorcode).toStdString() << std::endl;
+            }
+        }
+        else
+            std::cerr << tr("MainWindow._saveAs(): file not saved - unknown file type").toStdString() << std::endl;
+    }
+    delete dialog;
+};
+void MainWindow::_setInputDefinition()
 {
     QString filepath = QFileDialog::getOpenFileName(0,
                                                     tr("Select Input Definition File"),
                                                     "",
                                                     tr("XML files (*.xml);;any file (*.*)"));
-    translationMapper->createInputElementMap(filepath);
+    _translationMapper->createDocumentReaderData(filepath);
 };
-void MainWindow::setOutputDefinition()
+void MainWindow::_setOutputDefinition()
 {
     QString filepath = QFileDialog::getOpenFileName(0,
                                                     tr("Select Output Definition File"),
                                                     "",
                                                     tr("XML files (*.xml);;any file (*.*)"));
-    translationMapper->createOutputElementMap(filepath);
+    _translationMapper->createOutputElementMap(filepath);
 };
-void MainWindow::about()
+void MainWindow::_showSettings()
+{
+    _settingsDialog->exec();
+};
+void MainWindow::_about()
 {
     QMessageBox::about(this, tr("About htmLaTeX"),
                        tr("htmLaTeX 0.1\nA converter for JavaDoc-generated HTML to LaTeX"
                           "(c) 2011 Björn (Kaiser|Baß)"));
 };
-void MainWindow::showSettings()
+void MainWindow::_showTreeViewContextMenu(QPoint point)
 {
-    SettingsDialog dialog;
-    dialog.exec();
+    Node* node = _model->nodeFromIndex(ui->treeView->currentIndex());
+    if (node != 0)
+    {
+        QMenu menu;
+        menu.addActions(ui->treeView->actions());
+        menu.exec(QCursor::pos());
+    }
+};
+void MainWindow::_treeViewRemoveNode()
+{
+    Node* node = _model->nodeFromIndex(ui->treeView->currentIndex());
+    if (node != 0)
+    {
+        int depth = node->getLayer();
+        if (node->getParent() != 0)
+            node->getParent()->removeChild(node);
+        _model->refresh();
+        ui->treeView->expandToDepth(depth);
+};
+void MainWindow::_updateProgressBar(int percentage)
+{
+    ui->progressBar->setValue(percentage);
 };

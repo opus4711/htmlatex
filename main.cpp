@@ -2,24 +2,23 @@
 #include <QtCore/QCoreApplication>
 
 #include "mainwindow.h"
-#include "cconsole.h"
-#include "constants.h"
+#include "console.h"
 #include "settings.h"
 #include <QString>
 #include <QTranslator>
 #include <QTextCodec>
 #include <QPointer>
 
-bool DEBUG = true;
 int main(int argc, char* argv[])
 {
-    /* 0 = executable's name
-       1 = source file path
-       2 = source file type
-       3 = target file path
-       4 = target file type
-       x = "-g" or "--gui"
-    */
+    /** 0 = executable's name
+     *  1 = source file path
+     *  2 = source file type
+     *  3 = target file path
+     *  4 = target file type
+     *  x = "-g" or "--gui"
+     *  y = "-v" or "--verbose"
+     */
     QStringList arguments;
     QStringList options;
     for (int i = 1; i < argc; i++)
@@ -31,12 +30,12 @@ int main(int argc, char* argv[])
         else
             arguments << argument;
     }
-    // open the GUI if argument "-g" or "--gui" is given
+    /** open the GUI if argument "-g" or "--gui" is given */
     if ((bool)options.contains("-g")
         | (bool)options.contains("--gui"))
     {
         //QApplication a(argc, argv);
-        int return_from_event_loop_code;
+        MainWindow w(arguments, options, 0);
         QPointer<QApplication> app;
         QPointer<MainWindow> main_window;
         do
@@ -52,17 +51,6 @@ int main(int argc, char* argv[])
         return return_from_event_loop_code;
 
         /*
-        // Set translation environment for the application texts
-        QTranslator translator;
-        Settings settings;
-        if ((QLocale::Country)settings.getValue("language").toInt() == QLocale::Germany)
-            translator.load(QString("htmlatex_de.qm"));
-        else
-            translator.load(QString("htmlatex_en.qm"));
-        a.installTranslator(&translator);
-        QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
-        std::cerr << QString::number((int)QLocale::Germany).toStdString() << "\n";
-        MainWindow w(arguments, options, 0);
         w.show();
         return a.exec();
         */
@@ -71,7 +59,9 @@ int main(int argc, char* argv[])
         std::cerr << "usage: htmlatex INPUTFILE FORMAT INPUTDEFINITION OUTPUTFILE FORMAT OUTPUTDEFINITION [-g|--gui]\n"
                 << "  e.g. htmlatex index.html javadoc input_javadoc.xml manual.tex tex output_tex.xml -g\n"
                 << "\t-g, --gui \tLaunch the GUI\n"
-                << "\t-h, --help \tShow some examples\n\n"
+                << "\t-h, --help \tShow some examples\n"
+                << "\t-v, --verbose \tVerbose mode\n"
+                << "\t-lang=de, -lang=en \tSets the language to German or English\n\n"
                 << "\tSee the \"README\" file for further information." << std::endl;
     else if (argc == 2)
     {
@@ -86,16 +76,40 @@ int main(int argc, char* argv[])
     }
     else
     {
+        Settings settings;
+        if ((bool)options.contains("-v")
+            | (bool)options.contains("--verbose"))
+        {
+            settings.setValue("verbose", "1");
+            std::cerr << "verbose mode" << std::endl;
+        }
+        else
+            settings.setValue("verbose", "0");
+        if ((bool)options.contains("-lang=de")
+            | (bool)options.contains("-lang=en"))
+        {
+            if ((bool)options.contains("-lang=de"))
+                settings.setValue("language", QString::number((int)QLocale::Germany));
+            else
+                settings.setValue("language", QString::number((int)QLocale::C));
+        }
         QCoreApplication a(argc, argv);
         // Set translation environment for the application texts
-        QString locale = QLocale::system().name();
+        QLocale::Country language = (QLocale::Country)settings.getValue("language").toInt();
         QTranslator translator;
-        translator.load(QString("htmlatex_") + locale);
+        if (language == QLocale::Germany)
+        {
+            if(translator.load(QString("htmlatex_de.qm")))
+                std::cerr << "language set to German" << std::endl;
+        }
+        else
+        {
+            if (translator.load(QString("htmlatex_en.qm")))
+                std::cerr << "language set to English" << std::endl;
+        }
         a.installTranslator(&translator);
         QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
-        CConsole console(arguments, options);
-        // Invoke external program and write the output to a file
-//        system("ping -c 4 192.168.1.1>>ping_test.txt");
+        Console console(arguments, options);
         exit(0);
         return a.exec();
     }

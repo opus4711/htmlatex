@@ -3,52 +3,45 @@
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::SettingsDialog), _restartRequired(false)
+    ui(new Ui::SettingsDialog)
 {
     ui->setupUi(this);
-    ui->groupBox_language->setTitle(tr("Language"));
-    ui->groupBox_latexpath->setTitle(tr("path to latex.exe"));
-    ui->pushButton_apply->setText(tr("&Apply"));
-    ui->pushButton_latexpath->setText(tr("&Browse"));
     ui->comboBox_language->addItem(tr("English"), QVariant(QLocale::C));
     ui->comboBox_language->addItem(tr("German"), QVariant(QLocale::Germany));
     connect(ui->pushButton_apply, SIGNAL(clicked()),
-            this, SLOT(apply()));
+            this, SLOT(_apply()));
+    connect(ui->pushButton_latexpath, SIGNAL(clicked()),
+            this, SLOT(_open()));
     Settings settings;
     ui->lineEdit_latexpath->setText(settings.getValue("latexpath"));
     // select language specified by settings file
-    _initiallySelectedLanguage = QVariant((QLocale::Country)settings.getValue("language").toInt());
+    QLocale::Country initially_selected_language = (QLocale::Country)settings.getValue("language").toInt();
     // retrieve corresponding comboBox item index
-    int itemindex = ui->comboBox_language->findData(_initiallySelectedLanguage);
+    int itemindex = ui->comboBox_language->findData(initially_selected_language);
     ui->comboBox_language->setCurrentIndex(itemindex);
+    ui->checkBox_verbose->setChecked((bool)settings.getValue("verbose").toInt());
+    ui->checkBox_includesubdocuments->setChecked((bool)settings.getValue("includesubdocuments").toInt());
 };
 SettingsDialog::~SettingsDialog()
 {
     delete ui;
 };
-void SettingsDialog::changeEvent(QEvent *e)
-{
-    QDialog::changeEvent(e);
-    switch (e->type()) {
-    case QEvent::LanguageChange:
-        ui->retranslateUi(this);
-        break;
-    default:
-        break;
-    }
-};
-bool SettingsDialog::restartRequired() const
-{
-    return this->_restartRequired;
-};
-void SettingsDialog::apply()
+void SettingsDialog::_apply()
 {
     bool apply = true;
-    QDir dir(ui->lineEdit_latexpath->text());
-    if (!dir.exists())
+    QFileInfo fileinfo(ui->lineEdit_latexpath->text());
+    if (!fileinfo.exists())
     {
         QMessageBox msg(QMessageBox::Warning, tr("Error"),
-                        tr("The path to the latex.exe doesn't exist.\n\nDo you still want to proceed?"),
+                        tr("The file path doesn't exist.\n\nDo you still want to proceed?"),
+                        QMessageBox::Yes|QMessageBox::No);
+        if (msg.exec() == QMessageBox::No)
+            apply = false;
+    }
+    else if (!fileinfo.isFile())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Error"),
+                        tr("No file path specified.\n\nDo you still want to proceed?"),
                         QMessageBox::Yes|QMessageBox::No);
         if (msg.exec() == QMessageBox::No)
             apply = false;
@@ -58,15 +51,26 @@ void SettingsDialog::apply()
         Settings settings;
         settings.setValue("language", ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()).toString());
         settings.setValue("latexpath", ui->lineEdit_latexpath->text());
-        settings.save();
-        if (_initiallySelectedLanguage != ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()))
-        {
-            QMessageBox msg(QMessageBox::Question, tr("Restart Application"),
-                            tr("You selected another language. Loading the appropriate translations requires the application to restart.\n\nDo you want htmlatex to restart immediately?"),
-                            QMessageBox::Yes|QMessageBox::No);
-            if (msg.exec() == QMessageBox::Yes)
-                exit(RESTART_CODE);
-        }
+        settings.setValue("includesubdocuments", QString::number((int)ui->checkBox_includesubdocuments->isChecked()));
+        settings.setValue("verbose", QString::number((int)ui->checkBox_verbose->isChecked()));
+        QLocale::Country language = (QLocale::Country)ui->comboBox_language->itemData(ui->comboBox_language->currentIndex()).toInt();
+        emit languageChanged(language);
+        ui->retranslateUi(this);
         accept();
     }
+};
+void SettingsDialog::_open()
+{
+    QFileDialog* dialog = new QFileDialog(this,
+                                          tr("Set latex executable"),
+                                          "",
+                                          tr("executable (*.exe);;any file (*.*)"));
+    // retrieve source file path and type
+    if (dialog->exec() == QFileDialog::Accepted)
+        ui->lineEdit_latexpath->setText(dialog->selectedFiles().at(0));
+    delete dialog;
+};
+void SettingsDialog::retranslateUi()
+{
+    ui->retranslateUi(this);
 };
