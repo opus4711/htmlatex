@@ -1,66 +1,35 @@
 #include "documentdata.h"
 
-/** This class holds information of one document (i.e. webpage). The information
-  * consists of the file path (URL), a reference pointing to the corresponding node
-  * in the document tree, which represents the whole document. This also stores a
-  * QFileInfo-object for the whole documents' index document. The appropriate
-  * document preprocessing is chosen by means of distinguished file types.
-  * @author Bjoern
-  */
 DocumentData::DocumentData(QFileInfo fileinfo, Node* node, FileType filetype)
+    : _text(""), _fileInfo(fileinfo), _preprocessed(false)
 {
-    this->_fileInfo = fileinfo;
-    this->_node = node;
-    this->_text = "";
     this->_fileType = filetype;
-    this->_preprocessed = false;
+    this->_node = node;
 };
-/** Returns the URL to this document.
-  * @author Bjoern
-  */
-QFileInfo DocumentData::fileInfo() const
+void DocumentData::_preprocessingHook()
 {
-    return this->_fileInfo;
+    _preprocessHTML();
 };
-/** Returns the pointer to the corresponding tree node of the whole document.
-  * @author Bjoern
-  */
-Node* DocumentData::node() const
-{
-    return this->_node;
-};
-/** Returns the document as a preprocessed QString.
-  * @author Bjoern
-  */
-QString DocumentData::text()
-{
-    // the preprocessed document is stored in the attribute "_text"
-    if (!_preprocessed)
-        preprocessingHook();
-    return _text;
-};
-/** This hook-method calls all preprocessing methods.
-  * @author Bjoern
-  */
-void DocumentData::preprocessingHook()
-{
-    preprocessHTML();
-};
-/** This method changes the specified HTML-file in order to gain well-formed XML (XHTML).
-  * @author Bjoern
-  */
-void DocumentData::preprocessHTML()
+void DocumentData::_preprocessHTML()
 {
     if (_fileType != DocumentData::JavaDocHTML)
         return;
     QString path = _fileInfo.filePath();
-    if (Settings::DEBUG)
-    {
-        std::cerr << "Path: " << path.toStdString() << std::endl;
-    }
     QFile file(path);
     if (!file.open(QFile::ReadOnly | QFile::Text))
+    {
+        if (Settings::DEBUG)
+        {
+            std::cerr << tr("DocumentData._preprocessHTML() : can't preprocess file path: ").toStdString()
+                    << path.toStdString() << std::endl;
+        }
         return;
+    }
+    if (Settings::DEBUG)
+    {
+        std::cerr << tr("DocumentData._preprocessHTML() : preprocessing file path: ").toStdString()
+                << path.toStdString() << std::endl;
+    }
     _text = QString(file.readAll()).toLatin1();
     file.close();
     // processing document
@@ -74,7 +43,8 @@ void DocumentData::preprocessHTML()
         regex = QRegExp("<" + element + // opening tag and tag name
                         "([^\\/>])*" // consume all characters except '/' and '>'
                         "(?!\\/)>"); // the character '/' is missing before '>'
-        // the empty element stored in the iteration variable 'element' is found without a '/'
+        // the empty element stored in the iteration variable 'element' is found
+        // without the character '/'
         while(regex.indexIn(_text, 0) >= 0)
         {
             // insert missing '/'
@@ -84,4 +54,22 @@ void DocumentData::preprocessHTML()
         }
     }
     _preprocessed = true;
+};
+/**
+  * @author Bjoern
+  */
+QString DocumentData::text()
+{
+    // the preprocessed document is stored in the attribute "_text"
+    if (!_preprocessed)
+        _preprocessingHook();
+    return _text;
+};
+QFileInfo DocumentData::fileInfo() const
+{
+    return this->_fileInfo;
+};
+Node* DocumentData::node() const
+{
+    return this->_node;
 };

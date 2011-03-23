@@ -62,6 +62,7 @@ QColor ItemDelegate::getColorLayer1() const
 void ItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem &option,
            const QModelIndex &index) const
 {
+    // stores the current state of the painter
     painter->save();
     QStyleOptionViewItem opt = option;
     opt.displayAlignment = Qt::AlignLeft | Qt::AlignVCenter;
@@ -73,11 +74,13 @@ void ItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem &option,
     // an item of the treeview is selected
     if (option.state & QStyle::State_Selected)
     {
+        // stores the current state of the painter
         painter->save();
         painter->setBrush(colorFocusBackground);
         painter->fillRect(QRect(opt.rect.x(), opt.rect.y(), opt.rect.width() - 1, opt.rect.height() - 1), Qt::SolidPattern);
         painter->setPen(QPen(QBrush(colorFocusLine, Qt::SolidPattern), 1.0, Qt::DashLine, Qt::RoundCap, Qt::BevelJoin));
         painter->drawRect(QRect(opt.rect.x(), opt.rect.y(), opt.rect.width() - 1, opt.rect.height() - 1));
+        // restores the stored state of the painter
         painter->restore();
     }
     if ((node->getLayer() % 2) == 0)
@@ -85,5 +88,6 @@ void ItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem &option,
     else if ((node->getLayer() % 2) == 1)
         painter->setPen(colorLayer1);
     painter->drawText(QRect(opt.rect.x(), opt.rect.y(), opt.rect.width(), opt.rect.height()), text, QTextOption(Qt::AlignLeft|Qt::AlignVCenter));
+    // restores the initially stored state of the painter
     painter->restore();
 };

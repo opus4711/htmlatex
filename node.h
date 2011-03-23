@@ -6,9 +6,9 @@
 #include <QMap>
 
 /** The Node class provides rudimental functionality to build tree structures and
-  access its nodes. Each node is aware of its parent and children which can be
-  accessed by methods such as getParent() or childAt(int index). Additionally
-  each node holds an array of attributes.
+    access its nodes. Each node is aware of its parent and children which can be
+    accessed by methods such as getParent() or childAt(int index). Additionally
+    each node holds an array of attributes.
   */
 class Node
 {
@@ -30,7 +30,7 @@ private:
         @author Bjoern
       */
     qint64 _id;
-    /** The _layer numbers allows to determine to which layer / generation a node
+    /** The _layer number allows to determine to which layer / generation a node
         belongs. The root node has the _layer number 0, its children 1 and its
         grand children 2 and so on.
         @author Bjoern

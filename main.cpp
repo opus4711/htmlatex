@@ -7,6 +7,7 @@
 #include <QString>
 #include <QTranslator>
 #include <QTextCodec>
+#include <QPointer>
 
 int main(int argc, char* argv[])
 {
@@ -33,10 +34,26 @@ int main(int argc, char* argv[])
     if ((bool)options.contains("-g")
         | (bool)options.contains("--gui"))
     {
-        QApplication a(argc, argv);
+        //QApplication a(argc, argv);
         MainWindow w(arguments, options, 0);
+        QPointer<QApplication> app;
+        QPointer<MainWindow> main_window;
+        do
+        {
+            if(app) delete app;
+            if(main_window) delete main_window;
+            app = new QApplication(argc, argv);
+            main_window = new MainWindow(arguments, options, main_window);
+            main_window.data()->show();
+            return_from_event_loop_code = app->exec();
+        }
+        while(return_from_event_loop_code==RESTART_CODE);
+        return return_from_event_loop_code;
+
+        /*
         w.show();
         return a.exec();
+        */
     }
     else if (argc == 1)
         std::cerr << "usage: htmlatex INPUTFILE FORMAT INPUTDEFINITION OUTPUTFILE FORMAT OUTPUTDEFINITION [-g|--gui]\n"
@@ -83,18 +100,16 @@ int main(int argc, char* argv[])
         if (language == QLocale::Germany)
         {
             if(translator.load(QString("htmlatex_de.qm")))
-                std::cerr << "German translation" << std::endl;
+                std::cerr << "language set to German" << std::endl;
         }
         else
         {
             if (translator.load(QString("htmlatex_en.qm")))
-                std::cerr << "English translation" << std::endl;
+                std::cerr << "language set to English" << std::endl;
         }
         a.installTranslator(&translator);
         QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
         Console console(arguments, options);
-        // Invoke external program and write the output to a file
-//        system("ping -c 4 192.168.1.1>>ping_test.txt");
         exit(0);
         return a.exec();
     }

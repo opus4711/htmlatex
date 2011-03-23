@@ -15,8 +15,6 @@ Settings::Settings() : _SETTINGSFILEPATH("htmlatex_settings.dat")
     }
 };
 bool Settings::DEBUG = false;
-/** reads the settings from a binary data file
-  */
 bool Settings::_load()
 {
     QFile file(_SETTINGSFILEPATH);
@@ -29,10 +27,9 @@ bool Settings::_load()
     stream.setVersion(QDataStream::Qt_4_6);
     stream >> _settingsMap;
     file.close();
+    DEBUG = (bool)_settingsMap["verbose"].toInt();
     return true;
 };
-/** writes the settings to a binary data file
-  */
 bool Settings::_save()
 {
     QFile file(_SETTINGSFILEPATH);
@@ -54,7 +51,7 @@ QString Settings::getValue(QString key)
         if (DEBUG)
         {
             std::cerr << tr("Settings.getValue() returned default value for key: ").toStdString() << key.toStdString()
-            << tr(", value: ").toStdString() << _settingsMap[key].toStdString() << std::endl;
+                << tr(", value: ").toStdString() << _settingsMap[key].toStdString() << std::endl;
         }
     }
     return _settingsMap[key];

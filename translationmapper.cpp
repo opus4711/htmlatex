@@ -1,6 +1,6 @@
 #include "translationmapper.h"
 
-TranslationMapper::TranslationMapper()
+TranslationMapper::TranslationMapper(QObject *parent) : QObject(parent)
 {
 };
 void TranslationMapper::createDocumentReaderData(QString inputfilepath)
@@ -8,10 +8,10 @@ void TranslationMapper::createDocumentReaderData(QString inputfilepath)
     QFile file(inputfilepath);
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
-        if(Settings::DEBUG)
+        if (Settings::DEBUG)
         {
-            std::cerr << "CTranslationMapper.createDocumentReaderData(): "
-                    << "file.open() returned false\n\tPath: "
+            std::cerr << tr("TranslationMapper.createDocumentReaderData(): ").toStdString()
+                    << tr("file.open() returned false\n\tpath: ").toStdString()
                     << inputfilepath.toStdString() << std::endl;
         }
         return;
@@ -37,8 +37,8 @@ void TranslationMapper::createDocumentReaderData(QString inputfilepath)
     }
     else if (Settings::DEBUG)
     {
-        std::cerr << "CTranslationMapper.createDocumentReaderData(): doc.setContent returned false"
-                << "\n\tFilecontent: " << filecontent.toStdString() << std::endl;
+        std::cerr << tr("TranslationMapper.createDocumentReaderData(): doc.setContent returned false").toStdString()
+                << tr("\n\tfilecontent: ").toStdString() << filecontent.toStdString() << std::endl;
     }
 };
 void TranslationMapper::createOutputElementMap(QString outputfilepath)
@@ -47,10 +47,10 @@ void TranslationMapper::createOutputElementMap(QString outputfilepath)
     QFile file(outputfilepath);
     if (!file.open(QFile::ReadOnly | QFile::Text))
     {
-        if(Settings::DEBUG)
+        if (Settings::DEBUG)
         {
-            std::cerr << "CTranslationMapper.createOutputElementMap(): "
-                    << "file.open() returned false\n\tPath: "
+            std::cerr << tr("TranslationMapper.createOutputElementMap(): ").toStdString()
+                    << tr("file.open() returned false\n\tPath: ").toStdString()
                     << outputfilepath.toStdString() << std::endl;
         }
         return;
@@ -103,8 +103,8 @@ void TranslationMapper::createOutputElementMap(QString outputfilepath)
     }
     else if (Settings::DEBUG)
     {
-        std::cerr << "CTranslationMapper.createOutputElementMap(): doc.setContent returned false"
-                << "\n\tFilecontent: " << filecontent.toStdString() << std::endl;
+        std::cerr << tr("TranslationMapper.createOutputElementMap(): doc.setContent returned false").toStdString()
+                << tr("\n\tfilecontent: ").toStdString() << filecontent.toStdString() << std::endl;
     }
 };
 DocumentReaderData TranslationMapper::getDocumentReference() const

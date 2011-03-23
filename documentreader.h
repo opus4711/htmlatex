@@ -12,23 +12,75 @@
 #include <QMapIterator>
 #include <QStack>
 #include <QDir>
-
 #include <iostream>
 
+/** The DocumentReader class creates the application's internal tree structure
+    from a specified input document and is able to include referenced subdocuments.
+    @author Bjoern
+  */
 class DocumentReader : public QObject
 {
     Q_OBJECT
-private:
-    QFileInfo _indexFileInfo;
-    DocumentData::FileType _fileType;
-    QStack<DocumentData*> _documentStack;
-    TranslationMapper* _translationMapper;
-    bool _includeSubDocuments;
-    void readElement(QDomElement element, Node* node);
 public:
-    Node* read(QString indexfilepath, DocumentData::FileType filetype);
-    /** constructor */
+    /** This is the only constructor.
+        @param <translationmapper> is used to obtain a DocumentReaderData object
+        which mainly describes how a reference to a another document is defined in
+        the input document.
+        @author Bjoern
+      */
     DocumentReader(TranslationMapper* translationmapper);
+    /** This method creates a Node tree structure which corresponds to the whole
+        input document including its subdocuments if desired
+        (_includeSubDocuments is set). The nodes of each document are processed
+        recursively by the _readElement() method. Whereas the documents
+        (subdocuments) are processed in an iteration loop by means of the
+        _documentStack.
+        @param <indexfilepath> contains the absolute file path to the index document.
+        @param <filetype> indicates of which type the input document is.
+        @author Bjoern
+      */
+    Node* read(QString indexfilepath, DocumentData::FileType filetype);
+private:
+    /** The _translationMapper provides two data objects: firstly a
+        DocumentReaderData object which is used by the DocumentReader and
+        secondly a key-value-pair structure which is used by the Converter.
+        @author Bjoern
+      */
+    TranslationMapper* _translationMapper;
+    /** This attribute provides detailed information about the input index file
+        such as absolute and relative path etc..
+        @author Bjoern
+      */
+    QFileInfo _indexFileInfo;
+    /** This attribute indicates of which type the input document is.
+        @author Bjoern
+      */
+    DocumentData::FileType _fileType;
+    /** This stack is populated with DocumentData objects when processing the
+        input document. The usage of a stack allows to process the input document
+        and its subdocuments in an iteration loop instead of a recursion because
+        a recursion may raise a stack overflow issue.
+        @author Bjoern
+      */
+    QStack<DocumentData*> _documentStack;
+    /** This attribute indicates whether or not subdocuments are included by the
+        input document processing.
+        @author Bjoern
+      */
+    bool _includeSubDocuments;
+    /** This method processes a single document recursively. It adds for each node
+        of the input document a corresponding Node object to the application's
+        internal tree structure. If a reference to a subdocument is found a new
+        DocumentData object is generated and pushed on the _documentStack.
+        @param <element> is the current parent QDomElement object. Notice that the
+        _readElement() method performs a recursion to process a single document.
+        @param <node> is a pointer pointing to the very Node object of the
+        application's internal tree structure to which currently generated Node
+        objects will be added. Notice that the _readElement() method performs a
+        recursion to process a single document.
+        @author Bjoern
+      */
+    void _readElement(QDomElement element, Node* node);
 };
 
 #endif // DOCUMENTREADER_H

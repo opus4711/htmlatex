@@ -9,7 +9,9 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->comboBox_language->addItem(tr("English"), QVariant(QLocale::C));
     ui->comboBox_language->addItem(tr("German"), QVariant(QLocale::Germany));
     connect(ui->pushButton_apply, SIGNAL(clicked()),
-            this, SLOT(apply()));
+            this, SLOT(_apply()));
+    connect(ui->pushButton_latexpath, SIGNAL(clicked()),
+            this, SLOT(_open()));
     Settings settings;
     ui->lineEdit_latexpath->setText(settings.getValue("latexpath"));
     // select language specified by settings file
@@ -24,14 +26,22 @@ SettingsDialog::~SettingsDialog()
 {
     delete ui;
 };
-void SettingsDialog::apply()
+void SettingsDialog::_apply()
 {
     bool apply = true;
-    QDir dir(ui->lineEdit_latexpath->text());
-    if (!dir.exists())
+    QFileInfo fileinfo(ui->lineEdit_latexpath->text());
+    if (!fileinfo.exists())
     {
         QMessageBox msg(QMessageBox::Warning, tr("Error"),
-                        tr("The path to the latex.exe doesn't exist.\n\nDo you still want to proceed?"),
+                        tr("The file path doesn't exist.\n\nDo you still want to proceed?"),
+                        QMessageBox::Yes|QMessageBox::No);
+        if (msg.exec() == QMessageBox::No)
+            apply = false;
+    }
+    else if (!fileinfo.isFile())
+    {
+        QMessageBox msg(QMessageBox::Warning, tr("Error"),
+                        tr("No file path specified.\n\nDo you still want to proceed?"),
                         QMessageBox::Yes|QMessageBox::No);
         if (msg.exec() == QMessageBox::No)
             apply = false;
@@ -48,6 +58,17 @@ void SettingsDialog::apply()
         ui->retranslateUi(this);
         accept();
     }
+};
+void SettingsDialog::_open()
+{
+    QFileDialog* dialog = new QFileDialog(this,
+                                          tr("Set latex executable"),
+                                          "",
+                                          tr("executable (*.exe);;any file (*.*)"));
+    // retrieve source file path and type
+    if (dialog->exec() == QFileDialog::Accepted)
+        ui->lineEdit_latexpath->setText(dialog->selectedFiles().at(0));
+    delete dialog;
 };
 void SettingsDialog::retranslateUi()
 {

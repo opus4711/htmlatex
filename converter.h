@@ -4,6 +4,7 @@
 #include "node.h"
 #include "translationmapper.h"
 #include "settings.h"
+#include "documentdata.h"
 #include <QFile>
 #include <QString>
 #include <QTextStream>
@@ -35,11 +36,9 @@ public:
     /** converts to QString and writes the output file
       * @param <qint32> the number of parts in the outputDocument
       */
-    void convert(const QString filepath, Node* root);
+    void convert(const QString filepath, Node* root, DocumentData::FileType filetype);
 private:
     /*****FIELDS*****/
-    /** outputfile */
-    QFile _file;
     /** outputfilestream */
     QTextStream _stream;
     /** the root node */

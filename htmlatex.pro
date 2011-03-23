@@ -12,7 +12,8 @@ TRANSLATIONS = htmlatex_en.ts \
 CODECFORTR = UTF-8
 
 # CODECFORTR = ISO-8859-1
-CONFIG += console
+CONFIG += console \
+static
 unix { 
     UI_DIR = .ui
     MOC_DIR = .moc

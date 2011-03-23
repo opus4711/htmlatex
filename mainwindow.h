@@ -20,26 +20,28 @@ namespace Ui
     class MainWindow;
 };
 /** This is the central class of the GUI application. The treeView on the left
-  * hand side displays the opened document as a tree structure and allows
-  * modification via context menu. The textEdit on the right hand side displays
-  * the conversion output and can be edited directly.
-  * @author Bjoern
+    hand side displays the opened document as a tree structure and allows
+    modification via context menu. The textEdit on the right hand side displays
+    the conversion output and can be edited directly.
+    @author Bjoern
   */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 public:
     /** This is the only constructor.
-        @param arguments is an array of strings which contains the startup argument
+        @param <arguments> is an array of strings which contains the startup argument
         of the application except the executable file's name and optional paramters.
-        @param options is an array of strings which contains just the optional
+        @param <options> is an array of strings which contains just the optional
         startup arguments of the application.
-        @param parent is a pointer pointing to the parent widget (QDialog and
+        @param <parent> is a pointer pointing to the parent widget (QDialog and
         QMainWindow are derived from QWidget).
         @author Bjoern
       */
     MainWindow(QStringList arguments, QStringList options, QWidget* parent);
-    /** This is the destructor. */
+    /** This is the destructor.
+        @author Bjoern
+      */
     ~MainWindow();
 private:
     /** This declaration allows access to the separated GUI source code via the
@@ -80,9 +82,9 @@ private:
     Converter* _converter;
     /** This method performs opening and converting operations depending on the
         application's startup arguments.
-        @param arguments is an array of strings which contains the startup argument
+        @param <arguments> is an array of strings which contains the startup argument
         of the application except the executable file's name and optional paramters.
-        @param options is an array of strings which contains just the optional
+        @param <options> is an array of strings which contains just the optional
         startup arguments of the application.
         @author Bjoern
       */
@@ -90,7 +92,7 @@ private:
 private slots:
     /** This slot is connected to _settingsDialog and is called when the user
         applies settings. It triggers the retranslation of the application's texts.
-        @param language contains the information to which language the
+        @param <language> contains the information to which language the
         _translator is supposed to translate.
         @author Bjoern
       */
@@ -105,6 +107,11 @@ private slots:
         @author Bjoern
       */
     void _convert();
+    /** This slot is called when the user clicks the menu item or the push button
+        for "save as". It allows to save the conversion output as .tex or .pdf file.
+        @author Bjoern
+      */
+    void _saveAs();
     /** This slot is called when the user clicks the menu item or tool bar button
         for "set input definition".
         @author Bjoern
