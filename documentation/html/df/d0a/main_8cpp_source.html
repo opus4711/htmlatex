@@ -91,87 +91,89 @@ window.onload = initDynSections;
 <a name="l00007"></a>00007 <span class="preprocessor">#include &lt;QString&gt;</span>
 <a name="l00008"></a>00008 <span class="preprocessor">#include &lt;QTranslator&gt;</span>
 <a name="l00009"></a>00009 <span class="preprocessor">#include &lt;QTextCodec&gt;</span>
-<a name="l00010"></a>00010 
-<a name="l00011"></a><a class="code" href="../../df/d0a/main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">00011</a> <span class="keywordtype">int</span> <a class="code" href="../../df/d0a/main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>* argv[])
-<a name="l00012"></a>00012 {
-<a name="l00021"></a>00021     QStringList arguments;
-<a name="l00022"></a>00022     QStringList options;
-<a name="l00023"></a>00023     <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt; argc; i++)
-<a name="l00024"></a>00024     {
-<a name="l00025"></a>00025         QString argument(argv[i]);
-<a name="l00026"></a>00026         argument = argument.toLower();
-<a name="l00027"></a>00027         <span class="keywordflow">if</span> (argument.startsWith(<span class="charliteral">&#39;-&#39;</span>))
-<a name="l00028"></a>00028             options &lt;&lt; argument;
-<a name="l00029"></a>00029         <span class="keywordflow">else</span>
-<a name="l00030"></a>00030             arguments &lt;&lt; argument;
-<a name="l00031"></a>00031     }
-<a name="l00033"></a>00033     <span class="keywordflow">if</span> ((<span class="keywordtype">bool</span>)options.contains(<span class="stringliteral">&quot;-g&quot;</span>)
-<a name="l00034"></a>00034         | (bool)options.contains(<span class="stringliteral">&quot;--gui&quot;</span>))
-<a name="l00035"></a>00035     {
-<a name="l00036"></a>00036         QApplication a(argc, argv);
-<a name="l00037"></a>00037         <a class="code" href="../../d9/dc6/class_main_window.html" title="This is the central class of the GUI application.">MainWindow</a> w(arguments, options, 0);
-<a name="l00038"></a>00038         w.show();
-<a name="l00039"></a>00039         <span class="keywordflow">return</span> a.exec();
-<a name="l00040"></a>00040     }
-<a name="l00041"></a>00041     <span class="keywordflow">else</span> <span class="keywordflow">if</span> (argc == 1)
-<a name="l00042"></a>00042         std::cerr &lt;&lt; <span class="stringliteral">&quot;usage: htmlatex INPUTFILE FORMAT INPUTDEFINITION OUTPUTFILE FORMAT OUTPUTDEFINITION [-g|--gui]\n&quot;</span>
-<a name="l00043"></a>00043                 &lt;&lt; <span class="stringliteral">&quot;  e.g. htmlatex index.html javadoc input_javadoc.xml manual.tex tex output_tex.xml -g\n&quot;</span>
-<a name="l00044"></a>00044                 &lt;&lt; <span class="stringliteral">&quot;\t-g, --gui \tLaunch the GUI\n&quot;</span>
-<a name="l00045"></a>00045                 &lt;&lt; <span class="stringliteral">&quot;\t-h, --help \tShow some examples\n&quot;</span>
-<a name="l00046"></a>00046                 &lt;&lt; <span class="stringliteral">&quot;\t-v, --verbose \tVerbose mode\n&quot;</span>
-<a name="l00047"></a>00047                 &lt;&lt; <span class="stringliteral">&quot;\t-lang=de, -lang=en \tSets the language to German or English\n\n&quot;</span>
-<a name="l00048"></a>00048                 &lt;&lt; <span class="stringliteral">&quot;\tSee the \&quot;README\&quot; file for further information.&quot;</span> &lt;&lt; std::endl;
-<a name="l00049"></a>00049     <span class="keywordflow">else</span> <span class="keywordflow">if</span> (argc == 2)
-<a name="l00050"></a>00050     {
-<a name="l00051"></a>00051         <span class="keywordflow">if</span> ((<span class="keywordtype">bool</span>)options.contains(<span class="stringliteral">&quot;-h&quot;</span>)
-<a name="l00052"></a>00052             | (bool)options.contains(<span class="stringliteral">&quot;--help&quot;</span>))
-<a name="l00053"></a>00053         {
-<a name="l00054"></a>00054             QString helpstring(<span class="stringliteral">&quot;Examples with GUI:\n\nopen file initially:\n\nhtmlatex index.html javadoc -g\nhtmlatex index.html --gui javadoc&quot;</span>);
-<a name="l00055"></a>00055             helpstring += <span class="stringliteral">&quot;\n\nconvert file initially:\n\nhtmlatex -g index.html javadoc mytexoutput.tex tex\nhtmlatex index.html javadoc --gui mytexoutput.tex tex&quot;</span>;
-<a name="l00056"></a>00056             helpstring += <span class="stringliteral">&quot;\n\nExample with console:\n\nconvert file:\n\nhtmlatex index.html javadoc mytexoutput.tex tex&quot;</span>;
-<a name="l00057"></a>00057             std::cerr &lt;&lt; helpstring.toStdString() &lt;&lt; std::endl;
-<a name="l00058"></a>00058         }
-<a name="l00059"></a>00059     }
-<a name="l00060"></a>00060     <span class="keywordflow">else</span>
-<a name="l00061"></a>00061     {
-<a name="l00062"></a>00062         <a class="code" href="../../db/d2b/class_settings.html" title="This class stores settings variables for the application in a binary file.">Settings</a> settings;
-<a name="l00063"></a>00063         <span class="keywordflow">if</span> ((<span class="keywordtype">bool</span>)options.contains(<span class="stringliteral">&quot;-v&quot;</span>)
-<a name="l00064"></a>00064             | (bool)options.contains(<span class="stringliteral">&quot;--verbose&quot;</span>))
-<a name="l00065"></a>00065         {
-<a name="l00066"></a>00066             settings.<a class="code" href="../../db/d2b/class_settings.html#ab2b4ad8ac7af260623f5b824f149af9f" title="This method sets the specified variable to the given value.">setValue</a>(<span class="stringliteral">&quot;verbose&quot;</span>, <span class="stringliteral">&quot;1&quot;</span>);
-<a name="l00067"></a>00067             std::cerr &lt;&lt; <span class="stringliteral">&quot;verbose mode&quot;</span> &lt;&lt; std::endl;
-<a name="l00068"></a>00068         }
-<a name="l00069"></a>00069         <span class="keywordflow">else</span>
-<a name="l00070"></a>00070             settings.<a class="code" href="../../db/d2b/class_settings.html#ab2b4ad8ac7af260623f5b824f149af9f" title="This method sets the specified variable to the given value.">setValue</a>(<span class="stringliteral">&quot;verbose&quot;</span>, <span class="stringliteral">&quot;0&quot;</span>);
-<a name="l00071"></a>00071         <span class="keywordflow">if</span> ((<span class="keywordtype">bool</span>)options.contains(<span class="stringliteral">&quot;-lang=de&quot;</span>)
-<a name="l00072"></a>00072             | (bool)options.contains(<span class="stringliteral">&quot;-lang=en&quot;</span>))
-<a name="l00073"></a>00073         {
-<a name="l00074"></a>00074             <span class="keywordflow">if</span> ((<span class="keywordtype">bool</span>)options.contains(<span class="stringliteral">&quot;-lang=de&quot;</span>))
-<a name="l00075"></a>00075                 settings.<a class="code" href="../../db/d2b/class_settings.html#ab2b4ad8ac7af260623f5b824f149af9f" title="This method sets the specified variable to the given value.">setValue</a>(<span class="stringliteral">&quot;language&quot;</span>, QString::number((<span class="keywordtype">int</span>)QLocale::Germany));
-<a name="l00076"></a>00076             <span class="keywordflow">else</span>
-<a name="l00077"></a>00077                 settings.<a class="code" href="../../db/d2b/class_settings.html#ab2b4ad8ac7af260623f5b824f149af9f" title="This method sets the specified variable to the given value.">setValue</a>(<span class="stringliteral">&quot;language&quot;</span>, QString::number((<span class="keywordtype">int</span>)QLocale::C));
-<a name="l00078"></a>00078         }
-<a name="l00079"></a>00079         QCoreApplication a(argc, argv);
-<a name="l00080"></a>00080         <span class="comment">// Set translation environment for the application texts</span>
-<a name="l00081"></a>00081         QLocale::Country language = (QLocale::Country)settings.<a class="code" href="../../db/d2b/class_settings.html#a5f006a61e84d5c03a4cfa9afca0acb71" title="This method returns the value of the specified variable.">getValue</a>(<span class="stringliteral">&quot;language&quot;</span>).toInt();
-<a name="l00082"></a>00082         QTranslator translator;
-<a name="l00083"></a>00083         <span class="keywordflow">if</span> (language == QLocale::Germany)
-<a name="l00084"></a>00084         {
-<a name="l00085"></a>00085             <span class="keywordflow">if</span>(translator.load(QString(<span class="stringliteral">&quot;htmlatex_de.qm&quot;</span>)))
-<a name="l00086"></a>00086                 std::cerr &lt;&lt; <span class="stringliteral">&quot;language set to German&quot;</span> &lt;&lt; std::endl;
-<a name="l00087"></a>00087         }
-<a name="l00088"></a>00088         <span class="keywordflow">else</span>
-<a name="l00089"></a>00089         {
-<a name="l00090"></a>00090             <span class="keywordflow">if</span> (translator.load(QString(<span class="stringliteral">&quot;htmlatex_en.qm&quot;</span>)))
-<a name="l00091"></a>00091                 std::cerr &lt;&lt; <span class="stringliteral">&quot;language set to English&quot;</span> &lt;&lt; std::endl;
-<a name="l00092"></a>00092         }
-<a name="l00093"></a>00093         a.installTranslator(&amp;translator);
-<a name="l00094"></a>00094         QTextCodec::setCodecForTr(QTextCodec::codecForName(<span class="stringliteral">&quot;utf8&quot;</span>));
-<a name="l00095"></a>00095         <a class="code" href="../../d6/d56/class_console.html" title="This class provides the command line functionality of the application.">Console</a> console(arguments, options);
-<a name="l00096"></a>00096         exit(0);
-<a name="l00097"></a>00097         <span class="keywordflow">return</span> a.exec();
-<a name="l00098"></a>00098     }
-<a name="l00099"></a>00099 };
+<a name="l00010"></a>00010 <span class="preprocessor">#include &lt;QPointer&gt;</span>
+<a name="l00011"></a>00011 
+<a name="l00012"></a><a class="code" href="../../df/d0a/main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">00012</a> <span class="keywordtype">int</span> <a class="code" href="../../df/d0a/main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>* argv[])
+<a name="l00013"></a>00013 {
+<a name="l00023"></a>00023     QStringList arguments;
+<a name="l00024"></a>00024     QStringList options;
+<a name="l00025"></a>00025     <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt; argc; i++)
+<a name="l00026"></a>00026     {
+<a name="l00027"></a>00027         QString argument(argv[i]);
+<a name="l00028"></a>00028         argument = argument.toLower();
+<a name="l00029"></a>00029         <span class="keywordflow">if</span> (argument.startsWith(<span class="charliteral">&#39;-&#39;</span>))
+<a name="l00030"></a>00030             options &lt;&lt; argument;
+<a name="l00031"></a>00031         <span class="keywordflow">else</span>
+<a name="l00032"></a>00032             arguments &lt;&lt; argument;
+<a name="l00033"></a>00033     }
+<a name="l00035"></a>00035     <span class="keywordflow">if</span> ((<span class="keywordtype">bool</span>)options.contains(<span class="stringliteral">&quot;-g&quot;</span>)
+<a name="l00036"></a>00036         | (bool)options.contains(<span class="stringliteral">&quot;--gui&quot;</span>))
+<a name="l00037"></a>00037     {
+<a name="l00038"></a>00038         QApplication a(argc, argv);
+<a name="l00039"></a>00039         <a class="code" href="../../d9/dc6/class_main_window.html" title="This is the central class of the GUI application.">MainWindow</a> w(arguments, options, 0);
+<a name="l00040"></a>00040         w.show();
+<a name="l00041"></a>00041         <span class="keywordflow">return</span> a.exec();
+<a name="l00042"></a>00042 
+<a name="l00043"></a>00043     }
+<a name="l00044"></a>00044     <span class="keywordflow">else</span> <span class="keywordflow">if</span> (argc == 1)
+<a name="l00045"></a>00045         std::cerr &lt;&lt; <span class="stringliteral">&quot;usage: htmlatex INPUTFILE FORMAT INPUTDEFINITION OUTPUTFILE FORMAT OUTPUTDEFINITION [-g|--gui]\n&quot;</span>
+<a name="l00046"></a>00046                 &lt;&lt; <span class="stringliteral">&quot;  e.g. htmlatex index.html javadoc input_javadoc.xml manual.tex tex output_tex.xml -g\n&quot;</span>
+<a name="l00047"></a>00047                 &lt;&lt; <span class="stringliteral">&quot;\t-g, --gui \tLaunch the GUI\n&quot;</span>
+<a name="l00048"></a>00048                 &lt;&lt; <span class="stringliteral">&quot;\t-h, --help \tShow some examples\n&quot;</span>
+<a name="l00049"></a>00049                 &lt;&lt; <span class="stringliteral">&quot;\t-v, --verbose \tVerbose mode\n&quot;</span>
+<a name="l00050"></a>00050                 &lt;&lt; <span class="stringliteral">&quot;\t-lang=de, -lang=en \tSets the language to German or English\n\n&quot;</span>
+<a name="l00051"></a>00051                 &lt;&lt; <span class="stringliteral">&quot;\tSee the \&quot;README\&quot; file for further information.&quot;</span> &lt;&lt; std::endl;
+<a name="l00052"></a>00052     <span class="keywordflow">else</span> <span class="keywordflow">if</span> (argc == 2)
+<a name="l00053"></a>00053     {
+<a name="l00054"></a>00054         <span class="keywordflow">if</span> ((<span class="keywordtype">bool</span>)options.contains(<span class="stringliteral">&quot;-h&quot;</span>)
+<a name="l00055"></a>00055             | (bool)options.contains(<span class="stringliteral">&quot;--help&quot;</span>))
+<a name="l00056"></a>00056         {
+<a name="l00057"></a>00057             QString helpstring(<span class="stringliteral">&quot;Examples with GUI:\n\nopen file initially:\n\nhtmlatex index.html javadoc -g\nhtmlatex index.html --gui javadoc&quot;</span>);
+<a name="l00058"></a>00058             helpstring += <span class="stringliteral">&quot;\n\nconvert file initially:\n\nhtmlatex -g index.html javadoc mytexoutput.tex tex\nhtmlatex index.html javadoc --gui mytexoutput.tex tex&quot;</span>;
+<a name="l00059"></a>00059             helpstring += <span class="stringliteral">&quot;\n\nExample with console:\n\nconvert file:\n\nhtmlatex index.html javadoc mytexoutput.tex tex&quot;</span>;
+<a name="l00060"></a>00060             std::cerr &lt;&lt; helpstring.toStdString() &lt;&lt; std::endl;
+<a name="l00061"></a>00061         }
+<a name="l00062"></a>00062     }
+<a name="l00063"></a>00063     <span class="keywordflow">else</span>
+<a name="l00064"></a>00064     {
+<a name="l00065"></a>00065         <a class="code" href="../../db/d2b/class_settings.html" title="This class stores settings variables for the application in a binary file.">Settings</a> settings;
+<a name="l00066"></a>00066         <span class="keywordflow">if</span> ((<span class="keywordtype">bool</span>)options.contains(<span class="stringliteral">&quot;-v&quot;</span>)
+<a name="l00067"></a>00067             | (bool)options.contains(<span class="stringliteral">&quot;--verbose&quot;</span>))
+<a name="l00068"></a>00068         {
+<a name="l00069"></a>00069             settings.<a class="code" href="../../db/d2b/class_settings.html#ab2b4ad8ac7af260623f5b824f149af9f" title="This method sets the specified variable to the given value.">setValue</a>(<span class="stringliteral">&quot;verbose&quot;</span>, <span class="stringliteral">&quot;1&quot;</span>);
+<a name="l00070"></a>00070             std::cerr &lt;&lt; <span class="stringliteral">&quot;verbose mode&quot;</span> &lt;&lt; std::endl;
+<a name="l00071"></a>00071         }
+<a name="l00072"></a>00072         <span class="keywordflow">else</span>
+<a name="l00073"></a>00073             settings.<a class="code" href="../../db/d2b/class_settings.html#ab2b4ad8ac7af260623f5b824f149af9f" title="This method sets the specified variable to the given value.">setValue</a>(<span class="stringliteral">&quot;verbose&quot;</span>, <span class="stringliteral">&quot;0&quot;</span>);
+<a name="l00074"></a>00074         <span class="keywordflow">if</span> ((<span class="keywordtype">bool</span>)options.contains(<span class="stringliteral">&quot;-lang=de&quot;</span>)
+<a name="l00075"></a>00075             | (bool)options.contains(<span class="stringliteral">&quot;-lang=en&quot;</span>))
+<a name="l00076"></a>00076         {
+<a name="l00077"></a>00077             <span class="keywordflow">if</span> ((<span class="keywordtype">bool</span>)options.contains(<span class="stringliteral">&quot;-lang=de&quot;</span>))
+<a name="l00078"></a>00078                 settings.<a class="code" href="../../db/d2b/class_settings.html#ab2b4ad8ac7af260623f5b824f149af9f" title="This method sets the specified variable to the given value.">setValue</a>(<span class="stringliteral">&quot;language&quot;</span>, QString::number((<span class="keywordtype">int</span>)QLocale::Germany));
+<a name="l00079"></a>00079             <span class="keywordflow">else</span>
+<a name="l00080"></a>00080                 settings.<a class="code" href="../../db/d2b/class_settings.html#ab2b4ad8ac7af260623f5b824f149af9f" title="This method sets the specified variable to the given value.">setValue</a>(<span class="stringliteral">&quot;language&quot;</span>, QString::number((<span class="keywordtype">int</span>)QLocale::C));
+<a name="l00081"></a>00081         }
+<a name="l00082"></a>00082         QCoreApplication a(argc, argv);
+<a name="l00083"></a>00083         <span class="comment">// Set translation environment for the application texts</span>
+<a name="l00084"></a>00084         QLocale::Country language = (QLocale::Country)settings.<a class="code" href="../../db/d2b/class_settings.html#a5f006a61e84d5c03a4cfa9afca0acb71" title="This method returns the value of the specified variable.">getValue</a>(<span class="stringliteral">&quot;language&quot;</span>).toInt();
+<a name="l00085"></a>00085         QTranslator translator;
+<a name="l00086"></a>00086         <span class="keywordflow">if</span> (language == QLocale::Germany)
+<a name="l00087"></a>00087         {
+<a name="l00088"></a>00088             <span class="keywordflow">if</span>(translator.load(QString(<span class="stringliteral">&quot;htmlatex_de.qm&quot;</span>)))
+<a name="l00089"></a>00089                 std::cerr &lt;&lt; <span class="stringliteral">&quot;language set to German&quot;</span> &lt;&lt; std::endl;
+<a name="l00090"></a>00090         }
+<a name="l00091"></a>00091         <span class="keywordflow">else</span>
+<a name="l00092"></a>00092         {
+<a name="l00093"></a>00093             <span class="keywordflow">if</span> (translator.load(QString(<span class="stringliteral">&quot;htmlatex_en.qm&quot;</span>)))
+<a name="l00094"></a>00094                 std::cerr &lt;&lt; <span class="stringliteral">&quot;language set to English&quot;</span> &lt;&lt; std::endl;
+<a name="l00095"></a>00095         }
+<a name="l00096"></a>00096         a.installTranslator(&amp;translator);
+<a name="l00097"></a>00097         QTextCodec::setCodecForTr(QTextCodec::codecForName(<span class="stringliteral">&quot;utf8&quot;</span>));
+<a name="l00098"></a>00098         <a class="code" href="../../d6/d56/class_console.html" title="This class provides the command line functionality of the application.">Console</a> console(arguments, options);
+<a name="l00099"></a>00099         exit(0);
+<a name="l00100"></a>00100         <span class="keywordflow">return</span> a.exec();
+<a name="l00101"></a>00101     }
+<a name="l00102"></a>00102 };
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -187,7 +189,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Mar 23 17:49:23 2011 for htmLaTeX by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Mar 23 18:24:36 2011 for htmLaTeX by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
