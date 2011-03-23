@@ -131,9 +131,6 @@ hline----CONTENT----end{longtable}]]></to>
 
 <!-- tr 
 hier wirds kompliziert:
-das sind 2 Spalten und vier Zeilen,
-in der letzten Zeile wird nicht mit "\\"
-abgeschlossen und zwischen den Zellen steht ein "&"
 × & ×\\
 × & ×\\
 × & ×\\
