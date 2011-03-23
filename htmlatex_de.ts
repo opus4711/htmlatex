@@ -244,148 +244,121 @@ Kommando: </translation>
         <translation>Üb&amp;er htmLaTeX</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="101"/>
         <source>Error Reading Document</source>
-        <translation>Fehler beim Lesen der Datei</translation>
+        <translation type="obsolete">Fehler beim Lesen der Datei</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="102"/>
         <source>The reading resulted in an empty document.
 Maybe an error occurred because of a wrong source file type:
 
 </source>
-        <translation>Das Lesen lieferte ein leeres Dokument
+        <translation type="obsolete">Das Lesen lieferte ein leeres Dokument
 Vielleicht ist der Typ der Quelldatei falsch:
 
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="119"/>
-        <location filename="mainwindow.cpp" line="160"/>
         <source>I/O Error</source>
-        <translation>E/A Fehler</translation>
+        <translation type="obsolete">E/A Fehler</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="120"/>
         <source>File doesn&apos;t exit:
 
 </source>
-        <translation>Datei existiert nicht:
+        <translation type="obsolete">Datei existiert nicht:
 
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="150"/>
         <source>conversion successfully performed</source>
-        <translation>Konvertierung erfolgreich</translation>
+        <translation type="obsolete">Konvertierung erfolgreich</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="152"/>
         <source>Information</source>
-        <translation>Hinweis</translation>
+        <translation type="obsolete">Hinweis</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="153"/>
         <source>Conversion successfully performed.</source>
-        <translation>Konvertierung erfolgreich.</translation>
+        <translation type="obsolete">Konvertierung erfolgreich.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="161"/>
         <source>can&apos;t write to file
 
 </source>
-        <translation>kann die Datei nicht zum Schreiben öffnen
+        <translation type="obsolete">kann die Datei nicht zum Schreiben öffnen
 
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="179"/>
         <source>Error - argument list</source>
-        <translation>Fehler - Parameterliste</translation>
+        <translation type="obsolete">Fehler - Parameterliste</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="180"/>
         <source>Unexpected number of arguments</source>
-        <translation>unerwartete Parameterzahl</translation>
+        <translation type="obsolete">unerwartete Parameterzahl</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="200"/>
         <source>Set Source File</source>
-        <translation>Quelldatei auswählen</translation>
+        <translation type="obsolete">Quelldatei auswählen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="222"/>
         <source>Set Target File</source>
-        <translation>Zieldatei auswählen</translation>
+        <translation type="obsolete">Zieldatei auswählen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="261"/>
         <source>MainWindow._saveAs() : textEdit.toPlainText() is empty</source>
-        <translation>MainWindow._saveAs() : textEdit.toPlainText() ist leer</translation>
+        <translation type="obsolete">MainWindow._saveAs() : textEdit.toPlainText() ist leer</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="265"/>
         <source>Save as</source>
-        <translation>Speichern unter</translation>
+        <translation type="obsolete">Speichern unter</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="267"/>
         <source>Tex (*.tex);;PDF (*.pdf)</source>
-        <translation>Tex (*.tex);;PDF (*.pdf)</translation>
+        <translation type="obsolete">Tex (*.tex);;PDF (*.pdf)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="295"/>
         <source>MainWindow._saveAs() - can&apos;t write to file: path: </source>
-        <translation>MainWindow._saveAs() - kann Datei nicht schreiben: Pfad: </translation>
+        <translation type="obsolete">MainWindow._saveAs() - kann Datei nicht schreiben: Pfad: </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="312"/>
         <source>MainWindow._saveAs() save to PDF:
 command: </source>
-        <translation>MainWindow._saveAs() speichere als PDF:
+        <translation type="obsolete">MainWindow._saveAs() speichere als PDF:
 Kommando: </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="319"/>
         <source>MainWindow._saveAs() saved to PDF file</source>
-        <translation>MainWindow._saveAs() als PDF Datei gespeichert</translation>
+        <translation type="obsolete">MainWindow._saveAs() als PDF Datei gespeichert</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="324"/>
         <source>MainWindow._saveAs() en error occurred saving to PDF file: error code </source>
-        <translation>MainWindow._saveAs() beim Speichern als PDF ist ein Fehler aufgetreten: Fehlercode </translation>
+        <translation type="obsolete">MainWindow._saveAs() beim Speichern als PDF ist ein Fehler aufgetreten: Fehlercode </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="329"/>
         <source>MainWindow._saveAs(): file not saved - unknown file type</source>
-        <translation>MainWindow._saveAs(): Datei nicht gespeichert - unbekannter Dateityp</translation>
+        <translation type="obsolete">MainWindow._saveAs(): Datei nicht gespeichert - unbekannter Dateityp</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="336"/>
         <source>Select Input Definition File</source>
-        <translation>Eingabedefinitions-Datei wählen</translation>
+        <translation type="obsolete">Eingabedefinitions-Datei wählen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="338"/>
-        <location filename="mainwindow.cpp" line="346"/>
         <source>XML files (*.xml);;any file (*.*)</source>
-        <translation>XML Dateien (*.xml);; Alle Dateien (*.*)</translation>
+        <translation type="obsolete">XML Dateien (*.xml);; Alle Dateien (*.*)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="344"/>
         <source>Select Output Definition File</source>
-        <translation>&amp;Ausgabedefinition wählen</translation>
+        <translation type="obsolete">&amp;Ausgabedefinition wählen</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="355"/>
         <source>About htmLaTeX</source>
-        <translation>Über htmLaTeX</translation>
+        <translation type="obsolete">Über htmLaTeX</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="356"/>
         <source>htmLaTeX 0.1
 A converter for JavaDoc-generated HTML to LaTeX(c) 2011 Björn (Kaiser|Baß)</source>
-        <translation>htmLaTeX 0.1
+        <translation type="obsolete">htmLaTeX 0.1
 Ein Konverter für JavaDoc generiertes HTML zu LaTeX
 (c) 2011 Björn (Kaiser|Baß)</translation>
     </message>

@@ -2,10 +2,6 @@
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QStringList arguments,
-                           ui(new Ui::MainWindow)
-{
-};
-MainWindow::MainWindow(QStringList arguments,
                        QStringList options,
                        QWidget* parent)
                            : QMainWindow(parent),
@@ -380,6 +376,7 @@ void MainWindow::_treeViewRemoveNode()
             node->getParent()->removeChild(node);
         _model->refresh();
         ui->treeView->expandToDepth(depth);
+    }
 };
 void MainWindow::_updateProgressBar(int percentage)
 {

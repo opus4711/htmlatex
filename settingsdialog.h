@@ -2,7 +2,6 @@
 #define SETTINGSDIALOG_H
 
 #include "settings.h"
-#include "constants.h"
 #include <QDialog>
 #include <QFileInfo>
 #include <QProcess>

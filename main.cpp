@@ -19,6 +19,7 @@ int main(int argc, char* argv[])
      *  x = "-g" or "--gui"
      *  y = "-v" or "--verbose"
      */
+
     QStringList arguments;
     QStringList options;
     for (int i = 1; i < argc; i++)
@@ -34,26 +35,11 @@ int main(int argc, char* argv[])
     if ((bool)options.contains("-g")
         | (bool)options.contains("--gui"))
     {
-        //QApplication a(argc, argv);
+        QApplication a(argc, argv);
         MainWindow w(arguments, options, 0);
-        QPointer<QApplication> app;
-        QPointer<MainWindow> main_window;
-        do
-        {
-            if(app) delete app;
-            if(main_window) delete main_window;
-            app = new QApplication(argc, argv);
-            main_window = new MainWindow(arguments, options, main_window);
-            main_window.data()->show();
-            return_from_event_loop_code = app->exec();
-        }
-        while(return_from_event_loop_code==RESTART_CODE);
-        return return_from_event_loop_code;
-
-        /*
         w.show();
         return a.exec();
-        */
+
     }
     else if (argc == 1)
         std::cerr << "usage: htmlatex INPUTFILE FORMAT INPUTDEFINITION OUTPUTFILE FORMAT OUTPUTDEFINITION [-g|--gui]\n"
