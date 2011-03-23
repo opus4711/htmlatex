@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node2" href="$da/df4/class_q_main_window.html" title="{QMainWindow\n||}" alt="" coords="105,1597,212,1683"/>
+<area shape="rect" id="node4" href="$db/d92/class_converter.html" title="This class converts the QDomDocument&#45;Tree to a textfile by performing the conversions..." alt="" coords="563,1363,701,1917"/>
+<area shape="rect" id="node6" href="$dc/d4f/class_q_object.html" title="{QObject\n||}" alt="" coords="493,487,563,572"/>
+<area shape="rect" id="node28" href="$dc/dfc/class_translation_mapper.html" title="This class processes the input and output definition files to procure data structures..." alt="" coords="173,986,379,1158"/>
+<area shape="rect" id="node8" href="$dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access..." alt="" coords="901,192,1051,867"/>
+<area shape="rect" id="node40" href="$d0/de3/class_model.html" title="This class is derived from the QAbstractItemModel." alt="" coords="911,934,1041,1210"/>
+<area shape="rect" id="node31" href="$d6/dc7/class_document_reader_data.html" title="This class describes how a reference to a subdocument of an input document is defined..." alt="" coords="251,443,469,615"/>
+<area shape="rect" id="node45" href="$d2/dc0/class_item_delegate.html" title="This class is derived from the QItemDelegate class." alt="" coords="943,1433,1137,1847"/>
+<area shape="rect" id="node42" href="$d4/d6d/class_q_abstract_item_model.html" title="{QAbstractItemModel\n||}" alt="" coords="1143,487,1284,572"/>
+<area shape="rect" id="node47" href="$db/d54/class_q_item_delegate.html" title="{QItemDelegate\n||}" alt="" coords="1171,1029,1277,1115"/>
+<area shape="rect" id="node55" href="$da/d37/class_settings_dialog.html" title="The SettingsDialog provides a convenient way to change the application&#39;s settings..." alt="" coords="1289,1563,1423,1717"/>
+<area shape="rect" id="node57" href="$d6/d77/class_q_dialog.html" title="{QDialog\n||}" alt="" coords="1312,1029,1379,1115"/>
+</map>
