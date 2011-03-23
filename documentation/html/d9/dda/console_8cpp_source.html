@@ -88,51 +88,58 @@ window.onload = initDynSections;
 <a name="l00004"></a>00004 {
 <a name="l00005"></a>00005     <a class="code" href="../../d6/d56/class_console.html#aaaf25df4fd4eb963e6019757fd4fdc6b" title="This method processes the application&amp;#39;s startup arguments and performs the conversion...">_performInitialOperations</a>(arguments, options);
 <a name="l00006"></a>00006 };
-<a name="l00007"></a><a class="code" href="../../d6/d56/class_console.html#a32e8c79c8579b1b076e53848c540d4e7">00007</a> <a class="code" href="../../d6/d56/class_console.html#a32e8c79c8579b1b076e53848c540d4e7" title="This is an empty destructor.">Console::~Console</a>()
-<a name="l00008"></a>00008 {
-<a name="l00009"></a>00009 };
-<a name="l00013"></a><a class="code" href="../../d6/d56/class_console.html#aaaf25df4fd4eb963e6019757fd4fdc6b">00013</a> <span class="keywordtype">void</span> <a class="code" href="../../d6/d56/class_console.html#aaaf25df4fd4eb963e6019757fd4fdc6b" title="This method processes the application&amp;#39;s startup arguments and performs the conversion...">Console::_performInitialOperations</a>(QStringList arguments, QStringList options)
-<a name="l00014"></a>00014 {
-<a name="l00023"></a>00023     <span class="keywordflow">if</span> (arguments.count() == 6)
-<a name="l00024"></a>00024     {
-<a name="l00025"></a>00025         <a class="code" href="../../dc/dfc/class_translation_mapper.html">TranslationMapper</a>* translationmapper = <span class="keyword">new</span> <a class="code" href="../../dc/dfc/class_translation_mapper.html">TranslationMapper</a>;
-<a name="l00026"></a>00026         QString sourcefilepath(arguments.at(0));
-<a name="l00027"></a>00027         QString filetypestring(arguments.at(1));
-<a name="l00028"></a>00028         QString inputdefinitionfilepath(arguments.at(2));
-<a name="l00029"></a>00029         translationmapper-&gt;<a class="code" href="../../dc/dfc/class_translation_mapper.html#a72fb3757002231516465d6bf8d97064b">createDocumentReaderData</a>(inputdefinitionfilepath);
-<a name="l00030"></a>00030         QFile file(sourcefilepath);
-<a name="l00031"></a>00031         <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* root = 0;
-<a name="l00032"></a>00032         <span class="keywordflow">if</span> (file.exists())
-<a name="l00033"></a>00033         {
-<a name="l00034"></a>00034             <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">DocumentData::FileType</a> filetype = <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa6efbec37de9f903e00f0b69d46f10dd4">DocumentData::Unknown</a>;
-<a name="l00035"></a>00035             <span class="keywordflow">if</span> (filetypestring.toLower() == <span class="stringliteral">&quot;javadoc&quot;</span>)
-<a name="l00036"></a>00036                 filetype = <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfaf6d2dedb690dd683a9c56c83bf6bc381">DocumentData::JavaDocHTML</a>;
-<a name="l00037"></a>00037             <a class="code" href="../../dc/d86/class_document_reader.html">DocumentReader</a>* reader = <span class="keyword">new</span> <a class="code" href="../../dc/d86/class_document_reader.html">DocumentReader</a>(translationmapper);
-<a name="l00038"></a>00038             root = reader-&gt;<a class="code" href="../../dc/d86/class_document_reader.html#ac0c36f051e4431bcc3127683ee5c4eb6" title="This method.">read</a>(sourcefilepath, filetype);
-<a name="l00039"></a>00039             <span class="keyword">delete</span> reader;
-<a name="l00040"></a>00040             std::cout &lt;&lt; tr(<span class="stringliteral">&quot;Read source file(s) --&gt; success&quot;</span>).toStdString() &lt;&lt; std::endl;
-<a name="l00041"></a>00041         }
-<a name="l00042"></a>00042         <span class="keywordflow">else</span>
-<a name="l00043"></a>00043         {
-<a name="l00044"></a>00044             file.close();
-<a name="l00045"></a>00045             std::cout &lt;&lt; tr(<span class="stringliteral">&quot;I/O error - the source file doesn&#39;t exit: &quot;</span>).toStdString()
-<a name="l00046"></a>00046                     &lt;&lt; sourcefilepath.toStdString() &lt;&lt; std::endl;
-<a name="l00047"></a>00047             <span class="keywordflow">return</span>;
-<a name="l00048"></a>00048         }
-<a name="l00049"></a>00049         file.close();
-<a name="l00050"></a>00050         QString targetfilepath(arguments.at(3));
-<a name="l00051"></a>00051         filetypestring = QString(arguments.at(4));
-<a name="l00052"></a>00052         QString outputdefinitionfilepath(arguments.at(5));
-<a name="l00053"></a>00053         translationmapper-&gt;<a class="code" href="../../dc/dfc/class_translation_mapper.html#af645acc0d24f4d28e020cb36ade9c43c">createOutputElementMap</a>(outputdefinitionfilepath);
-<a name="l00054"></a>00054         file.setFileName(targetfilepath);
-<a name="l00055"></a>00055         <span class="keywordflow">if</span> (file.open(QFile::WriteOnly))
-<a name="l00056"></a>00056         {
-<a name="l00057"></a>00057             <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">DocumentData::FileType</a> filetype = <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa6efbec37de9f903e00f0b69d46f10dd4">DocumentData::Unknown</a>;
-<a name="l00058"></a>00058             <span class="keywordflow">if</span> (filetypestring.toLower() == <span class="stringliteral">&quot;tex&quot;</span>)
-<a name="l00059"></a>00059                 filetype = <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa55ef5a37fbd3d5a90ea73fa99a8653ba">DocumentData::Tex</a>;
+<a name="l00011"></a><a class="code" href="../../d6/d56/class_console.html#aaaf25df4fd4eb963e6019757fd4fdc6b">00011</a> <span class="keywordtype">void</span> <a class="code" href="../../d6/d56/class_console.html#aaaf25df4fd4eb963e6019757fd4fdc6b" title="This method processes the application&amp;#39;s startup arguments and performs the conversion...">Console::_performInitialOperations</a>(QStringList arguments, QStringList options)
+<a name="l00012"></a>00012 {
+<a name="l00013"></a>00013     <span class="comment">/* arguments:</span>
+<a name="l00014"></a>00014 <span class="comment">       0 = source file path</span>
+<a name="l00015"></a>00015 <span class="comment">       1 = source file type</span>
+<a name="l00016"></a>00016 <span class="comment">       2 = input definition file path</span>
+<a name="l00017"></a>00017 <span class="comment">       3 = target file path</span>
+<a name="l00018"></a>00018 <span class="comment">       4 = target file type</span>
+<a name="l00019"></a>00019 <span class="comment">       5 = output definition file path</span>
+<a name="l00020"></a>00020 <span class="comment">    */</span>
+<a name="l00021"></a>00021     <span class="keywordflow">if</span> (arguments.count() == 6)
+<a name="l00022"></a>00022     {
+<a name="l00023"></a>00023         <a class="code" href="../../dc/dfc/class_translation_mapper.html" title="This class processes the input and output definition files to procure data structures...">TranslationMapper</a>* translationmapper = <span class="keyword">new</span> <a class="code" href="../../dc/dfc/class_translation_mapper.html" title="This class processes the input and output definition files to procure data structures...">TranslationMapper</a>;
+<a name="l00024"></a>00024         QString sourcefilepath(arguments.at(0));
+<a name="l00025"></a>00025         QString filetypestring(arguments.at(1));
+<a name="l00026"></a>00026         QString inputdefinitionfilepath(arguments.at(2));
+<a name="l00027"></a>00027         translationmapper-&gt;<a class="code" href="../../dc/dfc/class_translation_mapper.html#a72fb3757002231516465d6bf8d97064b" title="This method processes the input definition file to store a DocumentReaderData object...">createDocumentReaderData</a>(inputdefinitionfilepath);
+<a name="l00028"></a>00028         QFile file(sourcefilepath);
+<a name="l00029"></a>00029         <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* root = 0;
+<a name="l00030"></a>00030         <span class="keywordflow">if</span> (file.exists())
+<a name="l00031"></a>00031         {
+<a name="l00032"></a>00032             <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">DocumentData::FileType</a> filetype = <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa6efbec37de9f903e00f0b69d46f10dd4">DocumentData::Unknown</a>;
+<a name="l00033"></a>00033             <span class="keywordflow">if</span> (filetypestring.toLower() == <span class="stringliteral">&quot;javadoc&quot;</span>)
+<a name="l00034"></a>00034                 filetype = <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfaf6d2dedb690dd683a9c56c83bf6bc381">DocumentData::JavaDocHTML</a>;
+<a name="l00035"></a>00035             <a class="code" href="../../dc/d86/class_document_reader.html" title="The DocumentReader class creates the application&amp;#39;s internal tree structure from...">DocumentReader</a>* reader = <span class="keyword">new</span> <a class="code" href="../../dc/d86/class_document_reader.html" title="The DocumentReader class creates the application&amp;#39;s internal tree structure from...">DocumentReader</a>(translationmapper);
+<a name="l00036"></a>00036             root = reader-&gt;<a class="code" href="../../dc/d86/class_document_reader.html#ac0c36f051e4431bcc3127683ee5c4eb6" title="This method creates a Node tree structure which corresponds to the whole input document...">read</a>(sourcefilepath, filetype);
+<a name="l00037"></a>00037             <span class="keyword">delete</span> reader;
+<a name="l00038"></a>00038             std::cout &lt;&lt; tr(<span class="stringliteral">&quot;Read source file(s) --&gt; success&quot;</span>).toStdString() &lt;&lt; std::endl;
+<a name="l00039"></a>00039         }
+<a name="l00040"></a>00040         <span class="keywordflow">else</span>
+<a name="l00041"></a>00041         {
+<a name="l00042"></a>00042             file.close();
+<a name="l00043"></a>00043             std::cout &lt;&lt; tr(<span class="stringliteral">&quot;I/O error - the source file doesn&#39;t exit: &quot;</span>).toStdString()
+<a name="l00044"></a>00044                     &lt;&lt; sourcefilepath.toStdString() &lt;&lt; std::endl;
+<a name="l00045"></a>00045             <span class="keywordflow">return</span>;
+<a name="l00046"></a>00046         }
+<a name="l00047"></a>00047         file.close();
+<a name="l00048"></a>00048         QString targetfilepath(arguments.at(3));
+<a name="l00049"></a>00049         filetypestring = QString(arguments.at(4));
+<a name="l00050"></a>00050         QString outputdefinitionfilepath(arguments.at(5));
+<a name="l00051"></a>00051         translationmapper-&gt;<a class="code" href="../../dc/dfc/class_translation_mapper.html#af645acc0d24f4d28e020cb36ade9c43c" title="This method processes the output definition file to populate the attribute _outputMap...">createOutputElementMap</a>(outputdefinitionfilepath);
+<a name="l00052"></a>00052         file.setFileName(targetfilepath);
+<a name="l00053"></a>00053         <span class="keywordflow">if</span> (file.open(QFile::WriteOnly))
+<a name="l00054"></a>00054         {
+<a name="l00055"></a>00055             <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">DocumentData::FileType</a> filetype = <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa6efbec37de9f903e00f0b69d46f10dd4">DocumentData::Unknown</a>;
+<a name="l00056"></a>00056             <span class="keywordflow">if</span> (filetypestring.toLower() == <span class="stringliteral">&quot;tex&quot;</span>)
+<a name="l00057"></a>00057                 filetype = <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa55ef5a37fbd3d5a90ea73fa99a8653ba">DocumentData::Tex</a>;
+<a name="l00058"></a>00058             <span class="keywordflow">else</span> <span class="keywordflow">if</span> (filetypestring.toLower() == <span class="stringliteral">&quot;pdf&quot;</span>)
+<a name="l00059"></a>00059                 filetype = <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa33d10945808448dbc741d0171b9b1630">DocumentData::PDF</a>;
 <a name="l00060"></a>00060             <span class="comment">// root - converting...</span>
 <a name="l00061"></a>00061             <a class="code" href="../../db/d92/class_converter.html" title="This class converts the QDomDocument-Tree to a textfile by performing the conversions...">Converter</a>* converter = <span class="keyword">new</span> <a class="code" href="../../db/d92/class_converter.html" title="This class converts the QDomDocument-Tree to a textfile by performing the conversions...">Converter</a>(<span class="keyword">this</span>, translationmapper);
-<a name="l00062"></a>00062             converter-&gt;<a class="code" href="../../db/d92/class_converter.html#a29974f5dfa06b29463de19fe725fade2" title="converts to QString and writes the output file">convert</a>(targetfilepath, root);
+<a name="l00062"></a>00062             converter-&gt;<a class="code" href="../../db/d92/class_converter.html#a4cf5958625dd591a28f768aa134b7367" title="converts to QString and writes the output file">convert</a>(targetfilepath, root, filetype);
 <a name="l00063"></a>00063             std::cout &lt;&lt; tr(<span class="stringliteral">&quot;Perform conversion  --&gt; success&quot;</span>).toStdString() &lt;&lt; std::endl;
 <a name="l00064"></a>00064             <span class="keyword">delete</span> converter;
 <a name="l00065"></a>00065         }
@@ -166,7 +173,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Mar 21 22:09:59 2011 for htmLaTeX by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Mar 23 18:24:36 2011 for htmLaTeX by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

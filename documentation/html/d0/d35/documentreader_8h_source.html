@@ -96,25 +96,24 @@ window.onload = initDynSections;
 <a name="l00012"></a>00012 <span class="preprocessor">#include &lt;QMapIterator&gt;</span>
 <a name="l00013"></a>00013 <span class="preprocessor">#include &lt;QStack&gt;</span>
 <a name="l00014"></a>00014 <span class="preprocessor">#include &lt;QDir&gt;</span>
-<a name="l00015"></a>00015 
-<a name="l00016"></a>00016 <span class="preprocessor">#include &lt;iostream&gt;</span>
-<a name="l00017"></a>00017 
-<a name="l00018"></a><a class="code" href="../../dc/d86/class_document_reader.html">00018</a> <span class="keyword">class </span><a class="code" href="../../dc/d86/class_document_reader.html">DocumentReader</a> : <span class="keyword">public</span> <a class="code" href="../../dc/d4f/class_q_object.html">QObject</a>
-<a name="l00019"></a>00019 {
-<a name="l00020"></a>00020     Q_OBJECT
-<a name="l00021"></a>00021 <span class="keyword">private</span>:
-<a name="l00022"></a><a class="code" href="../../dc/d86/class_document_reader.html#a76f0c7a80f065e282224f05b9347fa69">00022</a>     QFileInfo <a class="code" href="../../dc/d86/class_document_reader.html#a76f0c7a80f065e282224f05b9347fa69">_indexFileInfo</a>;
-<a name="l00023"></a><a class="code" href="../../dc/d86/class_document_reader.html#abd5623420c09c86fb214fef100bcae3b">00023</a>     <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">DocumentData::FileType</a> <a class="code" href="../../dc/d86/class_document_reader.html#abd5623420c09c86fb214fef100bcae3b">_fileType</a>;
-<a name="l00024"></a><a class="code" href="../../dc/d86/class_document_reader.html#a66837c7e38b3d19b29eaecc69d3c114a">00024</a>     QStack&lt;DocumentData*&gt; <a class="code" href="../../dc/d86/class_document_reader.html#a66837c7e38b3d19b29eaecc69d3c114a">_documentStack</a>;
-<a name="l00025"></a><a class="code" href="../../dc/d86/class_document_reader.html#ac4698869443fda104798ed0cbee1aff7">00025</a>     <a class="code" href="../../dc/dfc/class_translation_mapper.html">TranslationMapper</a>* <a class="code" href="../../dc/d86/class_document_reader.html#ac4698869443fda104798ed0cbee1aff7">_translationMapper</a>;
-<a name="l00026"></a><a class="code" href="../../dc/d86/class_document_reader.html#a01f254c0efd1811cb40b5245d3396bb6">00026</a>     <span class="keywordtype">bool</span> <a class="code" href="../../dc/d86/class_document_reader.html#a01f254c0efd1811cb40b5245d3396bb6">_includeSubDocuments</a>;
-<a name="l00027"></a>00027     <span class="keywordtype">void</span> <a class="code" href="../../dc/d86/class_document_reader.html#a0f3976747c1409636bb31bc33356d297">readElement</a>(QDomElement element, <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* node);
-<a name="l00028"></a>00028 <span class="keyword">public</span>:
-<a name="l00029"></a>00029     <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* <a class="code" href="../../dc/d86/class_document_reader.html#ac0c36f051e4431bcc3127683ee5c4eb6" title="This method.">read</a>(QString indexfilepath, <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">DocumentData::FileType</a> filetype);
-<a name="l00031"></a>00031     <a class="code" href="../../dc/d86/class_document_reader.html#a9f57935eacd750ea69f86f5ad281bcbf" title="constructor">DocumentReader</a>(<a class="code" href="../../dc/dfc/class_translation_mapper.html">TranslationMapper</a>* translationmapper);
-<a name="l00032"></a>00032 };
-<a name="l00033"></a>00033 
-<a name="l00034"></a>00034 <span class="preprocessor">#endif // DOCUMENTREADER_H</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00016"></a>00016 
+<a name="l00021"></a><a class="code" href="../../dc/d86/class_document_reader.html">00021</a> <span class="keyword">class </span><a class="code" href="../../dc/d86/class_document_reader.html" title="The DocumentReader class creates the application&amp;#39;s internal tree structure from...">DocumentReader</a> : <span class="keyword">public</span> <a class="code" href="../../dc/d4f/class_q_object.html">QObject</a>
+<a name="l00022"></a>00022 {
+<a name="l00023"></a>00023     Q_OBJECT
+<a name="l00024"></a>00024 <span class="keyword">public</span>:
+<a name="l00031"></a>00031     <a class="code" href="../../dc/d86/class_document_reader.html#a9f57935eacd750ea69f86f5ad281bcbf" title="This is the only constructor.">DocumentReader</a>(<a class="code" href="../../dc/dfc/class_translation_mapper.html" title="This class processes the input and output definition files to procure data structures...">TranslationMapper</a>* translationmapper);
+<a name="l00042"></a>00042     <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* <a class="code" href="../../dc/d86/class_document_reader.html#ac0c36f051e4431bcc3127683ee5c4eb6" title="This method creates a Node tree structure which corresponds to the whole input document...">read</a>(QString indexfilepath, <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">DocumentData::FileType</a> filetype);
+<a name="l00043"></a>00043 <span class="keyword">private</span>:
+<a name="l00049"></a><a class="code" href="../../dc/d86/class_document_reader.html#ac4698869443fda104798ed0cbee1aff7">00049</a>     <a class="code" href="../../dc/dfc/class_translation_mapper.html" title="This class processes the input and output definition files to procure data structures...">TranslationMapper</a>* <a class="code" href="../../dc/d86/class_document_reader.html#ac4698869443fda104798ed0cbee1aff7" title="The _translationMapper provides two data objects: firstly a DocumentReaderData object...">_translationMapper</a>;
+<a name="l00054"></a><a class="code" href="../../dc/d86/class_document_reader.html#a76f0c7a80f065e282224f05b9347fa69">00054</a>     QFileInfo <a class="code" href="../../dc/d86/class_document_reader.html#a76f0c7a80f065e282224f05b9347fa69" title="This attribute provides detailed information about the input index file such as absolute...">_indexFileInfo</a>;
+<a name="l00058"></a><a class="code" href="../../dc/d86/class_document_reader.html#abd5623420c09c86fb214fef100bcae3b">00058</a>     <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">DocumentData::FileType</a> <a class="code" href="../../dc/d86/class_document_reader.html#abd5623420c09c86fb214fef100bcae3b" title="This attribute indicates of which type the input document is.">_fileType</a>;
+<a name="l00065"></a><a class="code" href="../../dc/d86/class_document_reader.html#a66837c7e38b3d19b29eaecc69d3c114a">00065</a>     QStack&lt;DocumentData*&gt; <a class="code" href="../../dc/d86/class_document_reader.html#a66837c7e38b3d19b29eaecc69d3c114a" title="This stack is populated with DocumentData objects when processing the input document...">_documentStack</a>;
+<a name="l00070"></a><a class="code" href="../../dc/d86/class_document_reader.html#a01f254c0efd1811cb40b5245d3396bb6">00070</a>     <span class="keywordtype">bool</span> <a class="code" href="../../dc/d86/class_document_reader.html#a01f254c0efd1811cb40b5245d3396bb6" title="This attribute indicates whether or not subdocuments are included by the input document...">_includeSubDocuments</a>;
+<a name="l00083"></a>00083     <span class="keywordtype">void</span> <a class="code" href="../../dc/d86/class_document_reader.html#ae4950d9911bae6d33d3e727a25a3e13d" title="This method processes a single document recursively.">_readElement</a>(QDomElement element, <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* node);
+<a name="l00084"></a>00084 };
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086 <span class="preprocessor">#endif // DOCUMENTREADER_H</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -130,7 +129,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Mar 21 22:09:59 2011 for htmLaTeX by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Mar 23 18:24:36 2011 for htmLaTeX by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

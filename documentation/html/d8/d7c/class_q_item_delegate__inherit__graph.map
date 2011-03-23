@@ -1,3 +1,3 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$d2/dc0/class_item_delegate.html" title="{ItemDelegate\n|&#45; model\l&#45; colorFocusLine\l&#45; colorFocusBackground\l&#45; colorMarked\l&#45; color\l&#45; colorLayer0\l&#45; colorLayer1\l|+ setColorFocusLine()\l+ getColorFocusLine()\l+ setColorFocusBackground()\l+ getColorFocusBackground()\l+ setColorMarked()\l+ getColorMarked()\l+ setColor()\l+ getColor()\l+ setColorLayer0()\l+ getColorLayer0()\l+ setColorLayer1()\l+ getColorLayer1()\l+ paint()\l+ ItemDelegate()\l}" alt="" coords="5,139,200,554"/>
+<area shape="rect" id="node3" href="$d2/dc0/class_item_delegate.html" title="This class is derived from the QItemDelegate class." alt="" coords="5,139,200,554"/>
 </map>

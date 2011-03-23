@@ -123,6 +123,9 @@ window.onload = initDynSections;
 <li>_about()
 : <a class="el" href="d9/dc6/class_main_window.html#ace2b4636cef1dbe23344c9c1f099fba7">MainWindow</a>
 </li>
+<li>_apply()
+: <a class="el" href="da/d37/class_settings_dialog.html#ae113dfa608085676eede0c96d300f2a4">SettingsDialog</a>
+</li>
 <li>_consume()
 : <a class="el" href="db/d92/class_converter.html#a194b1b9315ea8afa115a5af42d268378">Converter</a>
 </li>
@@ -155,19 +158,32 @@ window.onload = initDynSections;
 </li>
 <li>_open()
 : <a class="el" href="d9/dc6/class_main_window.html#aff09ca5656245e01a603bb2d314aca2c">MainWindow</a>
+, <a class="el" href="da/d37/class_settings_dialog.html#ac59f0f61466d00a17aea420695f1695d">SettingsDialog</a>
 </li>
 <li>_peekParent()
 : <a class="el" href="db/d92/class_converter.html#a956ecc7a7e8a777b48a0d45f7c857079">Converter</a>
 </li>
 <li>_performInitialOperations()
-: <a class="el" href="d9/dc6/class_main_window.html#a8960486ce1aded4a4918746ee1db1b0b">MainWindow</a>
-, <a class="el" href="d6/d56/class_console.html#aaaf25df4fd4eb963e6019757fd4fdc6b">Console</a>
+: <a class="el" href="d6/d56/class_console.html#aaaf25df4fd4eb963e6019757fd4fdc6b">Console</a>
+, <a class="el" href="d9/dc6/class_main_window.html#a8960486ce1aded4a4918746ee1db1b0b">MainWindow</a>
+</li>
+<li>_preprocessHTML()
+: <a class="el" href="d9/dab/class_document_data.html#a722c844daea2dad392c6ad5761a9f0ab">DocumentData</a>
+</li>
+<li>_preprocessingHook()
+: <a class="el" href="d9/dab/class_document_data.html#aa922760e4552fe1e2136e566906f364e">DocumentData</a>
+</li>
+<li>_readElement()
+: <a class="el" href="dc/d86/class_document_reader.html#ae4950d9911bae6d33d3e727a25a3e13d">DocumentReader</a>
 </li>
 <li>_replace()
 : <a class="el" href="db/d92/class_converter.html#a3a09908e5a2b925b90675dd1cab01998">Converter</a>
 </li>
 <li>_save()
 : <a class="el" href="db/d2b/class_settings.html#ada278a5bf0aa6ba1faea5e10e775f125">Settings</a>
+</li>
+<li>_saveAs()
+: <a class="el" href="d9/dc6/class_main_window.html#afcb57b032e6e71c4827f9a3b3b66148a">MainWindow</a>
 </li>
 <li>_setInputDefinition()
 : <a class="el" href="d9/dc6/class_main_window.html#a1e3c276ba09a8929bb610019261e4957">MainWindow</a>
@@ -210,9 +226,6 @@ window.onload = initDynSections;
 <li>addRequiresNode()
 : <a class="el" href="d6/d9e/class_translation_data.html#ac11890ee4b433f341b335b1deb4d81d3">TranslationData</a>
 </li>
-<li>apply()
-: <a class="el" href="da/d37/class_settings_dialog.html#aa0d7c1ec47555d438b86912af4830819">SettingsDialog</a>
-</li>
 <li>attributes()
 : <a class="el" href="da/d8e/class_translation_data_node.html#aadf147aefaf8c609f7b166a8633a754f">TranslationDataNode</a>
 </li>
@@ -239,7 +252,7 @@ window.onload = initDynSections;
 : <a class="el" href="da/d8e/class_translation_data_node.html#a755068a65b1b7748e88c8e8f70c63425">TranslationDataNode</a>
 </li>
 <li>convert()
-: <a class="el" href="db/d92/class_converter.html#a29974f5dfa06b29463de19fe725fade2">Converter</a>
+: <a class="el" href="db/d92/class_converter.html#a4cf5958625dd591a28f768aa134b7367">Converter</a>
 </li>
 <li>Converter()
 : <a class="el" href="db/d92/class_converter.html#a88d08022a02573ad2496685ab7a1c63a">Converter</a>
@@ -272,9 +285,6 @@ window.onload = initDynSections;
 <h3><a class="anchor" id="index_f">- f -</a></h3><ul>
 <li>fileInfo()
 : <a class="el" href="d9/dab/class_document_data.html#a366b45b728e63fffa5c5264edd13987a">DocumentData</a>
-</li>
-<li>fileType()
-: <a class="el" href="d9/dab/class_document_data.html#a83e7146c41fbda999b3f94b490e792f7">DocumentData</a>
 </li>
 <li>firstChild()
 : <a class="el" href="dc/d8f/class_node.html#a3db586ddaa3e1cda137a5e24d8188006">Node</a>
@@ -363,17 +373,11 @@ window.onload = initDynSections;
 <li>index()
 : <a class="el" href="d0/de3/class_model.html#af35be44a7563817b57b60d2773b333eb">Model</a>
 </li>
-<li>indexFileInfo()
-: <a class="el" href="d9/dab/class_document_data.html#aa509a141b487e4626b0e8d6118f4e71c">DocumentData</a>
-</li>
 <li>indexOf()
 : <a class="el" href="dc/d8f/class_node.html#aee9af3f3d7ebcb6bee92928a434a3121">Node</a>
 </li>
 <li>isLeaf()
 : <a class="el" href="db/d92/class_converter.html#a7e89d4b4faf4743fb82ae088dd1793ee">Converter</a>
-</li>
-<li>isPreprocessed()
-: <a class="el" href="d9/dab/class_document_data.html#a4496b05dfe8d598fd2621e2911469f84">DocumentData</a>
 </li>
 <li>ItemDelegate()
 : <a class="el" href="d2/dc0/class_item_delegate.html#a1d08e216f5df5d8f8ead2200567027f9">ItemDelegate</a>
@@ -444,21 +448,12 @@ window.onload = initDynSections;
 <li>parent()
 : <a class="el" href="d0/de3/class_model.html#ad42ea4d5cd45376c48852e484614d3e9">Model</a>
 </li>
-<li>preprocessHTML()
-: <a class="el" href="d9/dab/class_document_data.html#a591cc7c2c41216f2aac07b565c0a5081">DocumentData</a>
-</li>
-<li>preprocessingHook()
-: <a class="el" href="d9/dab/class_document_data.html#a0c1e9a1e6cbc19289cb23b840bbb4482">DocumentData</a>
-</li>
 </ul>
 
 
 <h3><a class="anchor" id="index_r">- r -</a></h3><ul>
 <li>read()
 : <a class="el" href="dc/d86/class_document_reader.html#ac0c36f051e4431bcc3127683ee5c4eb6">DocumentReader</a>
-</li>
-<li>readElement()
-: <a class="el" href="dc/d86/class_document_reader.html#a0f3976747c1409636bb31bc33356d297">DocumentReader</a>
 </li>
 <li>refresh()
 : <a class="el" href="d0/de3/class_model.html#ab431411acff5db66cf5b54c703d3f187">Model</a>
@@ -552,7 +547,7 @@ window.onload = initDynSections;
 : <a class="el" href="da/d8e/class_translation_data_node.html#a99121be180e6c58de86d109bbb0045a1">TranslationDataNode</a>
 </li>
 <li>TranslationMapper()
-: <a class="el" href="dc/dfc/class_translation_mapper.html#a70b15b54764aee44f98bcd3787b59005">TranslationMapper</a>
+: <a class="el" href="dc/dfc/class_translation_mapper.html#ac42ce7c73f08f1041c89b26f0c4d1f83">TranslationMapper</a>
 </li>
 </ul>
 
@@ -568,9 +563,6 @@ window.onload = initDynSections;
 
 
 <h3><a class="anchor" id="index_0x7e">- ~ -</a></h3><ul>
-<li>~Console()
-: <a class="el" href="d6/d56/class_console.html#a32e8c79c8579b1b076e53848c540d4e7">Console</a>
-</li>
 <li>~MainWindow()
 : <a class="el" href="d9/dc6/class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7">MainWindow</a>
 </li>
@@ -599,7 +591,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Mar 21 22:09:59 2011 for htmLaTeX by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Mar 23 18:24:36 2011 for htmLaTeX by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

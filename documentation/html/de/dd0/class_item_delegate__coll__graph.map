@@ -1,6 +1,6 @@
 <map id="G" name="G">
 <area shape="rect" id="node2" href="$db/d54/class_q_item_delegate.html" title="{QItemDelegate\n||}" alt="" coords="5,1029,112,1115"/>
-<area shape="rect" id="node6" href="$d0/de3/class_model.html" title="{Model\n|&#45; _root\l|+ nodeFromIndex()\l+ setRootNode()\l+ root()\l+ index()\l+ parent()\l+ rowCount()\l+ columnCount()\l+ data()\l+ headerData()\l+ refresh()\l+ Model()\l+ ~Model()\l}" alt="" coords="265,934,396,1210"/>
+<area shape="rect" id="node6" href="$d0/de3/class_model.html" title="This class is derived from the QAbstractItemModel." alt="" coords="265,934,396,1210"/>
 <area shape="rect" id="node8" href="$d4/d6d/class_q_abstract_item_model.html" title="{QAbstractItemModel\n||}" alt="" coords="207,487,348,572"/>
 <area shape="rect" id="node10" href="$dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access..." alt="" coords="372,192,521,867"/>
 </map>

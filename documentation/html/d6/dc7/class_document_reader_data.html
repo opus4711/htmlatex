@@ -86,6 +86,9 @@ window.onload = initDynSections;
 </div>
 <div class="contents">
 <h1>DocumentReaderData Class Reference</h1><!-- doxytag: class="DocumentReaderData" -->
+<p>This class describes how a reference to a subdocument of an input document is defined.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html">documentreaderdata.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for DocumentReaderData:</div>
@@ -96,18 +99,27 @@ Collaboration diagram for DocumentReaderData:</div>
 <p><a href="../../d1/d32/class_document_reader_data-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dc7/class_document_reader_data.html#a6440e33eab9b60b79d06da5f3eefa380">getTagName</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dc7/class_document_reader_data.html#a868d864548359d1e68e492751eae97c0">getUrlContainingAttributeName</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dc7/class_document_reader_data.html#a0a1f280bb09f4338dd76486d931fb4e9">DocumentReaderData</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is an empty constructor which initializes the attributes _tagName and _urlContainingAttributeName with empty strings.  <a href="#a0a1f280bb09f4338dd76486d931fb4e9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dc7/class_document_reader_data.html#a5172ec0b1200e72482a46fd22681c2b0">DocumentReaderData</a> (const <a class="el" href="../../d6/dc7/class_document_reader_data.html">DocumentReaderData</a> &amp;documentreaderdata)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the copy constructor.  <a href="#a5172ec0b1200e72482a46fd22681c2b0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dc7/class_document_reader_data.html#a1c5bcd33a6d158a4814047c20f2bace1">DocumentReaderData</a> (QString tagname, QString urlcontainingattributename)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This constructor initializes the attributes _tagName and _urlContainingAttributeName with the given string values.  <a href="#a1c5bcd33a6d158a4814047c20f2bace1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dc7/class_document_reader_data.html#a6440e33eab9b60b79d06da5f3eefa380">getTagName</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This method returns the name of that XML tag which decribes a reference to a subdocument in the XML represented input document.  <a href="#a6440e33eab9b60b79d06da5f3eefa380"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dc7/class_document_reader_data.html#a868d864548359d1e68e492751eae97c0">getUrlContainingAttributeName</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This method returns the name of that XML attribute belonging to the XML tag specified by _tagName and which holds the file path to a subdocument in the XML represented input document.  <a href="#a868d864548359d1e68e492751eae97c0"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dc7/class_document_reader_data.html#ac51ff26da8bcbc5faf0f6651aebe8745">_tagName</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This attribute contains the name of that XML tag which decribes a reference to a subdocument in the XML represented input document.  <a href="#ac51ff26da8bcbc5faf0f6651aebe8745"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dc7/class_document_reader_data.html#a466064d2ffabcf570fe8df7c4b29fd5a">_urlContainingAttributeName</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This attribute contains the name of that XML attribute belonging to the XML tag specified by _tagName and which holds the file path to a subdocument in the XML represented input document.  <a href="#a466064d2ffabcf570fe8df7c4b29fd5a"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>This class describes how a reference to a subdocument of an input document is defined. </p>
+<p>Example: In (X)HTML a subdocumet is referenced using the  tag with its attribute "href". The <a class="el" href="../../dc/dfc/class_translation_mapper.html" title="This class processes the input and output definition files to procure data structures...">TranslationMapper</a> creates an instance of the <a class="el" href="../../d6/dc7/class_document_reader_data.html" title="This class describes how a reference to a subdocument of an input document is defined...">DocumentReaderData</a> class using the document definition file. Finally the <a class="el" href="../../dc/d86/class_document_reader.html" title="The DocumentReader class creates the application&#39;s internal tree structure from...">DocumentReader</a> obtains the <a class="el" href="../../d6/dc7/class_document_reader_data.html" title="This class describes how a reference to a subdocument of an input document is defined...">DocumentReaderData</a> object from the <a class="el" href="../../dc/dfc/class_translation_mapper.html" title="This class processes the input and output definition files to procure data structures...">TranslationMapper</a>. <dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00006">6</a> of file <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html">documentreaderdata.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00014">14</a> of file <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html">documentreaderdata.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a0a1f280bb09f4338dd76486d931fb4e9"></a><!-- doxytag: member="DocumentReaderData::DocumentReaderData" ref="a0a1f280bb09f4338dd76486d931fb4e9" args="()" -->
 <div class="memitem">
@@ -123,6 +135,9 @@ Collaboration diagram for DocumentReaderData:</div>
       </table>
 </div>
 <div class="memdoc">
+
+<p>This is an empty constructor which initializes the attributes _tagName and _urlContainingAttributeName with empty strings. </p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00003">3</a> of file <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html">documentreaderdata.cpp</a>.</p>
 
@@ -144,9 +159,12 @@ Collaboration diagram for DocumentReaderData:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00006">6</a> of file <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html">documentreaderdata.cpp</a>.</p>
+<p>This is the copy constructor. </p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
 
-<p>References <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00009">_tagName</a>, <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00010">_urlContainingAttributeName</a>, <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00016">getTagName()</a>, and <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00020">getUrlContainingAttributeName()</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00007">7</a> of file <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html">documentreaderdata.cpp</a>.</p>
+
+<p>References <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00038">_tagName</a>, <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00044">_urlContainingAttributeName</a>, <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00017">getTagName()</a>, and <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00021">getUrlContainingAttributeName()</a>.</p>
 
 </div>
 </div>
@@ -175,9 +193,24 @@ Collaboration diagram for DocumentReaderData:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00011">11</a> of file <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html">documentreaderdata.cpp</a>.</p>
+<p>This constructor initializes the attributes _tagName and _urlContainingAttributeName with the given string values. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>&lt;tagname&gt;</em>&nbsp;</td><td>contains a XML tag name. <dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>&lt;urlcontainingattributename&gt;</em>&nbsp;</td><td>contains a XML attribute name. <dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>References <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00009">_tagName</a>, and <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00010">_urlContainingAttributeName</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00012">12</a> of file <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html">documentreaderdata.cpp</a>.</p>
+
+<p>References <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00038">_tagName</a>, and <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00044">_urlContainingAttributeName</a>.</p>
 
 </div>
 </div>
@@ -197,11 +230,14 @@ Collaboration diagram for DocumentReaderData:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00016">16</a> of file <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html">documentreaderdata.cpp</a>.</p>
+<p>This method returns the name of that XML tag which decribes a reference to a subdocument in the XML represented input document. </p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
 
-<p>References <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00009">_tagName</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00017">17</a> of file <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html">documentreaderdata.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00006">DocumentReaderData()</a>, and <a class="el" href="../../d5/d0f/documentreader_8cpp_source.html#l00076">DocumentReader::readElement()</a>.</p>
+<p>References <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00038">_tagName</a>.</p>
+
+<p>Referenced by <a class="el" href="../../d5/d0f/documentreader_8cpp_source.html#l00080">DocumentReader::_readElement()</a>, and <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00007">DocumentReaderData()</a>.</p>
 
 </div>
 </div>
@@ -220,11 +256,14 @@ Collaboration diagram for DocumentReaderData:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00020">20</a> of file <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html">documentreaderdata.cpp</a>.</p>
+<p>This method returns the name of that XML attribute belonging to the XML tag specified by _tagName and which holds the file path to a subdocument in the XML represented input document. </p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
 
-<p>References <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00010">_urlContainingAttributeName</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00021">21</a> of file <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html">documentreaderdata.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00006">DocumentReaderData()</a>, and <a class="el" href="../../d5/d0f/documentreader_8cpp_source.html#l00076">DocumentReader::readElement()</a>.</p>
+<p>References <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00044">_urlContainingAttributeName</a>.</p>
+
+<p>Referenced by <a class="el" href="../../d5/d0f/documentreader_8cpp_source.html#l00080">DocumentReader::_readElement()</a>, and <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00007">DocumentReaderData()</a>.</p>
 
 </div>
 </div>
@@ -240,9 +279,12 @@ Collaboration diagram for DocumentReaderData:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00009">9</a> of file <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html">documentreaderdata.h</a>.</p>
+<p>This attribute contains the name of that XML tag which decribes a reference to a subdocument in the XML represented input document. </p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
 
-<p>Referenced by <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00006">DocumentReaderData()</a>, and <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00016">getTagName()</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00038">38</a> of file <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html">documentreaderdata.h</a>.</p>
+
+<p>Referenced by <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00007">DocumentReaderData()</a>, and <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00017">getTagName()</a>.</p>
 
 </div>
 </div>
@@ -257,9 +299,12 @@ Collaboration diagram for DocumentReaderData:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00010">10</a> of file <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html">documentreaderdata.h</a>.</p>
+<p>This attribute contains the name of that XML attribute belonging to the XML tag specified by _tagName and which holds the file path to a subdocument in the XML represented input document. </p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
 
-<p>Referenced by <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00006">DocumentReaderData()</a>, and <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00020">getUrlContainingAttributeName()</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html#l00044">44</a> of file <a class="el" href="../../d2/dfe/documentreaderdata_8h_source.html">documentreaderdata.h</a>.</p>
+
+<p>Referenced by <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00007">DocumentReaderData()</a>, and <a class="el" href="../../d6/d8e/documentreaderdata_8cpp_source.html#l00021">getUrlContainingAttributeName()</a>.</p>
 
 </div>
 </div>
@@ -282,7 +327,7 @@ Collaboration diagram for DocumentReaderData:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Mar 21 22:10:00 2011 for htmLaTeX by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Mar 23 18:24:36 2011 for htmLaTeX by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

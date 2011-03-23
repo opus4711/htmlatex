@@ -87,20 +87,21 @@ window.onload = initDynSections;
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
 <a name="l00004"></a>00004 <span class="preprocessor">#include &lt;QString&gt;</span>
 <a name="l00005"></a>00005 
-<a name="l00006"></a><a class="code" href="../../d6/dc7/class_document_reader_data.html">00006</a> <span class="keyword">class </span><a class="code" href="../../d6/dc7/class_document_reader_data.html">DocumentReaderData</a>
-<a name="l00007"></a>00007 {
-<a name="l00008"></a>00008 <span class="keyword">private</span>:
-<a name="l00009"></a><a class="code" href="../../d6/dc7/class_document_reader_data.html#ac51ff26da8bcbc5faf0f6651aebe8745">00009</a>     QString <a class="code" href="../../d6/dc7/class_document_reader_data.html#ac51ff26da8bcbc5faf0f6651aebe8745">_tagName</a>;
-<a name="l00010"></a><a class="code" href="../../d6/dc7/class_document_reader_data.html#a466064d2ffabcf570fe8df7c4b29fd5a">00010</a>     QString <a class="code" href="../../d6/dc7/class_document_reader_data.html#a466064d2ffabcf570fe8df7c4b29fd5a">_urlContainingAttributeName</a>;
-<a name="l00011"></a>00011 <span class="keyword">public</span>:
-<a name="l00012"></a>00012     QString <a class="code" href="../../d6/dc7/class_document_reader_data.html#a6440e33eab9b60b79d06da5f3eefa380">getTagName</a>() <span class="keyword">const</span>;
-<a name="l00013"></a>00013     QString <a class="code" href="../../d6/dc7/class_document_reader_data.html#a868d864548359d1e68e492751eae97c0">getUrlContainingAttributeName</a>() <span class="keyword">const</span>;
-<a name="l00014"></a>00014     <a class="code" href="../../d6/dc7/class_document_reader_data.html#a0a1f280bb09f4338dd76486d931fb4e9">DocumentReaderData</a>();
-<a name="l00015"></a>00015     <a class="code" href="../../d6/dc7/class_document_reader_data.html#a0a1f280bb09f4338dd76486d931fb4e9">DocumentReaderData</a>(<span class="keyword">const</span> <a class="code" href="../../d6/dc7/class_document_reader_data.html">DocumentReaderData</a>&amp; documentreaderdata);
-<a name="l00016"></a>00016     <a class="code" href="../../d6/dc7/class_document_reader_data.html#a0a1f280bb09f4338dd76486d931fb4e9">DocumentReaderData</a>(QString tagname, QString urlcontainingattributename);
-<a name="l00017"></a>00017 };
-<a name="l00018"></a>00018 
-<a name="l00019"></a>00019 <span class="preprocessor">#endif // DOCUMENTREADERDATA_H</span>
+<a name="l00014"></a><a class="code" href="../../d6/dc7/class_document_reader_data.html">00014</a> <span class="keyword">class </span><a class="code" href="../../d6/dc7/class_document_reader_data.html" title="This class describes how a reference to a subdocument of an input document is defined...">DocumentReaderData</a>
+<a name="l00015"></a>00015 {
+<a name="l00016"></a>00016 <span class="keyword">public</span>:
+<a name="l00021"></a>00021     <a class="code" href="../../d6/dc7/class_document_reader_data.html#a0a1f280bb09f4338dd76486d931fb4e9" title="This is an empty constructor which initializes the attributes _tagName and _urlContainingAttributeNa...">DocumentReaderData</a>();
+<a name="l00025"></a>00025     <a class="code" href="../../d6/dc7/class_document_reader_data.html#a0a1f280bb09f4338dd76486d931fb4e9" title="This is an empty constructor which initializes the attributes _tagName and _urlContainingAttributeNa...">DocumentReaderData</a>(<span class="keyword">const</span> <a class="code" href="../../d6/dc7/class_document_reader_data.html" title="This class describes how a reference to a subdocument of an input document is defined...">DocumentReaderData</a>&amp; documentreaderdata);
+<a name="l00032"></a>00032     <a class="code" href="../../d6/dc7/class_document_reader_data.html#a0a1f280bb09f4338dd76486d931fb4e9" title="This is an empty constructor which initializes the attributes _tagName and _urlContainingAttributeNa...">DocumentReaderData</a>(QString tagname, QString urlcontainingattributename);
+<a name="l00033"></a>00033 <span class="keyword">private</span>:
+<a name="l00038"></a><a class="code" href="../../d6/dc7/class_document_reader_data.html#ac51ff26da8bcbc5faf0f6651aebe8745">00038</a>     QString <a class="code" href="../../d6/dc7/class_document_reader_data.html#ac51ff26da8bcbc5faf0f6651aebe8745" title="This attribute contains the name of that XML tag which decribes a reference to a...">_tagName</a>;
+<a name="l00044"></a><a class="code" href="../../d6/dc7/class_document_reader_data.html#a466064d2ffabcf570fe8df7c4b29fd5a">00044</a>     QString <a class="code" href="../../d6/dc7/class_document_reader_data.html#a466064d2ffabcf570fe8df7c4b29fd5a" title="This attribute contains the name of that XML attribute belonging to the XML tag specified...">_urlContainingAttributeName</a>;
+<a name="l00045"></a>00045 <span class="keyword">public</span>:
+<a name="l00050"></a>00050     QString <a class="code" href="../../d6/dc7/class_document_reader_data.html#a6440e33eab9b60b79d06da5f3eefa380" title="This method returns the name of that XML tag which decribes a reference to a subdocument...">getTagName</a>() <span class="keyword">const</span>;
+<a name="l00056"></a>00056     QString <a class="code" href="../../d6/dc7/class_document_reader_data.html#a868d864548359d1e68e492751eae97c0" title="This method returns the name of that XML attribute belonging to the XML tag specified...">getUrlContainingAttributeName</a>() <span class="keyword">const</span>;
+<a name="l00057"></a>00057 };
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 <span class="preprocessor">#endif // DOCUMENTREADERDATA_H</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -116,7 +117,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Mar 21 22:09:59 2011 for htmLaTeX by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Mar 23 18:24:36 2011 for htmLaTeX by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

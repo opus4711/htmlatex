@@ -1,3 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node2" href="$d6/dc7/class_document_reader_data.html" title="{DocumentReaderData\n|&#45; _tagName\l&#45; _urlContainingAttributeName\l|+ getTagName()\l+ getUrlContainingAttributeName()\l+ DocumentReaderData()\l+ DocumentReaderData()\l+ DocumentReaderData()\l}" alt="" coords="5,174,224,346"/>
+<area shape="rect" id="node2" href="$dc/d4f/class_q_object.html" title="{QObject\n||}" alt="" coords="5,217,75,303"/>
+<area shape="rect" id="node4" href="$d6/dc7/class_document_reader_data.html" title="This class describes how a reference to a subdocument of an input document is defined..." alt="" coords="99,174,317,346"/>
 </map>

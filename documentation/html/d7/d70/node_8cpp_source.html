@@ -90,7 +90,7 @@ window.onload = initDynSections;
 <a name="l00006"></a>00006     this-&gt;<a class="code" href="../../dc/d8f/class_node.html#afa6e4dd4ab46cb4513b9345b3c7c62be" title="The _id is a unique number which allows identification of the node.">_id</a> = <a class="code" href="../../dc/d8f/class_node.html#ae62ad22a7db1147736d9b7cb6b56069b" title="The _instCount class member counts the created instances of the Node class.">_instCount</a>;
 <a name="l00007"></a>00007     this-&gt;<a class="code" href="../../dc/d8f/class_node.html#a3cd8d11fe5c9a472a0b1734b05797a11" title="This is the name of the node.">_name</a> = node.<a class="code" href="../../dc/d8f/class_node.html#adc626a713f53fad13cc0b0e0c0785bff" title="This method returns the name of the node.">getName</a>();
 <a name="l00008"></a>00008     this-&gt;<a class="code" href="../../dc/d8f/class_node.html#acdb60910af74035b408656d0c6df55bf" title="This is the content of the node.">_content</a> = node.<a class="code" href="../../dc/d8f/class_node.html#a7c9a368df59394dd7bd1ffcb90cc662b" title="This method returns the content of the node.">getContent</a>();
-<a name="l00009"></a>00009     this-&gt;<a class="code" href="../../dc/d8f/class_node.html#a7440dccb5fc60eeadfd11d47ae7dd671" title="The _layer numbers allows to determine to which layer / generation a node belongs...">_layer</a> = node.<a class="code" href="../../dc/d8f/class_node.html#ae5233c7cb9241933d7ea129e9a92862a" title="This method returns the _layer number of the node.">getLayer</a>();
+<a name="l00009"></a>00009     this-&gt;<a class="code" href="../../dc/d8f/class_node.html#a7440dccb5fc60eeadfd11d47ae7dd671" title="The _layer number allows to determine to which layer / generation a node belongs...">_layer</a> = node.<a class="code" href="../../dc/d8f/class_node.html#ae5233c7cb9241933d7ea129e9a92862a" title="This method returns the _layer number of the node.">getLayer</a>();
 <a name="l00010"></a>00010     this-&gt;<a class="code" href="../../dc/d8f/class_node.html#a4609e1daa55bd61615102d7ca6e439d6" title="This pointer points to the parent node.">_parent</a> = node.<a class="code" href="../../dc/d8f/class_node.html#aee7fa50380cd3d5fd82c022e45ba2d37" title="This method returns a pointer pointing to the parent node object.">getParent</a>();
 <a name="l00011"></a>00011     this-&gt;<a class="code" href="../../dc/d8f/class_node.html#a1c074521db2ab505ec73c6ef048ff9da" title="The _treeLevel attribute holds the greatest distance of a leaf to the root of the...">_treeLevel</a> = node.<a class="code" href="../../dc/d8f/class_node.html#a120a3dcc4be7de036bd0a8ea4853846b" title="This method returns the _treeLevel number (class member).">getTreeLevel</a>();
 <a name="l00012"></a>00012     <span class="comment">// add child nodes</span>
@@ -136,7 +136,7 @@ window.onload = initDynSections;
 <a name="l00052"></a>00052 };
 <a name="l00053"></a><a class="code" href="../../dc/d8f/class_node.html#ae5233c7cb9241933d7ea129e9a92862a">00053</a> qint64 <a class="code" href="../../dc/d8f/class_node.html#ae5233c7cb9241933d7ea129e9a92862a" title="This method returns the _layer number of the node.">Node::getLayer</a>()<span class="keyword"> const</span>
 <a name="l00054"></a>00054 <span class="keyword"></span>{
-<a name="l00055"></a>00055     <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../dc/d8f/class_node.html#a7440dccb5fc60eeadfd11d47ae7dd671" title="The _layer numbers allows to determine to which layer / generation a node belongs...">_layer</a>;
+<a name="l00055"></a>00055     <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../dc/d8f/class_node.html#a7440dccb5fc60eeadfd11d47ae7dd671" title="The _layer number allows to determine to which layer / generation a node belongs...">_layer</a>;
 <a name="l00056"></a>00056 };
 <a name="l00057"></a><a class="code" href="../../dc/d8f/class_node.html#adc626a713f53fad13cc0b0e0c0785bff">00057</a> QString <a class="code" href="../../dc/d8f/class_node.html#adc626a713f53fad13cc0b0e0c0785bff" title="This method returns the name of the node.">Node::getName</a>()<span class="keyword"> const</span>
 <a name="l00058"></a>00058 <span class="keyword"></span>{
@@ -267,7 +267,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Mar 21 22:09:59 2011 for htmLaTeX by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Mar 23 18:24:36 2011 for htmLaTeX by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

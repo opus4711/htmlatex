@@ -102,7 +102,7 @@ Collaboration diagram for Converter:</div>
 <div class="dynsection">
 <div class="center"><img src="../../d3/da6/class_converter__coll__graph.png" border="0" usemap="#_converter_coll__map" alt="Collaboration graph"/></div>
 <map name="_converter_coll__map" id="_converter_coll__map">
-<area shape="rect" id="node2" href="../../dc/d4f/class_q_object.html" title="{QObject\n||}" alt="" coords="453,977,523,1063"/><area shape="rect" id="node4" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access..." alt="" coords="356,192,505,867"/><area shape="rect" id="node28" href="../../d6/dc7/class_document_reader_data.html" title="{DocumentReaderData\n|&#45; _tagName\l&#45; _urlContainingAttributeName\l|+ getTagName()\l+ getUrlContainingAttributeName()\l+ DocumentReaderData()\l+ DocumentReaderData()\l+ DocumentReaderData()\l}" alt="" coords="689,443,908,615"/><area shape="rect" id="node26" href="../../dc/dfc/class_translation_mapper.html" title="{TranslationMapper\n|&#45; _documentReference\l&#45; _outputMap\l|+ TranslationMapper()\l+ createDocumentReaderData()\l+ createOutputElementMap()\l+ getDocumentReference()\l+ outputMap()\l}" alt="" coords="689,934,895,1106"/></map>
+<area shape="rect" id="node2" href="../../dc/d4f/class_q_object.html" title="{QObject\n||}" alt="" coords="108,487,177,572"/><area shape="rect" id="node24" href="../../dc/dfc/class_translation_mapper.html" title="This class processes the input and output definition files to procure data structures..." alt="" coords="287,934,492,1106"/><area shape="rect" id="node4" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access..." alt="" coords="689,192,839,867"/><area shape="rect" id="node27" href="../../d6/dc7/class_document_reader_data.html" title="This class describes how a reference to a subdocument of an input document is defined..." alt="" coords="447,443,665,615"/></map>
 <center><span class="legend">[<a href="../../graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="../../da/ded/class_converter-members.html">List of all members.</a></p>
@@ -113,8 +113,8 @@ Collaboration diagram for Converter:</div>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d92/class_converter.html#a88d08022a02573ad2496685ab7a1c63a">Converter</a> (<a class="el" href="../../dc/d4f/class_q_object.html">QObject</a> *parent, <a class="el" href="../../dc/dfc/class_translation_mapper.html">TranslationMapper</a> *translationmapper)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a88d08022a02573ad2496685ab7a1c63a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d92/class_converter.html#a29974f5dfa06b29463de19fe725fade2">convert</a> (const QString filepath, <a class="el" href="../../dc/d8f/class_node.html">Node</a> *root)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">converts to QString and writes the output file  <a href="#a29974f5dfa06b29463de19fe725fade2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d92/class_converter.html#a4cf5958625dd591a28f768aa134b7367">convert</a> (const QString filepath, <a class="el" href="../../dc/d8f/class_node.html">Node</a> *root, <a class="el" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">DocumentData::FileType</a> filetype)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">converts to QString and writes the output file  <a href="#a4cf5958625dd591a28f768aa134b7367"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d92/class_converter.html#a1d627612df0191c03f5052b974ccdc32">DocumentPosition</a> { <a class="el" href="../../db/d92/class_converter.html#a1d627612df0191c03f5052b974ccdc32ab509f9cfdb57255079f768b50b0920a4">start</a>, 
 <a class="el" href="../../db/d92/class_converter.html#a1d627612df0191c03f5052b974ccdc32a384eb921f45141e238bba3425ebf7268">content</a>, 
@@ -161,8 +161,6 @@ Collaboration diagram for Converter:</div>
 <tr><td class="memItemLeft" align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d92/class_converter.html#a3a09908e5a2b925b90675dd1cab01998">_replace</a> (<a class="el" href="../../dc/d8f/class_node.html">Node</a> *node=<a class="el" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6">_cursor</a>)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">replaces place holder with the content of the current node  <a href="#a3a09908e5a2b925b90675dd1cab01998"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QFile&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d92/class_converter.html#a5e0b87c1cdaa95d79eac3ed621bd7375">_file</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">outputfile  <a href="#a5e0b87c1cdaa95d79eac3ed621bd7375"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QTextStream&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d92/class_converter.html#a254101c74a8ba0f40285a56e46081a02">_stream</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">outputfilestream  <a href="#a254101c74a8ba0f40285a56e46081a02"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d8f/class_node.html">Node</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d92/class_converter.html#ac36673f853e17d14873c024993df7193">_root</a></td></tr>
@@ -181,7 +179,7 @@ Collaboration diagram for Converter:</div>
 <dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
 <dl class="version"><dt><b>Version:</b></dt><dd>0.1 </dd></dl>
 
-<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00020">20</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00021">21</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
 <hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="a1d627612df0191c03f5052b974ccdc32"></a><!-- doxytag: member="Converter::DocumentPosition" ref="a1d627612df0191c03f5052b974ccdc32" args="" -->
 <div class="memitem">
@@ -206,7 +204,7 @@ Collaboration diagram for Converter:</div>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00055">55</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00054">54</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
 
 </div>
 </div>
@@ -258,7 +256,7 @@ Collaboration diagram for Converter:</div>
 
 <p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00003">3</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
-<p>References <a class="el" href="../../de/d27/converter_8h_source.html#l00046">_root</a>, <a class="el" href="../../de/d27/converter_8h_source.html#l00047">_translationMapper</a>, and <a class="el" href="../../de/d27/converter_8h_source.html#l00052">replacementMarks</a>.</p>
+<p>References <a class="el" href="../../de/d27/converter_8h_source.html#l00045">_root</a>, <a class="el" href="../../de/d27/converter_8h_source.html#l00046">_translationMapper</a>, and <a class="el" href="../../de/d27/converter_8h_source.html#l00051">replacementMarks</a>.</p>
 
 </div>
 </div>
@@ -300,9 +298,9 @@ Collaboration diagram for Converter:</div>
 
 <p>gets the next child </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00130">130</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00169">169</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
-<p>References <a class="el" href="../../de/d27/converter_8h_source.html#l00049">_cursor</a>, and <a class="el" href="../../d7/d70/node_8cpp_source.html#l00104">Node::nextChild()</a>.</p>
+<p>References <a class="el" href="../../de/d27/converter_8h_source.html#l00048">_cursor</a>, and <a class="el" href="../../d7/d70/node_8cpp_source.html#l00104">Node::nextChild()</a>.</p>
 
 </div>
 </div>
@@ -323,7 +321,7 @@ Collaboration diagram for Converter:</div>
 
 <p>get the next node in the tree if no siblings left it gets the next child </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00135">135</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00174">174</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
 </div>
 </div>
@@ -344,9 +342,9 @@ Collaboration diagram for Converter:</div>
 
 <p>gets the next sibling </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00118">118</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00157">157</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
-<p>References <a class="el" href="../../de/d27/converter_8h_source.html#l00049">_cursor</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00100">Node::childAt()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00083">Node::getCount()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00073">Node::getParent()</a>, and <a class="el" href="../../d7/d70/node_8cpp_source.html#l00159">Node::indexOf()</a>.</p>
+<p>References <a class="el" href="../../de/d27/converter_8h_source.html#l00048">_cursor</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00100">Node::childAt()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00083">Node::getCount()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00073">Node::getParent()</a>, and <a class="el" href="../../d7/d70/node_8cpp_source.html#l00159">Node::indexOf()</a>.</p>
 
 </div>
 </div>
@@ -367,9 +365,9 @@ Collaboration diagram for Converter:</div>
 
 <p>get the Level ot the current node </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00142">142</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00181">181</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
-<p>References <a class="el" href="../../de/d27/converter_8h_source.html#l00046">_root</a>, and <a class="el" href="../../d7/d70/node_8cpp_source.html#l00041">Node::getTreeLevel()</a>.</p>
+<p>References <a class="el" href="../../de/d27/converter_8h_source.html#l00045">_root</a>, and <a class="el" href="../../d7/d70/node_8cpp_source.html#l00041">Node::getTreeLevel()</a>.</p>
 
 </div>
 </div>
@@ -390,7 +388,7 @@ Collaboration diagram for Converter:</div>
 
 <p>true if string is empty </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00155">155</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00194">194</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
 </div>
 </div>
@@ -411,9 +409,9 @@ Collaboration diagram for Converter:</div>
 
 <p>true if content is empty </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00160">160</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00199">199</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
-<p>References <a class="el" href="../../de/d27/converter_8h_source.html#l00049">_cursor</a>, and <a class="el" href="../../d7/d70/node_8cpp_source.html#l00065">Node::getContent()</a>.</p>
+<p>References <a class="el" href="../../de/d27/converter_8h_source.html#l00048">_cursor</a>, and <a class="el" href="../../d7/d70/node_8cpp_source.html#l00065">Node::getContent()</a>.</p>
 
 </div>
 </div>
@@ -435,7 +433,7 @@ Collaboration diagram for Converter:</div>
 
 <p>gets the key of the parent node &lt;distance&gt; levels up the tree </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00148">148</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00187">187</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
 </div>
 </div>
@@ -457,11 +455,11 @@ Collaboration diagram for Converter:</div>
 
 <p>replaces place holder with the content of the current node </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00176">176</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00215">215</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
-<p>References <a class="el" href="../../de/d27/converter_8h_source.html#l00047">_translationMapper</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00065">Node::getContent()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00057">Node::getName()</a>, <a class="el" href="../../da/d7d/translationmapper_8cpp_source.html#l00114">TranslationMapper::outputMap()</a>, <a class="el" href="../../de/d27/converter_8h_source.html#l00052">replacementMarks</a>, <a class="el" href="../../d9/d3c/translationdata_8cpp_source.html#l00031">TranslationData::requires()</a>, and <a class="el" href="../../d9/d3c/translationdata_8cpp_source.html#l00023">TranslationData::to()</a>.</p>
+<p>References <a class="el" href="../../de/d27/converter_8h_source.html#l00046">_translationMapper</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00065">Node::getContent()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00057">Node::getName()</a>, <a class="el" href="../../da/d7d/translationmapper_8cpp_source.html#l00114">TranslationMapper::outputMap()</a>, <a class="el" href="../../de/d27/converter_8h_source.html#l00051">replacementMarks</a>, <a class="el" href="../../d9/d3c/translationdata_8cpp_source.html#l00031">TranslationData::requires()</a>, and <a class="el" href="../../d9/d3c/translationdata_8cpp_source.html#l00023">TranslationData::to()</a>.</p>
 
-<p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00086">consume()</a>.</p>
+<p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00105">consume()</a>.</p>
 
 </div>
 </div>
@@ -483,7 +481,7 @@ Collaboration diagram for Converter:</div>
 
 <p>returns offset if &lt;pattern&gt; is found otherwise returns "-1" </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00171">171</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00210">210</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
 </div>
 </div>
@@ -514,7 +512,7 @@ Collaboration diagram for Converter:</div>
 
 <p>writes &lt;content&gt; at the end of the desired &lt;part&gt; </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00168">168</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00207">207</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
 </div>
 </div>
@@ -536,15 +534,15 @@ Collaboration diagram for Converter:</div>
 
 <p>Writes the information of the current (leaf) node into the parent, deletes the active node and sets the cursor to the next leaf. </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00086">86</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00105">105</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
-<p>References <a class="el" href="../../de/d27/converter_8h_source.html#l00049">_cursor</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00176">_replace()</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00063">getLeaf()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00073">Node::getParent()</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00195">match()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00151">Node::removeChild()</a>, <a class="el" href="../../de/d27/converter_8h_source.html#l00052">replacementMarks</a>, and <a class="el" href="../../d7/d70/node_8cpp_source.html#l00069">Node::setContent()</a>.</p>
+<p>References <a class="el" href="../../de/d27/converter_8h_source.html#l00048">_cursor</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00215">_replace()</a>, <a class="el" href="../../de/d60/settings_8h_source.html#l00029">Settings::DEBUG</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00065">Node::getContent()</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00098">getLeaf()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00057">Node::getName()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00073">Node::getParent()</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00234">match()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00151">Node::removeChild()</a>, <a class="el" href="../../de/d27/converter_8h_source.html#l00051">replacementMarks</a>, and <a class="el" href="../../d7/d70/node_8cpp_source.html#l00069">Node::setContent()</a>.</p>
 
 <p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00018">convert()</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a29974f5dfa06b29463de19fe725fade2"></a><!-- doxytag: member="Converter::convert" ref="a29974f5dfa06b29463de19fe725fade2" args="(const QString filepath, Node *root)" -->
+<a class="anchor" id="a4cf5958625dd591a28f768aa134b7367"></a><!-- doxytag: member="Converter::convert" ref="a4cf5958625dd591a28f768aa134b7367" args="(const QString filepath, Node *root, DocumentData::FileType filetype)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -558,7 +556,13 @@ Collaboration diagram for Converter:</div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="../../dc/d8f/class_node.html">Node</a> *&nbsp;</td>
-          <td class="paramname"> <em>root</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>root</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">DocumentData::FileType</a>&nbsp;</td>
+          <td class="paramname"> <em>filetype</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -579,9 +583,9 @@ Collaboration diagram for Converter:</div>
 
 <p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00018">18</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
-<p>References <a class="el" href="../../de/d27/converter_8h_source.html#l00049">_cursor</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00086">consume()</a>, <a class="el" href="../../de/d60/settings_8h_source.html#l00015">Settings::DEBUG</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00065">Node::getContent()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00083">Node::getCount()</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00063">getLeaf()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00045">Node::getTreeNodeCount()</a>, <a class="el" href="../../db/d92/class_converter.html#af82d76fae7e60d7273dea1d6590b7025">updateProgressBar()</a>, and <a class="el" href="../../db/d92/class_converter.html#abb6ee6280934b884d63dbda786efe434">updateTextEdit()</a>.</p>
+<p>References <a class="el" href="../../de/d27/converter_8h_source.html#l00048">_cursor</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00105">consume()</a>, <a class="el" href="../../de/d60/settings_8h_source.html#l00029">Settings::DEBUG</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00065">Node::getContent()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00083">Node::getCount()</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00098">getLeaf()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00045">Node::getTreeNodeCount()</a>, <a class="el" href="../../de/d32/settings_8cpp_source.html#l00047">Settings::getValue()</a>, <a class="el" href="../../db/d19/documentdata_8h_source.html#l00022">DocumentData::PDF</a>, <a class="el" href="../../db/d19/documentdata_8h_source.html#l00022">DocumentData::Tex</a>, <a class="el" href="../../db/d92/class_converter.html#af82d76fae7e60d7273dea1d6590b7025">updateProgressBar()</a>, and <a class="el" href="../../db/d92/class_converter.html#abb6ee6280934b884d63dbda786efe434">updateTextEdit()</a>.</p>
 
-<p>Referenced by <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00227">MainWindow::_convert()</a>, <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00071">MainWindow::_performInitialOperations()</a>, and <a class="el" href="../../d9/dda/console_8cpp_source.html#l00013">Console::_performInitialOperations()</a>.</p>
+<p>Referenced by <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00219">MainWindow::_convert()</a>, <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00065">MainWindow::_performInitialOperations()</a>, and <a class="el" href="../../d9/dda/console_8cpp_source.html#l00011">Console::_performInitialOperations()</a>.</p>
 
 </div>
 </div>
@@ -603,7 +607,7 @@ Collaboration diagram for Converter:</div>
 
 <p>returns the node's attributes </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00074">74</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00145">145</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
 <p>References <a class="el" href="../../d7/d70/node_8cpp_source.html#l00163">Node::getAttributes()</a>.</p>
 
@@ -627,7 +631,7 @@ Collaboration diagram for Converter:</div>
 
 <p>returns the node's content </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00078">78</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00149">149</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
 <p>References <a class="el" href="../../d7/d70/node_8cpp_source.html#l00065">Node::getContent()</a>.</p>
 
@@ -651,11 +655,11 @@ Collaboration diagram for Converter:</div>
 
 <p>retrieves the first leaf of the tree </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00063">63</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00098">98</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
 <p>References <a class="el" href="../../d7/d70/node_8cpp_source.html#l00113">Node::firstChild()</a>.</p>
 
-<p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00086">consume()</a>, and <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00018">convert()</a>.</p>
+<p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00105">consume()</a>, and <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00018">convert()</a>.</p>
 
 </div>
 </div>
@@ -677,7 +681,7 @@ Collaboration diagram for Converter:</div>
 
 <p>returns the node's name </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00082">82</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00153">153</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
 <p>References <a class="el" href="../../d7/d70/node_8cpp_source.html#l00057">Node::getName()</a>.</p>
 
@@ -701,7 +705,7 @@ Collaboration diagram for Converter:</div>
 
 <p>Is the node a leaf? </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00070">70</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00141">141</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
 <p>References <a class="el" href="../../d7/d70/node_8cpp_source.html#l00083">Node::getCount()</a>.</p>
 
@@ -732,9 +736,9 @@ Collaboration diagram for Converter:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00195">195</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00234">234</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00086">consume()</a>.</p>
+<p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00105">consume()</a>.</p>
 
 </div>
 </div>
@@ -756,7 +760,7 @@ Collaboration diagram for Converter:</div>
 <p>removes tokens e.g. </p>
 <p>"----CONTENT----" </p>
 
-<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00165">165</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00204">204</a> of file <a class="el" href="../../db/dc8/converter_8cpp_source.html">converter.cpp</a>.</p>
 
 </div>
 </div>
@@ -814,9 +818,9 @@ Collaboration diagram for Converter:</div>
 
 <p>the active node </p>
 
-<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00049">49</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00048">48</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
 
-<p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00130">_getNextChild()</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00118">_getNextSibling()</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00160">_isEmptyContent()</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00086">consume()</a>, and <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00018">convert()</a>.</p>
+<p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00169">_getNextChild()</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00157">_getNextSibling()</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00199">_isEmptyContent()</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00105">consume()</a>, and <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00018">convert()</a>.</p>
 
 </div>
 </div>
@@ -831,24 +835,7 @@ Collaboration diagram for Converter:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00050">50</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5e0b87c1cdaa95d79eac3ed621bd7375"></a><!-- doxytag: member="Converter::_file" ref="a5e0b87c1cdaa95d79eac3ed621bd7375" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">QFile <a class="el" href="../../db/d92/class_converter.html#a5e0b87c1cdaa95d79eac3ed621bd7375">Converter::_file</a><code> [private]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>outputfile </p>
-
-<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00042">42</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00049">49</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
 
 </div>
 </div>
@@ -863,7 +850,7 @@ Collaboration diagram for Converter:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00051">51</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00050">50</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
 
 </div>
 </div>
@@ -878,7 +865,7 @@ Collaboration diagram for Converter:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00059">59</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00058">58</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
 
 </div>
 </div>
@@ -895,9 +882,9 @@ Collaboration diagram for Converter:</div>
 
 <p>the root node </p>
 
-<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00046">46</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00045">45</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
 
-<p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00142">_getTreeLevel()</a>, and <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00003">Converter()</a>.</p>
+<p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00181">_getTreeLevel()</a>, and <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00003">Converter()</a>.</p>
 
 </div>
 </div>
@@ -914,7 +901,7 @@ Collaboration diagram for Converter:</div>
 
 <p>outputfilestream </p>
 
-<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00044">44</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00043">43</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
 
 </div>
 </div>
@@ -929,9 +916,9 @@ Collaboration diagram for Converter:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00047">47</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00046">46</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
 
-<p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00176">_replace()</a>, and <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00003">Converter()</a>.</p>
+<p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00215">_replace()</a>, and <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00003">Converter()</a>.</p>
 
 </div>
 </div>
@@ -946,9 +933,9 @@ Collaboration diagram for Converter:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00052">52</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d27/converter_8h_source.html#l00051">51</a> of file <a class="el" href="../../de/d27/converter_8h_source.html">converter.h</a>.</p>
 
-<p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00176">_replace()</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00086">consume()</a>, and <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00003">Converter()</a>.</p>
+<p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00215">_replace()</a>, <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00105">consume()</a>, and <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00003">Converter()</a>.</p>
 
 </div>
 </div>
@@ -971,7 +958,7 @@ Collaboration diagram for Converter:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Mar 21 22:10:00 2011 for htmLaTeX by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Mar 23 18:24:36 2011 for htmLaTeX by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

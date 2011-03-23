@@ -84,68 +84,69 @@ window.onload = initDynSections;
   </div>
 <h1>settings.cpp</h1><a href="../../de/d32/settings_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include &quot;<a class="code" href="../../de/d60/settings_8h.html">settings.h</a>&quot;</span>
 <a name="l00002"></a>00002 
-<a name="l00003"></a><a class="code" href="../../db/d2b/class_settings.html#ab7169a6eefce79566dd07db3b1e5e967">00003</a> <a class="code" href="../../db/d2b/class_settings.html#ab7169a6eefce79566dd07db3b1e5e967">Settings::Settings</a>() : _SETTINGSFILEPATH(<span class="stringliteral">&quot;htmlatex_settings.dat&quot;</span>)
+<a name="l00003"></a><a class="code" href="../../db/d2b/class_settings.html#ab7169a6eefce79566dd07db3b1e5e967">00003</a> <a class="code" href="../../db/d2b/class_settings.html#ab7169a6eefce79566dd07db3b1e5e967" title="This constructor tries to load the settings from the binary file.">Settings::Settings</a>() : _SETTINGSFILEPATH(<span class="stringliteral">&quot;htmlatex_settings.dat&quot;</span>)
 <a name="l00004"></a>00004 {
-<a name="l00005"></a>00005     <span class="keywordflow">if</span> (!<a class="code" href="../../db/d2b/class_settings.html#a380beea6ed9facf6438a30de9456245e" title="reads the settings from a binary data file">_load</a>())
+<a name="l00005"></a>00005     <span class="keywordflow">if</span> (!<a class="code" href="../../db/d2b/class_settings.html#a380beea6ed9facf6438a30de9456245e" title="This method tries to load the settings from the binary file.">_load</a>())
 <a name="l00006"></a>00006     {
 <a name="l00007"></a>00007         <span class="comment">// an integer value taken from the enumerator QLocale::Country</span>
-<a name="l00008"></a>00008         <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4">_settingsMap</a>[<span class="stringliteral">&quot;language&quot;</span>] = <span class="stringliteral">&quot;82&quot;</span>;
-<a name="l00009"></a>00009         <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4">_settingsMap</a>[<span class="stringliteral">&quot;latexpath&quot;</span>] = <span class="stringliteral">&quot;&quot;</span>;
+<a name="l00008"></a>00008         <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4" title="This is the associative array which stores the settings as key-value-pairs.">_settingsMap</a>[<span class="stringliteral">&quot;language&quot;</span>] = <span class="stringliteral">&quot;82&quot;</span>;
+<a name="l00009"></a>00009         <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4" title="This is the associative array which stores the settings as key-value-pairs.">_settingsMap</a>[<span class="stringliteral">&quot;latexpath&quot;</span>] = <span class="stringliteral">&quot;&quot;</span>;
 <a name="l00010"></a>00010         <span class="comment">// boolean value</span>
-<a name="l00011"></a>00011         <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4">_settingsMap</a>[<span class="stringliteral">&quot;verbose&quot;</span>] = <span class="stringliteral">&quot;0&quot;</span>;
+<a name="l00011"></a>00011         <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4" title="This is the associative array which stores the settings as key-value-pairs.">_settingsMap</a>[<span class="stringliteral">&quot;verbose&quot;</span>] = <span class="stringliteral">&quot;0&quot;</span>;
 <a name="l00012"></a>00012         <span class="comment">// boolean value</span>
-<a name="l00013"></a>00013         <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4">_settingsMap</a>[<span class="stringliteral">&quot;includesubdocuments&quot;</span>] = <span class="stringliteral">&quot;1&quot;</span>;
-<a name="l00014"></a>00014         <a class="code" href="../../db/d2b/class_settings.html#ada278a5bf0aa6ba1faea5e10e775f125" title="writes the settings to a binary data file">_save</a>();
+<a name="l00013"></a>00013         <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4" title="This is the associative array which stores the settings as key-value-pairs.">_settingsMap</a>[<span class="stringliteral">&quot;includesubdocuments&quot;</span>] = <span class="stringliteral">&quot;1&quot;</span>;
+<a name="l00014"></a>00014         <a class="code" href="../../db/d2b/class_settings.html#ada278a5bf0aa6ba1faea5e10e775f125" title="This method tries to save the settings to the binary file.">_save</a>();
 <a name="l00015"></a>00015     }
 <a name="l00016"></a>00016 };
-<a name="l00017"></a>00017 <span class="keywordtype">bool</span> <a class="code" href="../../db/d2b/class_settings.html#ac7f872a853693543dd416cbcfb4a00e4">Settings::DEBUG</a> = <span class="keyword">false</span>;
-<a name="l00020"></a><a class="code" href="../../db/d2b/class_settings.html#a380beea6ed9facf6438a30de9456245e">00020</a> <span class="keywordtype">bool</span> <a class="code" href="../../db/d2b/class_settings.html#a380beea6ed9facf6438a30de9456245e" title="reads the settings from a binary data file">Settings::_load</a>()
-<a name="l00021"></a>00021 {
-<a name="l00022"></a>00022     QFile file(<a class="code" href="../../db/d2b/class_settings.html#af72338c350bb1196a5d24825cfbda910">_SETTINGSFILEPATH</a>);
-<a name="l00023"></a>00023     <span class="keywordflow">if</span> (!file.open(QFile::ReadOnly | QFile::Text))
-<a name="l00024"></a>00024     {
-<a name="l00025"></a>00025         std::cerr &lt;&lt; tr(<span class="stringliteral">&quot;Settings.load() - file can&#39;t be opened for reading&quot;</span>).toStdString() &lt;&lt; std::endl;
-<a name="l00026"></a>00026         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00027"></a>00027     }
-<a name="l00028"></a>00028     QDataStream stream(&amp;file);
-<a name="l00029"></a>00029     stream.setVersion(QDataStream::Qt_4_6);
-<a name="l00030"></a>00030     stream &gt;&gt; <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4">_settingsMap</a>;
-<a name="l00031"></a>00031     file.close();
-<a name="l00032"></a>00032     <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00033"></a>00033 };
-<a name="l00036"></a><a class="code" href="../../db/d2b/class_settings.html#ada278a5bf0aa6ba1faea5e10e775f125">00036</a> <span class="keywordtype">bool</span> <a class="code" href="../../db/d2b/class_settings.html#ada278a5bf0aa6ba1faea5e10e775f125" title="writes the settings to a binary data file">Settings::_save</a>()
-<a name="l00037"></a>00037 {
-<a name="l00038"></a>00038     QFile file(<a class="code" href="../../db/d2b/class_settings.html#af72338c350bb1196a5d24825cfbda910">_SETTINGSFILEPATH</a>);
-<a name="l00039"></a>00039     <span class="keywordflow">if</span> (!file.open(QFile::WriteOnly | QFile::Text))
-<a name="l00040"></a>00040     {
-<a name="l00041"></a>00041         std::cerr &lt;&lt; tr(<span class="stringliteral">&quot;Settings.save() - file can&#39;t be opened for writing&quot;</span>).toStdString() &lt;&lt; std::endl;
-<a name="l00042"></a>00042         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00043"></a>00043     }
-<a name="l00044"></a>00044     QDataStream stream(&amp;file);
-<a name="l00045"></a>00045     stream.setVersion(QDataStream::Qt_4_6);
-<a name="l00046"></a>00046     stream &lt;&lt; <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4">_settingsMap</a>;
-<a name="l00047"></a>00047     file.close();
-<a name="l00048"></a>00048     <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00049"></a>00049 };
-<a name="l00050"></a><a class="code" href="../../db/d2b/class_settings.html#a5f006a61e84d5c03a4cfa9afca0acb71">00050</a> QString <a class="code" href="../../db/d2b/class_settings.html#a5f006a61e84d5c03a4cfa9afca0acb71">Settings::getValue</a>(QString key)
-<a name="l00051"></a>00051 {
-<a name="l00052"></a>00052     <span class="keywordflow">if</span> (!<a class="code" href="../../db/d2b/class_settings.html#a380beea6ed9facf6438a30de9456245e" title="reads the settings from a binary data file">_load</a>())
-<a name="l00053"></a>00053     {
-<a name="l00054"></a>00054         <span class="keywordflow">if</span> (<a class="code" href="../../db/d2b/class_settings.html#ac7f872a853693543dd416cbcfb4a00e4">DEBUG</a>)
-<a name="l00055"></a>00055         {
-<a name="l00056"></a>00056             std::cerr &lt;&lt; tr(<span class="stringliteral">&quot;Settings.getValue() returned default value for key: &quot;</span>).toStdString() &lt;&lt; key.toStdString()
-<a name="l00057"></a>00057             &lt;&lt; tr(<span class="stringliteral">&quot;, value: &quot;</span>).toStdString() &lt;&lt; <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4">_settingsMap</a>[key].toStdString() &lt;&lt; std::endl;
-<a name="l00058"></a>00058         }
-<a name="l00059"></a>00059     }
-<a name="l00060"></a>00060     <span class="keywordflow">return</span> <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4">_settingsMap</a>[key];
-<a name="l00061"></a>00061 };
-<a name="l00062"></a><a class="code" href="../../db/d2b/class_settings.html#ab2b4ad8ac7af260623f5b824f149af9f">00062</a> <span class="keywordtype">void</span> <a class="code" href="../../db/d2b/class_settings.html#ab2b4ad8ac7af260623f5b824f149af9f">Settings::setValue</a>(QString key, QString value)
-<a name="l00063"></a>00063 {
-<a name="l00064"></a>00064     <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4">_settingsMap</a>[key] = value;
-<a name="l00065"></a>00065     <span class="keywordflow">if</span> (key == <span class="stringliteral">&quot;verbose&quot;</span>)
-<a name="l00066"></a>00066         this-&gt;<a class="code" href="../../db/d2b/class_settings.html#ac7f872a853693543dd416cbcfb4a00e4">DEBUG</a> = (bool)value.toInt();
-<a name="l00067"></a>00067     <a class="code" href="../../db/d2b/class_settings.html#ada278a5bf0aa6ba1faea5e10e775f125" title="writes the settings to a binary data file">_save</a>();
-<a name="l00068"></a>00068 };
+<a name="l00017"></a>00017 <span class="keywordtype">bool</span> <a class="code" href="../../db/d2b/class_settings.html#ac7f872a853693543dd416cbcfb4a00e4" title="This class attribute is used to enable or disable &amp;quot;verbose-mode&amp;quot;.">Settings::DEBUG</a> = <span class="keyword">false</span>;
+<a name="l00018"></a><a class="code" href="../../db/d2b/class_settings.html#a380beea6ed9facf6438a30de9456245e">00018</a> <span class="keywordtype">bool</span> <a class="code" href="../../db/d2b/class_settings.html#a380beea6ed9facf6438a30de9456245e" title="This method tries to load the settings from the binary file.">Settings::_load</a>()
+<a name="l00019"></a>00019 {
+<a name="l00020"></a>00020     QFile file(<a class="code" href="../../db/d2b/class_settings.html#af72338c350bb1196a5d24825cfbda910" title="This is the binary file&amp;#39;s file path.">_SETTINGSFILEPATH</a>);
+<a name="l00021"></a>00021     <span class="keywordflow">if</span> (!file.open(QFile::ReadOnly | QFile::Text))
+<a name="l00022"></a>00022     {
+<a name="l00023"></a>00023         std::cerr &lt;&lt; tr(<span class="stringliteral">&quot;Settings.load() - file can&#39;t be opened for reading&quot;</span>).toStdString() &lt;&lt; std::endl;
+<a name="l00024"></a>00024         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00025"></a>00025     }
+<a name="l00026"></a>00026     QDataStream stream(&amp;file);
+<a name="l00027"></a>00027     stream.setVersion(QDataStream::Qt_4_6);
+<a name="l00028"></a>00028     stream &gt;&gt; <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4" title="This is the associative array which stores the settings as key-value-pairs.">_settingsMap</a>;
+<a name="l00029"></a>00029     file.close();
+<a name="l00030"></a>00030     <a class="code" href="../../db/d2b/class_settings.html#ac7f872a853693543dd416cbcfb4a00e4" title="This class attribute is used to enable or disable &amp;quot;verbose-mode&amp;quot;.">DEBUG</a> = (bool)_settingsMap[<span class="stringliteral">&quot;verbose&quot;</span>].toInt();
+<a name="l00031"></a>00031     <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00032"></a>00032 };
+<a name="l00033"></a><a class="code" href="../../db/d2b/class_settings.html#ada278a5bf0aa6ba1faea5e10e775f125">00033</a> <span class="keywordtype">bool</span> <a class="code" href="../../db/d2b/class_settings.html#ada278a5bf0aa6ba1faea5e10e775f125" title="This method tries to save the settings to the binary file.">Settings::_save</a>()
+<a name="l00034"></a>00034 {
+<a name="l00035"></a>00035     QFile file(<a class="code" href="../../db/d2b/class_settings.html#af72338c350bb1196a5d24825cfbda910" title="This is the binary file&amp;#39;s file path.">_SETTINGSFILEPATH</a>);
+<a name="l00036"></a>00036     <span class="keywordflow">if</span> (!file.open(QFile::WriteOnly | QFile::Text))
+<a name="l00037"></a>00037     {
+<a name="l00038"></a>00038         std::cerr &lt;&lt; tr(<span class="stringliteral">&quot;Settings.save() - file can&#39;t be opened for writing&quot;</span>).toStdString() &lt;&lt; std::endl;
+<a name="l00039"></a>00039         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00040"></a>00040     }
+<a name="l00041"></a>00041     QDataStream stream(&amp;file);
+<a name="l00042"></a>00042     stream.setVersion(QDataStream::Qt_4_6);
+<a name="l00043"></a>00043     stream &lt;&lt; <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4" title="This is the associative array which stores the settings as key-value-pairs.">_settingsMap</a>;
+<a name="l00044"></a>00044     file.close();
+<a name="l00045"></a>00045     <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00046"></a>00046 };
+<a name="l00047"></a><a class="code" href="../../db/d2b/class_settings.html#a5f006a61e84d5c03a4cfa9afca0acb71">00047</a> QString <a class="code" href="../../db/d2b/class_settings.html#a5f006a61e84d5c03a4cfa9afca0acb71" title="This method returns the value of the specified variable.">Settings::getValue</a>(QString key)
+<a name="l00048"></a>00048 {
+<a name="l00049"></a>00049     <span class="keywordflow">if</span> (!<a class="code" href="../../db/d2b/class_settings.html#a380beea6ed9facf6438a30de9456245e" title="This method tries to load the settings from the binary file.">_load</a>())
+<a name="l00050"></a>00050     {
+<a name="l00051"></a>00051         <span class="keywordflow">if</span> (<a class="code" href="../../db/d2b/class_settings.html#ac7f872a853693543dd416cbcfb4a00e4" title="This class attribute is used to enable or disable &amp;quot;verbose-mode&amp;quot;.">DEBUG</a>)
+<a name="l00052"></a>00052         {
+<a name="l00053"></a>00053             std::cerr &lt;&lt; tr(<span class="stringliteral">&quot;Settings.getValue() returned default value for key: &quot;</span>).toStdString() &lt;&lt; key.toStdString()
+<a name="l00054"></a>00054                 &lt;&lt; tr(<span class="stringliteral">&quot;, value: &quot;</span>).toStdString() &lt;&lt; <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4" title="This is the associative array which stores the settings as key-value-pairs.">_settingsMap</a>[key].toStdString() &lt;&lt; std::endl;
+<a name="l00055"></a>00055         }
+<a name="l00056"></a>00056     }
+<a name="l00057"></a>00057     <span class="keywordflow">return</span> <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4" title="This is the associative array which stores the settings as key-value-pairs.">_settingsMap</a>[key];
+<a name="l00058"></a>00058 };
+<a name="l00059"></a><a class="code" href="../../db/d2b/class_settings.html#ab2b4ad8ac7af260623f5b824f149af9f">00059</a> <span class="keywordtype">void</span> <a class="code" href="../../db/d2b/class_settings.html#ab2b4ad8ac7af260623f5b824f149af9f" title="This method sets the specified variable to the given value.">Settings::setValue</a>(QString key, QString value)
+<a name="l00060"></a>00060 {
+<a name="l00061"></a>00061     <a class="code" href="../../db/d2b/class_settings.html#ad7aaa3f687d3bca0aebd9ec10fbdd3c4" title="This is the associative array which stores the settings as key-value-pairs.">_settingsMap</a>[key] = value;
+<a name="l00062"></a>00062     <span class="keywordflow">if</span> (key == <span class="stringliteral">&quot;verbose&quot;</span>)
+<a name="l00063"></a>00063         this-&gt;<a class="code" href="../../db/d2b/class_settings.html#ac7f872a853693543dd416cbcfb4a00e4" title="This class attribute is used to enable or disable &amp;quot;verbose-mode&amp;quot;.">DEBUG</a> = (bool)value.toInt();
+<a name="l00064"></a>00064     <a class="code" href="../../db/d2b/class_settings.html#ada278a5bf0aa6ba1faea5e10e775f125" title="This method tries to save the settings to the binary file.">_save</a>();
+<a name="l00065"></a>00065 };
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -161,7 +162,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Mar 21 22:09:59 2011 for htmLaTeX by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Mar 23 18:24:36 2011 for htmLaTeX by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

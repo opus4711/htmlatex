@@ -1,3 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1" href="$dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access..." alt="" coords="7,5,57,35"/>
+<area shape="rect" id="node1" href="$d4/d6d/class_q_abstract_item_model.html" title="QAbstractItemModel" alt="" coords="5,5,147,35"/>
+<area shape="rect" id="node3" href="$d0/de3/class_model.html" title="This class is derived from the QAbstractItemModel." alt="" coords="196,5,252,35"/>
 </map>

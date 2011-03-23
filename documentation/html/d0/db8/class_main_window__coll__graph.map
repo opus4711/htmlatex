@@ -1,14 +1,14 @@
 <map id="G" name="G">
-<area shape="rect" id="node2" href="$da/df4/class_q_main_window.html" title="{QMainWindow\n||}" alt="" coords="27,1605,133,1691"/>
-<area shape="rect" id="node4" href="$db/d92/class_converter.html" title="This class converts the QDomDocument&#45;Tree to a textfile by performing the conversions..." alt="" coords="692,1363,831,1933"/>
-<area shape="rect" id="node6" href="$dc/d4f/class_q_object.html" title="{QObject\n||}" alt="" coords="563,1029,632,1115"/>
-<area shape="rect" id="node8" href="$dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access..." alt="" coords="411,192,560,867"/>
-<area shape="rect" id="node41" href="$d0/de3/class_model.html" title="{Model\n|&#45; _root\l|+ nodeFromIndex()\l+ setRootNode()\l+ root()\l+ index()\l+ parent()\l+ rowCount()\l+ columnCount()\l+ data()\l+ headerData()\l+ refresh()\l+ Model()\l+ ~Model()\l}" alt="" coords="251,934,381,1210"/>
-<area shape="rect" id="node32" href="$d6/dc7/class_document_reader_data.html" title="{DocumentReaderData\n|&#45; _tagName\l&#45; _urlContainingAttributeName\l|+ getTagName()\l+ getUrlContainingAttributeName()\l+ DocumentReaderData()\l+ DocumentReaderData()\l+ DocumentReaderData()\l}" alt="" coords="1044,443,1263,615"/>
-<area shape="rect" id="node30" href="$dc/dfc/class_translation_mapper.html" title="{TranslationMapper\n|&#45; _documentReference\l&#45; _outputMap\l|+ TranslationMapper()\l+ createDocumentReaderData()\l+ createOutputElementMap()\l+ getDocumentReference()\l+ outputMap()\l}" alt="" coords="1040,986,1245,1158"/>
-<area shape="rect" id="node46" href="$d2/dc0/class_item_delegate.html" title="{ItemDelegate\n|&#45; model\l&#45; colorFocusLine\l&#45; colorFocusBackground\l&#45; colorMarked\l&#45; color\l&#45; colorLayer0\l&#45; colorLayer1\l|+ setColorFocusLine()\l+ getColorFocusLine()\l+ setColorFocusBackground()\l+ getColorFocusBackground()\l+ setColorMarked()\l+ getColorMarked()\l+ setColor()\l+ getColor()\l+ setColorLayer0()\l+ getColorLayer0()\l+ setColorLayer1()\l+ getColorLayer1()\l+ paint()\l+ ItemDelegate()\l}" alt="" coords="157,1441,352,1855"/>
-<area shape="rect" id="node43" href="$d4/d6d/class_q_abstract_item_model.html" title="{QAbstractItemModel\n||}" alt="" coords="245,487,387,572"/>
-<area shape="rect" id="node48" href="$db/d54/class_q_item_delegate.html" title="{QItemDelegate\n||}" alt="" coords="5,1029,112,1115"/>
-<area shape="rect" id="node56" href="$da/d37/class_settings_dialog.html" title="{SettingsDialog\n|&#45; ui\l|+ retranslateUi()\l+ SettingsDialog()\l+ ~SettingsDialog()\l&#45; apply()\l}" alt="" coords="1305,1579,1439,1717"/>
-<area shape="rect" id="node58" href="$d6/d77/class_q_dialog.html" title="{QDialog\n||}" alt="" coords="1277,1029,1344,1115"/>
+<area shape="rect" id="node2" href="$da/df4/class_q_main_window.html" title="{QMainWindow\n||}" alt="" coords="105,1597,212,1683"/>
+<area shape="rect" id="node4" href="$db/d92/class_converter.html" title="This class converts the QDomDocument&#45;Tree to a textfile by performing the conversions..." alt="" coords="563,1363,701,1917"/>
+<area shape="rect" id="node6" href="$dc/d4f/class_q_object.html" title="{QObject\n||}" alt="" coords="493,487,563,572"/>
+<area shape="rect" id="node28" href="$dc/dfc/class_translation_mapper.html" title="This class processes the input and output definition files to procure data structures..." alt="" coords="173,986,379,1158"/>
+<area shape="rect" id="node8" href="$dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access..." alt="" coords="901,192,1051,867"/>
+<area shape="rect" id="node40" href="$d0/de3/class_model.html" title="This class is derived from the QAbstractItemModel." alt="" coords="911,934,1041,1210"/>
+<area shape="rect" id="node31" href="$d6/dc7/class_document_reader_data.html" title="This class describes how a reference to a subdocument of an input document is defined..." alt="" coords="251,443,469,615"/>
+<area shape="rect" id="node45" href="$d2/dc0/class_item_delegate.html" title="This class is derived from the QItemDelegate class." alt="" coords="943,1433,1137,1847"/>
+<area shape="rect" id="node42" href="$d4/d6d/class_q_abstract_item_model.html" title="{QAbstractItemModel\n||}" alt="" coords="1143,487,1284,572"/>
+<area shape="rect" id="node47" href="$db/d54/class_q_item_delegate.html" title="{QItemDelegate\n||}" alt="" coords="1171,1029,1277,1115"/>
+<area shape="rect" id="node55" href="$da/d37/class_settings_dialog.html" title="The SettingsDialog provides a convenient way to change the application&#39;s settings..." alt="" coords="1289,1563,1423,1717"/>
+<area shape="rect" id="node57" href="$d6/d77/class_q_dialog.html" title="{QDialog\n||}" alt="" coords="1312,1029,1379,1115"/>
 </map>

@@ -84,7 +84,7 @@ window.onload = initDynSections;
   </div>
 <h1>converter.cpp</h1><a href="../../db/dc8/converter_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include &quot;<a class="code" href="../../de/d27/converter_8h.html">converter.h</a>&quot;</span>
 <a name="l00002"></a>00002 
-<a name="l00003"></a><a class="code" href="../../db/d92/class_converter.html#a88d08022a02573ad2496685ab7a1c63a">00003</a> <a class="code" href="../../db/d92/class_converter.html#a88d08022a02573ad2496685ab7a1c63a" title="Constructor.">Converter::Converter</a>(<a class="code" href="../../dc/d4f/class_q_object.html">QObject</a> *parent, <a class="code" href="../../dc/dfc/class_translation_mapper.html">TranslationMapper</a>* translationmapper)
+<a name="l00003"></a><a class="code" href="../../db/d92/class_converter.html#a88d08022a02573ad2496685ab7a1c63a">00003</a> <a class="code" href="../../db/d92/class_converter.html#a88d08022a02573ad2496685ab7a1c63a" title="Constructor.">Converter::Converter</a>(<a class="code" href="../../dc/d4f/class_q_object.html">QObject</a> *parent, <a class="code" href="../../dc/dfc/class_translation_mapper.html" title="This class processes the input and output definition files to procure data structures...">TranslationMapper</a>* translationmapper)
 <a name="l00004"></a>00004     : <a class="code" href="../../dc/d4f/class_q_object.html">QObject</a>(parent), _errormessage(<span class="stringliteral">&quot;&quot;</span>), _noOfParts(0)
 <a name="l00005"></a>00005 {
 <a name="l00006"></a>00006     <a class="code" href="../../db/d92/class_converter.html#ac36673f853e17d14873c024993df7193" title="the root node">_root</a> = 0;
@@ -99,189 +99,228 @@ window.onload = initDynSections;
 <a name="l00015"></a>00015 <span class="comment">    end test */</span>
 <a name="l00016"></a>00016 };
 <a name="l00017"></a>00017 <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* <a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">Converter::_cursor</a> = 0;
-<a name="l00018"></a><a class="code" href="../../db/d92/class_converter.html#a29974f5dfa06b29463de19fe725fade2">00018</a> <span class="keywordtype">void</span> <a class="code" href="../../db/d92/class_converter.html#a29974f5dfa06b29463de19fe725fade2" title="converts to QString and writes the output file">Converter::convert</a>(<span class="keyword">const</span> QString filepath, <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* tree)
+<a name="l00018"></a><a class="code" href="../../db/d92/class_converter.html#a4cf5958625dd591a28f768aa134b7367">00018</a> <span class="keywordtype">void</span> <a class="code" href="../../db/d92/class_converter.html#a4cf5958625dd591a28f768aa134b7367" title="converts to QString and writes the output file">Converter::convert</a>(<span class="keyword">const</span> QString filepath, <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* tree, <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">DocumentData::FileType</a> filetype)
 <a name="l00019"></a>00019 {
-<a name="l00020"></a>00020     <span class="comment">/*</span>
-<a name="l00021"></a>00021 <span class="comment">    _file.setFileName(filepath);</span>
-<a name="l00022"></a>00022 <span class="comment">    _root = root;</span>
-<a name="l00023"></a>00023 <span class="comment">    if (!_file.open(QFile::WriteOnly))</span>
-<a name="l00024"></a>00024 <span class="comment">    {</span>
-<a name="l00025"></a>00025 <span class="comment">        std::cerr &lt;&lt; &quot;Cannot open file for writing: &quot;</span>
-<a name="l00026"></a>00026 <span class="comment">                &lt;&lt; qPrintable(_file.errorString()) &lt;&lt; std::endl;</span>
-<a name="l00027"></a>00027 <span class="comment">        return;</span>
-<a name="l00028"></a>00028 <span class="comment">    }</span>
-<a name="l00029"></a>00029 <span class="comment">    // TODO : ist _stream instanziiert?</span>
-<a name="l00030"></a>00030 <span class="comment">    _stream.setDevice(&amp;_file);</span>
-<a name="l00031"></a>00031 <span class="comment">    _stream.setCodec(&quot;UTF-8&quot;);</span>
-<a name="l00032"></a>00032 <span class="comment">    // converting...</span>
-<a name="l00033"></a>00033 <span class="comment">    */</span>
-<a name="l00034"></a>00034     <span class="comment">// consume</span>
-<a name="l00035"></a>00035     <span class="keywordflow">if</span> (!tree)
-<a name="l00036"></a>00036     {
-<a name="l00037"></a>00037         std::cerr &lt;&lt; <span class="stringliteral">&quot;error - CConverter.convert() : tree == 0&quot;</span> &lt;&lt; std::endl;
-<a name="l00038"></a>00038         <span class="keywordflow">return</span>;
-<a name="l00039"></a>00039     }
-<a name="l00040"></a>00040     <a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a> = <a class="code" href="../../db/d92/class_converter.html#a7922a9bcb8d5e7611eb32c1942ca3356" title="retrieves the first leaf of the tree">getLeaf</a>(tree);
-<a name="l00041"></a>00041     <span class="keywordtype">int</span> nodecount = (int)tree-&gt;<a class="code" href="../../dc/d8f/class_node.html#a9664c2c87f54cf2e97d51190c26e42a3" title="This method returns the number of nodes of the whole tree (class member).">getTreeNodeCount</a>();
-<a name="l00042"></a>00042     <span class="keywordtype">int</span> i = 0;
-<a name="l00043"></a>00043     <span class="keywordflow">while</span> (<a class="code" href="../../db/d92/class_converter.html#a9e2af0a6353cf0f22c626b9961c214c0" title="Writes the information of the current (leaf) node into the parent, deletes the active...">consume</a>())
-<a name="l00044"></a>00044     {
-<a name="l00045"></a>00045         <span class="keywordflow">if</span> (<a class="code" href="../../db/d2b/class_settings.html#ac7f872a853693543dd416cbcfb4a00e4">Settings::DEBUG</a>)
-<a name="l00046"></a>00046         {
-<a name="l00047"></a>00047             <span class="comment">//std::cerr &lt;&lt; &quot;CConverter.convert() - while():\n\ti: &quot; &lt;&lt; i &lt;&lt; std::endl;</span>
-<a name="l00048"></a>00048             i++;
-<a name="l00049"></a>00049             emit <a class="code" href="../../db/d92/class_converter.html#af82d76fae7e60d7273dea1d6590b7025">updateProgressBar</a>((<span class="keywordtype">int</span>)((<span class="keywordtype">double</span>)i / (<span class="keywordtype">double</span>)nodecount * 100.0));
-<a name="l00050"></a>00050         }
-<a name="l00051"></a>00051     }
-<a name="l00052"></a>00052     <span class="comment">//std::cerr &lt;&lt; &quot;Converter.convert(): cursor.content: &quot; &lt;&lt; _cursor-&gt;getContent().toStdString() &lt;&lt; std::endl;</span>
-<a name="l00053"></a>00053     std::cerr &lt;&lt; <span class="stringliteral">&quot;Converter.convert(): cursor.count: &quot;</span> &lt;&lt; <a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a>-&gt;<a class="code" href="../../dc/d8f/class_node.html#a24e78fc4d1356e61ce05c7e522d4e741" title="This method returns the number of child nodes.">getCount</a>() &lt;&lt; std::endl;
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055     <span class="comment">/*</span>
-<a name="l00056"></a>00056 <span class="comment">    QString convertedtext(tree-&gt;content());</span>
-<a name="l00057"></a>00057 <span class="comment">    for (int i = 0; i &lt; _parts.count(); i++)</span>
-<a name="l00058"></a>00058 <span class="comment">        convertedtext += _parts.at(i);</span>
-<a name="l00059"></a>00059 <span class="comment">        */</span>
-<a name="l00060"></a>00060     emit <a class="code" href="../../db/d92/class_converter.html#abb6ee6280934b884d63dbda786efe434">updateTextEdit</a>(<a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a>-&gt;<a class="code" href="../../dc/d8f/class_node.html#a7c9a368df59394dd7bd1ffcb90cc662b" title="This method returns the content of the node.">getContent</a>());
-<a name="l00061"></a>00061     emit <a class="code" href="../../db/d92/class_converter.html#af82d76fae7e60d7273dea1d6590b7025">updateProgressBar</a>(0);
-<a name="l00062"></a>00062 };
-<a name="l00063"></a><a class="code" href="../../db/d92/class_converter.html#a7922a9bcb8d5e7611eb32c1942ca3356">00063</a> <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * <a class="code" href="../../db/d92/class_converter.html#a7922a9bcb8d5e7611eb32c1942ca3356" title="retrieves the first leaf of the tree">Converter::getLeaf</a>(<a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* node)
-<a name="l00064"></a>00064 {
-<a name="l00065"></a>00065     <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * result = node;
-<a name="l00066"></a>00066     <span class="keywordflow">while</span> (result-&gt;<a class="code" href="../../dc/d8f/class_node.html#a3db586ddaa3e1cda137a5e24d8188006" title="This method returns a pointer to the first child node.">firstChild</a>() != 0)
-<a name="l00067"></a>00067         result = result-&gt;<a class="code" href="../../dc/d8f/class_node.html#a3db586ddaa3e1cda137a5e24d8188006" title="This method returns a pointer to the first child node.">firstChild</a>();
-<a name="l00068"></a>00068     <span class="keywordflow">return</span> result;
-<a name="l00069"></a>00069 };
-<a name="l00070"></a><a class="code" href="../../db/d92/class_converter.html#a7e89d4b4faf4743fb82ae088dd1793ee">00070</a> <span class="keywordtype">bool</span> <a class="code" href="../../db/d92/class_converter.html#a7e89d4b4faf4743fb82ae088dd1793ee" title="Is the node a leaf?">Converter::isLeaf</a>(<a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * node)
-<a name="l00071"></a>00071 {
-<a name="l00072"></a>00072     <span class="keywordflow">return</span> (node-&gt;<a class="code" href="../../dc/d8f/class_node.html#a24e78fc4d1356e61ce05c7e522d4e741" title="This method returns the number of child nodes.">getCount</a>() == 0);
-<a name="l00073"></a>00073 };
-<a name="l00074"></a><a class="code" href="../../db/d92/class_converter.html#a4411be03d0e87048485af8d6304dbbeb">00074</a> QMap&lt;QString,QString&gt; <a class="code" href="../../db/d92/class_converter.html#a4411be03d0e87048485af8d6304dbbeb" title="returns the node&amp;#39;s attributes">Converter::getAttributes</a>(<a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * node)
-<a name="l00075"></a>00075 {
-<a name="l00076"></a>00076     <span class="keywordflow">return</span> node-&gt;<a class="code" href="../../dc/d8f/class_node.html#a4628f72a4cce3b39e3bb7fa51cc8e015" title="This method returns the attributes of the node.">getAttributes</a>();
-<a name="l00077"></a>00077 };
-<a name="l00078"></a><a class="code" href="../../db/d92/class_converter.html#a837a780904b53be5570b6c4b5bbce55f">00078</a> QString <a class="code" href="../../db/d92/class_converter.html#a837a780904b53be5570b6c4b5bbce55f" title="returns the node&amp;#39;s content">Converter::getContent</a>(<a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * node)
-<a name="l00079"></a>00079 {
-<a name="l00080"></a>00080     <span class="keywordflow">return</span> node-&gt;<a class="code" href="../../dc/d8f/class_node.html#a7c9a368df59394dd7bd1ffcb90cc662b" title="This method returns the content of the node.">getContent</a>();
-<a name="l00081"></a>00081 };
-<a name="l00082"></a><a class="code" href="../../db/d92/class_converter.html#a4bea419a92ea0743548eeba9fea1a1cb">00082</a> QString <a class="code" href="../../db/d92/class_converter.html#a4bea419a92ea0743548eeba9fea1a1cb" title="returns the node&amp;#39;s name">Converter::getName</a>(<a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * node)
-<a name="l00083"></a>00083 {
-<a name="l00084"></a>00084     <span class="keywordflow">return</span> node-&gt;<a class="code" href="../../dc/d8f/class_node.html#adc626a713f53fad13cc0b0e0c0785bff" title="This method returns the name of the node.">getName</a>();
-<a name="l00085"></a>00085 };
-<a name="l00086"></a><a class="code" href="../../db/d92/class_converter.html#a9e2af0a6353cf0f22c626b9961c214c0">00086</a> <span class="keywordtype">bool</span> <a class="code" href="../../db/d92/class_converter.html#a9e2af0a6353cf0f22c626b9961c214c0" title="Writes the information of the current (leaf) node into the parent, deletes the active...">Converter::consume</a>(<a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * node)
-<a name="l00087"></a>00087 {
-<a name="l00088"></a>00088     <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> *parent = node-&gt;<a class="code" href="../../dc/d8f/class_node.html#aee7fa50380cd3d5fd82c022e45ba2d37" title="This method returns a pointer pointing to the parent node object.">getParent</a>();
-<a name="l00089"></a>00089     <span class="keywordflow">if</span> (!parent)
-<a name="l00090"></a>00090     {
-<a name="l00091"></a>00091         <span class="comment">//std::cerr &lt;&lt; &quot;ENDE -- Converter.consume(): node.name: &quot; &lt;&lt; node-&gt;getName().toStdString() &lt;&lt; std::endl;</span>
-<a name="l00092"></a>00092         <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00093"></a>00093     }
-<a name="l00094"></a>00094     QString parentcontent = <a class="code" href="../../db/d92/class_converter.html#a3a09908e5a2b925b90675dd1cab01998" title="replaces place holder with the content of the current node">_replace</a>(parent);
-<a name="l00095"></a>00095     <span class="comment">//std::cerr &lt;&lt; &quot;parentcontent: &quot; &lt;&lt; parentcontent.toStdString() &lt;&lt; std::endl;</span>
-<a name="l00096"></a>00096     QString childcontent = <a class="code" href="../../db/d92/class_converter.html#a3a09908e5a2b925b90675dd1cab01998" title="replaces place holder with the content of the current node">_replace</a>();
-<a name="l00097"></a>00097     <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="../../db/d92/class_converter.html#a654b30354a160107a779faeb64d00d72">replacementMarks</a>.count(); i++)
-<a name="l00098"></a>00098     {
-<a name="l00099"></a>00099         <span class="keywordtype">int</span> index = <a class="code" href="../../db/d92/class_converter.html#aa08a8b951ff24dafe5356829640877a0">match</a>(parentcontent, <a class="code" href="../../db/d92/class_converter.html#a654b30354a160107a779faeb64d00d72">replacementMarks</a>.at(i));
-<a name="l00100"></a>00100         <span class="comment">//std::cerr &lt;&lt; &quot;index: &quot; &lt;&lt; index &lt;&lt; std::endl;</span>
-<a name="l00101"></a>00101         <span class="keywordflow">if</span> (index &gt; 0)
-<a name="l00102"></a>00102         {
-<a name="l00103"></a>00103             <span class="keywordflow">if</span> (<a class="code" href="../../db/d92/class_converter.html#a654b30354a160107a779faeb64d00d72">replacementMarks</a>.at(i) == <span class="stringliteral">&quot;----CONTENT----&quot;</span>)
-<a name="l00104"></a>00104                 parentcontent.insert(index, childcontent);
-<a name="l00105"></a>00105             <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="../../db/d92/class_converter.html#a654b30354a160107a779faeb64d00d72">replacementMarks</a>.at(i) == <span class="stringliteral">&quot;----TEXT----&quot;</span>)
-<a name="l00106"></a>00106                 parentcontent.insert(index, childcontent);
-<a name="l00107"></a>00107             <span class="comment">// else: eventuell fuer weitere marker</span>
-<a name="l00108"></a>00108         }
-<a name="l00109"></a>00109         <span class="keywordflow">else</span>
-<a name="l00110"></a>00110             parentcontent.append(childcontent);
-<a name="l00111"></a>00111     }
-<a name="l00112"></a>00112     parent-&gt;<a class="code" href="../../dc/d8f/class_node.html#aa1972f7bcf4023823663832086ee934f" title="This method sets the content of the node.">setContent</a>(parentcontent);
-<a name="l00113"></a>00113     <span class="comment">//std::cerr &lt;&lt; &quot;node: &quot; &lt;&lt; node-&gt;getName().toStdString() &lt;&lt; &quot; parentcontent: &quot; &lt;&lt; parentcontent.toStdString() &lt;&lt; std::endl;</span>
-<a name="l00114"></a>00114     parent-&gt;<a class="code" href="../../dc/d8f/class_node.html#ac0a7117227e4f043aacb897e3e3e7984" title="This method removes the specified pointer pointing to a Node object from the array...">removeChild</a>(node);
-<a name="l00115"></a>00115     <a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a> = <a class="code" href="../../db/d92/class_converter.html#a7922a9bcb8d5e7611eb32c1942ca3356" title="retrieves the first leaf of the tree">getLeaf</a>(parent);
-<a name="l00116"></a>00116     <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00117"></a>00117 };
-<a name="l00118"></a><a class="code" href="../../db/d92/class_converter.html#a11f7a9df8d7ce138a43ac73ef3e44f71">00118</a> <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * <a class="code" href="../../db/d92/class_converter.html#a11f7a9df8d7ce138a43ac73ef3e44f71" title="gets the next sibling">Converter::_getNextSibling</a>()
-<a name="l00119"></a>00119 {
-<a name="l00120"></a>00120     <span class="comment">// Demo-Code</span>
-<a name="l00121"></a>00121     <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* result = 0;
-<a name="l00122"></a>00122     <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* parent = <a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a>-&gt;<a class="code" href="../../dc/d8f/class_node.html#aee7fa50380cd3d5fd82c022e45ba2d37" title="This method returns a pointer pointing to the parent node object.">getParent</a>();
-<a name="l00123"></a>00123     <span class="keywordtype">int</span> index = parent-&gt;<a class="code" href="../../dc/d8f/class_node.html#aee9af3f3d7ebcb6bee92928a434a3121" title="This method returns the array index of the specified pointer pointing to a Node object...">indexOf</a>(<a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a>);
-<a name="l00124"></a>00124     <span class="comment">// next sibling&#39;s index is (index + 1)</span>
-<a name="l00125"></a>00125     <span class="keywordflow">if</span> (index + 1 &lt; parent-&gt;<a class="code" href="../../dc/d8f/class_node.html#a24e78fc4d1356e61ce05c7e522d4e741" title="This method returns the number of child nodes.">getCount</a>())
-<a name="l00126"></a>00126         result = parent-&gt;<a class="code" href="../../dc/d8f/class_node.html#a3665565fabae19612214c1f797e6de7c" title="This method returns a pointer to the child node specified by its array index.">childAt</a>(index + 1);
-<a name="l00127"></a>00127     <span class="comment">// _cursor = result; ?</span>
-<a name="l00128"></a>00128     <span class="keywordflow">return</span> result;
-<a name="l00129"></a>00129 };
-<a name="l00130"></a><a class="code" href="../../db/d92/class_converter.html#a27eea0cbac7d904d10e02b4cc66e9bc4">00130</a> <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * <a class="code" href="../../db/d92/class_converter.html#a27eea0cbac7d904d10e02b4cc66e9bc4" title="gets the next child">Converter::_getNextChild</a>()
-<a name="l00131"></a>00131 {
-<a name="l00132"></a>00132     <span class="comment">// Demo-Code</span>
-<a name="l00133"></a>00133     <span class="keywordflow">return</span> <a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a>-&gt;<a class="code" href="../../dc/d8f/class_node.html#aa075fb75ecdd54b60ed76d12c89ce822" title="This method returns a pointer to the next child node by moving the _cursor one step...">nextChild</a>();
-<a name="l00134"></a>00134 };
-<a name="l00135"></a><a class="code" href="../../db/d92/class_converter.html#af92390ac60887e7f24877b492186af07">00135</a> <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * <a class="code" href="../../db/d92/class_converter.html#af92390ac60887e7f24877b492186af07" title="get the next node in the tree if no siblings left it gets the next child">Converter::_getNextNode</a>()
-<a name="l00136"></a>00136 {
-<a name="l00137"></a>00137    <span class="comment">// if cursor has sibling return _getNextSibling</span>
-<a name="l00138"></a>00138    <span class="comment">// elseif cursor has children return _getNextChild</span>
-<a name="l00139"></a>00139     <span class="comment">//else</span>
-<a name="l00140"></a>00140     <span class="keywordflow">return</span> 0;
-<a name="l00141"></a>00141 };
-<a name="l00142"></a><a class="code" href="../../db/d92/class_converter.html#aff2bfda91084ce64f42e327d6019e824">00142</a> qint64 <a class="code" href="../../db/d92/class_converter.html#aff2bfda91084ce64f42e327d6019e824" title="get the Level ot the current node">Converter::_getTreeLevel</a>()
-<a name="l00143"></a>00143 {
-<a name="l00144"></a>00144     <span class="comment">// Demo-Code</span>
-<a name="l00145"></a>00145     <span class="comment">// return the greatest distance of a node to the root node</span>
-<a name="l00146"></a>00146     <span class="keywordflow">return</span> <a class="code" href="../../db/d92/class_converter.html#ac36673f853e17d14873c024993df7193" title="the root node">_root</a>-&gt;<a class="code" href="../../dc/d8f/class_node.html#a120a3dcc4be7de036bd0a8ea4853846b" title="This method returns the _treeLevel number (class member).">getTreeLevel</a>();
-<a name="l00147"></a>00147 };
-<a name="l00148"></a><a class="code" href="../../db/d92/class_converter.html#a956ecc7a7e8a777b48a0d45f7c857079">00148</a> QString <a class="code" href="../../db/d92/class_converter.html#a956ecc7a7e8a777b48a0d45f7c857079" title="gets the key of the parent node &amp;lt;distance&amp;gt; levels up the tree">Converter::_peekParent</a>(qint32 distance)
-<a name="l00149"></a>00149 {
-<a name="l00150"></a>00150     <span class="comment">// if distance &lt; current-&gt;layer()</span>
-<a name="l00151"></a>00151     <span class="comment">//   return the parent node &lt;distance&gt; hops up the tree</span>
-<a name="l00152"></a>00152     <span class="comment">// Demo-Code</span>
-<a name="l00153"></a>00153     <span class="keywordflow">return</span> QString(<span class="stringliteral">&quot;&quot;</span>);
-<a name="l00154"></a>00154 };
-<a name="l00155"></a><a class="code" href="../../db/d92/class_converter.html#a4e44119f3375995ee7dc13ac0d2e526b">00155</a> QBool <a class="code" href="../../db/d92/class_converter.html#a4e44119f3375995ee7dc13ac0d2e526b" title="true if string is empty">Converter::_isEmpty</a>()
-<a name="l00156"></a>00156 {
-<a name="l00157"></a>00157     <span class="comment">// Demo-Code</span>
-<a name="l00158"></a>00158     <span class="keywordflow">return</span> QBool(<span class="keyword">false</span>);
-<a name="l00159"></a>00159 };
-<a name="l00160"></a><a class="code" href="../../db/d92/class_converter.html#aade1b4973c42f3cf22a942d29b68ee91">00160</a> QBool <a class="code" href="../../db/d92/class_converter.html#aade1b4973c42f3cf22a942d29b68ee91" title="true if content is empty">Converter::_isEmptyContent</a>()
-<a name="l00161"></a>00161 {
-<a name="l00162"></a>00162     <span class="comment">// Demo-Code</span>
-<a name="l00163"></a>00163     <span class="keywordflow">return</span> QBool(<a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a>-&gt;<a class="code" href="../../dc/d8f/class_node.html#a7c9a368df59394dd7bd1ffcb90cc662b" title="This method returns the content of the node.">getContent</a>().isEmpty());
-<a name="l00164"></a>00164 };
-<a name="l00165"></a><a class="code" href="../../db/d92/class_converter.html#aacdb0773e3d843df902f11e052fc229a">00165</a> <span class="keywordtype">void</span> <a class="code" href="../../db/d92/class_converter.html#aacdb0773e3d843df902f11e052fc229a" title="removes tokens e.g.">Converter::removeToken</a>()
-<a name="l00166"></a>00166 {
-<a name="l00167"></a>00167 };
-<a name="l00168"></a><a class="code" href="../../db/d92/class_converter.html#a287b91c668656081ab3f0ce565db66d1">00168</a> <span class="keywordtype">void</span> <a class="code" href="../../db/d92/class_converter.html#a287b91c668656081ab3f0ce565db66d1" title="writes &amp;lt;content&amp;gt; at the end of the desired &amp;lt;part&amp;gt;">Converter::_write</a>(QString content, qint32 part)
-<a name="l00169"></a>00169 {
-<a name="l00170"></a>00170 };
-<a name="l00171"></a><a class="code" href="../../db/d92/class_converter.html#ab9a41bc4ecf5dbf2570b60255802da6e">00171</a> qint64 <a class="code" href="../../db/d92/class_converter.html#ab9a41bc4ecf5dbf2570b60255802da6e" title="returns offset if &amp;lt;pattern&amp;gt; is found otherwise returns &amp;quot;-1&amp;quot;">Converter::_tryMatch</a>(QString pattern)
-<a name="l00172"></a>00172 {
-<a name="l00173"></a>00173     <span class="comment">// Demo-Code</span>
-<a name="l00174"></a>00174     <span class="keywordflow">return</span> 0;
-<a name="l00175"></a>00175 };
-<a name="l00176"></a><a class="code" href="../../db/d92/class_converter.html#a3a09908e5a2b925b90675dd1cab01998">00176</a> QString <a class="code" href="../../db/d92/class_converter.html#a3a09908e5a2b925b90675dd1cab01998" title="replaces place holder with the content of the current node">Converter::_replace</a>(<a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* node)
-<a name="l00177"></a>00177 {
-<a name="l00178"></a>00178     QString result(<span class="stringliteral">&quot;&quot;</span>);
-<a name="l00179"></a>00179     <a class="code" href="../../d6/d9e/class_translation_data.html">TranslationData</a> data = <a class="code" href="../../db/d92/class_converter.html#aabf2c4bb4890710fc2cb26c780828c7f">_translationMapper</a>-&gt;<a class="code" href="../../dc/dfc/class_translation_mapper.html#a9bc12d939a279ac6a65f00c9f120ecec">outputMap</a>()[node-&gt;<a class="code" href="../../dc/d8f/class_node.html#adc626a713f53fad13cc0b0e0c0785bff" title="This method returns the name of the node.">getName</a>()];
-<a name="l00180"></a>00180     QString to = data.<a class="code" href="../../d6/d9e/class_translation_data.html#aff9130cf127632cd9c9b4d51294c7f79">to</a>();
-<a name="l00181"></a>00181     <span class="comment">//std::cerr &lt;&lt; &quot;to: &quot; &lt;&lt; &quot;?&quot;&lt;&lt; to.toStdString() &lt;&lt; &quot;?&quot; &lt;&lt; std::endl;</span>
-<a name="l00182"></a>00182     <span class="comment">//std::cerr &lt;&lt; &quot;content: &quot; &lt;&lt; node-&gt;content().toStdString() &lt;&lt; std::endl;</span>
-<a name="l00183"></a>00183     QList&lt;TranslationDataNode&gt; datanodes = data.<a class="code" href="../../d6/d9e/class_translation_data.html#a2bab7d718a28b69ff4237d9fda02f4c4">requires</a>();
-<a name="l00184"></a>00184     <a class="code" href="../../da/d8e/class_translation_data_node.html">TranslationDataNode</a> datanode;
-<a name="l00185"></a>00185     <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; datanodes.count(); j++)
-<a name="l00186"></a>00186     {
-<a name="l00187"></a>00187         datanode = datanodes.at(j);
-<a name="l00188"></a>00188         <span class="comment">//datanode.name()</span>
-<a name="l00189"></a>00189     }
-<a name="l00190"></a>00190     <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="../../db/d92/class_converter.html#a654b30354a160107a779faeb64d00d72">replacementMarks</a>.count(); i++)
-<a name="l00191"></a>00191         result = to.replace(<a class="code" href="../../db/d92/class_converter.html#a654b30354a160107a779faeb64d00d72">replacementMarks</a>.at(i), node-&gt;<a class="code" href="../../dc/d8f/class_node.html#a7c9a368df59394dd7bd1ffcb90cc662b" title="This method returns the content of the node.">getContent</a>());
-<a name="l00192"></a>00192     <span class="comment">//std::cerr &lt;&lt; &quot;_replace: result: &quot; &lt;&lt; result.toStdString() &lt;&lt; std::endl;</span>
-<a name="l00193"></a>00193     <span class="keywordflow">return</span> result;
-<a name="l00194"></a>00194 };
-<a name="l00195"></a><a class="code" href="../../db/d92/class_converter.html#aa08a8b951ff24dafe5356829640877a0">00195</a> <span class="keywordtype">int</span> <a class="code" href="../../db/d92/class_converter.html#aa08a8b951ff24dafe5356829640877a0">Converter::match</a>(QString content, QString pattern)
-<a name="l00196"></a>00196 {
-<a name="l00197"></a>00197     <span class="keywordflow">if</span> (!content.isEmpty())
-<a name="l00198"></a>00198         <span class="keywordflow">return</span> content.indexOf(pattern, 0, Qt::CaseSensitive);
-<a name="l00199"></a>00199     <span class="keywordflow">return</span> -1;
-<a name="l00200"></a>00200 };
+<a name="l00020"></a>00020     <span class="keywordflow">if</span> (!tree)
+<a name="l00021"></a>00021     {
+<a name="l00022"></a>00022         std::cerr &lt;&lt; tr(<span class="stringliteral">&quot;error - CConverter.convert() : tree == 0&quot;</span>).toStdString() &lt;&lt; std::endl;
+<a name="l00023"></a>00023         <span class="keywordflow">return</span>;
+<a name="l00024"></a>00024     }
+<a name="l00025"></a>00025     <a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a> = <a class="code" href="../../db/d92/class_converter.html#a7922a9bcb8d5e7611eb32c1942ca3356" title="retrieves the first leaf of the tree">getLeaf</a>(tree);
+<a name="l00026"></a>00026     <span class="keywordtype">int</span> nodecount = (int)tree-&gt;<a class="code" href="../../dc/d8f/class_node.html#a9664c2c87f54cf2e97d51190c26e42a3" title="This method returns the number of nodes of the whole tree (class member).">getTreeNodeCount</a>();
+<a name="l00027"></a>00027     <span class="keywordtype">int</span> i = 0;
+<a name="l00028"></a>00028     <span class="keywordflow">while</span> (<a class="code" href="../../db/d92/class_converter.html#a9e2af0a6353cf0f22c626b9961c214c0" title="Writes the information of the current (leaf) node into the parent, deletes the active...">consume</a>())
+<a name="l00029"></a>00029     {
+<a name="l00030"></a>00030         <span class="keywordflow">if</span> (<a class="code" href="../../db/d2b/class_settings.html#ac7f872a853693543dd416cbcfb4a00e4" title="This class attribute is used to enable or disable &amp;quot;verbose-mode&amp;quot;.">Settings::DEBUG</a>)
+<a name="l00031"></a>00031         {
+<a name="l00032"></a>00032             <span class="comment">//std::cerr &lt;&lt; &quot;CConverter.convert() - while():\n\ti: &quot; &lt;&lt; i &lt;&lt; std::endl;</span>
+<a name="l00033"></a>00033         }
+<a name="l00034"></a>00034         i++;
+<a name="l00035"></a>00035         emit <a class="code" href="../../db/d92/class_converter.html#af82d76fae7e60d7273dea1d6590b7025">updateProgressBar</a>((<span class="keywordtype">int</span>)((<span class="keywordtype">double</span>)i / (<span class="keywordtype">double</span>)nodecount * 100.0));
+<a name="l00036"></a>00036     }
+<a name="l00037"></a>00037     std::cerr &lt;&lt; <span class="stringliteral">&quot;Converter.convert(): cursor.count: &quot;</span> &lt;&lt; <a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a>-&gt;<a class="code" href="../../dc/d8f/class_node.html#a24e78fc4d1356e61ce05c7e522d4e741" title="This method returns the number of child nodes.">getCount</a>() &lt;&lt; std::endl;
+<a name="l00038"></a>00038     <span class="keywordflow">if</span> (<a class="code" href="../../db/d2b/class_settings.html#ac7f872a853693543dd416cbcfb4a00e4" title="This class attribute is used to enable or disable &amp;quot;verbose-mode&amp;quot;.">Settings::DEBUG</a>)
+<a name="l00039"></a>00039         std::cerr &lt;&lt; <span class="stringliteral">&quot;Content: &quot;</span> &lt;&lt; <a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a>-&gt;<a class="code" href="../../dc/d8f/class_node.html#a7c9a368df59394dd7bd1ffcb90cc662b" title="This method returns the content of the node.">getContent</a>().toStdString() &lt;&lt; std::endl;
+<a name="l00040"></a>00040 
+<a name="l00041"></a>00041     <span class="comment">/*</span>
+<a name="l00042"></a>00042 <span class="comment">    QString convertedtext(tree-&gt;content());</span>
+<a name="l00043"></a>00043 <span class="comment">    for (int i = 0; i &lt; _parts.count(); i++)</span>
+<a name="l00044"></a>00044 <span class="comment">        convertedtext += _parts.at(i);</span>
+<a name="l00045"></a>00045 <span class="comment">        */</span>
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047     <span class="comment">// ERNSTER CODE !!!</span>
+<a name="l00048"></a>00048     <span class="comment">// save conversion output to file</span>
+<a name="l00049"></a>00049     <span class="keywordflow">if</span> (filetype == <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa55ef5a37fbd3d5a90ea73fa99a8653ba">DocumentData::Tex</a>)
+<a name="l00050"></a>00050     {
+<a name="l00051"></a>00051         QFile file(filepath);
+<a name="l00052"></a>00052         <span class="keywordflow">if</span> (!file.open(QFile::WriteOnly | QFile::Text))
+<a name="l00053"></a>00053         {
+<a name="l00054"></a>00054             <span class="keywordflow">if</span> (<a class="code" href="../../db/d2b/class_settings.html#ac7f872a853693543dd416cbcfb4a00e4" title="This class attribute is used to enable or disable &amp;quot;verbose-mode&amp;quot;.">Settings::DEBUG</a>)
+<a name="l00055"></a>00055             {
+<a name="l00056"></a>00056                 std::cerr &lt;&lt; tr(<span class="stringliteral">&quot;MainWindow._saveAs() - can&#39;t write to file: path: &quot;</span>).toStdString()
+<a name="l00057"></a>00057                         &lt;&lt; filepath.toStdString() &lt;&lt; std::endl;
+<a name="l00058"></a>00058             }
+<a name="l00059"></a>00059         }
+<a name="l00060"></a>00060         <span class="keywordflow">else</span>
+<a name="l00061"></a>00061         {
+<a name="l00062"></a>00062             QTextStream stream(&amp;file);
+<a name="l00063"></a>00063             stream.setCodec(<span class="stringliteral">&quot;UTF-8&quot;</span>);
+<a name="l00064"></a>00064             stream &lt;&lt; <a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a>-&gt;<a class="code" href="../../dc/d8f/class_node.html#a7c9a368df59394dd7bd1ffcb90cc662b" title="This method returns the content of the node.">getContent</a>().toLatin1();
+<a name="l00065"></a>00065             file.close();
+<a name="l00066"></a>00066             <span class="keywordflow">if</span> (<a class="code" href="../../db/d2b/class_settings.html#ac7f872a853693543dd416cbcfb4a00e4" title="This class attribute is used to enable or disable &amp;quot;verbose-mode&amp;quot;.">Settings::DEBUG</a>)
+<a name="l00067"></a>00067                 std::cerr &lt;&lt; tr(<span class="stringliteral">&quot;Converter.convert() saved to TEX file&quot;</span>).toStdString() &lt;&lt; std::endl;
+<a name="l00068"></a>00068         }
+<a name="l00069"></a>00069     }
+<a name="l00070"></a>00070     <span class="keywordflow">else</span> <span class="keywordflow">if</span> (filetype == <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa33d10945808448dbc741d0171b9b1630">DocumentData::PDF</a>)
+<a name="l00071"></a>00071     {
+<a name="l00072"></a>00072         <a class="code" href="../../db/d2b/class_settings.html" title="This class stores settings variables for the application in a binary file.">Settings</a> settings;
+<a name="l00073"></a>00073         <span class="comment">// invoke external program and write the output to a file</span>
+<a name="l00074"></a>00074         QString command = settings.<a class="code" href="../../db/d2b/class_settings.html#a5f006a61e84d5c03a4cfa9afca0acb71" title="This method returns the value of the specified variable.">getValue</a>(<span class="stringliteral">&quot;latexpath&quot;</span>) + <span class="stringliteral">&quot; &quot;</span> + filepath;
+<a name="l00075"></a>00075         <span class="keywordflow">if</span> (<a class="code" href="../../db/d2b/class_settings.html#ac7f872a853693543dd416cbcfb4a00e4" title="This class attribute is used to enable or disable &amp;quot;verbose-mode&amp;quot;.">Settings::DEBUG</a>)
+<a name="l00076"></a>00076         {
+<a name="l00077"></a>00077             std::cerr &lt;&lt; tr(<span class="stringliteral">&quot;Converter.convert() save to PDF:\ncommand: &quot;</span>).toStdString()
+<a name="l00078"></a>00078                     &lt;&lt; command.toAscii().data() &lt;&lt; std::endl;
+<a name="l00079"></a>00079         }
+<a name="l00080"></a>00080         <span class="keywordtype">int</span> errorcode = system(command.toAscii().data());
+<a name="l00081"></a>00081         <span class="keywordflow">if</span> (errorcode == 0)
+<a name="l00082"></a>00082         {
+<a name="l00083"></a>00083             <span class="keywordflow">if</span> (<a class="code" href="../../db/d2b/class_settings.html#ac7f872a853693543dd416cbcfb4a00e4" title="This class attribute is used to enable or disable &amp;quot;verbose-mode&amp;quot;.">Settings::DEBUG</a>)
+<a name="l00084"></a>00084                 std::cerr &lt;&lt; tr(<span class="stringliteral">&quot;Converter.convert() saved to PDF file&quot;</span>).toStdString() &lt;&lt; std::endl;
+<a name="l00085"></a>00085         }
+<a name="l00086"></a>00086         <span class="keywordflow">else</span>
+<a name="l00087"></a>00087         {
+<a name="l00088"></a>00088             <span class="keywordflow">if</span> (<a class="code" href="../../db/d2b/class_settings.html#ac7f872a853693543dd416cbcfb4a00e4" title="This class attribute is used to enable or disable &amp;quot;verbose-mode&amp;quot;.">Settings::DEBUG</a>)
+<a name="l00089"></a>00089                 std::cerr &lt;&lt; tr(<span class="stringliteral">&quot;Converter.convert() en error occurred saving to PDF file: error code &quot;</span>).toStdString()
+<a name="l00090"></a>00090                 &lt;&lt; QString::number(errorcode).toStdString() &lt;&lt; std::endl;
+<a name="l00091"></a>00091         }
+<a name="l00092"></a>00092     }
+<a name="l00093"></a>00093     <span class="keywordflow">else</span>
+<a name="l00094"></a>00094         std::cerr &lt;&lt; tr(<span class="stringliteral">&quot;Converter.convert(): file not saved - unknown file type&quot;</span>).toStdString() &lt;&lt; std::endl;
+<a name="l00095"></a>00095     emit <a class="code" href="../../db/d92/class_converter.html#abb6ee6280934b884d63dbda786efe434">updateTextEdit</a>(<a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a>-&gt;<a class="code" href="../../dc/d8f/class_node.html#a7c9a368df59394dd7bd1ffcb90cc662b" title="This method returns the content of the node.">getContent</a>());
+<a name="l00096"></a>00096     emit <a class="code" href="../../db/d92/class_converter.html#af82d76fae7e60d7273dea1d6590b7025">updateProgressBar</a>(0);
+<a name="l00097"></a>00097 };
+<a name="l00098"></a><a class="code" href="../../db/d92/class_converter.html#a7922a9bcb8d5e7611eb32c1942ca3356">00098</a> <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * <a class="code" href="../../db/d92/class_converter.html#a7922a9bcb8d5e7611eb32c1942ca3356" title="retrieves the first leaf of the tree">Converter::getLeaf</a>(<a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* node)
+<a name="l00099"></a>00099 {
+<a name="l00100"></a>00100     <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * result = node;
+<a name="l00101"></a>00101     <span class="keywordflow">while</span> (result-&gt;<a class="code" href="../../dc/d8f/class_node.html#a3db586ddaa3e1cda137a5e24d8188006" title="This method returns a pointer to the first child node.">firstChild</a>() != 0)
+<a name="l00102"></a>00102         result = result-&gt;<a class="code" href="../../dc/d8f/class_node.html#a3db586ddaa3e1cda137a5e24d8188006" title="This method returns a pointer to the first child node.">firstChild</a>();
+<a name="l00103"></a>00103     <span class="keywordflow">return</span> result;
+<a name="l00104"></a>00104 };
+<a name="l00105"></a><a class="code" href="../../db/d92/class_converter.html#a9e2af0a6353cf0f22c626b9961c214c0">00105</a> <span class="keywordtype">bool</span> <a class="code" href="../../db/d92/class_converter.html#a9e2af0a6353cf0f22c626b9961c214c0" title="Writes the information of the current (leaf) node into the parent, deletes the active...">Converter::consume</a>(<a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * node)
+<a name="l00106"></a>00106 {
+<a name="l00107"></a>00107     <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> *parent = node-&gt;<a class="code" href="../../dc/d8f/class_node.html#aee7fa50380cd3d5fd82c022e45ba2d37" title="This method returns a pointer pointing to the parent node object.">getParent</a>();
+<a name="l00108"></a>00108     <span class="keywordflow">if</span> (!parent)
+<a name="l00109"></a>00109     {
+<a name="l00110"></a>00110         <span class="keywordflow">if</span> (<a class="code" href="../../db/d2b/class_settings.html#ac7f872a853693543dd416cbcfb4a00e4" title="This class attribute is used to enable or disable &amp;quot;verbose-mode&amp;quot;.">Settings::DEBUG</a>)
+<a name="l00111"></a>00111         {
+<a name="l00112"></a>00112             std::cerr &lt;&lt; <span class="stringliteral">&quot;Converter.consume(): root node found. node.getName(): &quot;</span>
+<a name="l00113"></a>00113                     &lt;&lt; node-&gt;<a class="code" href="../../dc/d8f/class_node.html#adc626a713f53fad13cc0b0e0c0785bff" title="This method returns the name of the node.">getName</a>().toStdString() &lt;&lt; std::endl;
+<a name="l00114"></a>00114         }
+<a name="l00115"></a>00115         <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00116"></a>00116     }
+<a name="l00117"></a>00117     QString parentcontent = parent-&gt;<a class="code" href="../../dc/d8f/class_node.html#a7c9a368df59394dd7bd1ffcb90cc662b" title="This method returns the content of the node.">getContent</a>();<span class="comment">//_replace(parent);</span>
+<a name="l00118"></a>00118     <span class="comment">//std::cerr &lt;&lt; &quot;parentcontent: &quot; &lt;&lt; parentcontent.toStdString() &lt;&lt; std::endl;</span>
+<a name="l00119"></a>00119     QString childcontent = <a class="code" href="../../db/d92/class_converter.html#a3a09908e5a2b925b90675dd1cab01998" title="replaces place holder with the content of the current node">_replace</a>();
+<a name="l00120"></a>00120     <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="../../db/d92/class_converter.html#a654b30354a160107a779faeb64d00d72">replacementMarks</a>.count(); i++)
+<a name="l00121"></a>00121     {
+<a name="l00122"></a>00122         <span class="keywordtype">int</span> index = <a class="code" href="../../db/d92/class_converter.html#aa08a8b951ff24dafe5356829640877a0">match</a>(parentcontent, <a class="code" href="../../db/d92/class_converter.html#a654b30354a160107a779faeb64d00d72">replacementMarks</a>.at(i));
+<a name="l00123"></a>00123         <span class="comment">//std::cerr &lt;&lt; &quot;index: &quot; &lt;&lt; index &lt;&lt; std::endl;</span>
+<a name="l00124"></a>00124         <span class="keywordflow">if</span> (index &gt; 0)
+<a name="l00125"></a>00125         {
+<a name="l00126"></a>00126             <span class="keywordflow">if</span> (<a class="code" href="../../db/d92/class_converter.html#a654b30354a160107a779faeb64d00d72">replacementMarks</a>.at(i) == <span class="stringliteral">&quot;----CONTENT----&quot;</span>)
+<a name="l00127"></a>00127                 parentcontent.insert(index, childcontent);
+<a name="l00128"></a>00128             <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="../../db/d92/class_converter.html#a654b30354a160107a779faeb64d00d72">replacementMarks</a>.at(i) == <span class="stringliteral">&quot;----TEXT----&quot;</span>)
+<a name="l00129"></a>00129                 parentcontent.insert(index, childcontent);
+<a name="l00130"></a>00130             <span class="comment">// else: eventuell fuer weitere marker</span>
+<a name="l00131"></a>00131         }
+<a name="l00132"></a>00132         <span class="keywordflow">else</span>
+<a name="l00133"></a>00133             parentcontent.append(childcontent);
+<a name="l00134"></a>00134     }
+<a name="l00135"></a>00135     parent-&gt;<a class="code" href="../../dc/d8f/class_node.html#aa1972f7bcf4023823663832086ee934f" title="This method sets the content of the node.">setContent</a>(parentcontent);
+<a name="l00136"></a>00136     <span class="comment">//std::cerr &lt;&lt; &quot;node: &quot; &lt;&lt; node-&gt;getName().toStdString() &lt;&lt; &quot; parentcontent: &quot; &lt;&lt; parentcontent.toStdString() &lt;&lt; std::endl;</span>
+<a name="l00137"></a>00137     parent-&gt;<a class="code" href="../../dc/d8f/class_node.html#ac0a7117227e4f043aacb897e3e3e7984" title="This method removes the specified pointer pointing to a Node object from the array...">removeChild</a>(node);
+<a name="l00138"></a>00138     <a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a> = <a class="code" href="../../db/d92/class_converter.html#a7922a9bcb8d5e7611eb32c1942ca3356" title="retrieves the first leaf of the tree">getLeaf</a>(parent);
+<a name="l00139"></a>00139     <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00140"></a>00140 };
+<a name="l00141"></a><a class="code" href="../../db/d92/class_converter.html#a7e89d4b4faf4743fb82ae088dd1793ee">00141</a> <span class="keywordtype">bool</span> <a class="code" href="../../db/d92/class_converter.html#a7e89d4b4faf4743fb82ae088dd1793ee" title="Is the node a leaf?">Converter::isLeaf</a>(<a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * node)
+<a name="l00142"></a>00142 {
+<a name="l00143"></a>00143     <span class="keywordflow">return</span> (node-&gt;<a class="code" href="../../dc/d8f/class_node.html#a24e78fc4d1356e61ce05c7e522d4e741" title="This method returns the number of child nodes.">getCount</a>() == 0);
+<a name="l00144"></a>00144 };
+<a name="l00145"></a><a class="code" href="../../db/d92/class_converter.html#a4411be03d0e87048485af8d6304dbbeb">00145</a> QMap&lt;QString,QString&gt; <a class="code" href="../../db/d92/class_converter.html#a4411be03d0e87048485af8d6304dbbeb" title="returns the node&amp;#39;s attributes">Converter::getAttributes</a>(<a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * node)
+<a name="l00146"></a>00146 {
+<a name="l00147"></a>00147     <span class="keywordflow">return</span> node-&gt;<a class="code" href="../../dc/d8f/class_node.html#a4628f72a4cce3b39e3bb7fa51cc8e015" title="This method returns the attributes of the node.">getAttributes</a>();
+<a name="l00148"></a>00148 };
+<a name="l00149"></a><a class="code" href="../../db/d92/class_converter.html#a837a780904b53be5570b6c4b5bbce55f">00149</a> QString <a class="code" href="../../db/d92/class_converter.html#a837a780904b53be5570b6c4b5bbce55f" title="returns the node&amp;#39;s content">Converter::getContent</a>(<a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * node)
+<a name="l00150"></a>00150 {
+<a name="l00151"></a>00151     <span class="keywordflow">return</span> node-&gt;<a class="code" href="../../dc/d8f/class_node.html#a7c9a368df59394dd7bd1ffcb90cc662b" title="This method returns the content of the node.">getContent</a>();
+<a name="l00152"></a>00152 };
+<a name="l00153"></a><a class="code" href="../../db/d92/class_converter.html#a4bea419a92ea0743548eeba9fea1a1cb">00153</a> QString <a class="code" href="../../db/d92/class_converter.html#a4bea419a92ea0743548eeba9fea1a1cb" title="returns the node&amp;#39;s name">Converter::getName</a>(<a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * node)
+<a name="l00154"></a>00154 {
+<a name="l00155"></a>00155     <span class="keywordflow">return</span> node-&gt;<a class="code" href="../../dc/d8f/class_node.html#adc626a713f53fad13cc0b0e0c0785bff" title="This method returns the name of the node.">getName</a>();
+<a name="l00156"></a>00156 };
+<a name="l00157"></a><a class="code" href="../../db/d92/class_converter.html#a11f7a9df8d7ce138a43ac73ef3e44f71">00157</a> <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * <a class="code" href="../../db/d92/class_converter.html#a11f7a9df8d7ce138a43ac73ef3e44f71" title="gets the next sibling">Converter::_getNextSibling</a>()
+<a name="l00158"></a>00158 {
+<a name="l00159"></a>00159     <span class="comment">// Demo-Code</span>
+<a name="l00160"></a>00160     <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* result = 0;
+<a name="l00161"></a>00161     <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* parent = <a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a>-&gt;<a class="code" href="../../dc/d8f/class_node.html#aee7fa50380cd3d5fd82c022e45ba2d37" title="This method returns a pointer pointing to the parent node object.">getParent</a>();
+<a name="l00162"></a>00162     <span class="keywordtype">int</span> index = parent-&gt;<a class="code" href="../../dc/d8f/class_node.html#aee9af3f3d7ebcb6bee92928a434a3121" title="This method returns the array index of the specified pointer pointing to a Node object...">indexOf</a>(<a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a>);
+<a name="l00163"></a>00163     <span class="comment">// next sibling&#39;s index is (index + 1)</span>
+<a name="l00164"></a>00164     <span class="keywordflow">if</span> (index + 1 &lt; parent-&gt;<a class="code" href="../../dc/d8f/class_node.html#a24e78fc4d1356e61ce05c7e522d4e741" title="This method returns the number of child nodes.">getCount</a>())
+<a name="l00165"></a>00165         result = parent-&gt;<a class="code" href="../../dc/d8f/class_node.html#a3665565fabae19612214c1f797e6de7c" title="This method returns a pointer to the child node specified by its array index.">childAt</a>(index + 1);
+<a name="l00166"></a>00166     <span class="comment">// _cursor = result; ?</span>
+<a name="l00167"></a>00167     <span class="keywordflow">return</span> result;
+<a name="l00168"></a>00168 };
+<a name="l00169"></a><a class="code" href="../../db/d92/class_converter.html#a27eea0cbac7d904d10e02b4cc66e9bc4">00169</a> <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * <a class="code" href="../../db/d92/class_converter.html#a27eea0cbac7d904d10e02b4cc66e9bc4" title="gets the next child">Converter::_getNextChild</a>()
+<a name="l00170"></a>00170 {
+<a name="l00171"></a>00171     <span class="comment">// Demo-Code</span>
+<a name="l00172"></a>00172     <span class="keywordflow">return</span> <a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a>-&gt;<a class="code" href="../../dc/d8f/class_node.html#aa075fb75ecdd54b60ed76d12c89ce822" title="This method returns a pointer to the next child node by moving the _cursor one step...">nextChild</a>();
+<a name="l00173"></a>00173 };
+<a name="l00174"></a><a class="code" href="../../db/d92/class_converter.html#af92390ac60887e7f24877b492186af07">00174</a> <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> * <a class="code" href="../../db/d92/class_converter.html#af92390ac60887e7f24877b492186af07" title="get the next node in the tree if no siblings left it gets the next child">Converter::_getNextNode</a>()
+<a name="l00175"></a>00175 {
+<a name="l00176"></a>00176    <span class="comment">// if cursor has sibling return _getNextSibling</span>
+<a name="l00177"></a>00177    <span class="comment">// elseif cursor has children return _getNextChild</span>
+<a name="l00178"></a>00178     <span class="comment">//else</span>
+<a name="l00179"></a>00179     <span class="keywordflow">return</span> 0;
+<a name="l00180"></a>00180 };
+<a name="l00181"></a><a class="code" href="../../db/d92/class_converter.html#aff2bfda91084ce64f42e327d6019e824">00181</a> qint64 <a class="code" href="../../db/d92/class_converter.html#aff2bfda91084ce64f42e327d6019e824" title="get the Level ot the current node">Converter::_getTreeLevel</a>()
+<a name="l00182"></a>00182 {
+<a name="l00183"></a>00183     <span class="comment">// Demo-Code</span>
+<a name="l00184"></a>00184     <span class="comment">// return the greatest distance of a node to the root node</span>
+<a name="l00185"></a>00185     <span class="keywordflow">return</span> <a class="code" href="../../db/d92/class_converter.html#ac36673f853e17d14873c024993df7193" title="the root node">_root</a>-&gt;<a class="code" href="../../dc/d8f/class_node.html#a120a3dcc4be7de036bd0a8ea4853846b" title="This method returns the _treeLevel number (class member).">getTreeLevel</a>();
+<a name="l00186"></a>00186 };
+<a name="l00187"></a><a class="code" href="../../db/d92/class_converter.html#a956ecc7a7e8a777b48a0d45f7c857079">00187</a> QString <a class="code" href="../../db/d92/class_converter.html#a956ecc7a7e8a777b48a0d45f7c857079" title="gets the key of the parent node &amp;lt;distance&amp;gt; levels up the tree">Converter::_peekParent</a>(qint32 distance)
+<a name="l00188"></a>00188 {
+<a name="l00189"></a>00189     <span class="comment">// if distance &lt; current-&gt;layer()</span>
+<a name="l00190"></a>00190     <span class="comment">//   return the parent node &lt;distance&gt; hops up the tree</span>
+<a name="l00191"></a>00191     <span class="comment">// Demo-Code</span>
+<a name="l00192"></a>00192     <span class="keywordflow">return</span> QString(<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00193"></a>00193 };
+<a name="l00194"></a><a class="code" href="../../db/d92/class_converter.html#a4e44119f3375995ee7dc13ac0d2e526b">00194</a> QBool <a class="code" href="../../db/d92/class_converter.html#a4e44119f3375995ee7dc13ac0d2e526b" title="true if string is empty">Converter::_isEmpty</a>()
+<a name="l00195"></a>00195 {
+<a name="l00196"></a>00196     <span class="comment">// Demo-Code</span>
+<a name="l00197"></a>00197     <span class="keywordflow">return</span> QBool(<span class="keyword">false</span>);
+<a name="l00198"></a>00198 };
+<a name="l00199"></a><a class="code" href="../../db/d92/class_converter.html#aade1b4973c42f3cf22a942d29b68ee91">00199</a> QBool <a class="code" href="../../db/d92/class_converter.html#aade1b4973c42f3cf22a942d29b68ee91" title="true if content is empty">Converter::_isEmptyContent</a>()
+<a name="l00200"></a>00200 {
+<a name="l00201"></a>00201     <span class="comment">// Demo-Code</span>
+<a name="l00202"></a>00202     <span class="keywordflow">return</span> QBool(<a class="code" href="../../db/d92/class_converter.html#a99afd06cf05f1f3c51bfdc171cf494a6" title="the active node">_cursor</a>-&gt;<a class="code" href="../../dc/d8f/class_node.html#a7c9a368df59394dd7bd1ffcb90cc662b" title="This method returns the content of the node.">getContent</a>().isEmpty());
+<a name="l00203"></a>00203 };
+<a name="l00204"></a><a class="code" href="../../db/d92/class_converter.html#aacdb0773e3d843df902f11e052fc229a">00204</a> <span class="keywordtype">void</span> <a class="code" href="../../db/d92/class_converter.html#aacdb0773e3d843df902f11e052fc229a" title="removes tokens e.g.">Converter::removeToken</a>()
+<a name="l00205"></a>00205 {
+<a name="l00206"></a>00206 };
+<a name="l00207"></a><a class="code" href="../../db/d92/class_converter.html#a287b91c668656081ab3f0ce565db66d1">00207</a> <span class="keywordtype">void</span> <a class="code" href="../../db/d92/class_converter.html#a287b91c668656081ab3f0ce565db66d1" title="writes &amp;lt;content&amp;gt; at the end of the desired &amp;lt;part&amp;gt;">Converter::_write</a>(QString content, qint32 part)
+<a name="l00208"></a>00208 {
+<a name="l00209"></a>00209 };
+<a name="l00210"></a><a class="code" href="../../db/d92/class_converter.html#ab9a41bc4ecf5dbf2570b60255802da6e">00210</a> qint64 <a class="code" href="../../db/d92/class_converter.html#ab9a41bc4ecf5dbf2570b60255802da6e" title="returns offset if &amp;lt;pattern&amp;gt; is found otherwise returns &amp;quot;-1&amp;quot;">Converter::_tryMatch</a>(QString pattern)
+<a name="l00211"></a>00211 {
+<a name="l00212"></a>00212     <span class="comment">// Demo-Code</span>
+<a name="l00213"></a>00213     <span class="keywordflow">return</span> 0;
+<a name="l00214"></a>00214 };
+<a name="l00215"></a><a class="code" href="../../db/d92/class_converter.html#a3a09908e5a2b925b90675dd1cab01998">00215</a> QString <a class="code" href="../../db/d92/class_converter.html#a3a09908e5a2b925b90675dd1cab01998" title="replaces place holder with the content of the current node">Converter::_replace</a>(<a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* node)
+<a name="l00216"></a>00216 {
+<a name="l00217"></a>00217     QString result(<span class="stringliteral">&quot;&quot;</span>);
+<a name="l00218"></a>00218     <a class="code" href="../../d6/d9e/class_translation_data.html" title="The Converter performs the conversion on the application&amp;#39;s internal tree structure...">TranslationData</a> data = <a class="code" href="../../db/d92/class_converter.html#aabf2c4bb4890710fc2cb26c780828c7f">_translationMapper</a>-&gt;<a class="code" href="../../dc/dfc/class_translation_mapper.html#a9bc12d939a279ac6a65f00c9f120ecec" title="This method returns the object held by the attribute _outputMap.">outputMap</a>()[node-&gt;<a class="code" href="../../dc/d8f/class_node.html#adc626a713f53fad13cc0b0e0c0785bff" title="This method returns the name of the node.">getName</a>()];
+<a name="l00219"></a>00219     QString to = data.<a class="code" href="../../d6/d9e/class_translation_data.html#aff9130cf127632cd9c9b4d51294c7f79" title="This method returns the value of the _to attribute.">to</a>();
+<a name="l00220"></a>00220     <span class="comment">//std::cerr &lt;&lt; &quot;to: &quot; &lt;&lt; &quot;?&quot;&lt;&lt; to.toStdString() &lt;&lt; &quot;?&quot; &lt;&lt; std::endl;</span>
+<a name="l00221"></a>00221     <span class="comment">//std::cerr &lt;&lt; &quot;content: &quot; &lt;&lt; node-&gt;content().toStdString() &lt;&lt; std::endl;</span>
+<a name="l00222"></a>00222     QList&lt;TranslationDataNode&gt; datanodes = data.<a class="code" href="../../d6/d9e/class_translation_data.html#a2bab7d718a28b69ff4237d9fda02f4c4" title="This method returns the array of TranslationDataNode objects stored in the _requires...">requires</a>();
+<a name="l00223"></a>00223     <a class="code" href="../../da/d8e/class_translation_data_node.html" title="The TranslationMapper processes the input and output definition files and creates...">TranslationDataNode</a> datanode;
+<a name="l00224"></a>00224     <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; datanodes.count(); j++)
+<a name="l00225"></a>00225     {
+<a name="l00226"></a>00226         datanode = datanodes.at(j);
+<a name="l00227"></a>00227         <span class="comment">//datanode.name()</span>
+<a name="l00228"></a>00228     }
+<a name="l00229"></a>00229     <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="../../db/d92/class_converter.html#a654b30354a160107a779faeb64d00d72">replacementMarks</a>.count(); i++)
+<a name="l00230"></a>00230         result = to.replace(<a class="code" href="../../db/d92/class_converter.html#a654b30354a160107a779faeb64d00d72">replacementMarks</a>.at(i), node-&gt;<a class="code" href="../../dc/d8f/class_node.html#a7c9a368df59394dd7bd1ffcb90cc662b" title="This method returns the content of the node.">getContent</a>());
+<a name="l00231"></a>00231     <span class="comment">//std::cerr &lt;&lt; &quot;_replace: result: &quot; &lt;&lt; result.toStdString() &lt;&lt; std::endl;</span>
+<a name="l00232"></a>00232     <span class="keywordflow">return</span> result;
+<a name="l00233"></a>00233 };
+<a name="l00234"></a><a class="code" href="../../db/d92/class_converter.html#aa08a8b951ff24dafe5356829640877a0">00234</a> <span class="keywordtype">int</span> <a class="code" href="../../db/d92/class_converter.html#aa08a8b951ff24dafe5356829640877a0">Converter::match</a>(QString content, QString pattern)
+<a name="l00235"></a>00235 {
+<a name="l00236"></a>00236     <span class="keywordflow">if</span> (!content.isEmpty())
+<a name="l00237"></a>00237         <span class="keywordflow">return</span> content.indexOf(pattern, 0, Qt::CaseSensitive);
+<a name="l00238"></a>00238     <span class="keywordflow">return</span> -1;
+<a name="l00239"></a>00239 };
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -297,7 +336,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Mar 21 22:09:59 2011 for htmLaTeX by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Mar 23 18:24:36 2011 for htmLaTeX by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

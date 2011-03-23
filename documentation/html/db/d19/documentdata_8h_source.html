@@ -87,37 +87,36 @@ window.onload = initDynSections;
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
 <a name="l00004"></a>00004 <span class="preprocessor">#include &quot;<a class="code" href="../../d1/d77/node_8h.html">node.h</a>&quot;</span>
 <a name="l00005"></a>00005 <span class="preprocessor">#include &quot;<a class="code" href="../../de/d60/settings_8h.html">settings.h</a>&quot;</span>
-<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;QString&gt;</span>
-<a name="l00007"></a>00007 <span class="preprocessor">#include &lt;QFile&gt;</span>
-<a name="l00008"></a>00008 <span class="preprocessor">#include &lt;QFileInfo&gt;</span>
-<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;QTextStream&gt;</span>
-<a name="l00010"></a>00010 <span class="preprocessor">#include &lt;QStringList&gt;</span>
-<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;QMessageBox&gt;</span>
-<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;iostream&gt;</span>
-<a name="l00013"></a>00013 
-<a name="l00014"></a><a class="code" href="../../d9/dab/class_document_data.html">00014</a> <span class="keyword">class </span><a class="code" href="../../d9/dab/class_document_data.html">DocumentData</a>
-<a name="l00015"></a>00015 {
-<a name="l00016"></a>00016 <span class="keyword">public</span>:
-<a name="l00017"></a><a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa6efbec37de9f903e00f0b69d46f10dd4">00017</a>     <span class="keyword">enum</span> <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">FileType</a> { <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfaf6d2dedb690dd683a9c56c83bf6bc381">JavaDocHTML</a>, <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa3059def6ce1dcb4d5086681a29c81ad5">HTML</a>, <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa55ef5a37fbd3d5a90ea73fa99a8653ba">Tex</a>, <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa6efbec37de9f903e00f0b69d46f10dd4">Unknown</a> };
-<a name="l00018"></a>00018 <span class="keyword">private</span>:
-<a name="l00019"></a><a class="code" href="../../d9/dab/class_document_data.html#a3dd92beb6bba2372e6171b7f64d6dffc">00019</a>     QFileInfo <a class="code" href="../../d9/dab/class_document_data.html#a3dd92beb6bba2372e6171b7f64d6dffc">_fileInfo</a>;
-<a name="l00020"></a><a class="code" href="../../d9/dab/class_document_data.html#a5e03cf624cc0941976b0479f53938f85">00020</a>     <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* <a class="code" href="../../d9/dab/class_document_data.html#a5e03cf624cc0941976b0479f53938f85">_node</a>;
-<a name="l00021"></a><a class="code" href="../../d9/dab/class_document_data.html#a7dab48534d9fc5e348b957222b70bbfe">00021</a>     QString <a class="code" href="../../d9/dab/class_document_data.html#a7dab48534d9fc5e348b957222b70bbfe">_text</a>;
-<a name="l00022"></a><a class="code" href="../../d9/dab/class_document_data.html#a8cbaa3c88bcaf756ea3cad634d32cdf1">00022</a>     <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">FileType</a> <a class="code" href="../../d9/dab/class_document_data.html#a8cbaa3c88bcaf756ea3cad634d32cdf1">_fileType</a>;
-<a name="l00023"></a><a class="code" href="../../d9/dab/class_document_data.html#aa4d06546c274dc571f49024dcba31802">00023</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d9/dab/class_document_data.html#aa4d06546c274dc571f49024dcba31802">_preprocessed</a>;
-<a name="l00024"></a>00024     <span class="keywordtype">void</span> <a class="code" href="../../d9/dab/class_document_data.html#a0c1e9a1e6cbc19289cb23b840bbb4482" title="This hook-method calls all preprocessing methods.">preprocessingHook</a>();
-<a name="l00025"></a>00025     <span class="keywordtype">void</span> <a class="code" href="../../d9/dab/class_document_data.html#a591cc7c2c41216f2aac07b565c0a5081" title="This method changes the specified HTML-file in order to gain well-formed XML (XHTML)...">preprocessHTML</a>();
-<a name="l00026"></a>00026     <span class="keywordtype">bool</span> <a class="code" href="../../d9/dab/class_document_data.html#a4496b05dfe8d598fd2621e2911469f84">isPreprocessed</a>() <span class="keyword">const</span>;
-<a name="l00027"></a>00027 <span class="keyword">public</span>:
-<a name="l00028"></a>00028     QFileInfo <a class="code" href="../../d9/dab/class_document_data.html#a366b45b728e63fffa5c5264edd13987a" title="Returns the URL to this document.">fileInfo</a>() <span class="keyword">const</span>;
-<a name="l00029"></a>00029     <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* <a class="code" href="../../d9/dab/class_document_data.html#a5e5f6684fc87ab98259b6a07a688d8c2" title="Returns the pointer to the corresponding tree node of the whole document.">node</a>() <span class="keyword">const</span>;
-<a name="l00030"></a>00030     QString <a class="code" href="../../d9/dab/class_document_data.html#aa1b35a5ba9e783f8c3e55fff02ca7852" title="Returns the document as a preprocessed QString.">text</a>();
-<a name="l00031"></a>00031     <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">FileType</a> <a class="code" href="../../d9/dab/class_document_data.html#a83e7146c41fbda999b3f94b490e792f7">fileType</a>() <span class="keyword">const</span>;
-<a name="l00032"></a>00032     QFileInfo <a class="code" href="../../d9/dab/class_document_data.html#aa509a141b487e4626b0e8d6118f4e71c">indexFileInfo</a>() <span class="keyword">const</span>;
-<a name="l00034"></a>00034     <a class="code" href="../../d9/dab/class_document_data.html#a9e21fa943f0389d5908ccaf40fc99a54" title="Constructor.">DocumentData</a>(QFileInfo fileinfo, <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* <a class="code" href="../../d9/dab/class_document_data.html#a5e5f6684fc87ab98259b6a07a688d8c2" title="Returns the pointer to the corresponding tree node of the whole document.">node</a>, <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">FileType</a> filetype);
-<a name="l00035"></a>00035 };
-<a name="l00036"></a>00036 
-<a name="l00037"></a>00037 <span class="preprocessor">#endif // DOCUMENTDATA_H</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;QObject&gt;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &lt;QString&gt;</span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &lt;QFile&gt;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &lt;QFileInfo&gt;</span>
+<a name="l00010"></a>00010 <span class="preprocessor">#include &lt;QTextStream&gt;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;QStringList&gt;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &lt;QMessageBox&gt;</span>
+<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00014"></a>00014 
+<a name="l00018"></a><a class="code" href="../../d9/dab/class_document_data.html">00018</a> <span class="keyword">class </span><a class="code" href="../../d9/dab/class_document_data.html" title="This class provides a well-formed XML representation of a single input document.">DocumentData</a> : <span class="keyword">public</span> <a class="code" href="../../dc/d4f/class_q_object.html">QObject</a>
+<a name="l00019"></a>00019 {
+<a name="l00020"></a>00020     Q_OBJECT
+<a name="l00021"></a>00021 <span class="keyword">public</span>:
+<a name="l00022"></a><a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa6efbec37de9f903e00f0b69d46f10dd4">00022</a>     <span class="keyword">enum</span> <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">FileType</a> { <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfaf6d2dedb690dd683a9c56c83bf6bc381">JavaDocHTML</a>, <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa3059def6ce1dcb4d5086681a29c81ad5">HTML</a>, <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa55ef5a37fbd3d5a90ea73fa99a8653ba">Tex</a>, <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa33d10945808448dbc741d0171b9b1630">PDF</a>, <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bfa6efbec37de9f903e00f0b69d46f10dd4">Unknown</a> };
+<a name="l00038"></a>00038     <a class="code" href="../../d9/dab/class_document_data.html#a9e21fa943f0389d5908ccaf40fc99a54" title="This is the only constructor.">DocumentData</a>(QFileInfo fileinfo, <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* <a class="code" href="../../d9/dab/class_document_data.html#a5e5f6684fc87ab98259b6a07a688d8c2" title="The application&amp;#39;s internal tree structure is supposed to represent a whole input...">node</a>, <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">FileType</a> filetype);
+<a name="l00039"></a>00039 <span class="keyword">private</span>:
+<a name="l00044"></a><a class="code" href="../../d9/dab/class_document_data.html#a7dab48534d9fc5e348b957222b70bbfe">00044</a>     QString <a class="code" href="../../d9/dab/class_document_data.html#a7dab48534d9fc5e348b957222b70bbfe" title="This attribute contains a well-formed XML representation of the underlying input...">_text</a>;
+<a name="l00048"></a><a class="code" href="../../d9/dab/class_document_data.html#a3dd92beb6bba2372e6171b7f64d6dffc">00048</a>     QFileInfo <a class="code" href="../../d9/dab/class_document_data.html#a3dd92beb6bba2372e6171b7f64d6dffc" title="This attribute holds detailed information about the input document.">_fileInfo</a>;
+<a name="l00053"></a><a class="code" href="../../d9/dab/class_document_data.html#a8cbaa3c88bcaf756ea3cad634d32cdf1">00053</a>     <a class="code" href="../../d9/dab/class_document_data.html#a0d048d1193fd5178602190fcf6bc41bf">FileType</a> <a class="code" href="../../d9/dab/class_document_data.html#a8cbaa3c88bcaf756ea3cad634d32cdf1" title="This attribute contains the file type of the input document (i.e.">_fileType</a>;
+<a name="l00060"></a><a class="code" href="../../d9/dab/class_document_data.html#a5e03cf624cc0941976b0479f53938f85">00060</a>     <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* <a class="code" href="../../d9/dab/class_document_data.html#a5e03cf624cc0941976b0479f53938f85" title="The application&amp;#39;s internal tree structure is supposed to represent a whole input...">_node</a>;
+<a name="l00065"></a><a class="code" href="../../d9/dab/class_document_data.html#aa4d06546c274dc571f49024dcba31802">00065</a>     <span class="keywordtype">bool</span> <a class="code" href="../../d9/dab/class_document_data.html#aa4d06546c274dc571f49024dcba31802" title="This attribute indicates whether or not the input document has already been preprocessed...">_preprocessed</a>;
+<a name="l00069"></a>00069     <span class="keywordtype">void</span> <a class="code" href="../../d9/dab/class_document_data.html#aa922760e4552fe1e2136e566906f364e" title="This hook-method calls all preprocessing methods.">_preprocessingHook</a>();
+<a name="l00074"></a>00074     <span class="keywordtype">void</span> <a class="code" href="../../d9/dab/class_document_data.html#a722c844daea2dad392c6ad5761a9f0ab" title="This method changes the specified HTML-file in order to gain well-formed XML (XHTML)...">_preprocessHTML</a>();
+<a name="l00075"></a>00075 <span class="keyword">public</span>:
+<a name="l00080"></a>00080     QString <a class="code" href="../../d9/dab/class_document_data.html#aa1b35a5ba9e783f8c3e55fff02ca7852" title="This method returns a well-formed XML representation of the underlying input document...">text</a>();
+<a name="l00085"></a>00085     QFileInfo <a class="code" href="../../d9/dab/class_document_data.html#a366b45b728e63fffa5c5264edd13987a" title="This method returns a QFileInfo object which holds detailed information about the...">fileInfo</a>() <span class="keyword">const</span>;
+<a name="l00092"></a>00092     <a class="code" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a>* <a class="code" href="../../d9/dab/class_document_data.html#a5e5f6684fc87ab98259b6a07a688d8c2" title="The application&amp;#39;s internal tree structure is supposed to represent a whole input...">node</a>() <span class="keyword">const</span>;
+<a name="l00093"></a>00093 };
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095 <span class="preprocessor">#endif // DOCUMENTDATA_H</span>
 </pre></div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -133,7 +132,7 @@ window.onload = initDynSections;
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Mar 21 22:09:59 2011 for htmLaTeX by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Mar 23 18:24:36 2011 for htmLaTeX by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

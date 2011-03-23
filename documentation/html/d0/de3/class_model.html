@@ -86,6 +86,9 @@ window.onload = initDynSections;
 </div>
 <div class="contents">
 <h1>Model Class Reference</h1><!-- doxytag: class="Model" --><!-- doxytag: inherits="QAbstractItemModel" -->
+<p>This class is derived from the <a class="el" href="../../d4/d6d/class_q_abstract_item_model.html">QAbstractItemModel</a>.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="../../dc/d51/model_8h_source.html">model.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Model:</div>
@@ -105,9 +108,16 @@ Collaboration diagram for Model:</div>
 <p><a href="../../d0/d90/class_model-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/de3/class_model.html#a7e950e785279235c94c89b16ebea232c">Model</a> (<a class="el" href="../../dc/d4f/class_q_object.html">QObject</a> *parent=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the only constructor.  <a href="#a7e950e785279235c94c89b16ebea232c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/de3/class_model.html#ad6ebd2062a0b823db841a0b88baac4c0">~Model</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the only destructor.  <a href="#ad6ebd2062a0b823db841a0b88baac4c0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d8f/class_node.html">Node</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/de3/class_model.html#aae46c5a3ce5e429f6da048e73b51cab8">nodeFromIndex</a> (const QModelIndex &amp;index) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">When a node of the mainWindow's treeView is selected the treeView's method "currentIndex()" returns a QModelIndex object.  <a href="#aae46c5a3ce5e429f6da048e73b51cab8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/de3/class_model.html#ac7354180b2b908dcfec7fc80659d772f">setRootNode</a> (<a class="el" href="../../dc/d8f/class_node.html">Node</a> *node)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This method sets the root node of the application's internal tree structure.  <a href="#ac7354180b2b908dcfec7fc80659d772f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d8f/class_node.html">Node</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/de3/class_model.html#a08c416775d6c1ff2ead1d03b50def346">root</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This method returns the root node of the application's internal tree structure.  <a href="#a08c416775d6c1ff2ead1d03b50def346"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QModelIndex&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/de3/class_model.html#af35be44a7563817b57b60d2773b333eb">index</a> (int row, int column, const QModelIndex &amp;parent) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QModelIndex&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/de3/class_model.html#ad42ea4d5cd45376c48852e484614d3e9">parent</a> (const QModelIndex &amp;child) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/de3/class_model.html#abc1d61c9cb9587ffe4f41b75b0cdc2bb">rowCount</a> (const QModelIndex &amp;parent) const </td></tr>
@@ -115,15 +125,16 @@ Collaboration diagram for Model:</div>
 <tr><td class="memItemLeft" align="right" valign="top">QVariant&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/de3/class_model.html#a994c821f14dbf51cfe636ecf6ee7890e">data</a> (const QModelIndex &amp;index, int role) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QVariant&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/de3/class_model.html#adeb68f2732020313a9905808851b26d8">headerData</a> (int section, Qt::Orientation orientation, int role) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/de3/class_model.html#ab431411acff5db66cf5b54c703d3f187">refresh</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/de3/class_model.html#a7e950e785279235c94c89b16ebea232c">Model</a> (<a class="el" href="../../dc/d4f/class_q_object.html">QObject</a> *parent=0)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor.  <a href="#a7e950e785279235c94c89b16ebea232c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/de3/class_model.html#ad6ebd2062a0b823db841a0b88baac4c0">~Model</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This method is called by the mainWindow when a node is removed from the treeView.  <a href="#ab431411acff5db66cf5b54c703d3f187"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d8f/class_node.html">Node</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/de3/class_model.html#ae27499b3733745cf9aa9ec5a11e45f0a">_root</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the root node of the application's internal tree structure.  <a href="#ae27499b3733745cf9aa9ec5a11e45f0a"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>This class is derived from the <a class="el" href="../../d4/d6d/class_q_abstract_item_model.html">QAbstractItemModel</a>. </p>
+<p>It serves the mainWindow's treeVoew as data source. <dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
 
-<p>Definition at line <a class="el" href="../../dc/d51/model_8h_source.html#l00007">7</a> of file <a class="el" href="../../dc/d51/model_8h_source.html">model.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/model_8h_source.html#l00011">11</a> of file <a class="el" href="../../dc/d51/model_8h_source.html">model.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a7e950e785279235c94c89b16ebea232c"></a><!-- doxytag: member="Model::Model" ref="a7e950e785279235c94c89b16ebea232c" args="(QObject *parent=0)" -->
 <div class="memitem">
@@ -141,7 +152,8 @@ Collaboration diagram for Model:</div>
 </div>
 <div class="memdoc">
 
-<p>Constructor. </p>
+<p>This is the only constructor. </p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00003">3</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
 
@@ -162,9 +174,12 @@ Collaboration diagram for Model:</div>
 </div>
 <div class="memdoc">
 
+<p>This is the only destructor. </p>
+<p>It deletes the application's internal tree structure by deleting the _root node which starts a destructor chain. <dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
+
 <p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00006">6</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
 
-<p>References <a class="el" href="../../dc/d51/model_8h_source.html#l00010">_root</a>.</p>
+<p>References <a class="el" href="../../dc/d51/model_8h_source.html#l00027">_root</a>.</p>
 
 </div>
 </div>
@@ -185,7 +200,7 @@ Collaboration diagram for Model:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00046">46</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00047">47</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
 
 </div>
 </div>
@@ -214,9 +229,9 @@ Collaboration diagram for Model:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00065">65</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00066">66</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
 
-<p>References <a class="el" href="../../d7/d70/node_8cpp_source.html#l00065">Node::getContent()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00057">Node::getName()</a>, and <a class="el" href="../../d6/db4/model_8cpp_source.html#l00029">nodeFromIndex()</a>.</p>
+<p>References <a class="el" href="../../d7/d70/node_8cpp_source.html#l00065">Node::getContent()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00057">Node::getName()</a>, and <a class="el" href="../../d6/db4/model_8cpp_source.html#l00030">nodeFromIndex()</a>.</p>
 
 </div>
 </div>
@@ -251,7 +266,7 @@ Collaboration diagram for Model:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00074">74</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00075">75</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
 
 </div>
 </div>
@@ -286,9 +301,9 @@ Collaboration diagram for Model:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00017">17</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00018">18</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
 
-<p>References <a class="el" href="../../dc/d51/model_8h_source.html#l00010">_root</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00100">Node::childAt()</a>, and <a class="el" href="../../d6/db4/model_8cpp_source.html#l00029">nodeFromIndex()</a>.</p>
+<p>References <a class="el" href="../../dc/d51/model_8h_source.html#l00027">_root</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00100">Node::childAt()</a>, and <a class="el" href="../../d6/db4/model_8cpp_source.html#l00030">nodeFromIndex()</a>.</p>
 
 </div>
 </div>
@@ -308,11 +323,14 @@ Collaboration diagram for Model:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00029">29</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
+<p>When a node of the mainWindow's treeView is selected the treeView's method "currentIndex()" returns a QModelIndex object. </p>
+<p>The <a class="el" href="../../d0/de3/class_model.html#aae46c5a3ce5e429f6da048e73b51cab8" title="When a node of the mainWindow&#39;s treeView is selected the treeView&#39;s method...">nodeFromIndex()</a> method of this class returns the <a class="el" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> object of the application's internal tree structure which corresponds to that given QModelIndex. <dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
 
-<p>References <a class="el" href="../../dc/d51/model_8h_source.html#l00010">_root</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00030">30</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00291">MainWindow::_showTreeViewContextMenu()</a>, <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00301">MainWindow::_treeViewRemoveNode()</a>, <a class="el" href="../../d6/db4/model_8cpp_source.html#l00065">data()</a>, <a class="el" href="../../d6/db4/model_8cpp_source.html#l00017">index()</a>, <a class="el" href="../../dd/d6a/itemdelegate_8cpp_source.html#l00062">ItemDelegate::paint()</a>, <a class="el" href="../../d6/db4/model_8cpp_source.html#l00051">parent()</a>, and <a class="el" href="../../d6/db4/model_8cpp_source.html#l00037">rowCount()</a>.</p>
+<p>References <a class="el" href="../../dc/d51/model_8h_source.html#l00027">_root</a>.</p>
+
+<p>Referenced by <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00359">MainWindow::_showTreeViewContextMenu()</a>, <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00369">MainWindow::_treeViewRemoveNode()</a>, <a class="el" href="../../d6/db4/model_8cpp_source.html#l00066">data()</a>, <a class="el" href="../../d6/db4/model_8cpp_source.html#l00018">index()</a>, <a class="el" href="../../dd/d6a/itemdelegate_8cpp_source.html#l00062">ItemDelegate::paint()</a>, <a class="el" href="../../d6/db4/model_8cpp_source.html#l00052">parent()</a>, and <a class="el" href="../../d6/db4/model_8cpp_source.html#l00038">rowCount()</a>.</p>
 
 </div>
 </div>
@@ -332,9 +350,9 @@ Collaboration diagram for Model:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00051">51</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00052">52</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
 
-<p>References <a class="el" href="../../d7/d70/node_8cpp_source.html#l00073">Node::getParent()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00159">Node::indexOf()</a>, and <a class="el" href="../../d6/db4/model_8cpp_source.html#l00029">nodeFromIndex()</a>.</p>
+<p>References <a class="el" href="../../d7/d70/node_8cpp_source.html#l00073">Node::getParent()</a>, <a class="el" href="../../d7/d70/node_8cpp_source.html#l00159">Node::indexOf()</a>, and <a class="el" href="../../d6/db4/model_8cpp_source.html#l00030">nodeFromIndex()</a>.</p>
 
 </div>
 </div>
@@ -353,9 +371,12 @@ Collaboration diagram for Model:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00082">82</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
+<p>This method is called by the mainWindow when a node is removed from the treeView. </p>
+<p>The treeView repaints the visible items. <dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
 
-<p>Referenced by <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00301">MainWindow::_treeViewRemoveNode()</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00083">83</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
+
+<p>Referenced by <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00369">MainWindow::_treeViewRemoveNode()</a>.</p>
 
 </div>
 </div>
@@ -374,11 +395,14 @@ Collaboration diagram for Model:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00078">78</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
+<p>This method returns the root node of the application's internal tree structure. </p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
 
-<p>References <a class="el" href="../../dc/d51/model_8h_source.html#l00010">_root</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00079">79</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00227">MainWindow::_convert()</a>, and <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00071">MainWindow::_performInitialOperations()</a>.</p>
+<p>References <a class="el" href="../../dc/d51/model_8h_source.html#l00027">_root</a>.</p>
+
+<p>Referenced by <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00219">MainWindow::_convert()</a>, and <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00065">MainWindow::_performInitialOperations()</a>.</p>
 
 </div>
 </div>
@@ -398,9 +422,9 @@ Collaboration diagram for Model:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00037">37</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00038">38</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
 
-<p>References <a class="el" href="../../d7/d70/node_8cpp_source.html#l00083">Node::getCount()</a>, and <a class="el" href="../../d6/db4/model_8cpp_source.html#l00029">nodeFromIndex()</a>.</p>
+<p>References <a class="el" href="../../d7/d70/node_8cpp_source.html#l00083">Node::getCount()</a>, and <a class="el" href="../../d6/db4/model_8cpp_source.html#l00030">nodeFromIndex()</a>.</p>
 
 </div>
 </div>
@@ -420,11 +444,20 @@ Collaboration diagram for Model:</div>
 </div>
 <div class="memdoc">
 
+<p>This method sets the root node of the application's internal tree structure. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>&lt;node&gt;</em>&nbsp;</td><td>is a <a class="el" href="../../dc/d8f/class_node.html" title="The Node class provides rudimental functionality to build tree structures and access...">Node</a> object. <dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Definition at line <a class="el" href="../../d6/db4/model_8cpp_source.html#l00010">10</a> of file <a class="el" href="../../d6/db4/model_8cpp_source.html">model.cpp</a>.</p>
 
-<p>References <a class="el" href="../../dc/d51/model_8h_source.html#l00010">_root</a>.</p>
+<p>References <a class="el" href="../../dc/d51/model_8h_source.html#l00027">_root</a>.</p>
 
-<p>Referenced by <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00205">MainWindow::_open()</a>, and <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00071">MainWindow::_performInitialOperations()</a>.</p>
+<p>Referenced by <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00197">MainWindow::_open()</a>, and <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00065">MainWindow::_performInitialOperations()</a>.</p>
 
 </div>
 </div>
@@ -440,9 +473,12 @@ Collaboration diagram for Model:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../dc/d51/model_8h_source.html#l00010">10</a> of file <a class="el" href="../../dc/d51/model_8h_source.html">model.h</a>.</p>
+<p>This is the root node of the application's internal tree structure. </p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
 
-<p>Referenced by <a class="el" href="../../d6/db4/model_8cpp_source.html#l00017">index()</a>, <a class="el" href="../../d6/db4/model_8cpp_source.html#l00029">nodeFromIndex()</a>, <a class="el" href="../../d6/db4/model_8cpp_source.html#l00078">root()</a>, <a class="el" href="../../d6/db4/model_8cpp_source.html#l00010">setRootNode()</a>, and <a class="el" href="../../d6/db4/model_8cpp_source.html#l00006">~Model()</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/model_8h_source.html#l00027">27</a> of file <a class="el" href="../../dc/d51/model_8h_source.html">model.h</a>.</p>
+
+<p>Referenced by <a class="el" href="../../d6/db4/model_8cpp_source.html#l00018">index()</a>, <a class="el" href="../../d6/db4/model_8cpp_source.html#l00030">nodeFromIndex()</a>, <a class="el" href="../../d6/db4/model_8cpp_source.html#l00079">root()</a>, <a class="el" href="../../d6/db4/model_8cpp_source.html#l00010">setRootNode()</a>, and <a class="el" href="../../d6/db4/model_8cpp_source.html#l00006">~Model()</a>.</p>
 
 </div>
 </div>
@@ -465,7 +501,7 @@ Collaboration diagram for Model:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Mar 21 22:10:00 2011 for htmLaTeX by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Mar 23 18:24:37 2011 for htmLaTeX by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

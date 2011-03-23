@@ -85,46 +85,69 @@ window.onload = initDynSections;
   </div>
 </div>
 <div class="contents">
-<h1>TranslationMapper Class Reference</h1><!-- doxytag: class="TranslationMapper" -->
+<h1>TranslationMapper Class Reference</h1><!-- doxytag: class="TranslationMapper" --><!-- doxytag: inherits="QObject" -->
+<p>This class processes the input and output definition files to procure data structures which meet the needs of the <a class="el" href="../../dc/d86/class_document_reader.html" title="The DocumentReader class creates the application&#39;s internal tree structure from...">DocumentReader</a> and <a class="el" href="../../db/d92/class_converter.html" title="This class converts the QDomDocument-Tree to a textfile by performing the conversions...">Converter</a> classes.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="../../dc/d19/translationmapper_8h_source.html">translationmapper.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for TranslationMapper:</div>
+<div class="dynsection">
+<div class="center"><img src="../../d6/da8/class_translation_mapper__inherit__graph.png" border="0" usemap="#_translation_mapper_inherit__map" alt="Inheritance graph"/></div>
+<map name="_translation_mapper_inherit__map" id="_translation_mapper_inherit__map">
+<area shape="rect" id="node2" href="../../dc/d4f/class_q_object.html" title="{QObject\n||}" alt="" coords="73,5,143,91"/></map>
+<center><span class="legend">[<a href="../../graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for TranslationMapper:</div>
 <div class="dynsection">
 <div class="center"><img src="../../de/d75/class_translation_mapper__coll__graph.png" border="0" usemap="#_translation_mapper_coll__map" alt="Collaboration graph"/></div>
 <map name="_translation_mapper_coll__map" id="_translation_mapper_coll__map">
-<area shape="rect" id="node2" href="../../d6/dc7/class_document_reader_data.html" title="{DocumentReaderData\n|&#45; _tagName\l&#45; _urlContainingAttributeName\l|+ getTagName()\l+ getUrlContainingAttributeName()\l+ DocumentReaderData()\l+ DocumentReaderData()\l+ DocumentReaderData()\l}" alt="" coords="5,174,224,346"/></map>
+<area shape="rect" id="node2" href="../../dc/d4f/class_q_object.html" title="{QObject\n||}" alt="" coords="5,217,75,303"/><area shape="rect" id="node4" href="../../d6/dc7/class_document_reader_data.html" title="This class describes how a reference to a subdocument of an input document is defined..." alt="" coords="99,174,317,346"/></map>
 <center><span class="legend">[<a href="../../graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="../../dd/de2/class_translation_mapper-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dfc/class_translation_mapper.html#a70b15b54764aee44f98bcd3787b59005">TranslationMapper</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dfc/class_translation_mapper.html#ac42ce7c73f08f1041c89b26f0c4d1f83">TranslationMapper</a> (<a class="el" href="../../dc/d4f/class_q_object.html">QObject</a> *parent=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the only constructor.  <a href="#ac42ce7c73f08f1041c89b26f0c4d1f83"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dfc/class_translation_mapper.html#a72fb3757002231516465d6bf8d97064b">createDocumentReaderData</a> (QString inputfilepath)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This method processes the input definition file to store a <a class="el" href="../../d6/dc7/class_document_reader_data.html" title="This class describes how a reference to a subdocument of an input document is defined...">DocumentReaderData</a> object in the attribute _documentReference.  <a href="#a72fb3757002231516465d6bf8d97064b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dfc/class_translation_mapper.html#af645acc0d24f4d28e020cb36ade9c43c">createOutputElementMap</a> (QString outputfilepath)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This method processes the output definition file to populate the attribute _outputMap with a <a class="el" href="../../d6/d9e/class_translation_data.html" title="The Converter performs the conversion on the application&#39;s internal tree structure...">TranslationData</a> object for each different node of the input document.  <a href="#af645acc0d24f4d28e020cb36ade9c43c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/dc7/class_document_reader_data.html">DocumentReaderData</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dfc/class_translation_mapper.html#ae702ebbe41bdf21a07ec03aeb0c0f527">getDocumentReference</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This method returns the object held by the attribute _documentReference.  <a href="#ae702ebbe41bdf21a07ec03aeb0c0f527"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QMap&lt; QString, <a class="el" href="../../d6/d9e/class_translation_data.html">TranslationData</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dfc/class_translation_mapper.html#a9bc12d939a279ac6a65f00c9f120ecec">outputMap</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This method returns the object held by the attribute _outputMap.  <a href="#a9bc12d939a279ac6a65f00c9f120ecec"></a><br/></td></tr>
 <tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/dc7/class_document_reader_data.html">DocumentReaderData</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dfc/class_translation_mapper.html#a12e4957781d619cb88b23d68e5d41fb2">_documentReference</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This attribute contains a <a class="el" href="../../d6/dc7/class_document_reader_data.html" title="This class describes how a reference to a subdocument of an input document is defined...">DocumentReaderData</a> object which describes how a reference to a subdocument of an input document is defined.  <a href="#a12e4957781d619cb88b23d68e5d41fb2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">QMap&lt; QString, <a class="el" href="../../d6/d9e/class_translation_data.html">TranslationData</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dfc/class_translation_mapper.html#a266da41bf00e3c490d83da8d389c7532">_outputMap</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This attribute holds a key-value-pair data structure (an associative array).  <a href="#a266da41bf00e3c490d83da8d389c7532"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>This class processes the input and output definition files to procure data structures which meet the needs of the <a class="el" href="../../dc/d86/class_document_reader.html" title="The DocumentReader class creates the application&#39;s internal tree structure from...">DocumentReader</a> and <a class="el" href="../../db/d92/class_converter.html" title="This class converts the QDomDocument-Tree to a textfile by performing the conversions...">Converter</a> classes. </p>
+<p>Hence it creates a <a class="el" href="../../d6/dc7/class_document_reader_data.html" title="This class describes how a reference to a subdocument of an input document is defined...">DocumentReaderData</a> object stored in the _documentReference attribute which describes how a reference to a subdocument of an input document is defined. In addition it creates a key-value-pair data structure (an associative array) which holds information about how the relevant nodes of the input document are to be translated. <dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
 
-<p>Definition at line <a class="el" href="../../dc/d19/translationmapper_8h_source.html#l00013">13</a> of file <a class="el" href="../../dc/d19/translationmapper_8h_source.html">translationmapper.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d19/translationmapper_8h_source.html#l00023">23</a> of file <a class="el" href="../../dc/d19/translationmapper_8h_source.html">translationmapper.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a70b15b54764aee44f98bcd3787b59005"></a><!-- doxytag: member="TranslationMapper::TranslationMapper" ref="a70b15b54764aee44f98bcd3787b59005" args="()" -->
+<a class="anchor" id="ac42ce7c73f08f1041c89b26f0c4d1f83"></a><!-- doxytag: member="TranslationMapper::TranslationMapper" ref="ac42ce7c73f08f1041c89b26f0c4d1f83" args="(QObject *parent=0)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">TranslationMapper::TranslationMapper </td>
           <td>(</td>
-          <td class="paramname"></td>
+          <td class="paramtype"><a class="el" href="../../dc/d4f/class_q_object.html">QObject</a> *&nbsp;</td>
+          <td class="paramname"> <em>parent</em> = <code>0</code></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>This is the only constructor. </p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
 
 <p>Definition at line <a class="el" href="../../da/d7d/translationmapper_8cpp_source.html#l00003">3</a> of file <a class="el" href="../../da/d7d/translationmapper_8cpp_source.html">translationmapper.cpp</a>.</p>
 
@@ -147,11 +170,20 @@ Collaboration diagram for TranslationMapper:</div>
 </div>
 <div class="memdoc">
 
+<p>This method processes the input definition file to store a <a class="el" href="../../d6/dc7/class_document_reader_data.html" title="This class describes how a reference to a subdocument of an input document is defined...">DocumentReaderData</a> object in the attribute _documentReference. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>&lt;inputfilepath&gt;</em>&nbsp;</td><td>is the file path to the input definition file. <dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Definition at line <a class="el" href="../../da/d7d/translationmapper_8cpp_source.html#l00006">6</a> of file <a class="el" href="../../da/d7d/translationmapper_8cpp_source.html">translationmapper.cpp</a>.</p>
 
-<p>References <a class="el" href="../../dc/d19/translationmapper_8h_source.html#l00018">_documentReference</a>, and <a class="el" href="../../de/d60/settings_8h_source.html#l00015">Settings::DEBUG</a>.</p>
+<p>References <a class="el" href="../../dc/d19/translationmapper_8h_source.html#l00036">_documentReference</a>, and <a class="el" href="../../de/d60/settings_8h_source.html#l00029">Settings::DEBUG</a>.</p>
 
-<p>Referenced by <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00071">MainWindow::_performInitialOperations()</a>, <a class="el" href="../../d9/dda/console_8cpp_source.html#l00013">Console::_performInitialOperations()</a>, and <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00265">MainWindow::_setInputDefinition()</a>.</p>
+<p>Referenced by <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00065">MainWindow::_performInitialOperations()</a>, <a class="el" href="../../d9/dda/console_8cpp_source.html#l00011">Console::_performInitialOperations()</a>, and <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00333">MainWindow::_setInputDefinition()</a>.</p>
 
 </div>
 </div>
@@ -171,11 +203,20 @@ Collaboration diagram for TranslationMapper:</div>
 </div>
 <div class="memdoc">
 
+<p>This method processes the output definition file to populate the attribute _outputMap with a <a class="el" href="../../d6/d9e/class_translation_data.html" title="The Converter performs the conversion on the application&#39;s internal tree structure...">TranslationData</a> object for each different node of the input document. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>&lt;outputfilepath&gt;</em>&nbsp;</td><td>is the file path to the output definition file. <dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Definition at line <a class="el" href="../../da/d7d/translationmapper_8cpp_source.html#l00044">44</a> of file <a class="el" href="../../da/d7d/translationmapper_8cpp_source.html">translationmapper.cpp</a>.</p>
 
-<p>References <a class="el" href="../../dc/d19/translationmapper_8h_source.html#l00019">_outputMap</a>, <a class="el" href="../../d5/d9c/translationdatanode_8cpp_source.html#l00028">TranslationDataNode::addAttribute()</a>, <a class="el" href="../../d9/d3c/translationdata_8cpp_source.html#l00035">TranslationData::addRequiresNode()</a>, <a class="el" href="../../de/d60/settings_8h_source.html#l00015">Settings::DEBUG</a>, <a class="el" href="../../d9/d3c/translationdata_8cpp_source.html#l00015">TranslationData::key()</a>, <a class="el" href="../../d5/d9c/translationdatanode_8cpp_source.html#l00020">TranslationDataNode::setContent()</a>, <a class="el" href="../../d9/d3c/translationdata_8cpp_source.html#l00011">TranslationData::setFrom()</a>, <a class="el" href="../../d9/d3c/translationdata_8cpp_source.html#l00019">TranslationData::setKey()</a>, <a class="el" href="../../d5/d9c/translationdatanode_8cpp_source.html#l00012">TranslationDataNode::setName()</a>, and <a class="el" href="../../d9/d3c/translationdata_8cpp_source.html#l00027">TranslationData::setTo()</a>.</p>
+<p>References <a class="el" href="../../dc/d19/translationmapper_8h_source.html#l00044">_outputMap</a>, <a class="el" href="../../d5/d9c/translationdatanode_8cpp_source.html#l00028">TranslationDataNode::addAttribute()</a>, <a class="el" href="../../d9/d3c/translationdata_8cpp_source.html#l00035">TranslationData::addRequiresNode()</a>, <a class="el" href="../../de/d60/settings_8h_source.html#l00029">Settings::DEBUG</a>, <a class="el" href="../../d9/d3c/translationdata_8cpp_source.html#l00015">TranslationData::key()</a>, <a class="el" href="../../d5/d9c/translationdatanode_8cpp_source.html#l00020">TranslationDataNode::setContent()</a>, <a class="el" href="../../d9/d3c/translationdata_8cpp_source.html#l00011">TranslationData::setFrom()</a>, <a class="el" href="../../d9/d3c/translationdata_8cpp_source.html#l00019">TranslationData::setKey()</a>, <a class="el" href="../../d5/d9c/translationdatanode_8cpp_source.html#l00012">TranslationDataNode::setName()</a>, and <a class="el" href="../../d9/d3c/translationdata_8cpp_source.html#l00027">TranslationData::setTo()</a>.</p>
 
-<p>Referenced by <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00071">MainWindow::_performInitialOperations()</a>, <a class="el" href="../../d9/dda/console_8cpp_source.html#l00013">Console::_performInitialOperations()</a>, and <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00273">MainWindow::_setOutputDefinition()</a>.</p>
+<p>Referenced by <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00065">MainWindow::_performInitialOperations()</a>, <a class="el" href="../../d9/dda/console_8cpp_source.html#l00011">Console::_performInitialOperations()</a>, and <a class="el" href="../../d8/dd9/mainwindow_8cpp_source.html#l00341">MainWindow::_setOutputDefinition()</a>.</p>
 
 </div>
 </div>
@@ -194,11 +235,14 @@ Collaboration diagram for TranslationMapper:</div>
 </div>
 <div class="memdoc">
 
+<p>This method returns the object held by the attribute _documentReference. </p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
+
 <p>Definition at line <a class="el" href="../../da/d7d/translationmapper_8cpp_source.html#l00110">110</a> of file <a class="el" href="../../da/d7d/translationmapper_8cpp_source.html">translationmapper.cpp</a>.</p>
 
-<p>References <a class="el" href="../../dc/d19/translationmapper_8h_source.html#l00018">_documentReference</a>.</p>
+<p>References <a class="el" href="../../dc/d19/translationmapper_8h_source.html#l00036">_documentReference</a>.</p>
 
-<p>Referenced by <a class="el" href="../../d5/d0f/documentreader_8cpp_source.html#l00076">DocumentReader::readElement()</a>.</p>
+<p>Referenced by <a class="el" href="../../d5/d0f/documentreader_8cpp_source.html#l00080">DocumentReader::_readElement()</a>.</p>
 
 </div>
 </div>
@@ -217,11 +261,14 @@ Collaboration diagram for TranslationMapper:</div>
 </div>
 <div class="memdoc">
 
+<p>This method returns the object held by the attribute _outputMap. </p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
+
 <p>Definition at line <a class="el" href="../../da/d7d/translationmapper_8cpp_source.html#l00114">114</a> of file <a class="el" href="../../da/d7d/translationmapper_8cpp_source.html">translationmapper.cpp</a>.</p>
 
-<p>References <a class="el" href="../../dc/d19/translationmapper_8h_source.html#l00019">_outputMap</a>.</p>
+<p>References <a class="el" href="../../dc/d19/translationmapper_8h_source.html#l00044">_outputMap</a>.</p>
 
-<p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00176">Converter::_replace()</a>.</p>
+<p>Referenced by <a class="el" href="../../db/dc8/converter_8cpp_source.html#l00215">Converter::_replace()</a>.</p>
 
 </div>
 </div>
@@ -237,7 +284,10 @@ Collaboration diagram for TranslationMapper:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../dc/d19/translationmapper_8h_source.html#l00018">18</a> of file <a class="el" href="../../dc/d19/translationmapper_8h_source.html">translationmapper.h</a>.</p>
+<p>This attribute contains a <a class="el" href="../../d6/dc7/class_document_reader_data.html" title="This class describes how a reference to a subdocument of an input document is defined...">DocumentReaderData</a> object which describes how a reference to a subdocument of an input document is defined. </p>
+<dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
+
+<p>Definition at line <a class="el" href="../../dc/d19/translationmapper_8h_source.html#l00036">36</a> of file <a class="el" href="../../dc/d19/translationmapper_8h_source.html">translationmapper.h</a>.</p>
 
 <p>Referenced by <a class="el" href="../../da/d7d/translationmapper_8cpp_source.html#l00006">createDocumentReaderData()</a>, and <a class="el" href="../../da/d7d/translationmapper_8cpp_source.html#l00110">getDocumentReference()</a>.</p>
 
@@ -254,7 +304,10 @@ Collaboration diagram for TranslationMapper:</div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../dc/d19/translationmapper_8h_source.html#l00019">19</a> of file <a class="el" href="../../dc/d19/translationmapper_8h_source.html">translationmapper.h</a>.</p>
+<p>This attribute holds a key-value-pair data structure (an associative array). </p>
+<p>The items of this array can be accessed via a key of the type QString (i.e. _outputMap["head"]). The node names of the input document serve as keys for this array. The received value is a <a class="el" href="../../d6/d9e/class_translation_data.html" title="The Converter performs the conversion on the application&#39;s internal tree structure...">TranslationData</a> object providing information for the <a class="el" href="../../db/d92/class_converter.html" title="This class converts the QDomDocument-Tree to a textfile by performing the conversions...">Converter</a> which performs textual replacements. <dl class="author"><dt><b>Author:</b></dt><dd>Bjoern </dd></dl>
+
+<p>Definition at line <a class="el" href="../../dc/d19/translationmapper_8h_source.html#l00044">44</a> of file <a class="el" href="../../dc/d19/translationmapper_8h_source.html">translationmapper.h</a>.</p>
 
 <p>Referenced by <a class="el" href="../../da/d7d/translationmapper_8cpp_source.html#l00044">createOutputElementMap()</a>, and <a class="el" href="../../da/d7d/translationmapper_8cpp_source.html#l00114">outputMap()</a>.</p>
 
@@ -279,7 +332,7 @@ Collaboration diagram for TranslationMapper:</div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Mar 21 22:10:01 2011 for htmLaTeX by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Mar 23 18:24:37 2011 for htmLaTeX by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
